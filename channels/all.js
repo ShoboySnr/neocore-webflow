@@ -189,4 +189,5 @@ function getAllChannelTypes(channelID, status) {
 
 document.addEventListener('DOMContentLoaded', () => {
     getAllChannels();
+    console.log('hello')
 })
