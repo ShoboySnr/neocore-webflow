@@ -1,4 +1,3 @@
-<script>
 function getAllChannels() {
 
     let request = cbrRequest('/channels', 'GET', true)
@@ -191,4 +190,3 @@ function getAllChannelTypes(channelID, status) {
 document.addEventListener('DOMContentLoaded', () => {
     getAllChannels();
 })
-</script>
