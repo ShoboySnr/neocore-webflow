@@ -1,0 +1,177 @@
+<script>
+  var myUrl = new URL(document.location.href)
+  var userID = myUrl.searchParams.get("id")
+
+  if(userID === '') {
+    alert('No user is specified, please spicify a user and try again.');
+    window.location.href = '/users/list';
+  }
+  
+  let request = cbrRequest(`/users/${userID}`, 'GET', true)
+  
+  let activeStatus = false;
+  
+  request.onload = function() {
+  
+    let data = JSON.parse(this.response)
+  
+    // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
+    if (request.status >= 200 && request.status < 400) {
+      const customer = data.data;
+
+      document.getElementById('title-field-full-name').innerHTML += `${customer.FirstName} ${customer.LastName} ${customer.OtherNames || ''}`;
+
+      const customer_serial_number_el = document.getElementById('field-customer-serial-number');
+      customer_serial_number_el.textContent = customer.SerialNumber;
+
+      const customer_status_el = document.getElementById('field-customer-status');
+      customer_status_el.innerHTML = readStatus(customer.Active);
+      console.log(customer.Active);
+      if(customer.Active) {
+        document.getElementById('button-customer-deactivate-customer').setAttribute('style', 'display: block');
+      } else {
+        document.getElementById('button-customer-activate-customer').setAttribute('style', 'display: block');
+      }
+
+      const customer_first_name_el = document.getElementById('field-customer-first-name');
+      customer_first_name_el.textContent = customer.FirstName;
+
+      const customer_last_name_el = document.getElementById('field-customer-last-name');
+      customer_last_name_el.textContent = customer.LastName;
+
+      const customer_other_names_el = document.getElementById('field-customer-other-names');
+      customer_other_names_el.textContent = customer.OtherNames;
+
+      const customer_nickname_el = document.getElementById('field-customer-nickname');
+      customer_nickname_el.textContent = customer.Nickname;
+
+      // const customer_passport_el = document.getElementById('field-customer-passport');
+      // customer_passport_el.textContent = customer.PassportID;
+
+      const customer_gender_el = document.getElementById('field-customer-gender');
+      customer_gender_el.textContent = readGender(customer.Gender);
+
+
+      const customer_email_address_el = document.getElementById('field-customer-email-address');
+      customer_email_address_el.textContent = customer.EmailAddress;
+
+      const customer_phone_number_el = document.getElementById('field-customer-phone-number');
+      customer_phone_number_el.textContent = customer.PhoneNumber;
+
+      const customer_deposit_accounts_el = document.getElementById('field-customer-deposit-accounts');
+      customer_deposit_accounts_el.textContent = customer.DepositAccounts;
+
+      const customer_loan_accounts_el = document.getElementById('field-customer-loan-accounts');
+      customer_loan_accounts_el.textContent = customer.LoanAccounts;
+
+      const customer_bvn_el = document.getElementById('field-customer-bvn');
+      customer_bvn_el.textContent = customer.LoanAccounts;
+
+      const customer_date_of_birth_el = document.getElementById('field-customer-date-of-birth');
+      customer_date_of_birth_el.textContent = readableDate(customer.Dob);
+
+      const customer_device_id_el = document.getElementById('field-customer-device-id');
+      customer_device_id_el.textContent = customer.DeviceID || '';
+
+      const customer_saved_beneficiaries_el = document.getElementById('field-customer-saved-beneficiaries');
+      customer_saved_beneficiaries_el.textContent = customer.SavedBeneficiaries || '';
+
+      const customer_meta_el = document.getElementById('field-customer-meta');
+      customer_meta_el.textContent = customer.Meta || '';
+
+      //Work Information
+      const work_info = customer.WorkInformation
+
+      const customer_work_name_el = document.getElementById('field-work-name');
+      customer_work_name_el.textContent = work_info.Name;
+
+      const customer_role_type_el = document.getElementById('field-work-role-type');
+      customer_role_type_el.textContent = readRoleType(work_info.RoleType);
+
+      const customer_address_type_el = document.getElementById('field-work-address-type');
+      customer_address_type_el.textContent = readAddressType(work_info.RoleType);
+
+      const work_full_address = work_info.Address;
+      const customer_work_full_address_el = document.getElementById('field-work-full-address');
+      customer_work_full_address_el.textContent = `${work_full_address.Street} ${work_full_address.Street2} ${work_full_address.Town} ${work_full_address.State} ${work_full_address.Lga}`;
+    
+      
+      //Customer Validations
+      const customer_validations = customer.Validations;
+
+      const customer_validations_bvn_el = document.getElementById('field-validations-bvn');
+      customer_validations_bvn_el.textContent = readStates(customer_validations.BVN);
+
+      const customer_validations_phone_number_el = document.getElementById('field-validations-phone-number');
+      customer_validations_phone_number_el.textContent = readStates(customer_validations.PhoneNumber);
+
+      const customer_validations_email_el = document.getElementById('field-validations-email');
+      customer_validations_email_el.textContent = readStates(customer_validations.Email);
+
+      const customer_validations_id_el = document.getElementById('field-validations-id');
+      customer_validations_id_el.textContent = readStates(customer_validations.ID);
+
+      const customer_validations_home_address_el = document.getElementById('field-validations-home-address');
+      customer_validations_home_address_el.textContent = readStates(customer_validations.HomeAddress);
+
+      const customer_validations_work_address_el = document.getElementById('field-validations-work-address');
+      customer_validations_work_address_el.textContent = readStates(customer_validations.WorkAddress);
+
+      
+      return;
+    
+    } else {
+          console.log('error');
+    }
+  }
+  
+  //send request
+  request.send();
+  
+  //activate customers
+  document.getElementById("button-customer-activate-customer").addEventListener("click", function() { 
+      updateCustomerStatus(userID, true)
+  });
+
+  document.getElementById("button-customer-deactivate-customer").addEventListener("click", function() { 
+      updateCustomerStatus(userID, false)
+  });
+  
+  function updateCustomerStatus(userID, activeStatus) {
+
+    let request = cbrRequest(`/users/${userID}/activate/${activeStatus}`, 'PATCH', true)
+    
+    request.onload = function() {
+    
+      if (request.status >= 200 && request.status < 400) {
+          const message = activeStatus ? 'Activated' : 'Deactivated';
+          alert('Customer status successfully ' + message);
+          document.location.reload()
+      } else {
+          alert('There was an error updating the customer status')
+          return
+      } 
+    }
+    
+    request.send();
+  }
+
+  function updateCustomerPassportPicture(userID) {
+      let request = cbrRequest(`/users/${userID}/activate/passportPicture`, 'POST', true)
+      
+      request.onload = function() {
+      
+        if (request.status >= 200 && request.status < 400) {
+            const message = activeStatus ? 'Activated' : 'Deactivated';
+            alert('Customer status successfully ' + message);
+            document.location.reload()
+        } else {
+            alert('There was an error uploading customer passport')
+            return
+        } 
+      }
+      
+      request.send();
+  }
+  
+  </script>
