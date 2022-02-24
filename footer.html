@@ -3,29 +3,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
-//when document is loaded
   $(document).ready(function() {
-
-  //date picker
+    $('.select2').select2();
 	$( ".datepicker" ).datepicker({dateFormat: 'dd-M-yy'});
 });
-
-//initiate select2
-$(document).ready(function() {
-    $('.select2').select2();
-});
 </script>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
 
 <script>
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     var firebaseConfig = {
         apiKey: "AIzaSyAt7UFqJrw_s82G-1Xka8YeoYP-WAbG2Zs",
         authDomain: "neocore-auth.firebaseapp.com",
@@ -35,7 +22,7 @@ $(document).ready(function() {
         appId: "1:412913586690:web:e91235a28df7dda1ae4d1b",
         measurementId: "G-TSDCKX8WQR"
     };
-    // Initialize Firebase
+
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
 
@@ -64,14 +51,9 @@ $(document).ready(function() {
                 userDisplayName.innerHTML = user.displayName
                 loadingScreen.style.display = 'none'
             }
-
-
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/firebase.User
         } else {
             // User is signed out
             console.log('No user is logged in')
-            // if logged out user tries to access a non public page, redirect to login page
             /** if (!publicPages.includes(currentPath)) {
                 window.location.replace('/login')
             } else {
@@ -92,10 +74,6 @@ $(document).ready(function() {
             //signin failed
         })
     }
-
-
-    // firebase.auth().currentUser
-
 
     function cbrRequest(endpoint, method, async, payload) {
         let baseUrl = new URL('https://api.vault.ng/cbr');
@@ -600,22 +578,26 @@ function channelCostFeePopUp(modal_popup_clone, ChannelCost, ChannelFee, di) {
   }
 }
 
+function updateChannelStatus(channelID, status) {
+    status = !status;
+    let request = cbrRequest('/channels/'+ channelID +'/toggleactive?active='+status, 'PUT', true);
 
-function appendToChannelType(types, parent_channel_type_select_el) {
-    
-    if(types.length > 0) {
-        let option = document.createElement("option");
-        types.forEach((type, index) => {
-            let option = document.createElement("option");
-            option.value= type;
-            option.innerHTML = convertSlugToTitle(type);
-            parent_channel_type_select_el.appendChild(option);
-        });
+    request.onload = function () {
+        if (request.status >= 200 && request.status < 400) {
+            if(status) {
+                alert('This channel successfully activated');
+            } else {
+                alert('This channel successfully deactivated');
+            }
+
+            window.location.reload();
+        }
     }
+
+    request.send();
 }
-</script>
-<script>
-  function setMenuActive() {
+
+function setMenuActive() {
       const nav_menus = ['dashboard', 'users', 'gls', 'deposit-interests', 'deposit-fees', 'deposit-products', 'deposit-accounts', 'channels'];
 
       let pathname = window.location.pathname.toString();
@@ -633,5 +615,5 @@ function appendToChannelType(types, parent_channel_type_select_el) {
       });
   }
 
-  document.addEventListener("DOMContentLoaded", setMenuActive);
+document.addEventListener("DOMContentLoaded", setMenuActive);
 </script>
