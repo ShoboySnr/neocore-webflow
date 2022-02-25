@@ -181,13 +181,13 @@
     //Address modal
     document.getElementById("button-customer-update-home-address").addEventListener("click", function() { 
         const user_address_container = document.getElementById("user_address_container_id");
-        user_address_container = "block";
+        user_address_container.style.display = "block";
     });
 
     document.getElementById("close_address_modal").addEventListener("click", function(e) {
       e.preventDefault();
       const user_address_container = document.getElementById("user_address_container_id");
-      user_address_container = "none";
+      user_address_container.style.display = "none";
     })
 
     document.getElementById("update_address_button").addEventListener("click",function(e){
