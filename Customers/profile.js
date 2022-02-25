@@ -1,4 +1,3 @@
-<script>
     var myUrl = new URL(document.location.href)
     var userID = myUrl.searchParams.get("id")
     
@@ -167,7 +166,8 @@
     });
 
     //profile picture modal
-    document.getElementById("button-customer-update-picture").addEventListener("click", function() { 
+    document.getElementById("button-customer-update-picture").addEventListener("click", function(e) { 
+        e.preventDefault();
         const profile_pictue = document.getElementById("profile_picture_id");
         profile_pictue.style.display = "block";
     });
@@ -253,7 +253,3 @@
       
       request.send()
     }
-
-
-    
-    </script>
