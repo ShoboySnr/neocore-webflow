@@ -179,7 +179,8 @@
     })
 
     //Address modal
-    document.getElementById("button-customer-update-home-address").addEventListener("click", function() { 
+    document.getElementById("button-customer-update-home-address").addEventListener("click", function(e) { 
+      e.preventDefault();
         const user_address_container = document.getElementById("user_address_container_id");
         user_address_container.style.display = "block";
     });
