@@ -155,12 +155,12 @@
     request.send();
     
     //activate customers
-    document.getElementById("activate-customer").addEventListener("click", function() { 
+    document.getElementById("button-customer-activate-customer").addEventListener("click", function() { 
         const status = true;
       updateCustomerStatus(status)
     });
     //deactivate customer
-    document.getElementById("deactivate-customer").addEventListener("click", function() { 
+    document.getElementById("button-customer-deactivate-customer").addEventListener("click", function() { 
         const status = false;
       updateCustomerStatus(status)
     });
