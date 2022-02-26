@@ -157,7 +157,7 @@
   document.getElementById("button-customer-update-picture").addEventListener("click", function(e) { 
         e.preventDefault();
         const profile_pictue = document.getElementById("profile_picture_id");
-        profile_pictue.style.display = "block";
+        profile_pictue.style.display = "flex";
     });
 
     document.getElementById("close_profile_modal").addEventListener("click", function(e) {
@@ -170,7 +170,7 @@
     document.getElementById("button-customer-update-home-address").addEventListener("click", function(e) { 
         e.preventDefault();
         const user_address_container = document.getElementById("user_address_container_id");
-        user_address_container.style.display = "block";
+        user_address_container.style.display = "flex";
     });
 
     document.getElementById("close_address_modal").addEventListener("click", function(e) {
