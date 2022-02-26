@@ -17,7 +17,7 @@ function getAllChannelTypes() {
 
                 let element_el = document.getElementById("field-channel-type");
 
-                appendToChannelType(channel_types_array, element_el);
+                appendCustomerSelectOption(channel_types_array, element_el);
             }
 
             const categories = data.data.categories ? data.data.categories : null;
@@ -29,7 +29,7 @@ function getAllChannelTypes() {
 
                 let element_el = document.getElementById("field-channel-category");
 
-                appendToChannelType(channel_types_array, element_el);
+                appendCustomerSelectOption(channel_types_array, element_el);
             }
 
             const channel_types = data.data.fee_and_cost_types ? data.data.fee_and_cost_types : null;
@@ -40,9 +40,9 @@ function getAllChannelTypes() {
                 }
 
                 let channel_fee_type_costs_els = document.getElementById("field-channel-fee-type");
-                appendToChannelType(channel_fee_type_array, channel_fee_type_costs_els);
+                appendCustomerSelectOption(channel_fee_type_array, channel_fee_type_costs_els);
                 let channel_cost_type_costs_els = document.getElementById("field-channel-cost-type");
-                appendToChannelType(channel_fee_type_array, channel_cost_type_costs_els);
+                appendCustomerSelectOption(channel_fee_type_array, channel_cost_type_costs_els);
             }
         }
     }
