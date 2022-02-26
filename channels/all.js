@@ -14,8 +14,8 @@ function getAllChannels() {
                 card.setAttribute('id', '');
                 card.style.display = 'block';
 
-                card.addEventListener('click', function () {
-                    document.location.href = '#mylightbox-' + di.ID;
+                card.addEventListener('click', () => {
+                    document.querySelector('#mylightbox-'.di.ID).setAttribute('style', 'display:block')
                 });
 
                 const modal_popup = document.getElementById('channels-modal-popup');
@@ -137,7 +137,7 @@ function getAllChannels() {
                 }
 
                 const action_el = card.getElementsByTagName('p')[4]
-                action_el.innerHTML = '<a title="' + di.Name + '" href="#mylightbox-' + di.ID +'" rel="modal:open">View</a>&nbsp;&nbsp;<a title="' + active_message + '" href="javascript:void();" onclick="updateChannelStatus(\''+ di.type +'\', '+ di.Active + ');">' + active_message + '</a>';
+                action_el.innerHTML = '<a title="' + di.Name + '" href="javascript:void(0);" onclick="" rel="modal:open">View</a>&nbsp;&nbsp;<a title="' + active_message + '" href="javascript:void();" onclick="updateChannelStatus(\''+ di.type +'\', '+ di.Active + ');">' + active_message + '</a>';
                 
                 action_el.appendChild(modal_popup_clone);
                 cardContainer.appendChild(card);

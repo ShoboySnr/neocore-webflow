@@ -20,11 +20,8 @@
       
       const customer_title_bg = document.getElementById("customer-title-bg")
       
-      const customer_name_title = customer_title_bg.getElementsByTagName('h2')[0];
-      customer_name_title.textContent = `${customer.FirstName} ${customer.LastName} ${customer.OtherNames || ''}`
-      
-      const customer_email = customer_title_bg.getElementsByTagName('p')[0];
-      customer_email.textContent = customer.EmailAddress
+      const customer_name_title = document.getElementById('title-field-full-name');
+      customer_name_title.textContent += `${customer.FirstName} ${customer.LastName} ${customer.OtherNames || ''}`
       
       const member_card = document.getElementById("customer-info-card")
       
@@ -55,11 +52,13 @@
       if(customer.Active) {
           let deactivate_button_el = document.getElementById("deactivate-customer");
           deactivate_button_el.classList.remove("hide")
-        active_status_id.innerHTML = '<span class="text-success">Active</span>'
+          active_status_id.innerHTML = '<span class="text-success">Active</span>'
+          document.getElementById('"button-customer-deactivate-customer').setAttribute('style', 'display:block');
       } else {
           let activate_button_el = document.getElementById("activate-customer");
           activate_button_el.classList.remove("hide")
-        active_status_id.innerHTML = '<span class="text-danger">Inactive</span>'
+          active_status_id.innerHTML = '<span class="text-danger">Inactive</span>';
+          document.getElementById('"button-customer-activate-customer').setAttribute('style', 'display:block')
       }
       
       const gender_id = document.getElementById("gender")
