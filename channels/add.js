@@ -356,15 +356,18 @@ function effectFieldTypeChange(slug, event) {
     console.log(value);
 
     document.getElementById('range-' + slug + '-legs-parents').setAttribute('style', 'display: none');
-    document.querySelectorAll('field-' + slug +'-or-percentaage').forEach((element, index) => {
+    document.querySelectorAll('.field-' + slug +'-or-percentaage').forEach((element, index) => {
         element.style.display = 'block';
     });
     document.querySelector('.field-' + slug + '-title-options-cap p').textContent = 'Option Cap';
     document.querySelectorAll('.field-' + slug +'-options-cap').forEach((element, index) => {
         element.placeholder = 'Enter Option Cap Value'
     });
-    document.querySelector(slug + '-percentage-container').style.display = 'none';
-    document.querySelector(slug + '-flat-amount-container').style.display = 'none';
+    document.querySelector('.' + slug + '-percentage-container').style.display = 'none';
+    document.querySelector('.' + slug + '-flat-amount-container').style.display = 'none';
+
+    document.querySelector('#field-channel-'+slug +'-options').style.display = 'none';
+    document.querySelector('#field-channel-' + slug + '-from').style.display = 'block';
 
     if('flat' === value) {
         document.querySelector(slug + '-percentage-container').style.display = 'none';
@@ -372,8 +375,8 @@ function effectFieldTypeChange(slug, event) {
     }
 
     if('percentage' === value) {
-        document.querySelector(slug + '-percentage-container').style.display = 'block';
-        document.querySelector(slug + '-flat-amount-container').style.display = 'none';
+        document.querySelector('.' + slug + '-percentage-container').style.display = 'block';
+        document.querySelector('.' + slug + '-flat-amount-container').style.display = 'none';
     }
 
     if(!['flat', 'percentage'].includes(value)) {
@@ -381,9 +384,15 @@ function effectFieldTypeChange(slug, event) {
     }
 
     if(!['range-percent', 'option-percent type'].includes(value)) {
-        document.querySelectorAll('field-' + slug +'-or-percentaage').forEach((element, index) => {
+        document.querySelectorAll('.field-' + slug +'-or-percentaage').forEach((element, index) => {
             element.style.display = 'none';
         });
+    }
+
+    if(['options-percent', 'options-flat'].includes(value)) {
+        document.querySelector('#field-channel-' + slug + '-from').style.display = 'none';
+        document.querySelectorAll('.' + slug +'-range-title-from-to')[0].innerHTML = 'Options';
+        document.querySelector('#field-channel-'+slug +'-options').style.display = 'block';
     }
 
     if(!['range-combo', 'options-combo'].includes(value)) {
