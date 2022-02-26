@@ -17,7 +17,7 @@ function getAllChannelTypes() {
 
                 let element_el = document.getElementById("field-channel-type");
 
-                appendCustomerSelectOption(channel_types_array, element_el);
+                appendChannelTypesOptions(channel_types_array, element_el);
             }
 
             const categories = data.data.categories ? data.data.categories : null;
@@ -29,7 +29,7 @@ function getAllChannelTypes() {
 
                 let element_el = document.getElementById("field-channel-category");
 
-                appendCustomerSelectOption(channel_types_array, element_el);
+                appendChannelTypesOptions(channel_types_array, element_el);
             }
 
             const channel_types = data.data.fee_and_cost_types ? data.data.fee_and_cost_types : null;
@@ -40,9 +40,10 @@ function getAllChannelTypes() {
                 }
 
                 let channel_fee_type_costs_els = document.getElementById("field-channel-fee-type");
-                appendCustomerSelectOption(channel_fee_type_array, channel_fee_type_costs_els);
+                appendChannelTypesOptions(channel_fee_type_array, channel_fee_type_costs_els);
+                
                 let channel_cost_type_costs_els = document.getElementById("field-channel-cost-type");
-                appendCustomerSelectOption(channel_fee_type_array, channel_cost_type_costs_els);
+                appendChannelTypesOptions(channel_fee_type_array, channel_cost_type_costs_els);
             }
         }
     }
@@ -50,6 +51,25 @@ function getAllChannelTypes() {
     request.send();
 
 }
+
+
+function appendChannelTypesOptions(data, parent_gl_select_el = '', selected_value = null) {
+    if(data != '' || data.length > 0) {
+      data.forEach((item, index) => {
+         let option = document.createElement("option");
+  
+            option.value= item;
+            option.innerHTML = convertSlugToTitle(item);
+            
+            if(selected_value == item.id) {
+              option.selected = true;
+            }
+  
+            parent_gl_select_el.appendChild(option);
+        });
+     }
+  }
+
 
 function createNewChannel(e) {
     //get all the submitted information
