@@ -62,7 +62,7 @@ function createNewChannel(e) {
     let formData = new FormData(this);
     let inflow = formData.get('field-inflow') === 'true';
     let name = formData.get('field-name');
-    let channel = formData.get('field-channel');
+    let category = formData.get('field-channel');
     let type = formData.get('field-type');
     let wallet_glid = formData.get('field-wallet');
     let fee_glid = formData.get('field-fee');
@@ -97,47 +97,92 @@ function createNewChannel(e) {
     let error_count = 0;
     let error_message = '';
 
-    if(firstName == '') {
-    error_message += 'First Name cannot be empty <br />';
-    error_count++;
+    if(name == '') {
+        error_message += '<p>Name cannot be empty </p>';
+        error_count++;
     }
 
-    if(lastName == '') {
-    error_message += 'Last Name cannot be empty <br />';
-    error_count++;
+    if(category.length < 3) {
+        error_message += '<p>Select a Category. </p>';
+        error_count++;
     }
 
-    if(phoneNumber == '') {
-    error_message += 'Phone Number cannot be empty <br />';
-    error_count++;
+    if(type.length < 3) {
+        error_message += '<p> Select a channel type </p>';
+        error_count++;
     }
 
-    if(email == '') {
-    error_message += 'Email cannot be empty <br />';
-    error_count++;
+    if(wallet_glid.length < 3) {
+        error_message += '<p> Wallet GLID cannot be empty </p>';
+        error_count++;
     }
 
-    if(!ValidateEmail(email)) {
-    error_message += 'Please enter a valid email <br />';
-    error_count++;
+    if(fee_glid.length < 3) {
+        error_message += '<p>Field  GLID cannot be empty </p>';
+        error_count++;
     }
+
+    if(cost_glid.length < 3) {
+        error_message += '<p>Cost  GLID cannot be empty </p>';
+        error_count++;
+    }
+
 
     if(error_count > 0) {
         document.getElementById("failed-message").style.display = 'block';
         document.getElementById("failed-message").innerHTML = error_message;
         return;
     }
+
+    const fee_ranges = {
+
+    }
+
+    const channel_fee_data = {
+        "name": channel_fee_name,
+        "channel_id": "",
+        "type": channel_fee_type,
+        "percentage": channel_fee_percentage,
+        "flat_amt": channel_fee_flat_amount,
+        "hidden": channel_fee_hidden,
+        "ranges": fee_ranges,
+        "cap": channel_fee_cap
+    }
+
+    const cost_ranges = {
+
+    }
+
+    const channel_cost_data = {
+        "name": channel_cost_name,
+        "channel_id": "",
+        "type": channel_cost_type,
+        "percentage": channel_cost_percentage,
+        "flat_amt": channel_cost_flat_amount,
+        "hidden": channel_cost_hidden,
+        "ranges": cost_ranges,
+        "cap": channel_fee_cap
+    }
+
     
     let data = {
-    "firstName": firstName,
-    "lastName": lastName,
-    "email": email,
-    "phone": phoneNumber,
+        "inflow": inflow,
+        "name": name,
+        "category": category,
+        "type": type,
+        "active": active,
+        "wallet_glid": wallet_glid,
+        "fee_glid": fee_glid,
+        "cost_glid": cost_glid,
+        "channel_fee": channel_fee_data
     }
+
+    connsole.log(data);
+    return;
 
     const _this = this;
     
-    let request = cbrRequest(`/admin/user`, 'POST', true)
+    let request = cbrRequest('/channels', 'POST', true)
     
     request.onload = function() {
     let data = JSON.parse(this.response);
