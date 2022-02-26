@@ -208,17 +208,16 @@
         let data = JSON.parse(this.response);
         // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
         if (request.status >= 200 && request.status < 400) {
-        addNewProduct.reset();
         const success_message = data.message;
         
         //show success message
-        let success_message_el = document.getElementById("success-message");
+        let success_message_el = document.getElementById("edit-address-success-message");
         success_message_el.innerHTML = success_message;
         success_message_el.style.display = "block";
         
         } else {
                 const failed_message = data.message;
-                let failed_message_el = document.getElementById("failed-message");
+                let failed_message_el = document.getElementById("edit-address-error-message");
             failed_message_el.innerHTML = failed_message;
             failed_message_el.style.display = "block";
         }
