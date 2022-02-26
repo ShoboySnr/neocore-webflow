@@ -1,4 +1,3 @@
-<script>
 function getAllChannelTypes() {
     let request = cbrRequest('/channel-types', 'GET', true)
     let channel_types_array = [];
@@ -272,4 +271,3 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     document.getElementById("wf-form-add-channel").addEventListener('submit', createNewChannel, true);
 })
-</script>
