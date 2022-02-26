@@ -200,9 +200,8 @@ function filterGL(type = 0, parent_gl_select_el = '') {
     }
 }
 
-function addExtraLegFunction(event) {
+function addExtraLegFunction(legs_parent, parent_element, event) {
     event.preventDefault();
-    const legs_parent = document.getElementById("cloned-element");
     let leg_parent_clone = legs_parent.cloneNode(true);
 
     const ranges_column = document.querySelectorAll('.ranges-column');
@@ -223,7 +222,7 @@ function addExtraLegFunction(event) {
     leg_parent_clone.querySelector('.button-remove-extra-legs').addEventListener('click', () => leg_parent_clone.remove());
 
 
-    document.getElementById("range-fee-legs-parents").appendChild(leg_parent_clone);
+    parent_element.appendChild(leg_parent_clone);
 }
 
 function effectFieldTypeChange(slug, event) {
@@ -262,7 +261,16 @@ function effectFieldTypeChange(slug, event) {
 document.addEventListener('DOMContentLoaded', () => {
     getGLAccounts();
     getAllChannelTypes();
-    document.getElementById("button-add-extra-fee-legs").addEventListener('click', addExtraLegFunction);
+    document.getElementById("button-add-extra-fee-legs").addEventListener('click', () => {
+        const legs_parent = document.getElementById("cloned-fee-element");
+        const leg_append = document.getElementById("range-fee-legs-parents");
+        addExtraLegFunction(legs_parent, leg_append, event)
+    });
+    document.getElementById("button-add-extra-cost-legs").addEventListener('click', () => {
+        const legs_parent = document.getElementById("cloned-cost-element");
+        const leg_append = document.getElementById("range-cost-legs-parents");
+        addExtraLegFunction(legs_parent, leg_append, event)
+    });
     document.getElementById('field-channel-fee-type').addEventListener('change', () => {
         effectFieldTypeChange('fee', event)
     })
