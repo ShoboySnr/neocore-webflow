@@ -60,10 +60,6 @@ function appendChannelTypesOptions(data, parent_gl_select_el = '', selected_valu
   
             option.value= item;
             option.innerHTML = convertSlugToTitle(item);
-            
-            if(selected_value == item.id) {
-              option.selected = true;
-            }
   
             parent_gl_select_el.appendChild(option);
         });
