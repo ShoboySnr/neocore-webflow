@@ -119,19 +119,19 @@
 
       // Edit Address
       const edit_street1 = document.getElementById("street1")
-      edit_street1.value = customer.Street
+      edit_street1.value = customer.Address.Street
 
       const edit_street2 = document.getElementById("street2")
-      edit_street2.value = customer.Street2
+      edit_street2.value = customer.Address.Street2
 
       const edit_town = document.getElementById("town")
-      edit_town.value = customer.Town
+      edit_town.value = customer.Address.Town
 
       const edit_state = document.getElementById("state")
-      edit_state.value = customer.State
+      edit_state.value = customer.Address.State
 
       const edit_lga = document.getElementById("lga")
-      edit_lga.value = customer.Lga
+      edit_lga.value = customer.Address.Lga
 
       
       return;
