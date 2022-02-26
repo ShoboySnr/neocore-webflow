@@ -5,7 +5,6 @@ function getAllChannelTypes() {
     let channel_fee_type_array = [];
     request.onload = function () {
         let data = JSON.parse(this.response)
-        let counter = 0;
         if (request.status >= 200 && request.status < 400) {
             
             const types = data.data.types ? data.data.types : null;
@@ -87,25 +86,74 @@ function createNewChannel(e) {
     //get channel fee details
     let channel_fee_name = formData.get('field-channel-fee-name');
     let channel_fee_type = formData.get('field-channel-fee-type');
-    let channel_fee_percentage = parseInt(formData.get('field-channel-fee-percentage')) * 100; //multiply channel by 100
+    let channel_fee_percentage = parseInt(formData.get('field-channel-fee-percentage'))
     let channel_fee_flat_amount = formData.get('field-channel-fee-flat-amount');
-    let channel_fee_hidden = formData.get('channel-hidden') === 'true'
+    let channel_fee_hidden = formData.get('channel-fee-hidden') !== ''
     let channel_fee_cap = formData.get('channel-fee-cap');
 
     const channel_fee_ranges_column = document.querySelectorAll('.channel-fee-ranges-column');
     let fee_range_size = channel_fee_ranges_column.length;
 
+    let fee_ranges = [];
+
     for (let i = 0; i < fee_range_size; i++) {
-        
+        let from_value = document.querySelectorAll('input[name="field-channel-fee-from"]')[i].value * 100; // in kobo
+        let to_value = document.querySelectorAll('input[name="field-channel-fee-to"]')[i].value * 100; // in kobo
+        let options_cap = document.querySelectorAll('input[name="field-channel-fee-option-cap"]')[i].value;
+        let fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-fee-or-percent"]')[i].value;
+        let range_type = channel_fee_type;
+        let option = '';
+        let flat_amount = '';
+
+        let range_data = {
+            "from": from_value,
+            "to": to_value,
+            "option": option,
+            "option_cap": options_cap,
+            "range_type": range_type,
+            "flat_amount": flat_amount,
+            "fee_or_percentage": fee_or_percentage
+        };
+
+        fee_ranges.push(range_data);
+
     }
 
     //get channel cost details
     let channel_cost_name = formData.get('field-channel-cost-name');
     let channel_cost_type = formData.get('field-channel-cost-type');
-    let channel_cost_percentage = parseInt(formData.get('field-channel-cost-percentage')) * 100; //multiply channel by 100
+    let channel_cost_percentage = parseInt(formData.get('field-channel-cost-percentage'))
     let channel_cost_flat_amount = formData.get('field-channel-cost-flat-amount');
-    let channel_cost_hidden = formData.get('channel-hidden') === 'true'
-    let channel_cost_cap = formData.get('channel-fee-cap');
+    let channel_cost_hidden = formData.get('channel-cost-hidden') === 'true'
+    let channel_cost_cap = formData.get('channel-cost-cap');
+
+    const channel_cost_ranges_column = document.querySelectorAll('.channel-cost-ranges-column');
+    let cost_range_size = channel_cost_ranges_column.length;
+
+    let cost_ranges = [];
+
+    for (let i = 0; i < cost_range_size; i++) {
+        let from_value = document.querySelectorAll('input[name="field-channel-cost-from"]')[i].value * 100; // in kobo
+        let to_value = document.querySelectorAll('input[name="field-channel-cost-to"]')[i].value * 100; // in kobo
+        let options_cap = document.querySelectorAll('input[name="field-channel-cost-option-cap"]')[i].value;
+        let fee_or_percentage = document.querySelectorAll('input[name="field-channel-cost-fee-or-percent"]')[i].value;
+        let range_type = channel_fee_type;
+        let option = '';
+        let flat_amount = '';
+
+        let range_data = {
+            "from": from_value,
+            "to": to_value,
+            "option": option,
+            "option_cap": options_cap,
+            "range_type": range_type,
+            "flat_amount": flat_amount,
+            "fee_or_percentage": fee_or_percentage
+        };
+
+        cost_ranges.push(range_data);
+
+    }
 
     let active = true;
     
@@ -150,9 +198,29 @@ function createNewChannel(e) {
         return;
     }
 
-    const fee_ranges = {
+
+    //conditions to check
+
+    if(channel_fee_type === 'flat' || channel_fee_type === 'percentage') {
+        fee_ranges = null;
+    }
+
+    if(channel_cost_type === 'flat' || channel_cost_type === 'percentage') {
+        cost_ranges = null;
+    }
+
+    //mutiply the percentages by 100
+    channel_fee_percentage *= 100;
+    channel_cost_percentage *= 100;
+
+    //flat amount in kobo
+    channel_fee_flat_amount *= 100;
+    channel_cost_flat_amount *= 100;
+    for(fee_range in fee_ranges) {
 
     }
+
+    
 
     const channel_fee_data = {
         "name": channel_fee_name,
@@ -165,10 +233,6 @@ function createNewChannel(e) {
         "cap": channel_fee_cap
     }
 
-    const cost_ranges = {
-
-    }
-
     const channel_cost_data = {
         "name": channel_cost_name,
         "channel_id": "",
@@ -177,7 +241,7 @@ function createNewChannel(e) {
         "flat_amt": channel_cost_flat_amount,
         "hidden": channel_cost_hidden,
         "ranges": cost_ranges,
-        "cap": channel_fee_cap
+        "cap": channel_cost_cap
     }
 
     
@@ -298,7 +362,19 @@ function effectFieldTypeChange(slug, event) {
     document.querySelector('.field-' + slug + '-title-options-cap p').textContent = 'Option Cap';
     document.querySelectorAll('.field-' + slug +'-options-cap').forEach((element, index) => {
         element.placeholder = 'Enter Option Cap Value'
-    })
+    });
+    document.querySelector(slug + '-percentage-container').style.display = 'none';
+    document.querySelector(slug + '-flat-amount-container').style.display = 'none';
+
+    if('flat' === value) {
+        document.querySelector(slug + '-percentage-container').style.display = 'none';
+        document.querySelector(slug + '-flat-amount-container').style.display = 'block';
+    }
+
+    if('percentage' === value) {
+        document.querySelector(slug + '-percentage-container').style.display = 'block';
+        document.querySelector(slug + '-flat-amount-container').style.display = 'none';
+    }
 
     if(!['flat', 'percentage'].includes(value)) {
         document.getElementById('range-' + slug +'-legs-parents').setAttribute('style', 'display: block');
