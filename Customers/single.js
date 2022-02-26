@@ -154,7 +154,7 @@
   });
 
   //profile picture modal
-  document.getElementById("button-customer-update-picture").addEventListener("click", function() { 
+  document.getElementById("button-customer-update-picture").addEventListener("click", function(e) { 
         e.preventDefault();
         const profile_pictue = document.getElementById("profile_picture_id");
         profile_pictue.style.display = "block";
@@ -170,13 +170,13 @@
     document.getElementById("button-customer-update-home-address").addEventListener("click", function(e) { 
         e.preventDefault();
         const user_address_container = document.getElementById("user_address_container_id");
-        user_address_container = "block";
+        user_address_container.style.display = "block";
     });
 
     document.getElementById("close_address_modal").addEventListener("click", function(e) {
       e.preventDefault();
       const user_address_container = document.getElementById("user_address_container_id");
-      user_address_container = "none";
+      user_address_container.style.display = "none";
     })
 
     document.getElementById("edit-customer-address-form").addEventListener("submit", (e)=>{
