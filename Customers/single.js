@@ -133,6 +133,8 @@
       const edit_lga = document.getElementById("lga")
       edit_lga.value = customer.Address.Lga
 
+      console.log(edit_state.value);
+
       
       return;
     
