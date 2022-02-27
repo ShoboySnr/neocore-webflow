@@ -355,7 +355,7 @@ function effectFieldTypeChange(slug, event) {
     const value = event.target.value;
     console.log(value);
 
-    document.getElementById('range-' + slug + '-legs-parents').setAttribute('style', 'display: none');
+    document.getElementById('range-' + slug + '-legs-parents').setAttribute('style', 'display: block');
     document.querySelectorAll('.field-' + slug +'-or-percentaage').forEach((element, index) => {
         element.style.display = 'block';
     });
@@ -379,8 +379,8 @@ function effectFieldTypeChange(slug, event) {
         document.querySelector('.' + slug + '-flat-amount-container').style.display = 'none';
     }
 
-    if(!['flat', 'percentage'].includes(value)) {
-        document.getElementById('range-' + slug +'-legs-parents').setAttribute('style', 'display: block');
+    if(['flat', 'percentage'].includes(value)) {
+        document.getElementById('range-' + slug +'-legs-parents').setAttribute('style', 'display: none');
     }
 
     if(!['range-percent', 'option-percent type'].includes(value)) {
