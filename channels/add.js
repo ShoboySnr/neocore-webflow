@@ -354,7 +354,7 @@ function effectFieldTypeChange(slug, event) {
     event.preventDefault();
     const value = event.target.value;
 
-    document.getElementById('range-' + slug + '-legs-parents').setAttribute('style', 'display: block');
+    document.getElementById('range-' + slug + '-legs-parents').setAttribute('style', 'display: none');
     document.querySelectorAll('.field-' + slug +'-or-percentaage').forEach((element, index) => {
         element.style.display = 'block';
     });
@@ -362,7 +362,7 @@ function effectFieldTypeChange(slug, event) {
     document.querySelectorAll('.field-' + slug +'-options-cap').forEach((element, index) => {
         element.placeholder = 'Enter Option Cap Value'
     });
-    document.querySelector('.field-' + slug + 'range-flat').style.display = 'none';
+    document.querySelector('.field-' + slug + '-range-flat').style.display = 'none';
     document.querySelector('.' + slug + '-percentage-container').style.display = 'none';
     document.querySelector('.' + slug + '-flat-amount-container').style.display = 'none';
 
