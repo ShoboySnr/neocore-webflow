@@ -325,11 +325,17 @@ function filterGL(type = 0, parent_gl_select_el = '') {
     }
 }
 
-function addExtraLegFunction(legs_parent, parent_element, event) {
+function addExtraLegFunction(legs_parent, parent_element, slug, event) {
     event.preventDefault();
+
     let leg_parent_clone = legs_parent.cloneNode(true);
 
-    const ranges_column = document.querySelectorAll('.ranges-column');
+    const ranges_column = document.querySelectorAll('.ranges-' + slug + '-column');
+
+    if(ranges_column.length > 1) {
+        document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
+    }
+
     let size = ranges_column.length;
     const newsize = parseInt(size);
 
@@ -433,12 +439,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("button-add-extra-fee-legs").addEventListener('click', () => {
         const legs_parent = document.getElementById("cloned-fee-element");
         const leg_append = document.getElementById("append-fee-column");
-        addExtraLegFunction(legs_parent, leg_append, event)
+        addExtraLegFunction(legs_parent, leg_append, 'fee', event)
     });
     document.getElementById("button-add-extra-cost-legs").addEventListener('click', () => {
         const legs_parent = document.getElementById("cloned-cost-element");
         const leg_append = document.getElementById("append-cost-column");
-        addExtraLegFunction(legs_parent, leg_append, event)
+        addExtraLegFunction(legs_parent, leg_append, 'cost', event)
     });
     document.getElementById('field-channel-fee-type').addEventListener('change', () => {
         effectFieldTypeChange('fee', event)
