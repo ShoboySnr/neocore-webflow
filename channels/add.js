@@ -362,7 +362,7 @@ function effectFieldTypeChange(slug, event) {
 
     document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', false);
     
-    if(querySelector('.button-' + slug +'-remove-extra-legs').length > 1) {
+    if(document.querySelector('.button-' + slug +'-remove-extra-legs').length > 1) {
         document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
         return;
     }
