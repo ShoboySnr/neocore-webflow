@@ -361,6 +361,7 @@ function effectFieldTypeChange(slug, event) {
     const ranges_column = document.querySelectorAll('.ranges-' + slug + '-column');
 
     document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', false);
+    console.log(ranges_column);
     
     if(ranges_column.length > 1) {
         document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
