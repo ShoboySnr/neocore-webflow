@@ -382,25 +382,25 @@ function effectFieldTypeChange(slug, event) {
     if(['flat', 'percentage'].includes(value)) {
         document.getElementById('range-' + slug +'-legs-parents').setAttribute('style', 'display: none');
     } else {
-        document.getElementById('range' + slug +'-legs-parents').setAttribute('style', 'display:block');
+        document.getElementById('range-' + slug +'-legs-parents').setAttribute('style', 'display:block');
     }
 
     if(!['range-percent', 'range-flat', 'options-percent'].includes(value)) {
         document.querySelector('.field-' + slug +'-or-percentaage').style.display = 'none';
     }
 
-    if(['options-percent', 'options-flat'].includes(value)) {
+    if(['options-percent', 'options-flat', 'options-percentage', ].includes(value)) {
         document.querySelector('#field-channel-' + slug + '-from').style.display = 'none';
         document.querySelectorAll('.' + slug +'-range-title-from-to')[0].innerHTML = 'Options';
         document.querySelector('#field-channel-'+slug +'-options').style.display = 'block';
     }
 
-    if('range-flat' === value) {
+    if(['range-flat', 'options-flat'].includes(value)) {
         document.querySelector('.field-' + slug +'-title-options-cap p').textContent = 'Flat amount';
         document.querySelector('.field-' + slug + 'range-flat').style.display = 'block';
     }
 
-    if('range-percentage' === value) {
+    if(['range-percentage', 'options-percentage'].includes(value)) {
         document.querySelector('.field-' + slug +'-title-options-cap p').textContent = 'Percentage amount';
         document.querySelector('.field-' + slug + 'range-percentage').style.display = 'block';
     }
