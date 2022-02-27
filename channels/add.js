@@ -357,6 +357,7 @@ function effectFieldTypeChange(slug, event) {
     document.getElementById('range-' + slug + '-legs-parents').setAttribute('style', 'display: none');
     document.querySelector('.field-' + slug +'-or-percentaage').style.display = 'none';
     document.querySelector('.field-' + slug + '-range-percent').style.display = 'none';
+    document.querySelector('.field-' + slug + '-options-cap').style.display = 'none';
     document.querySelectorAll('.field-' + slug +'-or-percentaage').forEach((element, index) => {
         element.style.display = 'block';
     });
