@@ -370,8 +370,8 @@ function effectFieldTypeChange(slug, event) {
     document.querySelector('#field-channel-' + slug + '-from').style.display = 'block';
 
     if('flat' === value) {
-        document.querySelector(slug + '-percentage-container').style.display = 'none';
-        document.querySelector(slug + '-flat-amount-container').style.display = 'block';
+        document.querySelector('.' + slug + '-percentage-container').style.display = 'none';
+        document.querySelector('.' + slug + '-flat-amount-container').style.display = 'block';
     }
 
     if('percentage' === value) {
