@@ -381,6 +381,8 @@ function effectFieldTypeChange(slug, event) {
 
     if(['flat', 'percentage'].includes(value)) {
         document.getElementById('range-' + slug +'-legs-parents').setAttribute('style', 'display: none');
+    } else {
+        document.querySelector('.range' + slug +'-legs-parents').setAttribute('style', 'display:block');
     }
 
     if(!['range-percent', 'option-percent type'].includes(value)) {
