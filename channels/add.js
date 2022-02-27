@@ -389,7 +389,7 @@ function effectFieldTypeChange(slug, event) {
         document.querySelector('.field-' + slug +'-or-percentaage').style.display = 'none';
     }
 
-    if(['options-percent', 'options-flat', 'options-percentage', ].includes(value)) {
+    if(['options-percent', 'options-flat', 'options-percent', ].includes(value)) {
         document.querySelector('#field-channel-' + slug + '-from').style.display = 'none';
         document.querySelectorAll('.' + slug +'-range-title-from-to')[0].innerHTML = 'Options';
         document.querySelector('#field-channel-'+slug +'-options').style.display = 'block';
@@ -400,9 +400,9 @@ function effectFieldTypeChange(slug, event) {
         document.querySelector('.field-' + slug + 'range-flat').style.display = 'block';
     }
 
-    if(['range-percentage', 'options-percentage'].includes(value)) {
+    if(['range-percent', 'options-percent'].includes(value)) {
         document.querySelector('.field-' + slug +'-title-options-cap p').textContent = 'Percentage amount';
-        document.querySelector('.field-' + slug + 'range-percentage').style.display = 'block';
+        document.querySelector('.field-' + slug + '-range-percentage').style.display = 'block';
     }
 
     if(['range-combo', 'options-combo'].includes(value)) {
