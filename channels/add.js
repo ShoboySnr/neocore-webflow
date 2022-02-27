@@ -334,7 +334,7 @@ function addExtraLegFunction(legs_parent, parent_element, slug, event) {
 
     if(ranges_column.length > 1) {
         document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
-    } else document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', false);
+    } else document.getElementById('field-channel-'+ slug + '-type').removeAttribute('disabled');
 
     let size = ranges_column.length;
     const newsize = parseInt(size);
@@ -360,7 +360,7 @@ function effectFieldTypeChange(slug, event) {
     event.preventDefault();
     const ranges_column = document.querySelectorAll('.ranges-' + slug + '-column');
 
-    document.getElementById('field-channel-'+ slug + '-type').removeAttribute('disabled');
+    // document.getElementById('field-channel-'+ slug + '-type').removeAttribute('disabled');
     console.log(document.querySelectorAll('.button-' + slug +'-remove-extra-legs').length);
     
     if(document.querySelectorAll('.button-' + slug +'-remove-extra-legs').length > 1) {
