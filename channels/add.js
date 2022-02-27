@@ -386,9 +386,7 @@ function effectFieldTypeChange(slug, event) {
     }
 
     if(!['range-percent', 'range-flat', 'options-percent'].includes(value)) {
-        document.querySelectorAll('.field-' + slug +'-or-percentaage').forEach((element, index) => {
-            element.style.display = 'none';
-        });
+        document.querySelector('.field-' + slug +'-or-percentaage').style.display = 'none';
     }
 
     if(['options-percent', 'options-flat'].includes(value)) {
@@ -400,6 +398,11 @@ function effectFieldTypeChange(slug, event) {
     if('range-flat' === value) {
         document.querySelector('.field-' + slug +'-title-options-cap p').textContent = 'Flat amount';
         document.querySelector('.field-' + slug + 'range-flat').style.display = 'block';
+    }
+
+    if('range-percentage' === value) {
+        document.querySelector('.field-' + slug +'-title-options-cap p').textContent = 'Percentage amount';
+        document.querySelector('.field-' + slug + 'range-percentage').style.display = 'block';
     }
 
     if(['range-combo', 'options-combo'].includes(value)) {
