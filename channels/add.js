@@ -454,11 +454,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const leg_append = document.getElementById("append-fee-column");
         addExtraLegFunction(legs_parent, leg_append, 'fee', event)
     });
-    // document.getElementById("button-add-extra-cost-legs").addEventListener('click', () => {
-    //     const legs_parent = document.getElementById("cloned-cost-element");
-    //     const leg_append = document.getElementById("append-cost-column");
-    //     addExtraLegFunction(legs_parent, leg_append, 'cost', event)
-    // });
+    document.getElementById("button-add-extra-cost-legs").addEventListener('click', () => {
+        const legs_parent = document.getElementById("cloned-cost-element");
+        const leg_append = document.getElementById("append-cost-column");
+        addExtraLegFunction(legs_parent, leg_append, 'cost', event)
+    });
     document.getElementById('field-channel-fee-type').addEventListener('change', () => {
         effectFieldTypeChange('fee', event)
     })
