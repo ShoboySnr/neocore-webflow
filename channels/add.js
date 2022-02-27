@@ -402,11 +402,7 @@ function effectFieldTypeChange(slug, event) {
         document.querySelector('.field-' + slug + 'range-flat').style.display = 'block';
     }
 
-    if(!['range-combo', 'options-combo'].includes(value)) {
-        document.querySelector('.field-' + slug +'-title-options-cap p').textContent = 'Flat amount';
-        document.querySelectorAll('.field-' + slug +'-options-cap').forEach((element, index) => {
-            element.placeholder = 'Enter the Flat Amount'
-        });
+    if(['range-combo', 'options-combo'].includes(value)) {
         document.querySelector('.field-' + slug +'-or-percentaage').style.display = 'block';
     }
 }
