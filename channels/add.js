@@ -361,7 +361,7 @@ function effectFieldTypeChange(slug, event) {
     const ranges_column = document.querySelectorAll('.ranges-' + slug + '-column');
 
     document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', false);
-    console.log(document.querySelectorAll('.button-' + slug +'-remove-extra-legs'));
+    console.log(document.querySelectorAll('.button-' + slug +'-remove-extra-legs').length);
     
     if(document.querySelectorAll('.button-' + slug +'-remove-extra-legs').length > 1) {
         document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
