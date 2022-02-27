@@ -355,6 +355,7 @@ function effectFieldTypeChange(slug, event) {
     const value = event.target.value;
 
     document.getElementById('range-' + slug + '-legs-parents').setAttribute('style', 'display: none');
+    document.querySelector('.field-' + slug +'-or-percentaage').style.display = 'none';
     document.querySelector('.field-' + slug + '-range-percent').style.display = 'none';
     document.querySelectorAll('.field-' + slug +'-or-percentaage').forEach((element, index) => {
         element.style.display = 'block';
@@ -398,7 +399,7 @@ function effectFieldTypeChange(slug, event) {
 
     if(['range-flat', 'options-flat'].includes(value)) {
         document.querySelector('.field-' + slug +'-title-options-cap p').textContent = 'Flat amount';
-        document.querySelector('.field-' + slug + 'range-flat').style.display = 'block';
+        document.querySelector('.field-' + slug + '-range-flat').style.display = 'block';
     }
 
     if(['range-percent', 'options-percent'].includes(value)) {
