@@ -415,6 +415,7 @@ function effectFieldTypeChange(slug, event) {
     if(value.includes('combo')) {
         document.querySelector('.' + slug +'-fee-or-percentage-container p').textContent = 'Fee or Percentage';
         document.querySelector('.field-' + slug +'-or-percentaage').style.display = 'block';
+        document.querySelector('.field-' + slug + '-title-options-cap p').textContent = '';
     }
 }
 
@@ -424,12 +425,12 @@ document.addEventListener('DOMContentLoaded', () => {
     getAllChannelTypes();
     document.getElementById("button-add-extra-fee-legs").addEventListener('click', () => {
         const legs_parent = document.getElementById("cloned-fee-element");
-        const leg_append = document.getElementById("range-fee-legs-parents");
+        const leg_append = document.getElementById("append-fee-column");
         addExtraLegFunction(legs_parent, leg_append, event)
     });
     document.getElementById("button-add-extra-cost-legs").addEventListener('click', () => {
         const legs_parent = document.getElementById("cloned-cost-element");
-        const leg_append = document.getElementById("range-cost-legs-parents");
+        const leg_append = document.getElementById("append-cost-column");
         addExtraLegFunction(legs_parent, leg_append, event)
     });
     document.getElementById('field-channel-fee-type').addEventListener('change', () => {
