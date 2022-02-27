@@ -351,7 +351,16 @@ function addExtraLegFunction(legs_parent, parent_element, slug, event) {
     leg_parent_clone.removeAttribute('id');
     leg_parent_clone.setAttribute('style','display:block');
 
-    leg_parent_clone.querySelector('.button-' + slug +'-remove-extra-legs').addEventListener('click', () => leg_parent_clone.remove());
+    leg_parent_clone.querySelector('.button-' + slug +'-remove-extra-legs').addEventListener('click', () => {
+        const ranges_column_el = document.querySelectorAll('.ranges-' + slug + '-column');
+
+        document.getElementById('field-channel-'+ slug + '-type').removeAttribute('disabled');
+
+        if(ranges_column_el.length > 0) {
+            document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
+        } 
+        leg_parent_clone.remove()
+    });
 
 
     parent_element.appendChild(leg_parent_clone);
