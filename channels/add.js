@@ -360,7 +360,7 @@ function effectFieldTypeChange(slug, event) {
     event.preventDefault();
     const ranges_column = document.querySelectorAll('.ranges-' + slug + '-column');
 
-    document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
+    document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', false);
     
     if(ranges_column.length > 1) {
         document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
