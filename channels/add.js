@@ -382,7 +382,7 @@ function effectFieldTypeChange(slug, event) {
     if(['flat', 'percentage'].includes(value)) {
         document.getElementById('range-' + slug +'-legs-parents').setAttribute('style', 'display: none');
     } else {
-        document.querySelector('.range' + slug +'-legs-parents').setAttribute('style', 'display:block');
+        document.getElementById('.range' + slug +'-legs-parents').setAttribute('style', 'display:block');
     }
 
     if(!['range-percent', 'range-flat', 'options-percent'].includes(value)) {
