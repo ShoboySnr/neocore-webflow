@@ -358,9 +358,12 @@ function effectFieldTypeChange(slug, event) {
     document.querySelector('.field-' + slug +'-or-percentaage').style.display = 'none';
     document.querySelector('.field-' + slug + '-range-percent').style.display = 'none';
     document.querySelector('.field-' + slug + '-options-cap').style.display = 'none';
-    document.querySelectorAll('.field-' + slug +'-or-percentaage').forEach((element, index) => {
-        element.style.display = 'block';
-    });
+    document.getElementById('field-channel-' + slug + '-to').style.display = 'none';
+    document.getElementById('field-channel-' + slug + '-from').style.display = 'none';
+    document.querySelector('.field-' + slug +'-or-percentaage').style.display = 'none';
+    document.querySelector('.' + slug +'-fee-or-percentage-container p').textContent = '';
+    document.querySelector('.' + slug +'-to-container p').textContent = 'To';
+    document.querySelector('.' + slug +'-from-container p').textContent = 'From';
     document.querySelector('.field-' + slug + '-title-options-cap p').textContent = 'Option Cap';
     document.querySelectorAll('.field-' + slug +'-options-cap').forEach((element, index) => {
         element.placeholder = 'Enter Option Cap Value'
@@ -388,14 +391,15 @@ function effectFieldTypeChange(slug, event) {
         document.getElementById('range-' + slug +'-legs-parents').setAttribute('style', 'display:block');
     }
 
-    if(!['range-percent', 'range-flat', 'options-percent'].includes(value)) {
-        document.querySelector('.field-' + slug +'-or-percentaage').style.display = 'none';
-    }
-
-    if(['options-percent', 'options-flat', 'options-percent', ].includes(value)) {
+    if(value.includes('options')) {
+        document.querySelector('.field-' + slug + '-options-cap').style.display = 'block';
         document.querySelector('#field-channel-' + slug + '-from').style.display = 'none';
-        document.querySelectorAll('.' + slug +'-range-title-from-to')[0].innerHTML = 'Options';
+        document.querySelector('.' + slug +'-to-container p').textContent = 'Options Cap';
         document.querySelector('#field-channel-'+slug +'-options').style.display = 'block';
+        document.querySelector('.' + slug +'-from-container p').textContent = 'Options';
+    } else {
+        document.getElementById('field-channel-' + slug + '-to').style.display = 'block';
+        document.getElementById('field-channel-' + slug + '-from').style.display = 'block';
     }
 
     if(['range-flat', 'options-flat'].includes(value)) {
@@ -408,7 +412,8 @@ function effectFieldTypeChange(slug, event) {
         document.querySelector('.field-' + slug + '-range-percent').style.display = 'block';
     }
 
-    if(['range-combo', 'options-combo'].includes(value)) {
+    if(value.includes('combo')) {
+        document.querySelector('.' + slug +'-fee-or-percentage-container p').textContent = 'Fee or Percentage';
         document.querySelector('.field-' + slug +'-or-percentaage').style.display = 'block';
     }
 }
