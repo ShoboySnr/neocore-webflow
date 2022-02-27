@@ -360,7 +360,7 @@ function effectFieldTypeChange(slug, event) {
     event.preventDefault();
     const ranges_column = document.querySelectorAll('.ranges-' + slug + '-column');
 
-    // document.getElementById('field-channel-'+ slug + '-type').removeAttribute('disabled');
+    document.getElementById('field-channel-'+ slug + '-type').removeAttribute('disabled');
     console.log(document.querySelectorAll('.button-' + slug +'-remove-extra-legs').length);
     
     if(document.querySelectorAll('.button-' + slug +'-remove-extra-legs').length > 1) {
