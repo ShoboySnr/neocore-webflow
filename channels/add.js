@@ -334,7 +334,7 @@ function addExtraLegFunction(legs_parent, parent_element, slug, event) {
 
     if(ranges_column.length > 1) {
         document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
-    }
+    } else document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', false);
 
     let size = ranges_column.length;
     const newsize = parseInt(size);
@@ -359,7 +359,9 @@ function addExtraLegFunction(legs_parent, parent_element, slug, event) {
 function effectFieldTypeChange(slug, event) {
     event.preventDefault();
     const ranges_column = document.querySelectorAll('.ranges-' + slug + '-column');
-    console.log(ranges_column);
+
+    document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
+    
     if(ranges_column.length > 1) {
         document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
         return;
