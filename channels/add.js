@@ -352,6 +352,12 @@ function addExtraLegFunction(legs_parent, parent_element, event) {
 
 function effectFieldTypeChange(slug, event) {
     event.preventDefault();
+    const ranges_column = document.querySelectorAll('.ranges-column');
+    if(ranges_column.length > 1) {
+        document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
+        return;
+    }
+    
     const value = event.target.value;
 
     document.getElementById('range-' + slug + '-legs-parents').setAttribute('style', 'display: none');
