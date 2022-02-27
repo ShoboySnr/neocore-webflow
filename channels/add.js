@@ -358,7 +358,7 @@ function addExtraLegFunction(legs_parent, parent_element, slug, event) {
 
 function effectFieldTypeChange(slug, event) {
     event.preventDefault();
-    const ranges_column = document.querySelectorAll('.ranges-column');
+    const ranges_column = document.querySelectorAll('.ranges-' + slug + '-column');
     console.log(ranges_column);
     if(ranges_column.length > 1) {
         document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
