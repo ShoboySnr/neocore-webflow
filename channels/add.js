@@ -353,7 +353,6 @@ function addExtraLegFunction(legs_parent, parent_element, event) {
 function effectFieldTypeChange(slug, event) {
     event.preventDefault();
     const value = event.target.value;
-    console.log(value);
 
     document.getElementById('range-' + slug + '-legs-parents').setAttribute('style', 'display: block');
     document.querySelectorAll('.field-' + slug +'-or-percentaage').forEach((element, index) => {
@@ -363,6 +362,7 @@ function effectFieldTypeChange(slug, event) {
     document.querySelectorAll('.field-' + slug +'-options-cap').forEach((element, index) => {
         element.placeholder = 'Enter Option Cap Value'
     });
+    document.querySelector('.field-' + slug + 'range-flat').style.display = 'none';
     document.querySelector('.' + slug + '-percentage-container').style.display = 'none';
     document.querySelector('.' + slug + '-flat-amount-container').style.display = 'none';
 
@@ -385,7 +385,7 @@ function effectFieldTypeChange(slug, event) {
         document.querySelector('.range' + slug +'-legs-parents').setAttribute('style', 'display:block');
     }
 
-    if(!['range-percent', 'option-percent type'].includes(value)) {
+    if(!['range-percent', 'range-flat', 'options-percent'].includes(value)) {
         document.querySelectorAll('.field-' + slug +'-or-percentaage').forEach((element, index) => {
             element.style.display = 'none';
         });
@@ -395,6 +395,11 @@ function effectFieldTypeChange(slug, event) {
         document.querySelector('#field-channel-' + slug + '-from').style.display = 'none';
         document.querySelectorAll('.' + slug +'-range-title-from-to')[0].innerHTML = 'Options';
         document.querySelector('#field-channel-'+slug +'-options').style.display = 'block';
+    }
+
+    if('range-flat' === value) {
+        document.querySelector('.field-' + slug +'-title-options-cap p').textContent = 'Flat amount';
+        document.querySelector('.field-' + slug + 'range-flat').style.display = 'block';
     }
 
     if(!['range-combo', 'options-combo'].includes(value)) {
