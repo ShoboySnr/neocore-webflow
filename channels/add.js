@@ -346,11 +346,11 @@ function addExtraLegFunction(legs_parent, parent_element, slug, event) {
         select_all_inputs[i].setAttribute('name', name_attr +'['+ newsize + ']');
     }
 
-    leg_parent_clone.querySelector('.button-remove-extra-legs').setAttribute('style','display:block');
+    leg_parent_clone.querySelector('.button-' + slug +'-remove-extra-legs').setAttribute('style','display:block');
     leg_parent_clone.removeAttribute('id');
     leg_parent_clone.setAttribute('style','display:block');
 
-    leg_parent_clone.querySelector('.button-remove-extra-legs').addEventListener('click', () => leg_parent_clone.remove());
+    leg_parent_clone.querySelector('.button-' + slug +'-remove-extra-legs').addEventListener('click', () => leg_parent_clone.remove());
 
 
     parent_element.appendChild(leg_parent_clone);
@@ -361,9 +361,8 @@ function effectFieldTypeChange(slug, event) {
     const ranges_column = document.querySelectorAll('.ranges-' + slug + '-column');
 
     document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', false);
-    console.log(ranges_column);
     
-    if(ranges_column.length > 1) {
+    if(querySelector('.button-' + slug +'-remove-extra-legs').length > 1) {
         document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
         return;
     }
