@@ -137,7 +137,7 @@ function getAllChannels() {
                 }
 
                 const action_el = card.getElementsByTagName('p')[4]
-                action_el.innerHTML = '<a title="' + di.Name + '" href="javascript:void(0);" onclick="channelModalpopup(' + di.ID +')" rel="modal:open">View</a>&nbsp;&nbsp;<a title="' + active_message + '" href="javascript:void();" onclick="updateChannelStatus(\''+ di.type +'\', '+ di.Active + ');">' + active_message + '</a>';
+                action_el.innerHTML = '<a title="' + di.Name + '" href="javascript:void(0);" onclick="channelModalpopup(' + di.ID +')">View</a> || <a title="' + active_message + '" href="javascript:void();" onclick="updateChannelStatus(\''+ di.type +'\', '+ di.Active + ');">' + active_message + '</a>';
                 
                 action_el.appendChild(modal_popup_clone);
                 cardContainer.appendChild(card);
