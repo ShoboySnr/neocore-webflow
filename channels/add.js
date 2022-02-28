@@ -97,26 +97,69 @@ function createNewChannel(e) {
     let fee_ranges = [];
 
     for (let i = 0; i < fee_range_size; i++) {
-        let from_value = document.querySelectorAll('input[name="field-channel-fee-from"]')[i].value * 100; // in kobo
-        let to_value = document.querySelectorAll('input[name="field-channel-fee-to"]')[i].value * 100; // in kobo
-        let options_cap = document.querySelectorAll('input[name="field-channel-fee-option-cap"]')[i].value;
-        let fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-fee-or-percent"]')[i].value;
-        let range_type = channel_fee_type;
+        let from_value = 0;
+        let to_value = 0;
         let option = '';
-        let flat_amount = '';
+        let option_cap = 0;
+        let flat_amount = 0;
+        let is_percentage = false;
+        let fee_or_percentage = 0;
+        let range_type = channel_fee_type;
 
-        let range_data = {
-            "from": from_value,
-            "to": to_value,
-            "option": option,
-            "option_cap": options_cap,
-            "range_type": range_type,
-            "flat_amount": flat_amount,
-            "fee_or_percentage": fee_or_percentage
-        };
+        if(channel_fee_type == 'flat' || channel_fee_type == 'percent') {
+            from_value = 0;
+            to_value = 0;
+            option = '';
+            option_cap = 0;
+            is_percentage = false;
+            fee_or_percentage = 0;
 
-        fee_ranges.push(range_data);
+            let range_data = {
+                from_value, to_value, option, option_cap, is_percentage, fee_or_percentage, range_type
+            }
 
+            fee_ranges.push(range_data);
+            break;
+        } else {
+            if(channel_fee_type == 'range-percent') {
+                is_percentage = true;
+                from_value = document.querySelectorAll('input[name="field-channel-fee-from"]')[i].value * 100; // in kobo
+                to_value = document.querySelectorAll('input[name="field-channel-fee-to"]')[i].value * 100; // in kobo
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-percentage"]')[i].value * 100;
+            }
+
+            if(channel_fee_type == 'range-flat') {
+                from_value = document.querySelectorAll('input[name="field-channel-fee-from"]')[i].value * 100; // in kobo
+                to_value = document.querySelectorAll('input[name="field-channel-fee-to"]')[i].value * 100; // in kobo
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-flat"]')[i].value * 100;
+            }
+
+            if(channel_fee_type === 'options-percent') {
+                is_percentage = true;
+                option = document.querySelectorAll('input[name="field-channel-fee-options"]')[i].value;
+                option_cap = document.querySelectorAll('input[name="field-channel-fee-option-cap"]')[i].value;
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-percentage"]')[i].value * 100;
+            }
+
+            if(channel_fee_type === 'options-flat') {
+                option = document.querySelectorAll('input[name="field-channel-fee-options"]')[i].value;
+                option_cap = document.querySelectorAll('input[name="field-channel-fee-option-cap"]')[i].value;
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-flat"]')[i].value * 100;
+            }
+
+            if(channel_fee_type === 'range-combo') {
+                option = document.querySelectorAll('input[name="field-channel-fee-options"]')[i].value;
+                option_cap = document.querySelectorAll('input[name="field-channel-fee-option-cap"]')[i].value;
+                flat_amount = document.querySelectorAll('input[name="field-channel-fee-range-flat"]')[i].value * 100;
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-percentage"]')[i].value * 100;
+            }
+
+            let range_data = {
+                from_value, to_value, option, option_cap, is_percentage, fee_or_percentage, range_type
+            }
+
+            fee_ranges.push(range_data);
+        }
     }
 
     //get channel cost details
@@ -133,26 +176,69 @@ function createNewChannel(e) {
     let cost_ranges = [];
 
     for (let i = 0; i < cost_range_size; i++) {
-        let from_value = document.querySelectorAll('input[name="field-channel-cost-from"]')[i].value * 100; // in kobo
-        let to_value = document.querySelectorAll('input[name="field-channel-cost-to"]')[i].value * 100; // in kobo
-        let options_cap = document.querySelectorAll('input[name="field-channel-cost-option-cap"]')[i].value;
-        let fee_or_percentage = document.querySelectorAll('input[name="field-channel-cost-fee-or-percent"]')[i].value;
-        let range_type = channel_fee_type;
+        let from_value = 0;
+        let to_value = 0;
         let option = '';
-        let flat_amount = '';
+        let option_cap = 0;
+        let flat_amount = 0;
+        let is_percentage = false;
+        let fee_or_percentage = 0;
+        let range_type = channel_cost_type;
 
-        let range_data = {
-            "from": from_value,
-            "to": to_value,
-            "option": option,
-            "option_cap": options_cap,
-            "range_type": range_type,
-            "flat_amount": flat_amount,
-            "fee_or_percentage": fee_or_percentage
-        };
+        if(channel_cost_type == 'flat' || channel_cost_type == 'percent') {
+            from_value = 0;
+            to_value = 0;
+            option = '';
+            option_cap = 0;
+            is_percentage = false;
+            fee_or_percentage = 0;
 
-        cost_ranges.push(range_data);
+            let range_data = {
+                from_value, to_value, option, option_cap, is_percentage, fee_or_percentage, range_type
+            }
 
+            cost_ranges.push(range_data);
+            break;
+        } else {
+            if(channel_cost_type == 'range-percent') {
+                is_percentage = true;
+                from_value = document.querySelectorAll('input[name="field-channel-fee-from"]')[i].value * 100; // in kobo
+                to_value = document.querySelectorAll('input[name="field-channel-fee-to"]')[i].value * 100; // in kobo
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-percentage"]')[i].value * 100;
+            }
+
+            if(channel_cost_type == 'range-flat') {
+                from_value = document.querySelectorAll('input[name="field-channel-fee-from"]')[i].value * 100; // in kobo
+                to_value = document.querySelectorAll('input[name="field-channel-fee-to"]')[i].value * 100; // in kobo
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-flat"]')[i].value * 100;
+            }
+
+            if(channel_cost_type === 'options-percent') {
+                is_percentage = true;
+                option = document.querySelectorAll('input[name="field-channel-fee-options"]')[i].value;
+                option_cap = document.querySelectorAll('input[name="field-channel-fee-option-cap"]')[i].value;
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-percentage"]')[i].value * 100;
+            }
+
+            if(channel_cost_type === 'options-flat') {
+                option = document.querySelectorAll('input[name="field-channel-fee-options"]')[i].value;
+                option_cap = document.querySelectorAll('input[name="field-channel-fee-option-cap"]')[i].value;
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-flat"]')[i].value * 100;
+            }
+
+            if(channel_cost_type === 'range-combo') {
+                option = document.querySelectorAll('input[name="field-channel-fee-options"]')[i].value;
+                option_cap = document.querySelectorAll('input[name="field-channel-fee-option-cap"]')[i].value;
+                flat_amount = document.querySelectorAll('input[name="field-channel-fee-range-flat"]')[i].value * 100;
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-percentage"]')[i].value * 100;
+            }
+
+            let range_data = {
+                from_value, to_value, option, option_cap, is_percentage, fee_or_percentage, range_type
+            }
+
+            cost_ranges.push(range_data);
+        }
     }
 
     let active = true;
@@ -216,9 +302,6 @@ function createNewChannel(e) {
     //flat amount in kobo
     channel_fee_flat_amount *= 100;
     channel_cost_flat_amount *= 100;
-    for(fee_range in fee_ranges) {
-
-    }
 
     
 
@@ -256,9 +339,6 @@ function createNewChannel(e) {
         "cost_glid": cost_glid,
         "channel_fee": channel_fee_data
     }
-
-    connsole.log(data);
-    return;
 
     const _this = this;
     
