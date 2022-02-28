@@ -89,7 +89,7 @@ function createNewChannel(e) {
     let channel_fee_flat_amount = 0;
     let channel_fee_percentage = 0;
     let channel_fee_hidden = formData.get('channel-fee-hidden') !== ''
-    let channel_fee_cap = formData.get('channel-fee-cap');
+    let channel_fee_cap = formData.get('field-channel-fee-cap');
 
     if(channel_fee_type === 'flat') {
         channel_fee_flat_amount = formData.get('field-channel-fee-flat-amount');
@@ -176,7 +176,7 @@ function createNewChannel(e) {
     let channel_cost_percentage = 0;
     let channel_cost_flat_amount = 0;
     let channel_cost_hidden = formData.get('channel-cost-hidden') === 'true'
-    let channel_cost_cap = formData.get('channel-cost-cap');
+    let channel_cost_cap = formData.get('field-channel-cost-cap');
 
     if(channel_cost_type === 'flat') {
         channel_cost_flat_amount = formData.get('field-channel-cost-flat-amount');
@@ -478,13 +478,10 @@ function effectFieldTypeChange(slug, event) {
     const value = event.target.value;
 
     document.getElementById('range-' + slug + '-legs-parents').setAttribute('style', 'display: none');
-    document.querySelector('.field-' + slug +'-or-percentaage').style.display = 'none';
     document.querySelector('.field-' + slug + '-range-percent').style.display = 'none';
     document.querySelector('.field-' + slug + '-options-cap').style.display = 'none';
     document.getElementById('field-channel-' + slug + '-to').style.display = 'none';
     document.getElementById('field-channel-' + slug + '-from').style.display = 'none';
-    document.querySelector('.field-' + slug +'-or-percentaage').style.display = 'none';
-    document.querySelector('.' + slug +'-fee-or-percentage-container p').textContent = '';
     document.querySelector('.' + slug +'-to-container p').textContent = 'To';
     document.querySelector('.' + slug +'-from-container p').textContent = 'From';
     document.querySelector('.field-' + slug + '-title-options-cap p').textContent = 'Option Cap';
@@ -536,9 +533,9 @@ function effectFieldTypeChange(slug, event) {
     }
 
     if(value.includes('combo')) {
-        document.querySelector('.' + slug +'-fee-or-percentage-container p').textContent = 'Fee or Percentage';
-        document.querySelector('.field-' + slug +'-or-percentaage').style.display = 'block';
-        document.querySelector('.field-' + slug + '-title-options-cap p').textContent = '';
+        document.querySelector('.field-' + slug +'-title-options-cap p').textContent = 'Flat amount and Percentage';
+        document.querySelector('.field-' + slug + '-range-flat').style.display = 'block';
+        document.querySelector('.field-' + slug + '-range-percent').style.display = 'block';
     }
 }
 
