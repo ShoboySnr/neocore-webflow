@@ -28,7 +28,7 @@ function getAllChannelTypes() {
 
                 let element_el = document.getElementById("field-channel-category");
 
-                appendChannelTypesOptions(channel_types_array, element_el);
+                appendChannelTypesOptions(channel_categories_array, element_el);
             }
 
             const channel_types = data.data.fee_and_cost_types ? data.data.fee_and_cost_types : null;
