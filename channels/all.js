@@ -21,7 +21,6 @@ function getAllChannels() {
                 const modal_popup = document.getElementById('channels-modal-popup');
                 const modal_popup_clone = modal_popup.cloneNode(true);
                 modal_popup_clone.setAttribute('id', 'channel-view-' + di.ID);
-                modal_popup_clone.setAttribute('class', 'modal');
                 modal_popup_clone.setAttribute('style', '');
 
                 modal_popup_clone.querySelector('#channels-inflow').textContent = readStates(di.Inflow);
