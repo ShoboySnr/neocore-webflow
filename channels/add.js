@@ -218,35 +218,35 @@ function createNewChannel(e) {
         } else {
             if(channel_cost_type == 'range-percent') {
                 is_percentage = true;
-                from_value = document.querySelectorAll('input[name="field-channel-fee-from"]')[i].value * 100; // in kobo
-                to_value = document.querySelectorAll('input[name="field-channel-fee-to"]')[i].value * 100; // in kobo
-                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-percentage"]')[i].value * 100;
+                from_value = document.querySelectorAll('input[name="field-channel-cost-from"]')[i].value * 100; // in kobo
+                to_value = document.querySelectorAll('input[name="field-channel-cost-to"]')[i].value * 100; // in kobo
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-cost-range-percentage"]')[i].value * 100;
             }
 
             if(channel_cost_type == 'range-flat') {
-                from_value = document.querySelectorAll('input[name="field-channel-fee-from"]')[i].value * 100; // in kobo
-                to_value = document.querySelectorAll('input[name="field-channel-fee-to"]')[i].value * 100; // in kobo
-                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-flat"]')[i].value * 100;
+                from_value = document.querySelectorAll('input[name="field-channel-cost-from"]')[i].value * 100; // in kobo
+                to_value = document.querySelectorAll('input[name="field-channel-cost-to"]')[i].value * 100; // in kobo
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-cost-range-flat"]')[i].value * 100;
             }
 
             if(channel_cost_type === 'options-percent') {
                 is_percentage = true;
-                option = document.querySelectorAll('input[name="field-channel-fee-options"]')[i].value;
-                option_cap = document.querySelectorAll('input[name="field-channel-fee-option-cap"]')[i].value;
-                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-percentage"]')[i].value * 100;
+                option = document.querySelectorAll('input[name="field-channel-cost-options"]')[i].value;
+                option_cap = document.querySelectorAll('input[name="field-channel-cost-option-cap"]')[i].value;
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-cost-range-percentage"]')[i].value * 100;
             }
 
             if(channel_cost_type === 'options-flat') {
-                option = document.querySelectorAll('input[name="field-channel-fee-options"]')[i].value;
-                option_cap = document.querySelectorAll('input[name="field-channel-fee-option-cap"]')[i].value;
-                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-flat"]')[i].value * 100;
+                option = document.querySelectorAll('input[name="field-channel-cost-options"]')[i].value;
+                option_cap = document.querySelectorAll('input[name="field-channel-cost-option-cap"]')[i].value;
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-cost-range-flat"]')[i].value * 100;
             }
 
             if(channel_cost_type === 'range-combo') {
-                option = document.querySelectorAll('input[name="field-channel-fee-options"]')[i].value;
-                option_cap = document.querySelectorAll('input[name="field-channel-fee-option-cap"]')[i].value;
-                flat_amount = document.querySelectorAll('input[name="field-channel-fee-range-flat"]')[i].value * 100;
-                fee_or_percentage = document.querySelectorAll('input[name="field-channel-fee-range-percentage"]')[i].value * 100;
+                option = document.querySelectorAll('input[name="field-channel-cost-options"]')[i].value;
+                option_cap = document.querySelectorAll('input[name="field-channel-cost-option-cap"]')[i].value;
+                flat_amount = document.querySelectorAll('input[name="field-channel-cost-range-flat"]')[i].value * 100;
+                fee_or_percentage = document.querySelectorAll('input[name="field-channel-cost-range-percentage"]')[i].value * 100;
             }
 
             let range_data = {
