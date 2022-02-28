@@ -337,7 +337,8 @@ function createNewChannel(e) {
         "wallet_glid": wallet_glid,
         "fee_glid": fee_glid,
         "cost_glid": cost_glid,
-        "channel_fee": channel_fee_data
+        "channel_fee": channel_fee_data,
+        "channel_cost": channel_cost_data
     }
 
     const _this = this;
