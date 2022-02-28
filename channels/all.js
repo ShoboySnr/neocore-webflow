@@ -21,7 +21,6 @@ function getAllChannels() {
                 const modal_popup = document.getElementById('channels-modal-popup');
                 const modal_popup_clone = modal_popup.cloneNode(true);
                 modal_popup_clone.setAttribute('id', 'channel-view-' + di.ID);
-                modal_popup_clone.setAttribute('style', '');
 
                 modal_popup_clone.querySelector('#channels-inflow').textContent = readStates(di.Inflow);
                 modal_popup_clone.querySelector('#channels-name').textContent = di.Name;
@@ -136,7 +135,7 @@ function getAllChannels() {
                 }
 
                 const action_el = card.getElementsByTagName('p')[4]
-                action_el.innerHTML = '<a title="' + di.Name + '" href="javascript:void(0);" onclick="channelModalpopup(' + di.ID +')">View</a> || <a title="' + active_message + '" href="javascript:void();" onclick="updateChannelStatus(\''+ di.type +'\', '+ di.Active + ');">' + active_message + '</a>';
+                action_el.innerHTML = '<a title="' + di.Name + '" href="javascript:void(0);" onclick="channelModalpopup(' + di.ID +')">View</a> || <a title="' + active_message + '" href="javascript:void();" onclick="updateChannelStatus(\''+ di.Type +'\', '+ di.Active + ');">' + active_message + '</a>';
                 
                 action_el.appendChild(modal_popup_clone);
                 cardContainer.appendChild(card);
