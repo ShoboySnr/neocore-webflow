@@ -77,11 +77,11 @@ function createNewChannel(e) {
     let formData = new FormData(this);
     let inflow = formData.get('field-inflow') === 'true';
     let name = formData.get('field-name');
-    let category = formData.get('field-channel');
-    let type = formData.get('field-type');
+    let category = formData.get('field-channel-category');
+    let type = formData.get('field-channel-type');
     let wallet_glid = formData.get('field-wallet');
-    let fee_glid = formData.get('field-fee');
-    let cost_glid = formData.get('field-cost');
+    let fee_glid = formData.get('field-fee-glid');
+    let cost_glid = formData.get('field-cost-glid');
 
     //get channel fee details
     let channel_fee_name = formData.get('field-channel-fee-name');
@@ -92,11 +92,11 @@ function createNewChannel(e) {
     let channel_fee_cap = formData.get('channel-fee-cap');
 
     if(channel_fee_type === 'flat') {
-        channel_fee_flat_amount = document.querySelector('input[name="field-channel-fee-flat-amount"]').value;
+        channel_fee_flat_amount = formData.get('field-channel-fee-flat-amount');
     }
 
     if(channel_fee_type === 'percent') {
-        channel_fee_percentage =  document.querySelector('input[name="field-channel-fee-percentage"]').value;
+        channel_fee_percentage =  formData.get('field-channel-fee-percentage');
     }
 
     const channel_fee_ranges_column = document.querySelectorAll('.channel-fee-ranges-column');
@@ -179,11 +179,11 @@ function createNewChannel(e) {
     let channel_cost_cap = formData.get('channel-cost-cap');
 
     if(channel_cost_type === 'flat') {
-        channel_cost_flat_amount = document.querySelector('input[name="field-channel-cost-flat-amount"]').value;
+        channel_cost_flat_amount = formData.get('field-channel-cost-flat-amount');
     }
 
     if(channel_cost_type === 'percent') {
-        channel_cost_percentage = document.querySelector('input[name="field-channel-cost-percentage"]').value;
+        channel_cost_percentage = formData.get('field-channel-cost-percentage');
     }
 
     const channel_cost_ranges_column = document.querySelectorAll('.channel-cost-ranges-column');
