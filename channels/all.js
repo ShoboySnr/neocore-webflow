@@ -15,12 +15,12 @@ function getAllChannels() {
                 card.style.display = 'block';
 
                 card.addEventListener('click', () => {
-                    document.querySelector('#mylightbox-'.di.ID).setAttribute('style', 'display:block')
+                    channelModalpopup(di.ID);
                 });
 
                 const modal_popup = document.getElementById('channels-modal-popup');
                 const modal_popup_clone = modal_popup.cloneNode(true);
-                modal_popup_clone.setAttribute('id', 'mylightbox-' + di.ID);
+                modal_popup_clone.setAttribute('id', 'channel-view-' + di.ID);
                 modal_popup_clone.setAttribute('class', 'modal');
                 modal_popup_clone.setAttribute('style', '');
 
@@ -124,7 +124,7 @@ function getAllChannels() {
                 inflow_el.textContent = readStates(di.Inflow);
                 
                 const category_el = card.getElementsByTagName('p')[2]
-                category_el.textContent = di.Category;
+                category_el.textContent = convertSlugToTitle(di.Category);
                 
                 const active_el = card.getElementsByTagName('p')[3]
                 active_el.innerHTML = readStatus(di.Active);
@@ -137,7 +137,7 @@ function getAllChannels() {
                 }
 
                 const action_el = card.getElementsByTagName('p')[4]
-                action_el.innerHTML = '<a title="' + di.Name + '" href="javascript:void(0);" onclick="" rel="modal:open">View</a>&nbsp;&nbsp;<a title="' + active_message + '" href="javascript:void();" onclick="updateChannelStatus(\''+ di.type +'\', '+ di.Active + ');">' + active_message + '</a>';
+                action_el.innerHTML = '<a title="' + di.Name + '" href="javascript:void(0);" onclick="channelModalpopup(' + di.ID +')" rel="modal:open">View</a>&nbsp;&nbsp;<a title="' + active_message + '" href="javascript:void();" onclick="updateChannelStatus(\''+ di.type +'\', '+ di.Active + ');">' + active_message + '</a>';
                 
                 action_el.appendChild(modal_popup_clone);
                 cardContainer.appendChild(card);
@@ -150,6 +150,10 @@ function getAllChannels() {
 
     request.send();
    
+}
+
+function channelModalpopup(id) {
+    document.querySelector('#channel-view-' + id).setAttribute('style', 'display:block');
 }
 
 function updateChannelStatus(channelID, status) {

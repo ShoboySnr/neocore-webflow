@@ -196,7 +196,6 @@ function createNewChannel(e) {
         let to_value = 0;
         let option = '';
         let option_cap = 0;
-        let flat_amount = 0;
         let is_percentage = false;
         let fee_or_percentage = 0;
         let range_type = channel_cost_type;
@@ -329,7 +328,7 @@ function createNewChannel(e) {
         "flat_amt": channel_fee_flat_amount,
         "hidden": channel_fee_hidden,
         "ranges": fee_ranges,
-        "cap": channel_fee_cap
+        "cap": parseInt(channel_fee_cap)
     }
 
     const channel_cost_data = {
@@ -340,7 +339,7 @@ function createNewChannel(e) {
         "flat_amt": channel_cost_flat_amount,
         "hidden": channel_cost_hidden,
         "ranges": cost_ranges,
-        "cap": channel_cost_cap
+        "cap": parseInt(channel_cost_cap)
     }
 
     
