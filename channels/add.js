@@ -86,10 +86,18 @@ function createNewChannel(e) {
     //get channel fee details
     let channel_fee_name = formData.get('field-channel-fee-name');
     let channel_fee_type = formData.get('field-channel-fee-type');
-    let channel_fee_percentage = parseInt(formData.get('field-channel-fee-percentage'))
-    let channel_fee_flat_amount = formData.get('field-channel-fee-flat-amount');
+    let channel_fee_flat_amount = 0;
+    let channel_fee_percentage = 0;
     let channel_fee_hidden = formData.get('channel-fee-hidden') !== ''
     let channel_fee_cap = formData.get('channel-fee-cap');
+
+    if(channel_fee_type === 'flat') {
+        channel_fee_flat_amount = formData.get('field-channel-fee-flat-amount');
+    }
+
+    if(channel_fee_type === 'percent') {
+        channel_fee_percentage = parseInt(formData.get('field-channel-fee-percentage'))
+    }
 
     const channel_fee_ranges_column = document.querySelectorAll('.channel-fee-ranges-column');
     let fee_range_size = channel_fee_ranges_column.length;
