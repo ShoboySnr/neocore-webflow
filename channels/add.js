@@ -92,11 +92,11 @@ function createNewChannel(e) {
     let channel_fee_cap = formData.get('channel-fee-cap');
 
     if(channel_fee_type === 'flat') {
-        channel_fee_flat_amount = formData.get('field-channel-fee-flat-amount');
+        channel_fee_flat_amount = document.querySelector('input[name="field-channel-fee-flat-amount"]').value;
     }
 
     if(channel_fee_type === 'percent') {
-        channel_fee_percentage = parseInt(formData.get('field-channel-fee-percentage'))
+        channel_fee_percentage =  document.querySelector('input[name="field-channel-fee-percentage"]').value;
     }
 
     const channel_fee_ranges_column = document.querySelectorAll('.channel-fee-ranges-column');
@@ -179,11 +179,11 @@ function createNewChannel(e) {
     let channel_cost_cap = formData.get('channel-cost-cap');
 
     if(channel_cost_type === 'flat') {
-        channel_cost_flat_amount = document.querySelector('input[name="field-channel-fee-flat-amount"]').value;
+        channel_cost_flat_amount = document.querySelector('input[name="field-channel-cost-flat-amount"]').value;
     }
 
     if(channel_cost_type === 'percent') {
-        channel_cost_percentage = document.querySelector('input[name="field-channel-fee-percentage"]').value;
+        channel_cost_percentage = document.querySelector('input[name="field-channel-cost-percentage"]').value;
     }
 
     const channel_cost_ranges_column = document.querySelectorAll('.channel-cost-ranges-column');
