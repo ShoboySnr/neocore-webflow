@@ -99,7 +99,7 @@ function createNewChannel(e) {
         channel_fee_percentage =  formData.get('field-channel-fee-percentage');
     }
 
-    const channel_fee_ranges_column = document.querySelectorAll('.channel-fee-ranges-column');
+    const channel_fee_ranges_column = document.querySelectorAll('.ranges-fee-column');
     let fee_range_size = channel_fee_ranges_column.length;
 
     let fee_ranges = [];
@@ -186,7 +186,7 @@ function createNewChannel(e) {
         channel_cost_percentage = formData.get('field-channel-cost-percentage');
     }
 
-    const channel_cost_ranges_column = document.querySelectorAll('.channel-cost-ranges-column');
+    const channel_cost_ranges_column = document.querySelectorAll('.ranges-cost-column');
     let cost_range_size = channel_cost_ranges_column.length;
 
     let cost_ranges = [];
