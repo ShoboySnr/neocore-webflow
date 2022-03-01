@@ -603,12 +603,11 @@ function setMenuActive() {
 function closeAllModalPopUp(event) {
     const popup = event.target.closest('.modalpopup');
     if(popup) {
-        popup.setAttribute('style', 'display:none');
+        popup.setAttribute('style', 'display:none;');
     }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     setMenuActive();
     window.addEventListener('click', closeAllModalPopUp);
-
 });
