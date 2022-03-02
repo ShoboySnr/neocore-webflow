@@ -94,8 +94,7 @@
       const work_full_address = work_info.Address;
       const customer_work_full_address_el = document.getElementById('field-work-full-address');
       customer_work_full_address_el.textContent = `${work_full_address.Street} ${work_full_address.Street2} ${work_full_address.Town} ${work_full_address.State} ${work_full_address.Lga}`;
-    
-      
+
       //Customer Validations
       const customer_validations = customer.Validations;
 
@@ -117,6 +116,26 @@
       const customer_validations_work_address_el = document.getElementById('field-validations-work-address');
       customer_validations_work_address_el.textContent = readStates(customer_validations.WorkAddress);
 
+          
+      //Customer Address
+      const customer_address = customer.Address;
+
+      const customer_address_street = document.getElementById('customer-address-street');
+      customer_address_street.textContent = customer_address.Street;
+
+      const customer_address_street2 = document.getElementById('customer-address-street2');
+      customer_address_street2.textContent = customer_address.Street2;
+
+      const customer_address_town = document.getElementById('customer-address-town');
+      customer_address_town.textContent = customer_address.Town;
+
+      const customer_address_state = document.getElementById('customer-address-state');
+      customer_address_state.textContent  = customer_address.State;
+
+      const customer_address_lga = document.getElementById('customer-address-lga');
+      customer_address_lga.textContent = customer_address.Lga;
+      
+
       // Edit Address
       const edit_street1 = document.getElementById("street1")
       edit_street1.value = customer.Address.Street
@@ -132,9 +151,6 @@
 
       const edit_lga = document.getElementById("lga")
       edit_lga.value = customer.Address.Lga
-
-      console.log(edit_state.value);
-
       
       return;
     
