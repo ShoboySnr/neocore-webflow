@@ -249,7 +249,7 @@
      
     },true)
 
-  document.getElementById('button-customer-manually-validate-bvn').addEventListener("click", function(e) {
+  document.getElementById('button-customer-validate-data').addEventListener("click", function(e) {
     e.preventDefault();
     const user_validation = document.getElementById("manual_validate_container_id");
     user_validation.style.display = "flex";
