@@ -248,7 +248,19 @@
       request.send(JSON.stringify(data));
      
     },true)
+
+  document.getElementById('button-customer-manually-validate-bvn').addEventListener("click", function(e) {
+    e.preventDefault();
+    const user_validation = document.getElementById("manual_validate_container_id");
+    user_validation.style.display = "flex";
+  })
   
+  document.getElementById('close-customer-manually-validate').addEventListener("click", function(e) {
+    e.preventDefault();
+    const user_validation = document.getElementById("manual_validate_container_id");
+    user_validation.style.display = "none";
+  })
+
   function updateCustomerStatus(userID, activeStatus) {
 
     let request = cbrRequest(`/users/${userID}/activate/${activeStatus}`, 'PATCH', true)
