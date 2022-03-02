@@ -122,18 +122,23 @@
 
       const customer_address_street = document.getElementById('customer-address-street');
       customer_address_street.textContent = customer_address.Street;
+      customer_address_street.style.textTransform = "capitalize";
 
       const customer_address_street2 = document.getElementById('customer-address-street2');
       customer_address_street2.textContent = customer_address.Street2;
+      customer_address_street2.style.textTransform = "capitalize";
 
       const customer_address_town = document.getElementById('customer-address-town');
       customer_address_town.textContent = customer_address.Town;
+      customer_address_town.style.textTransform = "capitalize";
 
       const customer_address_state = document.getElementById('customer-address-state');
       customer_address_state.textContent  = customer_address.State;
+      customer_address_state.style.textTransform = "capitalize";
 
       const customer_address_lga = document.getElementById('customer-address-lga');
       customer_address_lga.textContent = customer_address.Lga;
+      customer_address_lga.style.textTransform = "capitalize";
       
 
       // Edit Address
