@@ -199,6 +199,20 @@
         workaddress_in_view.innerHTML = '<i class="fa-solid fa-xmark"></i>'
       }
 
+      const liveness_in_view = document.getElementById("field-validations-liveness")
+      if (customer.Validations.Liveness == true){
+        liveness_in_view.innerHTML = '<i class="fa-solid fa-check"></i>'
+      }else{
+        liveness_in_view.innerHTML = '<i class="fa-solid fa-xmark"></i>'
+      }
+
+      const selfiematch_in_view = document.getElementById("field-validations-selfie-match")
+      if (customer.Validations.WorkAddress == true){
+        selfiematch_in_view.innerHTML = '<i class="fa-solid fa-check"></i>'
+      }else{
+        selfiematch_in_view.innerHTML = '<i class="fa-solid fa-xmark"></i>'
+      }
+
       //Populate validate data modal
       const bvn_in_modal = document.getElementById("bvn")
       bvn_in_modal.checked = customer.Validations.BVN
@@ -217,6 +231,12 @@
 
       const workaddress_in_modal = document.getElementById("work_address")
       workaddress_in_modal.checked = customer.Validations.WorkAddress
+
+      const liveness_in_modal = document.getElementById("liveness")
+      liveness_in_modal.checked = customer.Validations.Liveness
+
+      const selfiematch_in_modal = document.getElementById("selfie_match")
+      selfiematch_in_modal.checked = customer.Validations.SelfieMatch
       
       return;
     
@@ -326,12 +346,10 @@
       const homeaddress_checkbox = document.getElementById("home_address").checked
 
       const workaddress_checkbox = document.getElementById("work_address").checked
+      
+      const liveness_checkbox = document.getElementById("liveness").checked
 
-      // if(document.getElementById("field-validations-liveness").innerHTML = ''){
-      //   let liveness_view.innerHTML = true;
-      // }else{
-      //   let liveness_view = false
-      // }
+      const selfiematch_checkbox = document.getElementById("selfie_match").checked
 
       let request = cbrRequest(`/users/${userID}/validateData`,'POST',true);
 
@@ -342,8 +360,8 @@
           "ID": idcard_checkbox,
           "HomeAddress": homeaddress_checkbox,
           "WorkAddress": workaddress_checkbox,
-          // "Liveness":liveness_view,
-
+          "Liveness": liveness_checkbox,
+          "SelfieMatch": selfiematch_checkbox,
         }
 
       request.onload = function() {
