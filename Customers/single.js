@@ -333,7 +333,7 @@
       //   let liveness_view = false
       // }
 
-      let request = cbrRequest(`/users/${userID}/validateData`,'POST');
+      let request = cbrRequest(`/users/${userID}/validateData`,'POST',true);
 
       let data ={
           "BVN": bvn_checkbox,
@@ -367,7 +367,7 @@
       }
       request.send(JSON.stringify(data))
 
-  })
+  },true)
 
   document.getElementById('button-customer-validate-data').addEventListener("click", function(e) {
     e.preventDefault();
