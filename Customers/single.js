@@ -141,7 +141,7 @@
       customer_address_lga.style.textTransform = "capitalize";
       
 
-      // Edit Address
+      // Edit Address in modal
       const edit_street1 = document.getElementById("street1")
       edit_street1.value = customer.Address.Street
 
@@ -156,6 +156,68 @@
 
       const edit_lga = document.getElementById("lga")
       edit_lga.value = customer.Address.Lga
+
+      //Populate customer validations value in view
+      const bvn_in_view = document.getElementById("field-validations-bvn")
+      if (customer.Validations.BVN == true){
+        bvn_in_view.textContent = '<i class="fa-solid fa-check"></i>'
+      }else{
+        bvn_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
+      }
+
+      const phonenumber_in_modal = document.getElementById("field-validations-phone-number")
+      if (customer.Validations.PhoneNumber == true){
+        bvn_in_view.textContent = '<i class="fa-solid fa-check"></i>'
+      }else{
+        bvn_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
+      }
+
+      const email_in_view = document.getElementById("field-validations-email")
+      if (customer.Validations.Email == true){
+        email_in_view.textContent = '<i class="fa-solid fa-check"></i>'
+      }else{
+        email_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
+      }
+
+      const idcard_in_view = document.getElementById("field-validations-id")
+      if (customer.Validations.ID == true){
+        idcard_in_view.textContent = '<i class="fa-solid fa-check"></i>'
+      }else{
+        idcard_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
+      }
+
+      const homeaddress_in_view = document.getElementById("field-validations-home-address")
+      if (customer.Validations.HomeAddress == true){
+        homeaddress_in_view.textContent = '<i class="fa-solid fa-check"></i>'
+      }else{
+        homeaddress_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
+      }
+
+      const workaddress_in_view = document.getElementById("field-validations-work-address")
+      if (customer.Validations.WorkAddress == true){
+        workaddress_in_view.textContent = '<i class="fa-solid fa-check"></i>'
+      }else{
+        workaddress_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
+      }
+
+      //Populate validate data modal
+      const bvn_in_modal = document.getElementById("bvn")
+      bvn_in_modal.checked = customer.Validations.BVN
+
+      const phonenumber_in_modal = document.getElementById("phone_number")
+      phonenumber_in_modal.checked = customer.Validations.PhoneNumber
+
+      const email_in_modal = document.getElementById("email_address")
+      email_in_modal.checked = customer.Validations.Email
+
+      const idcard_in_modal = document.getElementById("id_card")
+      idcard_in_modal.checked = customer.Validations.ID
+
+      const homeaddress_in_modal = document.getElementById("home_address")
+      homeaddress_in_modal.checked = customer.Validations.HomeAddress
+
+      const workaddress_in_modal = document.getElementById("work_address")
+      workaddress_in_modal.checked = customer.Validations.WorkAddress
       
       return;
     
@@ -248,6 +310,56 @@
       request.send(JSON.stringify(data));
      
     },true)
+
+  document.getElementById('validate_button').addEventListener("submit",(e)=>{
+    e.preventDefault();
+    e.stopPropagation();
+
+      const bvn_checkbox = document.getElementById("bvn").checked
+
+      const phonenumber_checkbox = document.getElementById("phone_number").checked
+
+      const email_checkbox = document.getElementById("email_address").checked
+
+      const idcard_checkbox = document.getElementById("id_card").checked
+
+      const homeaddress_checkbox= document.getElementById("home_address").checked
+
+      const workaddress_checkbox= document.getElementById("work_address").checked
+
+      let request = cbrRequest(`/users/${userID}/validateData`,'POST',true);
+
+      let data ={
+          "BVN": bvn_checkbox,
+          "PhoneNumber": phonenumber_checkbox,
+          "Email": email_checkbox,
+          "ID": idcard_checkbox,
+          "HomeAddress": homeaddress_checkbox,
+          "WorkAddress": workaddress_checkbox
+        }
+
+      request.onload = function() {
+        
+        let data = JSON.parse(this.response);
+        // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
+        if (request.status >= 200 && request.status < 400) {
+        const success_message = data.message;
+        
+        //show success message
+        let success_message_el = document.getElementById("validate-data-success-message");
+        success_message_el.innerHTML = success_message;
+        success_message_el.style.display = "block";
+        
+        } else {
+                const failed_message = data.message;
+                let failed_message_el = document.getElementById("validate-data-error-message");
+            failed_message_el.innerHTML = failed_message;
+            failed_message_el.style.display = "block";
+        }
+      }
+      request.send(JSON.stringify(data))
+
+  })
 
   document.getElementById('button-customer-validate-data').addEventListener("click", function(e) {
     e.preventDefault();
