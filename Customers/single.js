@@ -309,8 +309,8 @@
       request.send(JSON.stringify(data));
      
     },true)
-
-  document.getElementById('validate_button').addEventListener("submit",(e)=>{
+  
+  document.getElementById('wf-form-customer_validation_form').addEventListener("submit",(e)=>{
     e.preventDefault();
     e.stopPropagation();
 
