@@ -160,44 +160,44 @@
       //Populate customer validations value in view
       const bvn_in_view = document.getElementById("field-validations-bvn")
       if (customer.Validations.BVN == true){
-        bvn_in_view.textContent = '<i class="fa-solid fa-check"></i>'
+        bvn_in_view.innerHTML = '<i class="fa-solid fa-check"></i>'
       }else{
-        bvn_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
+        bvn_in_view.innerHTML = '<i class="fa-solid fa-xmark"></i>'
       }
 
       const phonenumber_in_view = document.getElementById("field-validations-phone-number")
       if (customer.Validations.PhoneNumber == true){
-        phonenumber_in_view.textContent = '<i class="fa-solid fa-check"></i>'
+        phonenumber_in_view.innerHTML = '<i class="fa-solid fa-check"></i>'
       }else{
-        phonenumber_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
+        phonenumber_in_view.innerHTML = '<i class="fa-solid fa-xmark"></i>'
       }
 
       const email_in_view = document.getElementById("field-validations-email")
       if (customer.Validations.Email == true){
-        email_in_view.textContent = '<i class="fa-solid fa-check"></i>'
+        email_in_view.innerHTML = '<i class="fa-solid fa-check"></i>'
       }else{
-        email_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
+        email_in_view.innerHTML = '<i class="fa-solid fa-xmark"></i>'
       }
 
       const idcard_in_view = document.getElementById("field-validations-id")
       if (customer.Validations.ID == true){
-        idcard_in_view.textContent = '<i class="fa-solid fa-check"></i>'
+        idcard_in_view.innerHTML = '<i class="fa-solid fa-check"></i>'
       }else{
-        idcard_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
+        idcard_in_view.innerHTML = '<i class="fa-solid fa-xmark"></i>'
       }
 
       const homeaddress_in_view = document.getElementById("field-validations-home-address")
       if (customer.Validations.HomeAddress == true){
-        homeaddress_in_view.textContent = '<i class="fa-solid fa-check"></i>'
+        homeaddress_in_view.innerHTML = '<i class="fa-solid fa-check"></i>'
       }else{
-        homeaddress_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
+        homeaddress_in_view.innerHTML = '<i class="fa-solid fa-xmark"></i>'
       }
 
       const workaddress_in_view = document.getElementById("field-validations-work-address")
       if (customer.Validations.WorkAddress == true){
-        workaddress_in_view.textContent = '<i class="fa-solid fa-check"></i>'
+        workaddress_in_view.innerHTML = '<i class="fa-solid fa-check"></i>'
       }else{
-        workaddress_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
+        workaddress_in_view.innerHTML = '<i class="fa-solid fa-xmark"></i>'
       }
 
       //Populate validate data modal
