@@ -316,6 +316,7 @@
     e.stopPropagation();
 
       const bvn_checkbox = document.getElementById("bvn").checked
+      console.log(bvn_checkbox);
 
       const phonenumber_checkbox = document.getElementById("phone_number").checked
 
@@ -359,7 +360,7 @@
       }
       request.send(JSON.stringify(data))
 
-  })
+  },true)
 
   document.getElementById('button-customer-validate-data').addEventListener("click", function(e) {
     e.preventDefault();
