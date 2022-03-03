@@ -26,7 +26,6 @@
 
       const customer_status_el = document.getElementById('field-customer-status');
       customer_status_el.innerHTML = readStatus(customer.Active);
-      console.log(customer.Active);
       if(customer.Active) {
         document.getElementById('button-customer-deactivate-customer').setAttribute('style', 'display: block');
       } else {
@@ -324,11 +323,17 @@
 
       const idcard_checkbox = document.getElementById("id_card").checked
 
-      const homeaddress_checkbox= document.getElementById("home_address").checked
+      const homeaddress_checkbox = document.getElementById("home_address").checked
 
-      const workaddress_checkbox= document.getElementById("work_address").checked
+      const workaddress_checkbox = document.getElementById("work_address").checked
 
-      let request = cbrRequest(`/users/${userID}/validateData`,'POST',true);
+      // if(document.getElementById("field-validations-liveness").innerHTML = ''){
+      //   let liveness_view.innerHTML = true;
+      // }else{
+      //   let liveness_view = false
+      // }
+
+      let request = cbrRequest(`/users/${userID}/validateData`,'POST');
 
       let data ={
           "BVN": bvn_checkbox,
@@ -336,7 +341,9 @@
           "Email": email_checkbox,
           "ID": idcard_checkbox,
           "HomeAddress": homeaddress_checkbox,
-          "WorkAddress": workaddress_checkbox
+          "WorkAddress": workaddress_checkbox,
+          // "Liveness":liveness_view,
+
         }
 
       request.onload = function() {
@@ -360,7 +367,7 @@
       }
       request.send(JSON.stringify(data))
 
-  },true)
+  })
 
   document.getElementById('button-customer-validate-data').addEventListener("click", function(e) {
     e.preventDefault();
