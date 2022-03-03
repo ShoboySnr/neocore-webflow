@@ -165,11 +165,11 @@
         bvn_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
       }
 
-      const phonenumber_in_modal = document.getElementById("field-validations-phone-number")
+      const phonenumber_in_view = document.getElementById("field-validations-phone-number")
       if (customer.Validations.PhoneNumber == true){
-        bvn_in_view.textContent = '<i class="fa-solid fa-check"></i>'
+        phonenumber_in_view.textContent = '<i class="fa-solid fa-check"></i>'
       }else{
-        bvn_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
+        phonenumber_in_view.textContent = '<i class="fa-solid fa-xmark"></i>'
       }
 
       const email_in_view = document.getElementById("field-validations-email")
