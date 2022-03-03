@@ -310,7 +310,7 @@
      
     },true)
   
-  document.getElementById('wf-form-customer_validation_form').addEventListener("submit",(e)=>{
+  document.getElementById('customer_validation_form').addEventListener("submit",(e)=>{
     e.preventDefault();
     e.stopPropagation();
 
