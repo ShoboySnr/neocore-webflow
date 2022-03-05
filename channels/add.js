@@ -123,7 +123,7 @@ function createNewChannel(e) {
             fee_or_percentage = 0;
 
             let range_data = {
-                from_value, to_value, option, option_cap, is_percentage, fee_or_percentage, range_type
+                "from": from_value, "to": to_value, option, option_cap, is_percentage, fee_or_percentage, range_type
             }
 
             fee_ranges.push(range_data);
@@ -163,7 +163,7 @@ function createNewChannel(e) {
             }
 
             let range_data = {
-                from_value, to_value, option, option_cap, is_percentage, fee_or_percentage, range_type
+                "from": from_value, "to": to_value, option, option_cap, is_percentage, fee_or_percentage, range_type
             }
 
             fee_ranges.push(range_data);
