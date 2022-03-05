@@ -445,6 +445,7 @@ function addExtraLegFunction(legs_parent, parent_element, slug, event) {
         select_all_inputs[i].value = '';
         const name_attr = select_all_inputs[i].setAttribute('name')
         select_all_inputs[i].setAttribute('name', name_attr +'['+ newsize + ']');
+        select_all_inputs[i].value = '';
     }
 
     leg_parent_clone.querySelector('.button-' + slug +'-remove-extra-legs').setAttribute('style','display:block');
@@ -461,6 +462,8 @@ function addExtraLegFunction(legs_parent, parent_element, slug, event) {
             document.getElementById('field-channel-'+ slug + '-type').setAttribute('disabled', true);
         } 
     });
+
+
 
 
     parent_element.appendChild(leg_parent_clone);
