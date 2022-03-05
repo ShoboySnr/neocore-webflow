@@ -302,14 +302,6 @@ function createNewChannel(e) {
 
     //conditions to check
 
-    if(channel_fee_type === 'flat' || channel_fee_type === 'percentage') {
-        fee_ranges = null;
-    }
-
-    if(channel_cost_type === 'flat' || channel_cost_type === 'percentage') {
-        cost_ranges = null;
-    }
-
     //mutiply the percentages by 100
     channel_fee_percentage *= 100;
     channel_cost_percentage *= 100;
