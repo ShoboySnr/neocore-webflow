@@ -445,7 +445,7 @@ function addExtraLegFunction(legs_parent, parent_element, slug, event) {
         select_all_inputs[i].value = '';
         const name_attr = select_all_inputs[i].setAttribute('name')
         select_all_inputs[i].setAttribute('name', name_attr +'['+ newsize + ']');
-        select_all_inputs[i].value = '';
+        select_all_inputs[i].setAttribute('value', '');
     }
 
     leg_parent_clone.querySelector('.button-' + slug +'-remove-extra-legs').setAttribute('style','display:block');
