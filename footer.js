@@ -61,7 +61,7 @@ function logOut() {
 }
 
 function cbrRequest(endpoint, method, async, payload) {
-    let baseUrl = new URL('https://77c5-105-112-22-253.ngrok.io/cbr');
+    let baseUrl = new URL('https://api.vault.ng/cbr');
     let request = new XMLHttpRequest();
     let url = baseUrl.toString() + endpoint;
     request.open(method, url, async)
