@@ -165,7 +165,6 @@ function createNewChannel(e) {
             let range_data = {
                 "from": from_value, "to": to_value, option, "option_cap": parseInt(option_cap), is_percentage, fee_or_percentage, range_type
             }
-            console.log(range_type);
 
             fee_ranges.push(range_data);
         }
@@ -253,13 +252,10 @@ function createNewChannel(e) {
             let range_data = {
                 "from": from_value, "to": to_value, option, "option_cap": parseInt(option_cap), is_percentage, fee_or_percentage, range_type
             }
-            console.log(range_data);
 
             cost_ranges.push(range_data);
         }
     }
-
-    return;
 
     let active = true;
     
@@ -441,13 +437,12 @@ function addExtraLegFunction(legs_parent, parent_element, slug, event) {
     let size = ranges_column.length;
     const newsize = parseInt(size);
 
-    let select_all_inputs = leg_parent_clone.querySelector('input');
+    let select_all_inputs = leg_parent_clone.querySelectorAll('input');
     for(let i = 0; i < select_all_inputs.length; i++) {
         select_all_inputs[i].value = '';
         const name_attr = select_all_inputs[i].getAttribute('name')
         select_all_inputs[i].setAttribute('name', name_attr +'['+ newsize + ']');
         select_all_inputs[i].setAttribute('value', '');
-        console.log(i);
     }
 
     leg_parent_clone.querySelector('.button-' + slug +'-remove-extra-legs').setAttribute('style','display:block');
