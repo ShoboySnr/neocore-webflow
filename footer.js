@@ -601,6 +601,7 @@ function setMenuActive() {
 }
 
 function closeAllModalPopUp(event) {
+  console.log(document.querySelector('.modalpopup'));
     document.querySelector('.modalpopup').setAttribute('style', 'display:none;');
 }
 
