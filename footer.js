@@ -612,6 +612,10 @@ function stopClosePopUp(event) {
 
 document.addEventListener("DOMContentLoaded", () => {
     setMenuActive();
-    document.querySelector('.modalpopup').addEventListener('click', stopClosePopUp);
-    document.querySelector('#cancel-button').addEventListener('click', closeAllModalPopUp);
+    document.querySelectorAll('.modalpopup').forEach((element, index) => {
+      element.addEventListener('click', stopClosePopUp);
+    });
+    document.querySelectorAll('.cancel-button').forEach((element, index) => {
+      element.addEventListener('click', closeAllModalPopUp);
+    });
 });
