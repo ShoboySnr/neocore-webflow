@@ -50,7 +50,7 @@ function getAllUsers() {
 
 
                     const action_el = card.getElementsByTagName('p')[5]
-                    action_el.innerHTML = '<a href="' + view_link + '" title="View ' + di.first_name + '">View</a> <br> <a href="#" onclick="userPermissionsDetailsModalpopup(\'' + di.ID +'\')" title="Update Permissions">Update Permissions</a>';
+                    action_el.innerHTML = '<a href="' + view_link + '" title="View ' + di.first_name + '">View</a> <br> <a href="#" onclick="userPermissionsDetailsModalpopup(\'' + di.id +'\')" title="Update Permissions">Update Permissions</a>';
                 
 
                     cardContainer.appendChild(card);
