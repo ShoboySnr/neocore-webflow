@@ -85,7 +85,7 @@ function createNewChannel(e) {
 
     //get channel fee details
     let channel_fee_name = formData.get('field-channel-fee-name');
-    let channel_fee_type = formData.get('field-channel-fee-type');
+    let channel_fee_type = document.querySelector('select[name="field-channel-fee-type"]').value;
     let channel_fee_flat_amount = 0;
     let channel_fee_percentage = 0;
     let channel_fee_hidden = formData.get('channel-fee-hidden') !== ''
@@ -98,8 +98,6 @@ function createNewChannel(e) {
     if(channel_fee_type === 'percent') {
         channel_fee_percentage =  formData.get('field-channel-fee-percentage');
     }
-
-    console.log(channel_fee_type, document.querySelector('select[name="field-channel-fee-type"]').value);
 
     const channel_fee_ranges_column = document.querySelectorAll('.ranges-fee-column');
     let fee_range_size = channel_fee_ranges_column.length;
@@ -175,7 +173,7 @@ function createNewChannel(e) {
 
     //get channel cost details
     let channel_cost_name = formData.get('field-channel-cost-name');
-    let channel_cost_type = formData.get('field-channel-cost-type');
+    let channel_cost_type = document.querySelector('select[name="field-channel-cost-type"]').value;
     let channel_cost_percentage = 0;
     let channel_cost_flat_amount = 0;
     let channel_cost_hidden = formData.get('channel-cost-hidden') === 'true'
