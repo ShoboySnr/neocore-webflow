@@ -601,13 +601,15 @@ function setMenuActive() {
 }
 
 function closeAllModalPopUp(event) {
-    const popup = event.target.closest('.modalpopup');
-    if(popup) {
-        popup.setAttribute('style', 'display:none;');
-    }
+    document.querySelector('.modalpopup').setAttribute('style', 'display:none;');
+}
+
+function stopClosePopUp(event) {
+  event.stopPropagation();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     setMenuActive();
-    window.addEventListener('click', closeAllModalPopUp);
+    document.querySelector('.modalpopup').addEventListener('click', stopClosePopUp);
+    document.querySelector('.cancel-button').addEventListener('click', closeAllModalPopUp);
 });
