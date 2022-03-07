@@ -99,7 +99,7 @@ function createNewChannel(e) {
         channel_fee_percentage =  formData.get('field-channel-fee-percentage');
     }
 
-    console.log(channel_fee_type, document.querySelector('input[name="field-channel-fee-type"]').value);
+    console.log(channel_fee_type, document.querySelector('select[name="field-channel-fee-type"]').value);
 
     const channel_fee_ranges_column = document.querySelectorAll('.ranges-fee-column');
     let fee_range_size = channel_fee_ranges_column.length;
