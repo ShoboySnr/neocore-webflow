@@ -28,10 +28,9 @@ function getAllUsers() {
                     const modal_popup_clone = modal_popup.cloneNode(true);
                     modal_popup_clone.setAttribute('id', 'user-permission-view-' + di.ID);
 
-                    setPermission('user-permission-view-' + di.ID);
-
                     modal_popup_clone.querySelector('.permission-title').textContent += `${di.first_name} ${di.last_name}`;
-                    modal_popup_clone.querySelector('')
+
+                    setPermission('user-permission-view-' + di.ID);
                     
                     const first_name_el = card.getElementsByTagName('p')[0]
                     first_name_el.textContent = di.first_name;
