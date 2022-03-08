@@ -94,7 +94,7 @@ function setPermission(user_permission) {
                 label.appendChild(input);
                 label.appendChild(span)
 
-                user_permission.appendChild(label);
+                user_permission.querySelector('#users-permission-container').appendChild(label);
             });
 
         } else {
