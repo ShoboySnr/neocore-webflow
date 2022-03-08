@@ -54,7 +54,7 @@ function getAllUsers() {
 
 
                     const action_el = card.getElementsByTagName('p')[5]
-                    action_el.innerHTML = '<a href="' + view_link + '" title="View ' + di.first_name + '">View</a> || <a href="javascript:void();" onclick="userPermissionsDetailsModalpopup(\'' + di.id +'\');" title="Update Permissions">Update Permissions</a> || <a href="javascript:void();" onclick="sendPasswordReset(\'' + di.email +'\');" title="Update Permissions">Reset Password</a>';
+                    action_el.innerHTML = '<a href="' + view_link + '" title="View ' + di.first_name + '">View</a> || <a href="javascript:void();" onclick="userPermissionsDetailsModalpopup(\'' + di.id +'\');" title="Update Permissions">Update Permissions</a> || <a href="javascript:void();" onclick="sendPasswordReset(\'' + di.email +'\');" title="Reset Password">Reset Password</a>';
                     document.querySelector('.footer').appendChild(modal_popup_clone);
                 
 
