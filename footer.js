@@ -602,6 +602,7 @@ function setMenuActive() {
 
 function closeAllModalPopUp(event) {
     event.preventDefault();
+    console.log(event);
     document.querySelectorAll('.modalpopup').forEach((element, index) => {
       element.setAttribute('style', 'display: none;');
     });
