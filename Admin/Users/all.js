@@ -115,7 +115,7 @@ function updatePermission(email, parent_el, event) {
     event.preventDefault();
 
     let userPermissions = []
-    const permissions = this.querySelectorAll('input.permission-checkbox:checked');
+    const permissions = parent_el.querySelectorAll('input.permission-checkbox:checked');
     for (permission of permissions) {
         userPermissions.push(permission.value)
     }
