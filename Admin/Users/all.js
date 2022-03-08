@@ -110,7 +110,7 @@ function setPermission(user_permission, roles) {
                 input.value = di;
                 input.className = 'w-checkbox-input permission-checkbox';
 
-                if(roles.includes(di)) {
+                if(roles && roles.includes(di)) {
                     input.checked = true;
                 }
 
