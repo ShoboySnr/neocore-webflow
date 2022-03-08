@@ -126,8 +126,6 @@ function updatePermission(email, parent_el, event) {
     };
 
     let request = cbrRequest('/admin/user/permissions', 'PUT', true);
-
-    let _this = t
     
     request.onload = function () {
         let data = JSON.parse(this.response)
