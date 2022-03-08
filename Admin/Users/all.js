@@ -34,7 +34,7 @@ function getAllUsers() {
                         updatePermission(di.email, modal_popup_clone, event)
                     }, true);
 
-                    setPermission(modal_popup_clone);
+                    setPermission(modal_popup_clone, di.roles);
                     
                     const first_name_el = card.getElementsByTagName('p')[0]
                     first_name_el.textContent = di.first_name;
@@ -92,7 +92,7 @@ function sendPasswordReset(email) {
 }
 
 
-function setPermission(user_permission) {
+function setPermission(user_permission, roles) {
     let request = cbrRequest('/admin/permissions', 'GET', true)
 
     request.onload = function () {
@@ -109,6 +109,10 @@ function setPermission(user_permission) {
                 input.name = 'permission-checkbox['+index+']';
                 input.value = di;
                 input.className = 'w-checkbox-input permission-checkbox';
+
+                if(roles.includes(di)) {
+                    input.checked = true;
+                }
 
                 let span = document.createElement("span");
                 span.setAttribute('for', 'permission-checkbox['+index+']');
