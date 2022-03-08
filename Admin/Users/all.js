@@ -50,7 +50,7 @@ function getAllUsers() {
 
 
                     const action_el = card.getElementsByTagName('p')[5]
-                    action_el.innerHTML = '<a href="' + view_link + '" title="View ' + di.first_name + '">View</a> || <a href="javascript:void();" onclick="userPermissionsDetailsModalpopup(\'' + di.id +'\')" title="Update Permissions">Update Permissions</a>';
+                    action_el.innerHTML = '<a href="' + view_link + '" title="View ' + di.first_name + '">View</a> || <a href="javascript:void();" onclick="userPermissionsDetailsModalpopup(\'' + di.id +'\');" title="Update Permissions">Update Permissions</a>';
                     action_el.appendChild(modal_popup_clone);
                 
 
@@ -75,7 +75,6 @@ function setPermission(user_permission) {
         let data = JSON.parse(this.response)
         if (request.status >= 200 && request.status < 400) {
             data.data.forEach((di, index) => {
-                console.log(di);
 
                 let label = document.createElement('label');
                 label.className = 'w-checkbox';
