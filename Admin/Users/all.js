@@ -30,6 +30,8 @@ function getAllUsers() {
 
                     modal_popup_clone.querySelector('.permission-title').textContent += `${di.first_name} ${di.last_name}`;
 
+                    modal_popup_clone.querySelecto('.create-user-permission').addEventListener('submit', updatePermission, true);
+
                     setPermission(modal_popup_clone);
                     
                     const first_name_el = card.getElementsByTagName('p')[0]
@@ -95,6 +97,7 @@ function setPermission(user_permission) {
                 label.appendChild(span)
 
                 user_permission.querySelector('#users-permission-container').appendChild(label);
+
             });
 
         } else {
@@ -151,8 +154,4 @@ function updatePermission(event) {
 
 document.addEventListener('DOMContentLoaded', () => {
     getAllUsers();
-
-    document.querySelectorAll('.wf-form-create-user-permission').forEach((element, index) => {
-        element.addEventListener('submit', updatePermission, true);
-    })
 });
