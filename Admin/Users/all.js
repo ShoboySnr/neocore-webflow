@@ -30,7 +30,7 @@ function getAllUsers() {
 
                     modal_popup_clone.querySelector('.permission-title').textContent += `${di.first_name} ${di.last_name}`;
 
-                    setPermission('user-permission-view-' + di.ID);
+                    setPermission(modal_popup_clone);
                     
                     const first_name_el = card.getElementsByTagName('p')[0]
                     first_name_el.textContent = di.first_name;
@@ -67,14 +67,12 @@ function userPermissionsDetailsModalpopup(id) {
 }
 
 
-function setPermission(Id) {
+function setPermission(user_permission) {
     let request = cbrRequest('/admin/permissions', 'GET', true)
 
     request.onload = function () {
         let data = JSON.parse(this.response)
         if (request.status >= 200 && request.status < 400) {
-
-            const user_permission = document.getElementById(Id)
             data.data.forEach((di, index) => {
                 console.log(di);
 
