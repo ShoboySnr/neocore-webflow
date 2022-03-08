@@ -40,6 +40,10 @@ function getAllUsers() {
                         closeAllModalPopUp(event);
                     });
 
+                    modal_popup_clone.querySelectorAll('.modalpopup').forEach((element, index) => {
+                        element.addEventListener('click', closeAllModalPopUp);
+                    });
+
                     modal_popup_clone.querySelectorAll('.viewpermission').forEach((element, index) => {
                         element.addEventListener('click', stopClosePopUp);
                     });

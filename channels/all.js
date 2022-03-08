@@ -18,6 +18,18 @@ function getAllChannels() {
                 const modal_popup_clone = modal_popup.cloneNode(true);
                 modal_popup_clone.setAttribute('id', 'channel-view-' + di.ID);
 
+                modal_popup_clone.querySelector('#cancel-button').addEventListener('click', () => {
+                    closeAllModalPopUp(event);
+                });
+
+                modal_popup_clone.querySelectorAll('.modalpopup').forEach((element, index) => {
+                    element.addEventListener('click', closeAllModalPopUp);
+                });
+
+                modal_popup_clone.querySelectorAll('.viewpermission').forEach((element, index) => {
+                    element.addEventListener('click', stopClosePopUp);
+                });
+
                 modal_popup_clone.querySelector('#channels-inflow').textContent = readStates(di.Inflow);
                 modal_popup_clone.querySelector('#channels-name').textContent = di.Name;
                 modal_popup_clone.querySelector('#channels-active').innerHTML = readStatus(di.Active);
