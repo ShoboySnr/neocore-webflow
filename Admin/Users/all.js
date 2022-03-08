@@ -40,7 +40,9 @@ function getAllUsers() {
                         closeAllModalPopUp(event);
                     });
 
-                    modal_popup_clone.querySelector('.modalpopup').addEventListener('click', stopClosePopUp);
+                    modal_popup_clone.querySelectorAll('.viewpermission').forEach((element, index) => {
+                        element.addEventListener('click', stopClosePopUp);
+                    });
                     
                     const first_name_el = card.getElementsByTagName('p')[0]
                     first_name_el.textContent = di.first_name;
