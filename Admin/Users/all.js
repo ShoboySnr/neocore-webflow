@@ -30,7 +30,9 @@ function getAllUsers() {
 
                     modal_popup_clone.querySelector('.permission-title').textContent += `${di.first_name} ${di.last_name}`;
 
-                    modal_popup_clone.querySelector('.create-user-permission').addEventListener('submit', updatePermission, true);
+                    modal_popup_clone.querySelector('.create-user-permission').addEventListener('submit', () => {
+                        updatePermission(di.email, event)
+                    }, true);
 
                     setPermission(modal_popup_clone);
                     
@@ -109,7 +111,7 @@ function setPermission(user_permission) {
     request.send();
 }
 
-function updatePermission(event) {
+function updatePermission(email, event) {
     event.preventDefault();
 
     const email = document.getElementById('user-email').value;
