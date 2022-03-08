@@ -39,6 +39,8 @@ function getAllUsers() {
                     modal_popup_clone.querySelector('#cancel-button').addEventListener('click', () => {
                         closeAllModalPopUp(event);
                     });
+
+                    modal_popup_clone.querySelector('.modalpopup').addEventListener('click', stopClosePopUp);
                     
                     const first_name_el = card.getElementsByTagName('p')[0]
                     first_name_el.textContent = di.first_name;
