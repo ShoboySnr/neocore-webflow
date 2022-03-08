@@ -30,7 +30,7 @@ function getAllUsers() {
 
                     modal_popup_clone.querySelector('.permission-title').textContent += `${di.first_name} ${di.last_name}`;
 
-                    modal_popup_clone.querySelecto('.create-user-permission').addEventListener('submit', updatePermission, true);
+                    modal_popup_clone.querySelector('.create-user-permission').addEventListener('submit', updatePermission, true);
 
                     setPermission(modal_popup_clone);
                     
