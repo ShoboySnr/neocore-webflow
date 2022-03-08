@@ -616,6 +616,7 @@ document.addEventListener("DOMContentLoaded", () => {
       element.addEventListener('click', stopClosePopUp);
     });
     document.querySelectorAll('.cancel-button').forEach((element, index) => {
+      console.log(element);
       element.addEventListener('click', closeAllModalPopUp);
     });
 });
