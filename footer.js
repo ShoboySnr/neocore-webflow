@@ -601,9 +601,10 @@ function setMenuActive() {
 }
 
 function closeAllModalPopUp(event) {
-  event.preventDefault();
-  console.log(document.querySelector('.modalpopup'));
-    document.querySelector('.modalpopup').setAttribute('style', 'display:none;');
+    event.preventDefault();
+    document.querySelectorAll('.modalpopup').forEach((element, index) => {
+      element.setAttribute('style', 'display: none;');
+    });
 }
 
 function stopClosePopUp(event) {
