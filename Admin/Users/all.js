@@ -136,13 +136,11 @@ function updatePermission(email, parent_el, event) {
             
             //show success message
             let success_message_el = parent_el.querySelector("#success-message");
-            success_message_el.innerHTML = success_message;
-            success_message_el.style.display = "block";
+            alert('Permission for ' + email + ' updated!');
+            window.location.reload();
         } else {
             const failed_message = data.message;
-            let failed_message_el = parent_el.querySelector("#failed-message");
-            failed_message_el.innerHTML = failed_message;
-            failed_message_el.style.display = "block";
+            alert('Permission for ' + email + ' faled! Reason: ' + failed_message);
         }
     }
 
