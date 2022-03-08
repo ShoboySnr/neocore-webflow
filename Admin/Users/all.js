@@ -20,13 +20,13 @@ function getAllUsers() {
 
                     const permission_link = '/admin/users/setpermission?id=' + di.email;
 
-                    // card.addEventListener('click', function () {
-                    //     document.location.href ='/admin/users/user?id=' + di.id
-                    // });
+                    card.addEventListener('click', function () {
+                        document.location.href ='/admin/users/user?id=' + di.id
+                    });
 
                     const modal_popup = document.getElementById('permissions-modal-popup');
                     const modal_popup_clone = modal_popup.cloneNode(true);
-                    modal_popup_clone.setAttribute('id', 'user-permission-view-' + di.ID);
+                    modal_popup_clone.setAttribute('id', 'user-permission-view-' + di.id);
 
                     modal_popup_clone.querySelector('.permission-title').textContent += `${di.first_name} ${di.last_name}`;
 
