@@ -35,6 +35,10 @@ function getAllUsers() {
                     }, true);
 
                     setPermission(modal_popup_clone, di.roles);
+
+                    modal_popup_clone.querySelector('#cancel-button').addEventListener('click', () => {
+                        closeAllModalPopUp(event);
+                    });
                     
                     const first_name_el = card.getElementsByTagName('p')[0]
                     first_name_el.textContent = di.first_name;
