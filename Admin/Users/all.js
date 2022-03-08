@@ -31,7 +31,7 @@ function getAllUsers() {
                     modal_popup_clone.querySelector('.permission-title').textContent += `${di.first_name} ${di.last_name}`;
 
                     modal_popup_clone.querySelector('.create-user-permission').addEventListener('submit', () => {
-                        updatePermission(di.email, event)
+                        updatePermission(di.email, modal_popup_clone, event)
                     }, true);
 
                     setPermission(modal_popup_clone);
@@ -111,10 +111,8 @@ function setPermission(user_permission) {
     request.send();
 }
 
-function updatePermission(email, event) {
+function updatePermission(email, parent_el, event) {
     event.preventDefault();
-
-    const email = document.getElementById('user-email').value;
 
     let userPermissions = []
     const permissions = this.querySelectorAll('input.permission-checkbox:checked');
@@ -128,6 +126,8 @@ function updatePermission(email, event) {
     };
 
     let request = cbrRequest('/admin/user/permissions', 'PUT', true);
+
+    let _this = t
     
     request.onload = function () {
         let data = JSON.parse(this.response)
@@ -137,12 +137,12 @@ function updatePermission(email, event) {
             const success_message = data.message;
             
             //show success message
-            let success_message_el = document.getElementById("success-message");
+            let success_message_el = parent_el.querySelector("#success-message");
             success_message_el.innerHTML = success_message;
             success_message_el.style.display = "block";
         } else {
             const failed_message = data.message;
-            let failed_message_el = document.getElementById("failed-message");
+            let failed_message_el = parent_el.querySelector("#failed-message");
             failed_message_el.innerHTML = failed_message;
             failed_message_el.style.display = "block";
         }
