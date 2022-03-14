@@ -50,19 +50,6 @@ const getLoanProducts = () => {
                 modal_popup_clone.querySelector('#field-loan-principal-loss-reserve-expense-gl').textContent = di.PrincipalLossReserveExpenseGL;
                 
                 document.body.appendChild(modal_popup_clone);
-                modal_popup_clone.querySelectorAll('#modal-popup-section-' + di.ID).forEach((element, index) => {
-                    element.addEventListener('click', (event) => {
-                        event.preventDefault();
-                        element.setAttribute('style', 'display: none;');
-                    });
-                  });
-
-                modal_popup_clone.querySelectorAll('#modal-popup-section-' + di.ID + ' .modal-popup-container').forEach((element, index) => {
-                    element.addEventListener('click', (event) => {
-                        event.stopPropagation();
-                        event.preventDefault();
-                    });
-                });
 
                 card.addEventListener('click', ()  => {
                     loanProductModalpopup(di.ID);

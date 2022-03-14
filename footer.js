@@ -620,4 +620,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.cancel-button').forEach((element, index) => {
       element.addEventListener('click', closeAllModalPopUp);
     });
+
+    document.querySelectorAll('.modal-popup-section').forEach((element, index) => {
+      element.addEventListener('click', (event) => {
+          console.log(event);
+          event.preventDefault();
+          element.setAttribute('style', 'display: none;');
+      });
+    });
+
+    document.querySelectorAll('.modal-popup-section .modal-popup-container').forEach((element, index) => {
+      element.addEventListener('click', (event) => {
+          event.stopPropagation();
+          event.preventDefault();
+      });
+  });
 });
