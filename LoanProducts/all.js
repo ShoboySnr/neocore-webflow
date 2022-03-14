@@ -20,24 +20,30 @@ const getLoanProducts = () => {
                 modal_popup_clone.setAttribute('id', 'modal-popup-section-' + di.ID);
 
                 modal_popup_clone.querySelector('#field-loan-id').textContent = di.ID;
-                modal_popup_clone.querySelector('#field-loan-strict').textContent = readStates(di.Strict);
+                modal_popup_clone.querySelector('#field-loan-strict').innerHTML = readStates(di.Strict);
                 modal_popup_clone.querySelector('#field-loan-product-code').textContent = di.ProductCode;
                 modal_popup_clone.querySelector('#field-loan-min-kyc-level').textContent = di.MinKYCLevel;
                 modal_popup_clone.querySelector('#field-loan-application-form').textContent = di.ApplicationForm;
                 modal_popup_clone.querySelector('#field-loan-description-form').textContent = di.Description;
-                modal_popup_clone.querySelector('#field-field-loan-on-app').textContent = di.OnApp;
+                modal_popup_clone.querySelector('#field-field-loan-on-app').innerHTML = readStatus(di.OnApp);
                 modal_popup_clone.querySelector('#field-loan-min-amount').textContent = format_currency(di.MinAmount);
                 modal_popup_clone.querySelector('#field-loan-max-amount').textContent = format_currency(di.MaxAmount);
                 modal_popup_clone.querySelector('#field-loan-min-linked-account-balance').textContent = di.MinLinkedAccountBalance;
                 modal_popup_clone.querySelector('#field-loan-moratorium-days').textContent = di.MoratoriumDays;
                 modal_popup_clone.querySelector('#field-loan-default-tenor-days').textContent = di.DefaultTenorDays;
-                modal_popup_clone.querySelector('#field-loan-min-term-days').textContent = di.MinTermDays;
-                modal_popup_clone.querySelector('#field-loan-max-term-days').textContent = di.MaxTermDays;
+                modal_popup_clone.querySelector('#field-loan-min-term-days').textContent = readDepositProductLimit(di.MinTermDays);
+                modal_popup_clone.querySelector('#field-loan-max-term-days').textContent = readDepositProductLimit(di.MaxTermDays);
                 modal_popup_clone.querySelector('#field-loan-principal-repayment-freq').textContent = di.PrincipalRepaymentFreq;
                 modal_popup_clone.querySelector('#field-loan-loan-interest').textContent = di.LoanInterest;
                 modal_popup_clone.querySelector('#field-loan-loan-interest-replayment-freq').textContent = di.InterestRepaymentFreq;
                 modal_popup_clone.querySelector('#field-loan-interest-type').textContent = di.InterestType;
-                modal_popup_clone.querySelector('#field-loan-fees').textContent = di.Fees.join(', ');
+                Field_interests_el = modal_popup_clone.querySelector('#field-loan-fees');
+                let fees = di.Fees;
+                if(fees != null || fees != '') {
+                    for(fee in fees) {
+                        Field_interests_el.innerHTML += fee + '<br />';
+                    }
+                }
                 modal_popup_clone.querySelector('#field-loan-principal-asset-gl').textContent = di.PrincipalAssetGL;
                 modal_popup_clone.querySelector('#field-loan-overdue-principal-asset-gl').textContent = di.OverduePrincipalAssetGL;
                 modal_popup_clone.querySelector('#field-loan-principal-loss-reserve-asset-or-liability-gl').textContent = di.PrincipalLossReserveAssetOrLiabilityGL;
