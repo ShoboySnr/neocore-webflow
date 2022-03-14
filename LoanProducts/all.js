@@ -58,6 +58,11 @@ const getLoanProducts = () => {
                     element.setAttribute('style', 'display: none;');
                 });
 
+                document.querySelector('#modal-popup-section-' + di.ID + ' .modal-popup-container').addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                });
+
                 card.addEventListener('click', ()  => {
                     loanProductModalpopup(di.ID);
                 });
