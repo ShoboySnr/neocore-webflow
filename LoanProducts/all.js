@@ -38,11 +38,11 @@ const getLoanProducts = () => {
                 modal_popup_clone.querySelector('#field-loan-loan-interest').textContent = di.LoanInterest;
                 modal_popup_clone.querySelector('#field-loan-loan-interest-replayment-freq').textContent = di.InterestRepaymentFreq;
                 modal_popup_clone.querySelector('#field-loan-interest-type').textContent = di.InterestType;
-                Field_interests_el = modal_popup_clone.querySelector('#field-loan-fees');
+                let Field_fees_el = modal_popup_clone.querySelector('#field-loan-fees');
                 let fees = di.Fees;
                 if(fees != null || fees != '') {
                     for(fee in fees) {
-                        Field_interests_el.textContent += fee + '<br />';
+                        Field_fees_el.innerHTML += fee + '<br />';
                     }
                 }
                 modal_popup_clone.querySelector('#field-loan-principal-asset-gl').textContent = di.PrincipalAssetGL;
