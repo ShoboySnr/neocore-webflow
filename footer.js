@@ -634,5 +634,5 @@ document.addEventListener("DOMContentLoaded", () => {
           event.stopPropagation();
           event.preventDefault();
       });
-  });
+    });
 });
