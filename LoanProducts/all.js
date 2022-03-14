@@ -22,6 +22,7 @@ const getLoanProducts = () => {
                 modal_popup_clone.querySelector('#field-loan-id').textContent = di.ID;
                 modal_popup_clone.querySelector('#field-loan-strict').innerHTML = readStates(di.Strict);
                 modal_popup_clone.querySelector('#field-loan-product-code').textContent = di.ProductCode;
+                modal_popup_clone.querySelector('#field-loan-name').textContent = di.Name;
                 modal_popup_clone.querySelector('#field-loan-min-kyc-level').textContent = di.MinKYCLevel;
                 modal_popup_clone.querySelector('#field-loan-application-form').textContent = di.ApplicationForm;
                 modal_popup_clone.querySelector('#field-loan-description-form').textContent = di.Description;
