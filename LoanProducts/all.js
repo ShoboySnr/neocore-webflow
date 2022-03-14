@@ -57,5 +57,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function loanProductModalpopup(productID) {
-    document.querySelector('#modal-popup-section-' + productID).setAttribute('style', 'display:block');
+    document.querySelector('#modal-popup-section-' + productID).setAttribute('style', 'display:flex');
 }
