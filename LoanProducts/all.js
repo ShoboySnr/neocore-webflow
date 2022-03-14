@@ -15,9 +15,18 @@ const getLoanProducts = () => {
                 card.setAttribute('id', '');
                 card.style.display = 'block';
 
-                // card.addEventListener('click', function () {
-                //     document.location.href = "/deposit-products/view?id=" + di.id;
-                // });
+                const modal_popup = document.getElementById('modal-popup-section');
+                const modal_popup_clone = modal_popup.cloneNode(true);
+                modal_popup_clone.setAttribute('id', 'modal-popup-section-' + di.ID);
+
+                modal_popup_clone.querySelector('#field-loan-id').textContent = di.ID;
+                modal_popup_clone.querySelector('#field-loan-strict').textContent = readStates(di.Strict);
+
+                document.body.appendChild(modal_popup_clone);
+
+                card.addEventListener('click', ()  => {
+                    loanProductModalpopup(di.ID);
+                });
                 
                 const name_el = card.getElementsByTagName('p')[0]
                 name_el.textContent = di.Name;
@@ -48,5 +57,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function loanProductModalpopup(productID) {
-
+    document.querySelector('#modal-popup-section-' + productID).setAttribute('style', 'display:block');
 }
