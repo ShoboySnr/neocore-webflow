@@ -9,7 +9,7 @@ const getLoanProducts = () => {
         if (request.status >= 200 && request.status < 400) {
             const cardContainer = document.getElementById("customers-container")
             data.data.forEach((di, index) => {
-                    const style = document.getElementById('sample-customer')
+                    const style = document.getElementById('sample-loan-products')
                 const card = style.cloneNode(true)
 
                 card.setAttribute('id', '');
