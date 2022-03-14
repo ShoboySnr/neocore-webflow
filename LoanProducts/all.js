@@ -41,7 +41,7 @@ const getLoanProducts = () => {
                 let fees = di.Fees;
                 if(fees != null || fees != '') {
                     for(fee in fees) {
-                        Field_interests_el.innerHTML += fee + '<br />';
+                        Field_interests_el.textContent += fee + '<br />';
                     }
                 }
                 modal_popup_clone.querySelector('#field-loan-principal-asset-gl').textContent = di.PrincipalAssetGL;
