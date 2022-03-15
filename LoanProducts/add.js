@@ -13,6 +13,7 @@ function getLoanForms() {
             let data = JSON.parse(this.response);
           
             let loan_forms = data.data;
+            console.log(loan_forms);
             
             let parent_el = document.getElementById("field-application-form-id");
             appendToSelect(loan_forms, parent_el);
