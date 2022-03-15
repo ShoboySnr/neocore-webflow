@@ -1,7 +1,5 @@
-let parent_gls = [];
-let deposit_interests = [];
-let deposit_fees = [];
 let loans_forms = [];
+let principal_assets_glid = [];
 
 function getLoanForms() {
     let request = cbrRequest('/loanForms', 'GET', true)
@@ -22,6 +20,33 @@ function getLoanForms() {
     request.send();
 }
 
+function getGLLiabilityAccounts() {
+    let request = cbrRequest('/gl-flat', 'GET', true)
+    
+    
+    request.onload = function() {
+        
+    if (request.status >= 200 && request.status < 400) {
+            let data = JSON.parse(this.response);
+        
+        parent_gls = data.data;
+        
+        let parent_gl_select_el = document.getElementById("field-principal-loss-reserve-assets-liability-gl");
+        filterGL(1, parent_gl_select_el);
+        
+        parent_gl_select_el = document.getElementById("field-overdue-principal-assets-gl");
+        filterGL(1, parent_gl_select_el);
+
+        parent_gl_select_el = document.getElementById("field-principal-assets-gl");
+        filterGL(1, parent_gl_select_el);
+
+        parent_gl_select_el = document.getElementById("field-principla-loss-reserve-expense-glid");
+        filterGL(4, parent_gl_select_el);
+        }
+    }
+    request.send();
+}
+
 function appendToSelect(data, parent_gl_select_el = '') {
   if(data != '' || data.length > 0) {
     data.forEach((di, index) => {
@@ -33,6 +58,21 @@ function appendToSelect(data, parent_gl_select_el = '') {
           parent_gl_select_el.appendChild(option);
       });
    }
+}
+
+function filterGL(type = 0, parent_gl_select_el = '') {
+    if(type != 0) {
+    parent_gls.forEach((gl, index) => {
+        if(gl.usage === 1 && parseInt(type) == gl.type) {
+            let option = document.createElement("option");
+
+            option.value= gl.id;
+            option.innerHTML = gl.name;
+
+            parent_gl_select_el.appendChild(option);
+        }
+        });
+    }
 }
 
 function createNewLoanProduct(e) {
