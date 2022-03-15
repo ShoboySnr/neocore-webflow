@@ -1,64 +1,27 @@
 let parent_gls = [];
 let deposit_interests = [];
 let deposit_fees = [];
+let loans_forms = [];
 
-function getDepositInterests() {
-	let request = cbrRequest('/deposit-interests', 'GET', true)
+function getLoanForms() {
+    let request = cbrRequest('/loanForms', 'GET', true)
   
   
-  request.onload = function() {
-  	
-    if (request.status >= 200 && request.status < 400) {
-    		let data = JSON.parse(this.response);
+    request.onload = function() {
         
-        deposit_interests = data.data;
-        
-        let parent_gl_select_el = document.getElementById("field-interests");
-       	filterInterestsFees(deposit_interests, parent_gl_select_el);
+      if (request.status >= 200 && request.status < 400) {
+            let data = JSON.parse(this.response);
+          
+            let loan_forms = data.data;
+            
+            let parent_el = document.getElementById("field-application-form-id");
+            appendToSelect(loan_forms, parent_el);
+      }
     }
-  }
-  request.send();
+    request.send();
 }
 
-function getDepositFees() {
-	let request = cbrRequest('/fees', 'GET', true)
-  
-  request.onload = function() {
-  	
-    if (request.status >= 200 && request.status < 400) {
-    		let data = JSON.parse(this.response);
-        
-        deposit_fees = data.data;
-        
-        let parent_gl_select_el = document.getElementById("field-fees");
-       	filterInterestsFees(deposit_fees, parent_gl_select_el);
-    }
-  }
-  request.send();
-}
-
- function getGLLiabilityAccounts() {
-	let request = cbrRequest('/gl-flat', 'GET', true)
-  
-  
-  request.onload = function() {
-  	
-    if (request.status >= 200 && request.status < 400) {
-    		let data = JSON.parse(this.response);
-        
-        parent_gls = data.data;
-        
-        let parent_gl_select_el = document.getElementById("field-overdraft-glid");
-       	filterGL(1, parent_gl_select_el);
-        
-        parent_gl_select_el = document.getElementById("field-liability-glid");
-        filterGL(2, parent_gl_select_el);
-    }
-  }
-  request.send();
-}
-
-function filterInterestsFees(data, parent_gl_select_el = '') {
+function appendToSelect(data, parent_gl_select_el = '') {
   if(data != '' || data.length > 0) {
     data.forEach((di, index) => {
        let option = document.createElement("option");
@@ -71,29 +34,13 @@ function filterInterestsFees(data, parent_gl_select_el = '') {
    }
 }
 
-function filterGL(type = 0, parent_gl_select_el = '') {
-  if(type != 0) {
-    parent_gls.forEach((gl, index) => {
-      if(gl.usage === 1 && parseInt(type) == gl.type) {
-          let option = document.createElement("option");
-
-          option.value= gl.id;
-          option.innerHTML = gl.name;
-
-          parent_gl_select_el.appendChild(option);
-        }
-      });
-   }
-}
-
-const addNewProduct = document.getElementById("wf-form-new-gl")
-addNewProduct.addEventListener('submit', createNewDepositProduct);
-
-function createNewDepositProduct(e) {
+function createNewLoanProduct(e) {
 	//get all the submitted information
   e.preventDefault();
   document.getElementById("failed-message").style.display = 'none';
   document.getElementById("success-message").style.display= 'none';
+
+  return;
   
   let formData = new FormData(this);
   let strict = formData.get('field-strict');
@@ -247,6 +194,8 @@ function createNewDepositProduct(e) {
   request.send(JSON.stringify(data));
 }
 
-getGLLiabilityAccounts();
-getDepositInterests();
-getDepositFees();
+window.addEventListener('DOMContentLoaded', () => {
+    getLoanForms();
+    const addLoanProduct = document.getElementById("wf-form-new-loan-product")
+    addLoanProduct.addEventListener('submit', createNewLoanProduct);
+})
