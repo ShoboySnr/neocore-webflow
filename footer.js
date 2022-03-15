@@ -583,7 +583,7 @@ request.send();
 }
 
 function setMenuActive() {
-  const nav_menus = ['dashboard', 'users', 'gls', 'deposit-interests', 'deposit-fees', 'deposit-products', 'deposit-accounts', 'channels'];
+  const nav_menus = ['dashboard', 'users', 'gls', 'deposit-interests', 'deposit-fees', 'deposit-products', 'deposit-accounts', 'channels', 'loan-products'];
 
   let pathname = window.location.pathname.toString();
 
