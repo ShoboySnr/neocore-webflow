@@ -80,10 +80,6 @@ const getLoanProducts = () => {
                     event.preventDefault();
                     event.stopPropagation();
                 });
-
-                card.addEventListener('click', ()  => {
-                    loanProductModalpopup(di.ID);
-                });
                 
                 const name_el = card.getElementsByTagName('p')[0]
                 name_el.textContent = di.Name;
