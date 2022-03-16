@@ -103,66 +103,67 @@ function createNewLoanProduct(e) {
   document.getElementById("failed-message").style.display = 'none';
   document.getElementById("success-message").style.display= 'none';
 
-  return;
-  
+
   let formData = new FormData(this);
   let strict = formData.get('field-strict');
   let name = formData.get('field-name');
   let product_code = formData.get('field-product-code');
-  let term = formData.get('field-term');
-  let minimum_term_days = formData.get('field-min-term-days');
-  let maximum_term_days = formData.get('field-max-term-days');
-  let interests = formData.get('field-interests');
-  let fees = formData.get('field-fees');
-  let has_nuban = formData.get('field-has-nuban');
-  let dormancy_period = formData.get('field-dormancy-period');
-  let confirmation_limit = formData.get('field-confirmation-limit');
   let min_kyc_level = formData.get('field-min-kyc-level');
-  let minimum_balance = formData.get('field-minimum-balance');
-  let overdraft_limit = formData.get('field-overdraft-limit');
-  let requires_approval = formData.get('field-requires-approval');
-  let allow_deposits = formData.get('field-allow-deposits');
-  let allow_withdrawals = formData.get('field-allow-withdrawals');
-  let overdraft_glid = formData.get('field-overdraft-glid');
-  let liability_glid = formData.get('field-liability-glid');
+  let application_form_id = formData.get('field-application-form-id');
+  let min_amount = formData.get('field-min-amount');
+  let max_amount = formData.get('field-max-amount');
+  let min_linked_account_balance = formData.get('field-min-linked-account-balance');
+  let moratorium_days = formData.get('field-moratorium-days');
+  let default_tenor_days = formData.get('field-default-tenor-days');
+  let min_term_days = formData.get('field-minimum-term-days');
+  let max_term_days = formData.get('field-maximum-term-days');
+  let principal_repayment_frequency = formData.get('field-principal-repayment-frequency');
+  let loan_interests = formData.get('field-loan-interests');
+  let interest_repayment_frequency = formData.get('field-interest-repayment-frequency');
+  let fees = formData.get('field-fees');
+  let interest_type = formData.get('field-interest-type');
+  let principal_assets_gl = formData.get('field-principal-assets-gl');
+  let overdue_principal_assets_gl = formData.get('field-overdue-principal-assets-gl');
+  let principal_loss_reserve_assets_liability_gl = formData.get('field-principal-loss-reserve-assets-liability-gl');
+  let principal_loss_reserve_expense_gl = formData.get('field-principal-loss-reserve-expense-glid');
+
   
-  interests = returnSelected(document.getElementById('field-interests'))
   fees = returnSelected(document.getElementById('field-fees'))
   
   //validations
   let error_count = 0;
   let error_message = '';
   
-  if(minimum_term_days == '' || minimum_term_days == null || parseInt(minimum_term_days) < 0) {
-  	minimum_term_days = -1;
+  if(min_term_days == '' || min_term_days == null || parseInt(min_term_days) < 0) {
+  	min_term_days = -1;
   }
   
-  if(maximum_term_days == '' || maximum_term_days == null || parseInt(maximum_term_days) < 0) {
+  if(max_term_days == '' || max_term_days == null || parseInt(max_term_days) < 0) {
   	maximum_term_days = -1;
   }
   
-  if(dormancy_period == '' || dormancy_period == null || parseInt(dormancy_period) < 0) {
-  	dormancy_period = -1;
-  }
-  
-  if(confirmation_limit == '' || confirmation_limit == null || parseInt(confirmation_limit) < 0) {
-  	confirmation_limit = -1;
-  }
-  
   if(min_kyc_level == '' || min_kyc_level == null || parseInt(min_kyc_level) < 0) {
-  	min_kyc_level = -1;
+  	min_kyc_level = 0;
   }
   
-  if(minimum_balance == '' || minimum_balance == null || parseInt(minimum_balance) < 0) {
-  	minimum_balance = -1;
+  if(min_linked_account_balance == '' || min_linked_account_balance == null || parseInt(min_linked_account_balance) < 0) {
+  	min_linked_account_balance = 0;
   }
   
-  if(overdraft_limit == '' || overdraft_limit == null || parseInt(overdraft_limit) < 0) {
-  	overdraft_limit = -1;
+  if(moratorium_days == '' || moratorium_days == null || parseInt(moratorium_days) < 0) {
+  	moratorium_days = 0;
   }
   
-  if(interests.length <= 0) {
-  	interests = [];
+  if(default_tenor_days == '' || default_tenor_days == null || parseInt(default_tenor_days) < 0) {
+  	default_tenor_days = 30;
+  }
+
+  if(interest_repayment_frequency == '' || interest_repayment_frequency == null || parseInt(interest_repayment_frequency) < 0) {
+  	interest_repayment_frequency = 30;
+  }
+
+  if(principal_repayment_frequency == '' || principal_repayment_frequency == null || parseInt(principal_repayment_frequency) < 0) {
+  	principal_repayment_frequency = 30;
   }
   
   if(fees.length <= 0) {
@@ -179,18 +180,48 @@ function createNewLoanProduct(e) {
     error_count++;
   }
 
-  if(term == '' || term == null) {
-    error_message += 'Term cannot be empty <br />';
+  if(application_form_id == '' || application_form_id == null) {
+    error_message += 'Application Form ID cannot be empty <br />';
     error_count++;
   }
 
-  if(overdraft_glid == '' || overdraft_glid == null) {
-    error_message += 'Please select one Overdraft GL <br />';
+  if(min_amount == '' || min_amount == null) {
+    error_message += 'Minimum Amount cannot be empty <br />';
+    error_count++;
+  }
+
+  if(max_amount == '' || max_amount == null) {
+    error_message += 'Minimum Amount cannot be empty <br />';
+    error_count++;
+  }
+
+  if(loan_interests == '' || loan_interests == null) {
+    error_message += 'Please select one Loan Interest <br />';
     error_count++;
   }
   
-  if(liability_glid == '' || liability_glid == null) {
-    error_message += 'Please select one Liability GL <br />';
+  if(interest_type == '' || interest_type == null) {
+    error_message += 'Please select one Interest Type <br />';
+    error_count++;
+  }
+
+  if(principal_assets_gl == '' || principal_assets_gl == null) {
+    error_message += 'Please select one Principal Assets GL <br />';
+    error_count++;
+  }
+
+  if(overdue_principal_assets_gl == '' || overdue_principal_assets_gl == null) {
+    error_message += 'Please select one Overdue Principal Assets GL <br />';
+    error_count++;
+  }
+
+  if(principal_loss_reserve_assets_liability_gl == '' || principal_loss_reserve_assets_liability_gl == null) {
+    error_message += 'Please select one Principal Loss Reserve Assets and Liability GL <br />';
+    error_count++;
+  }
+
+  if(principal_loss_reserve_expense_gl == '' || principal_loss_reserve_expense_gl == null) {
+    error_message += 'Please select one Principal Loss Reserve Expense GL <br />';
     error_count++;
   }
 
@@ -201,11 +232,6 @@ function createNewLoanProduct(e) {
   }
   
   strict = (strict === 'true');
-  term = (term === 'true');
-  has_nuban = (has_nuban === 'true');
-  requires_approval = (requires_approval === 'true');
-  allow_deposits = (allow_deposits === 'true');
-  allow_withdrawals = (allow_withdrawals === 'true');
   
   let flow_type_ids = [];
   
@@ -213,32 +239,35 @@ function createNewLoanProduct(e) {
   	"strict" : strict,
     "name" : name,
     "productCode" : product_code,
-    "term" : term,
-    "maxTermDays" : parseInt(maximum_term_days),
-    "minTermDays" : parseInt(minimum_term_days),
-    "interests" : interests,
-    "fees" : fees,
-    "hasNuban" : has_nuban,
-    "dormancyPeriodDays" : parseInt(dormancy_period),
-    "confirmationLimit" : parseInt(confirmation_limit),
     "minKYCLevel" : parseInt(min_kyc_level),
-    "minimumBalance" : parseInt(minimum_balance),
-    "overdraftLimit" : parseInt(overdraft_limit),
-    "requiresApproval": requires_approval,
-    "allowDeposits" : allow_deposits,
-    "allowWithdrawals" : allow_withdrawals,
-    "flowTypeIDs" : flow_type_ids,
-    "overdraftGLId" : overdraft_glid,
-    "liabilityGLId" : liability_glid,
+    "applicationFormId" : application_form_id,
+    "minAmount" : parseInt(min_amount),
+    "maxAmount" : parseInt(max_amount),
+    "minLinkedAccountBalance" : parseInt(min_linked_account_balance),
+    "moratoriumDays" : parseInt(moratorium_days),
+    "defaultTenorDays" : parseInt(default_tenor_days),
+    "minTermDays" : parseInt(min_term_days),
+    "maxTermDays" : parseInt(max_term_days),
+    "principalRepaymentFreq" : parseInt(principal_repayment_frequency),
+    "loanInterest" : loan_interests,
+    "interestRepaymentFreq": parseInt(interest_repayment_frequency),
+    "interestType" : interest_type,
+    "fees" : fees,
+    "principalAssetGL" : principal_assets_gl,
+    "overduePrincipalAssetGL" : overdue_principal_assets_gl,
+    "principalLossReserveAssetOrLiabilityGL" : principal_loss_reserve_assets_liability_gl,
+    "principalLossReserveExpenseGL" : principal_loss_reserve_expense_gl,
   }
+
+  let _this = this;
   
-  let request = cbrRequest(`/deposit-product`, 'POST', true)
+  let request = cbrRequest(`/loanProduct`, 'POST', true)
   
   request.onload = function() {
     let data = JSON.parse(this.response);
   // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
   	if (request.status >= 200 && request.status < 400) {
-        addNewProduct.reset();
+      _this.reset();
         const success_message = data.message;
         
         //show success message
@@ -259,6 +288,7 @@ function createNewLoanProduct(e) {
 
 window.addEventListener('DOMContentLoaded', () => {
     getLoanForms();
-    const addLoanProduct = document.getElementById("wf-form-new-loan-product")
+    getLoanFees();
+    const addLoanProduct = document.getElementById("wf-form-Create-New-Loan-Product")
     addLoanProduct.addEventListener('submit', createNewLoanProduct);
 })
