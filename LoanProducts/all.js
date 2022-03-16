@@ -59,7 +59,65 @@ const getLoanProducts = () => {
                 update_modal_popup_clone.setAttribute('data-id', di.ID);
                 update_modal_popup.querySelector('input[name="field-app-on"]').setAttribute('checked', di.OnApp);
 
-                update_modal_popup_clone.querySelector('#wf-form-Update-Loan-Product').addEventListener('submit', updateLoanProduct);
+                const updateLoanProduct = (productID, event) => {
+                        event.preventDefault();
+                        
+                        document.getElementById("failed-message").style.display = 'none';
+                        document.getElementById("success-message").style.display= 'none';
+
+                        let formData = new FormData(this);
+                        let id = productID
+                        let app_on = formData.get('field-app-on');
+
+                        let error_message = '';
+                        let error_count = 0;
+
+                        if(id == '' || id == null) {
+                            error_message += 'Coud not find the loan product id <br />';
+                            error_count++;
+                        }
+
+                        if(error_count > 0) {
+                            document.getElementById("failed-message").style.display = 'block';
+                            document.getElementById("failed-message").innerHTML = error_message;
+                            return;
+                        }
+
+                        app_on = (app_on != '');
+
+                        let data = {
+                            "id" : id,
+                            "app_on" : app_on,
+                        }
+
+                        let request = cbrRequest(`/loanProduct`, 'PUT', true)
+                    
+                        request.onload = function() {
+                            let data = JSON.parse(this.response);
+                        // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
+                            if (request.status >= 200 && request.status < 400) {
+                            _this.reset();
+                                const success_message = data.message;
+                                
+                                //show success message
+                                let success_message_el = document.getElementById("success-message");
+                                success_message_el.innerHTML = success_message;
+                                success_message_el.style.display = "block";
+                            
+                            } else {
+                                const failed_message = data.message;
+                                let failed_message_el = document.getElementById("failed-message");
+                                failed_message_el.innerHTML = failed_message;
+                                failed_message_el.style.display = "block";
+                            }
+                        }
+                        
+                        request.send(JSON.stringify(data));
+                }
+
+                update_modal_popup_clone.querySelector('#wf-form-Update-Loan-Product').addEventListener('submit', () => {
+                    updateLoanProduct(di.ID, event)
+                });
 
                 document.body.appendChild(update_modal_popup_clone);
                                 
@@ -104,61 +162,6 @@ const getLoanProducts = () => {
 
     request.send();
     
-}
-
-function updateLoanProduct(e) {
-    e.preventDefault();
-    document.getElementById("failed-message").style.display = 'none';
-    document.getElementById("success-message").style.display= 'none';
-
-    let formData = new FormData(this);
-    let id = document.querySelector('#wf-form-Update-Loan-Product').getAttribute('data-id');
-    let app_on = formData.get('field-app-on');
-
-    let error_message = '';
-    let error_count = 0;
-
-    if(id == '' || id == null) {
-        error_message += 'Coud not find the loan product id <br />';
-        error_count++;
-    }
-
-    if(error_count > 0) {
-        document.getElementById("failed-message").style.display = 'block';
-        document.getElementById("failed-message").innerHTML = error_message;
-        return;
-    }
-
-    app_on = (app_on != '');
-
-    let data = {
-        "id" : id,
-        "app_on" : app_on,
-    }
-
-    let request = cbrRequest(`/loanProduct`, 'PUT', true)
-  
-    request.onload = function() {
-        let data = JSON.parse(this.response);
-    // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
-        if (request.status >= 200 && request.status < 400) {
-        _this.reset();
-            const success_message = data.message;
-            
-            //show success message
-            let success_message_el = document.getElementById("success-message");
-            success_message_el.innerHTML = success_message;
-            success_message_el.style.display = "block";
-        
-        } else {
-            const failed_message = data.message;
-            let failed_message_el = document.getElementById("failed-message");
-            failed_message_el.innerHTML = failed_message;
-            failed_message_el.style.display = "block";
-        }
-    }
-    
-    request.send(JSON.stringify(data));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
