@@ -20,6 +20,25 @@ function getLoanForms() {
     request.send();
 }
 
+function getLoanFees() {
+  let request = cbrRequest('/loanFee', 'GET', true)
+  
+  
+    request.onload = function() {
+        
+      if (request.status >= 200 && request.status < 400) {
+            let data = JSON.parse(this.response);
+          
+            let loan_forms = data.data;
+            console.log(loan_forms);
+            
+            let parent_el = document.getElementById("field-fees");
+            appendToSelect(loan_forms, parent_el);
+      }
+    }
+    request.send();
+}
+
 function getGLLiabilityAccounts() {
     let request = cbrRequest('/gl-flat', 'GET', true)
     
@@ -34,13 +53,16 @@ function getGLLiabilityAccounts() {
         let parent_gl_select_el = document.getElementById("field-principal-loss-reserve-assets-liability-gl");
         filterGL(1, parent_gl_select_el);
         
+        parent_gl_select_el = document.getElementById("field-principal-loss-reserve-assets-liability-gl");
+        filterGL(2, parent_gl_select_el);
+        
         parent_gl_select_el = document.getElementById("field-overdue-principal-assets-gl");
         filterGL(1, parent_gl_select_el);
 
         parent_gl_select_el = document.getElementById("field-principal-assets-gl");
         filterGL(1, parent_gl_select_el);
 
-        parent_gl_select_el = document.getElementById("field-principla-loss-reserve-expense-glid");
+        parent_gl_select_el = document.getElementById("field-principal-loss-reserve-expense-glid");
         filterGL(4, parent_gl_select_el);
         }
     }
