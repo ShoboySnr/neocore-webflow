@@ -59,6 +59,8 @@ const getLoanProducts = () => {
                 update_modal_popup_clone.setAttribute('data-id', di.ID);
                 update_modal_popup.querySelector('input[name="field-app-on"]').setAttribute('checked', di.OnApp);
 
+                update_modal_popup_clone.querySelector('#wf-form-Update-Loan-Product').addEventListener('submit', updateLoanProduct);
+
                 document.body.appendChild(update_modal_popup_clone);
                                 
                 document.querySelector('#modal-popup-section-' + di.ID).addEventListener('click', (event) => {
@@ -161,8 +163,6 @@ function updateLoanProduct(e) {
 
 document.addEventListener('DOMContentLoaded', () => {
     getLoanProducts();
-    const addLoanProduct = document.getElementById("wf-form-Update-Loan-Product")
-    addLoanProduct.addEventListener('submit', updateLoanProduct);
 });
 
 function loanProductModalpopup(productID) {

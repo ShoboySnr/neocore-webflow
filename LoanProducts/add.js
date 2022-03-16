@@ -127,7 +127,6 @@ function createNewLoanProduct(e) {
   let strict = formData.get('field-strict');
   let name = formData.get('field-name');
   let product_code = formData.get('field-product-code');
-  let min_kyc_level = formData.get('field-min-kyc-level');
   let application_form_id = formData.get('field-application-form-id');
   let min_amount = formData.get('field-min-amount');
   let max_amount = formData.get('field-max-amount');
@@ -159,10 +158,6 @@ function createNewLoanProduct(e) {
   
   if(max_term_days == '' || max_term_days == null || parseInt(max_term_days) < 0) {
   	max_term_days = -1;
-  }
-  
-  if(min_kyc_level == '' || min_kyc_level == null || parseInt(min_kyc_level) < 0) {
-  	min_kyc_level = 0;
   }
   
   if(min_linked_account_balance == '' || min_linked_account_balance == null || parseInt(min_linked_account_balance) < 0) {
@@ -256,7 +251,7 @@ function createNewLoanProduct(e) {
   	"strict" : strict,
     "name" : name,
     "productCode" : product_code,
-    "minKYCLevel" : parseInt(min_kyc_level),
+    "minKYCLevel" : 0,
     "applicationFormId" : application_form_id,
     "minAmount" : parseInt(min_amount),
     "maxAmount" : parseInt(max_amount),
