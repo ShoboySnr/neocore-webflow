@@ -74,8 +74,8 @@ function appendToSelect(data, parent_gl_select_el = '') {
     data.forEach((di, index) => {
        let option = document.createElement("option");
 
-          option.value= di.id;
-          option.innerHTML = di.name;
+          option.value= di.ID;
+          option.innerHTML = di.Name;
 
           parent_gl_select_el.appendChild(option);
       });
@@ -232,7 +232,7 @@ function createNewLoanProduct(e) {
   }
   
   strict = (strict === 'true');
-  
+
   let data = {
   	"strict" : strict,
     "name" : name,
