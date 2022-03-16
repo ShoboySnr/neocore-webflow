@@ -111,7 +111,7 @@ function updateLoanProduct(e) {
     document.getElementById("success-message").style.display= 'none';
 
     let formData = new FormData(this);
-    let id = formData.get('id');
+    let id = document.querySelector('#wf-form-Update-Loan-Product').getAttribute('data-id');
     let app_on = formData.get('app_on');
 
     let error_message = '';
