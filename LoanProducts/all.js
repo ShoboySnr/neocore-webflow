@@ -52,6 +52,13 @@ const getLoanProducts = () => {
               
 
                 document.body.appendChild(modal_popup_clone);
+
+                const update_modal_popup = document.getElementById('update-modal-popup-section');
+                const update_modal_popup_clone = modal_popup.cloneNode(true);
+                update_modal_popup_clone.setAttribute('id', 'update-modal-popup-section-' + di.ID);
+                update_modal_popup_clone.setAttribute('data-id', di.ID);
+
+                document.body.appendChild(update_modal_popup_clone);
                                 
                 document.querySelector('#modal-popup-section-' + di.ID).addEventListener('click', (event) => {
                     let element = event.target;
@@ -59,6 +66,17 @@ const getLoanProducts = () => {
                 });
 
                 document.querySelector('#modal-popup-section-' + di.ID + ' .modal-popup-container').addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                });
+
+                                                
+                document.querySelector('#update-modal-popup-section-' + di.ID).addEventListener('click', (event) => {
+                    let element = event.target;
+                    element.setAttribute('style', 'display: none;');
+                });
+
+                document.querySelector('#update-modal-popup-section-' + di.ID + ' .modal-popup-container').addEventListener('click', (event) => {
                     event.preventDefault();
                     event.stopPropagation();
                 });
@@ -80,7 +98,7 @@ const getLoanProducts = () => {
                 liability_gl_el.textContent = di.InterestType;
 
                 const action_el = card.getElementsByTagName('p')[4];
-                action_el.innerHTML = '<a title="' + di.Name + '" href="javascript:void(0);" onclick="loanProductModalpopup(\'' + di.ID +'\');">View</a>';
+                action_el.innerHTML = '<a title="' + di.Name + '" href="javascript:void(0);" onclick="loanProductModalpopup(\'' + di.ID +'\');">View</a> || <a title="' + di.Name + '" href="javascript:void(0);" onclick="loanProductUpdateModalpopup(\'' + di.ID +'\');">View</a> ';
 
                 cardContainer.appendChild(card);
             })
@@ -91,10 +109,73 @@ const getLoanProducts = () => {
     
 }
 
+function updateLoanProduct(e) {
+    e.preventDefault();
+    document.getElementById("failed-message").style.display = 'none';
+    document.getElementById("success-message").style.display= 'none';
+
+    let formData = new FormData(this);
+    let id = formData.get('id');
+    let app_on = formData.get('app_on');
+
+    let error_message = '';
+    let error_count = 0;
+
+    if(id == '' || id == null) {
+        error_message += 'Coud not find the loan product id <br />';
+        error_count++;
+    }
+
+    if(error_count > 0) {
+        document.getElementById("failed-message").style.display = 'block';
+        document.getElementById("failed-message").innerHTML = error_message;
+        return;
+    }
+
+    app_on = (app_on === 'true');
+
+    let data = {
+        "id" : id,
+        "app_on" : app_on,
+    }
+
+    let request = cbrRequest(`/loanProduct`, 'PUT', true)
+  
+    request.onload = function() {
+        let data = JSON.parse(this.response);
+    // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
+        if (request.status >= 200 && request.status < 400) {
+        _this.reset();
+            const success_message = data.message;
+            
+            //show success message
+            let success_message_el = document.getElementById("success-message");
+            success_message_el.innerHTML = success_message;
+            success_message_el.style.display = "block";
+        
+        } else {
+            const failed_message = data.message;
+            let failed_message_el = document.getElementById("failed-message");
+            failed_message_el.innerHTML = failed_message;
+            failed_message_el.style.display = "block";
+        }
+    }
+    
+    request.send(JSON.stringify(data));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     getLoanProducts();
+    const addLoanProduct = document.getElementById("wf-form-Update-Loan-Product")
+    addLoanProduct.addEventListener('submit', updateLoanProduct);
 });
 
 function loanProductModalpopup(productID) {
     document.querySelector('#modal-popup-section-' + productID).setAttribute('style', 'display:flex');
+    return;
+}
+
+function loanProductUpdateModalpopup(productID) {
+    document.querySelector('#update-modal-popup-section-' + productID).setAttribute('style', 'display:flex');
+    return;
 }
