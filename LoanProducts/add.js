@@ -158,7 +158,7 @@ function createNewLoanProduct(e) {
   }
   
   if(max_term_days == '' || max_term_days == null || parseInt(max_term_days) < 0) {
-  	maximum_term_days = -1;
+  	max_term_days = -1;
   }
   
   if(min_kyc_level == '' || min_kyc_level == null || parseInt(min_kyc_level) < 0) {
