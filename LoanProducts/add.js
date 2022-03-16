@@ -306,6 +306,7 @@ function createNewLoanProduct(e) {
 window.addEventListener('DOMContentLoaded', () => {
     getLoanForms();
     getLoanFees();
+    getLoanInterests();
     getGLLiabilityAccounts();
     const addLoanProduct = document.getElementById("wf-form-Create-New-Loan-Product")
     addLoanProduct.addEventListener('submit', createNewLoanProduct);
