@@ -233,8 +233,6 @@ function createNewLoanProduct(e) {
   
   strict = (strict === 'true');
   
-  let flow_type_ids = [];
-  
   let data = {
   	"strict" : strict,
     "name" : name,
