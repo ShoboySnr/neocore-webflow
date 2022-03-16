@@ -54,7 +54,7 @@ const getLoanProducts = () => {
                 document.body.appendChild(modal_popup_clone);
 
                 const update_modal_popup = document.getElementById('update-modal-popup-section');
-                const update_modal_popup_clone = modal_popup.cloneNode(true);
+                const update_modal_popup_clone = update_modal_popup.cloneNode(true);
                 update_modal_popup_clone.setAttribute('id', 'update-modal-popup-section-' + di.ID);
                 update_modal_popup_clone.setAttribute('data-id', di.ID);
 
