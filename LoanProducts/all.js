@@ -112,7 +112,7 @@ function updateLoanProduct(e) {
 
     let formData = new FormData(this);
     let id = document.querySelector('#wf-form-Update-Loan-Product').getAttribute('data-id');
-    let app_on = formData.get('app_on');
+    let app_on = formData.get('field-app-on');
 
     let error_message = '';
     let error_count = 0;
@@ -128,7 +128,7 @@ function updateLoanProduct(e) {
         return;
     }
 
-    app_on = (app_on === 'true');
+    app_on = (app_on != '');
 
     let data = {
         "id" : id,
