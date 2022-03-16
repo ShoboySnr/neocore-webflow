@@ -65,7 +65,7 @@ const getLoanProducts = () => {
                         document.getElementById("failed-message").style.display = 'none';
                         document.getElementById("success-message").style.display= 'none';
 
-                        let formData = new FormData(this);
+                        let formData = new FormData(event.target);
                         let id = productID
                         let app_on = formData.get('field-app-on');
 
