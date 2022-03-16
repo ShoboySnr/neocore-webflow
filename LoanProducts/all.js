@@ -98,7 +98,7 @@ const getLoanProducts = () => {
                 liability_gl_el.textContent = di.InterestType;
 
                 const action_el = card.getElementsByTagName('p')[4];
-                action_el.innerHTML = '<a title="' + di.Name + '" href="javascript:void(0);" onclick="loanProductModalpopup(\'' + di.ID +'\');">View</a> || <a title="' + di.Name + '" href="javascript:void(0);" onclick="loanProductUpdateModalpopup(\'' + di.ID +'\');">View</a> ';
+                action_el.innerHTML = '<a title="' + di.Name + '" href="javascript:void(0);" onclick="loanProductModalpopup(\'' + di.ID +'\');">View</a> || <a title="' + di.Name + '" href="javascript:void(0);" onclick="loanProductUpdateModalpopup(\'' + di.ID +'\');">Edit</a> ';
 
                 cardContainer.appendChild(card);
             })
