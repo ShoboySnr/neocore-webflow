@@ -61,6 +61,8 @@ const getLoanProducts = () => {
 
                 const updateLoanProduct = (productID, event) => {
                         event.preventDefault();
+                        console.log(event.target);
+                        return;
                         
                         document.getElementById("failed-message").style.display = 'none';
                         document.getElementById("success-message").style.display= 'none';
@@ -96,7 +98,6 @@ const getLoanProducts = () => {
                             let data = JSON.parse(this.response);
                         // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
                             if (request.status >= 200 && request.status < 400) {
-                            _this.reset();
                                 const success_message = data.message;
                                 
                                 //show success message
