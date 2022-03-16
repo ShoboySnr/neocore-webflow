@@ -57,7 +57,7 @@ const getLoanProducts = () => {
                 const update_modal_popup_clone = update_modal_popup.cloneNode(true);
                 update_modal_popup_clone.setAttribute('id', 'update-modal-popup-section-' + di.ID);
                 update_modal_popup_clone.setAttribute('data-id', di.ID);
-                update_modal_popup.querySelector('input[name="field-app-on"]').setAttribute('checked', true);
+                update_modal_popup.querySelector('input[name="field-app-on"]').setAttribute('checked', di.OnApp);
 
                 document.body.appendChild(update_modal_popup_clone);
                                 
