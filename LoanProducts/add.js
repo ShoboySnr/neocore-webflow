@@ -39,6 +39,25 @@ function getLoanFees() {
     request.send();
 }
 
+function getLoanInterests() {
+  let request = cbrRequest('/loanInterest', 'GET', true)
+  
+  
+    request.onload = function() {
+        
+      if (request.status >= 200 && request.status < 400) {
+            let data = JSON.parse(this.response);
+          
+            let loan_forms = data.data;
+            console.log(loan_forms);
+            
+            let parent_el = document.getElementById("field-loan-interests");
+            appendToSelect(loan_forms, parent_el);
+      }
+    }
+    request.send();
+}
+
 function getGLLiabilityAccounts() {
     let request = cbrRequest('/gl-flat', 'GET', true)
     
