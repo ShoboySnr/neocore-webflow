@@ -1,6 +1,6 @@
 const getLoanProducts = () => {
 
-    let request = cbrRequest('/loanProduct', 'GET', true)
+    let request = cbrRequest('/loanInterest', 'GET', true)
     let gls_array = [];
 
     // When the 'request' or API request loads, do the following...
@@ -10,7 +10,7 @@ const getLoanProducts = () => {
             const cardContainer = document.getElementById("customers-container")
             data.data.forEach((di, index) => {
                 
-                const style = document.getElementById('sample-loan-products')
+                const style = document.getElementById('sample-loan-fees')
                 const card = style.cloneNode(true)
 
                 card.setAttribute('id', '');
@@ -20,36 +20,19 @@ const getLoanProducts = () => {
                 const modal_popup_clone = modal_popup.cloneNode(true);
                 modal_popup_clone.setAttribute('id', 'modal-popup-section-' + di.ID);
 
-                modal_popup_clone.querySelector('#field-loan-id').textContent = di.ID;
-                modal_popup_clone.querySelector('#field-loan-strict').innerHTML = readStates(di.Strict);
-                modal_popup_clone.querySelector('#field-loan-product-code').textContent = di.ProductCode;
-                modal_popup_clone.querySelector('#field-loan-name').textContent = di.Name;
-                modal_popup_clone.querySelector('#field-loan-min-kyc-level').textContent = di.MinKYCLevel;
-                modal_popup_clone.querySelector('#field-loan-application-form').textContent = di.ApplicationForm;
-                modal_popup_clone.querySelector('#field-loan-description-form').textContent = di.Description;
-                modal_popup_clone.querySelector('#field-field-loan-on-app').innerHTML = readStatus(di.OnApp);
-                modal_popup_clone.querySelector('#field-loan-min-amount').textContent = format_currency(di.MinAmount);
-                modal_popup_clone.querySelector('#field-loan-max-amount').textContent = format_currency(di.MaxAmount);
-                modal_popup_clone.querySelector('#field-loan-min-linked-account-balance').textContent = di.MinLinkedAccountBalance;
-                modal_popup_clone.querySelector('#field-loan-moratorium-days').textContent = di.MoratoriumDays;
-                modal_popup_clone.querySelector('#field-loan-default-tenor-days').textContent = di.DefaultTenorDays;
-                modal_popup_clone.querySelector('#field-loan-min-term-days').textContent = readDepositProductLimit(di.MinTermDays);
-                modal_popup_clone.querySelector('#field-loan-max-term-days').textContent = readDepositProductLimit(di.MaxTermDays);
-                modal_popup_clone.querySelector('#field-loan-principal-repayment-freq').textContent = di.PrincipalRepaymentFreq;
-                modal_popup_clone.querySelector('#field-loan-loan-interest').textContent = di.LoanInterest;
-                modal_popup_clone.querySelector('#field-loan-loan-interest-replayment-freq').textContent = di.InterestRepaymentFreq;
-                modal_popup_clone.querySelector('#field-loan-interest-type').textContent = di.InterestType;
-                let Field_fees_el = modal_popup_clone.querySelector('#field-loan-fees');
-                let fees = di.Fees;
-                if(fees != null || fees != '') {
-                    for(fee in fees) {
-                        Field_fees_el.innerHTML += fees[fee] + '<br />';
-                    }
-                }
-                modal_popup_clone.querySelector('#field-loan-principal-asset-gl').textContent = di.PrincipalAssetGL;
-                modal_popup_clone.querySelector('#field-loan-overdue-principal-asset-gl').textContent = di.OverduePrincipalAssetGL;
-                modal_popup_clone.querySelector('#field-loan-principal-loss-reserve-asset-or-liability-gl').textContent = di.PrincipalLossReserveAssetOrLiabilityGL;
-                modal_popup_clone.querySelector('#field-loan-principal-loss-reserve-expense-gl').textContent = di.PrincipalLossReserveExpenseGL;
+                modal_popup_clone.querySelector('#field-id').textContent = di.ID;
+                modal_popup_clone.querySelector('#field-active').textContent = readStatus(di.Active);
+                modal_popup_clone.querySelector('#field-name').textContent = di.Name;
+                modal_popup_clone.querySelector('#field-rate').textContent = di.Rate;
+                modal_popup_clone.querySelector('#field-income-gl').innerHTML = di.IncomeGL;
+                modal_popup_clone.querySelector('#field-suspense-gl').innerHTML = di.SuspenseGL;
+                modal_popup_clone.querySelector('#field-past-due-gl').textContent = di.PastDueGL;
+                modal_popup_clone.querySelector('#field-accrual-gl').textContent = di.AccrualGL;
+                modal_popup_clone.querySelector('#field-loss-reserve-asset-or-liability-gl').textContent = di.LossReserveAssetOrLiabilityGL;
+                modal_popup_clone.querySelector('#field-loss-reserve-expense-gl').textContent = di.LossReserveExpenseGL;
+                modal_popup_clone.querySelector('#field-income-recognition-type').innerHTML = di.IncomeRecognitionType;
+                modal_popup_clone.querySelector('#field-status').textContent = di.status;
+                modal_popup_clone.querySelector('#field-apply-wth').textContent = di.ApplyWHT;
               
 
                 document.body.appendChild(modal_popup_clone);
@@ -145,17 +128,17 @@ const getLoanProducts = () => {
                 const name_el = card.getElementsByTagName('p')[0]
                 name_el.textContent = di.Name;
                 
-                const product_code_el = card.getElementsByTagName('p')[1]
-                product_code_el.textContent = di.ProductCode;
+                const rate_el = card.getElementsByTagName('p')[1]
+                product_code_el.textContent = di.Rate;
                 
-                const overdraft_gl_el = card.getElementsByTagName('p')[2]
-                overdraft_gl_el.textContent = di.LoanInterest;
+                const income_recognition_el = card.getElementsByTagName('p')[2]
+                income_recognition_el.textContent = convertSlugToTitle(di.IncomeRecognitionType);
                 
-                const liability_gl_el = card.getElementsByTagName('p')[3]
-                liability_gl_el.textContent = di.InterestType;
+                const active_el = card.getElementsByTagName('p')[3]
+                active_el.textContent = readStatus(di.Active);
 
                 const action_el = card.getElementsByTagName('p')[4];
-                action_el.innerHTML = '<a title="' + di.Name + '" href="javascript:void(0);" onclick="loanProductModalpopup(\'' + di.ID +'\');">View</a> || <a title="' + di.Name + '" href="javascript:void(0);" onclick="loanProductUpdateModalpopup(\'' + di.ID +'\');">Edit</a> ';
+                action_el.innerHTML = '<a title="' + di.Name + '" href="javascript:void(0);" onclick="loanInterestModalpopup(\'' + di.ID +'\');">View</a> || <a title="' + di.Name + '" href="javascript:void(0);" onclick="loanInterestUpdateModalpopup(\'' + di.ID +'\');">Edit</a> ';
 
                 cardContainer.appendChild(card);
             })
@@ -170,12 +153,12 @@ document.addEventListener('DOMContentLoaded', () => {
     getLoanProducts();
 });
 
-function loanProductModalpopup(productID) {
+function loanInterestModalpopup(productID) {
     document.querySelector('#modal-popup-section-' + productID).setAttribute('style', 'display:flex');
     return;
 }
 
-function loanProductUpdateModalpopup(productID) {
+function loanInterestUpdateModalpopup(productID) {
     document.querySelector('#update-modal-popup-section-' + productID).setAttribute('style', 'display:flex');
     return;
 }
