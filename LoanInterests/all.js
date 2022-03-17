@@ -36,6 +36,7 @@ const getLoanProducts = () => {
               
 
                 document.body.appendChild(modal_popup_clone);
+                
 
                 // const update_modal_popup = document.getElementById('update-modal-popup-section');
                 // const update_modal_popup_clone = update_modal_popup.cloneNode(true);
