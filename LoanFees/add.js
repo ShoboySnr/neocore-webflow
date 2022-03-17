@@ -108,12 +108,12 @@ function createNewLoanFee(e) {
     error_count++;
   }
 
-  if(amount_if_flat == '' || amount_if_flat == null) {
+  if(calculation === 'on-fixed' && (amount_if_flat == '' || amount_if_flat == null)) {
     error_message += 'Please Enter the Fixed Amount <br />';
     error_count++;
   }
 
-  if(percentage_if_pegged == '' || percentage_if_pegged == null) {
+  if(calculation !== 'on-fixed' && (percentage_if_pegged == '' || percentage_if_pegged == null)) {
     error_message += 'Please Enter the Percentage Pegged Amount <br />';
     error_count++;
   }
