@@ -53,7 +53,7 @@ function createNewLoanFee(e) {
   let cash_only = formData.get('field-cash-only');
   let income_recognition = formData.get('field-income-recognition');
   let income_gl = formData.get('field-income-gl');
-  let receivable_income_gl = formData.get('field-receivable-account-gl');
+  let receivable_account_gl = formData.get('field-receivable-account-gl');
   let suspense_account_gl = formData.get('field-suspense-account-gl');
 
   let amount_if_flat = 0;
@@ -133,7 +133,7 @@ function createNewLoanFee(e) {
     error_count++;
   }
 
-  if(receivable_income_gl == '' || receivable_income_gl == null) {
+  if(receivable_account_gl == '' || receivable_account_gl == null) {
     error_message += 'Please select one Receivable Account GL <br />';
     error_count++;
   }
