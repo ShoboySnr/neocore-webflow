@@ -200,10 +200,10 @@ window.addEventListener('DOMContentLoaded', () => {
     addLoanFee.addEventListener('submit', createNewLoanFee);
 
     //add event listener to calculation
-    document.querySelector('#field-calculation').addEventListener('change' , () => {
+    document.querySelector('#field-calculation').addEventListener('change' , (event) => {
       document.querySelector('.amount-if-fixed-container').setAttribute('style', 'display:none;');
       document.querySelector('.percentage-if-pegged-container').setAttribute('style', 'display:none;');
-      const value = this.value;
+      const value = event.target.value;
       console.log(value);
 
       if(value == 'on-fixed') {
@@ -213,9 +213,9 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    document.querySelector('#field-when-to-take').addEventListener('change' , () => {
+    document.querySelector('#field-when-to-take').addEventListener('change' , (event) => {
       document.querySelector('.frequency-container').setAttribute('style', 'display:none;');
-      const value = this.value;
+      const value = event.target.value;
 
       if(value === 'at-interval') {
         document.querySelector('.frequency-container').setAttribute('style', 'display:block;');
