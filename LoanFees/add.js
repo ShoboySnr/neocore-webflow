@@ -58,6 +58,7 @@ function createNewLoanFee(e) {
 
   let amount_if_flat = 0;
   let percentage_if_pegged = 0;
+  console.log(calculation);
   if(calculation === 'on-fixed') {
     amount_if_flat = formData.get('field-amount-if-fixed');
   } else {
