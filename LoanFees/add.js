@@ -58,16 +58,15 @@ function createNewLoanFee(e) {
 
   let amount_if_flat = 0;
   let percentage_if_pegged = 0;
-  console.log(calculation);
   if(calculation === 'on-fixed') {
-    amount_if_flat = formData.get('field-amount-if-fixed');
+    amount_if_flat = document.getElementById('field-amount-if-fixed').value;
   } else {
-    percentage_if_pegged = formData.get('field-percentage-if-pegged');
+    percentage_if_pegged = document.getElementById('field-percentage-if-pegged').value;
   }
 
   let frequency = 0;
   if(when_to_take == 'at-interval') {
-    frequency = formData.get('field-frequency');
+    frequency = document.getElementById('field-frequency').value;
   }
   
   //validations
