@@ -20,7 +20,7 @@ const getLoanProducts = () => {
                 const modal_popup_clone = modal_popup.cloneNode(true);
                 modal_popup_clone.setAttribute('id', 'modal-popup-section-' + di.ID);
 
-                modal_popup_clone.querySelector('#field-loan-id').textContent = di.ID;
+                modal_popup_clone.querySelector('#field-id').textContent = di.ID;
                 modal_popup_clone.querySelector('#field-active').textContent = readStatus(di.Active);
                 modal_popup_clone.querySelector('#field-name').textContent = di.Name;
                 modal_popup_clone.querySelector('#field-rate').textContent = di.Rate;
