@@ -37,74 +37,74 @@ const getLoanProducts = () => {
 
                 document.body.appendChild(modal_popup_clone);
 
-                const update_modal_popup = document.getElementById('update-modal-popup-section');
-                const update_modal_popup_clone = update_modal_popup.cloneNode(true);
-                update_modal_popup_clone.setAttribute('id', 'update-modal-popup-section-' + di.ID);
-                update_modal_popup_clone.setAttribute('data-id', di.ID);
-                update_modal_popup.querySelector('input[name="field-app-on"]').setAttribute('checked', di.OnApp);
+                // const update_modal_popup = document.getElementById('update-modal-popup-section');
+                // const update_modal_popup_clone = update_modal_popup.cloneNode(true);
+                // update_modal_popup_clone.setAttribute('id', 'update-modal-popup-section-' + di.ID);
+                // update_modal_popup_clone.setAttribute('data-id', di.ID);
+                // update_modal_popup.querySelector('input[name="field-app-on"]').setAttribute('checked', di.OnApp);
 
-                const updateLoanProduct = (productID, event) => {
-                        event.preventDefault();
-                        console.log(event.target);
-                        return;
+                // const updateLoanProduct = (productID, event) => {
+                //         event.preventDefault();
+                //         console.log(event.target);
+                //         return;
                         
-                        document.getElementById("failed-message").style.display = 'none';
-                        document.getElementById("success-message").style.display= 'none';
+                //         document.getElementById("failed-message").style.display = 'none';
+                //         document.getElementById("success-message").style.display= 'none';
 
-                        let formData = new FormData(event.target);
-                        let id = productID
-                        let app_on = formData.get('field-app-on');
+                //         let formData = new FormData(event.target);
+                //         let id = productID
+                //         let app_on = formData.get('field-app-on');
 
-                        let error_message = '';
-                        let error_count = 0;
+                //         let error_message = '';
+                //         let error_count = 0;
 
-                        if(id == '' || id == null) {
-                            error_message += 'Coud not find the loan product id <br />';
-                            error_count++;
-                        }
+                //         if(id == '' || id == null) {
+                //             error_message += 'Coud not find the loan product id <br />';
+                //             error_count++;
+                //         }
 
-                        if(error_count > 0) {
-                            document.getElementById("failed-message").style.display = 'block';
-                            document.getElementById("failed-message").innerHTML = error_message;
-                            return;
-                        }
+                //         if(error_count > 0) {
+                //             document.getElementById("failed-message").style.display = 'block';
+                //             document.getElementById("failed-message").innerHTML = error_message;
+                //             return;
+                //         }
 
-                        app_on = (app_on != '');
+                //         app_on = (app_on != '');
 
-                        let data = {
-                            "id" : id,
-                            "app_on" : app_on,
-                        }
+                //         let data = {
+                //             "id" : id,
+                //             "app_on" : app_on,
+                //         }
 
-                        let request = cbrRequest(`/loanProduct`, 'PUT', true)
+                //         let request = cbrRequest(`/loanProduct`, 'PUT', true)
                     
-                        request.onload = function() {
-                            let data = JSON.parse(this.response);
-                        // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
-                            if (request.status >= 200 && request.status < 400) {
-                                const success_message = data.message;
+                //         request.onload = function() {
+                //             let data = JSON.parse(this.response);
+                //         // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
+                //             if (request.status >= 200 && request.status < 400) {
+                //                 const success_message = data.message;
                                 
-                                //show success message
-                                let success_message_el = document.getElementById("success-message");
-                                success_message_el.innerHTML = success_message;
-                                success_message_el.style.display = "block";
+                //                 //show success message
+                //                 let success_message_el = document.getElementById("success-message");
+                //                 success_message_el.innerHTML = success_message;
+                //                 success_message_el.style.display = "block";
                             
-                            } else {
-                                const failed_message = data.message;
-                                let failed_message_el = document.getElementById("failed-message");
-                                failed_message_el.innerHTML = failed_message;
-                                failed_message_el.style.display = "block";
-                            }
-                        }
+                //             } else {
+                //                 const failed_message = data.message;
+                //                 let failed_message_el = document.getElementById("failed-message");
+                //                 failed_message_el.innerHTML = failed_message;
+                //                 failed_message_el.style.display = "block";
+                //             }
+                //         }
                         
-                        request.send(JSON.stringify(data));
-                }
+                //         request.send(JSON.stringify(data));
+                // }
 
-                update_modal_popup_clone.querySelector('#wf-form-Update-Loan-Product').addEventListener('submit', () => {
-                    updateLoanProduct(di.ID, event)
-                });
+                // update_modal_popup_clone.querySelector('#wf-form-Update-Loan-Product').addEventListener('submit', () => {
+                //     updateLoanProduct(di.ID, event)
+                // });
 
-                document.body.appendChild(update_modal_popup_clone);
+                // document.body.appendChild(update_modal_popup_clone);
                                 
                 document.querySelector('#modal-popup-section-' + di.ID).addEventListener('click', (event) => {
                     let element = event.target;
@@ -116,14 +116,14 @@ const getLoanProducts = () => {
                 });
 
                                                 
-                document.querySelector('#update-modal-popup-section-' + di.ID).addEventListener('click', (event) => {
-                    let element = event.target;
-                    element.setAttribute('style', 'display: none;');
-                });
+                // document.querySelector('#update-modal-popup-section-' + di.ID).addEventListener('click', (event) => {
+                //     let element = event.target;
+                //     element.setAttribute('style', 'display: none;');
+                // });
 
-                document.querySelector('#update-modal-popup-section-' + di.ID + ' .modal-popup-container').addEventListener('click', (event) => {
-                    event.stopPropagation();
-                });
+                // document.querySelector('#update-modal-popup-section-' + di.ID + ' .modal-popup-container').addEventListener('click', (event) => {
+                //     event.stopPropagation();
+                // });
                 
                 const name_el = card.getElementsByTagName('p')[0]
                 name_el.textContent = di.Name;
