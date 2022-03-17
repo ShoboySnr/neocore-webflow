@@ -162,7 +162,7 @@ function createNewLoanFee(e) {
     "maximum" : parseInt(maximum),
     "cash_only" : cash_only,
     "income_recognition" : income_recognition,
-    "income_account_gl" : income_account_gl,
+    "income_account_gl" : income_gl,
     "receivable_account_gl" : receivable_account_gl,
     "suspense_account_gl" : suspense_account_gl,
   }
