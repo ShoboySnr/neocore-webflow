@@ -244,6 +244,9 @@ switch(value) {
   case 1:
     payment_frequency = "Daily"
     break;
+  case 7:
+    payment_frequency = "Weekly"
+    break;
   case 30:
     payment_frequency = "Monthly"
     break;

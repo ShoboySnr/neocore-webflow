@@ -1,6 +1,3 @@
-let loans_forms = [];
-let principal_assets_glid = [];
-
 function getGLLiabilityAccounts() {
     let request = cbrRequest('/gl-flat', 'GET', true)
     
@@ -24,10 +21,10 @@ function getGLLiabilityAccounts() {
             parent_gl_select_el = document.getElementById("field-accrual-gl");
             filterGL(1, parent_gl_select_el);
 
-            parent_gl_select_el = document.getElementById("field-loss-asset--or--liability-gl");
+            parent_gl_select_el = document.getElementById("field-loss-asset-liability-gl");
             filterGL(1, parent_gl_select_el);
 
-            parent_gl_select_el = document.getElementById("field-loss-asset--or--liability-gl");
+            parent_gl_select_el = document.getElementById("field-loss-asset-liability-gl");
             filterGL(2, parent_gl_select_el);
 
             parent_gl_select_el = document.getElementById("field-loss-reserve-expense-gl");
@@ -60,118 +57,63 @@ function createNewLoanInterest(e) {
 
 
   let formData = new FormData(this);
-  let strict = formData.get('field-strict');
   let name = formData.get('field-name');
-  let product_code = formData.get('field-product-code');
-  let application_form_id = formData.get('field-application-form-id');
-  let min_amount = formData.get('field-min-amount');
-  let max_amount = formData.get('field-max-amount');
-  let min_linked_account_balance = formData.get('field-min-linked-account-balance');
-  let moratorium_days = formData.get('field-moratorium-days');
-  let default_tenor_days = formData.get('field-default-tenor-days');
-  let min_term_days = formData.get('field-minimum-term-days');
-  let max_term_days = formData.get('field-maximum-term-days');
-  let principal_repayment_frequency = formData.get('field-principal-repayment-frequency');
-  let loan_interests = formData.get('field-loan-interests');
-  let interest_repayment_frequency = formData.get('field-interest-repayment-frequency');
-  let fees = formData.get('field-fees');
-  let interest_type = formData.get('field-interest-type');
-  let principal_assets_gl = formData.get('field-principal-assets-gl');
-  let overdue_principal_assets_gl = formData.get('field-overdue-principal-assets-gl');
-  let principal_loss_reserve_assets_liability_gl = formData.get('field-principal-loss-reserve-assets-liability-gl');
-  let principal_loss_reserve_expense_gl = formData.get('field-principal-loss-reserve-expense-glid');
-
-  
-  fees = returnSelected(document.getElementById('field-fees'))
+  let rate = formData.get('field-rate');
+  let income_gl = formData.get('field-income-gl');
+  let suspense_gl = formData.get('field-suspense-gl');
+  let past_due_gl = formData.get('field-past-due-gl');
+  let accrual_gl = formData.get('field-accrual-gl');
+  let loss_asset_liability_gl = formData.get('field-loss-asset-liability-gl');
+  let loss_reserve_expense_gl = formData.get('field-loss-reserve-expense-gl');
+  let income_recognition_gl = formData.get('field-income-recognition-type');
+  let apply_wht = formData.get('field-aply-wht');
   
   //validations
   let error_count = 0;
   let error_message = '';
-  
-  if(min_term_days == '' || min_term_days == null || parseInt(min_term_days) < 0) {
-  	min_term_days = -1;
-  }
-  
-  if(max_term_days == '' || max_term_days == null || parseInt(max_term_days) < 0) {
-  	max_term_days = -1;
-  }
-  
-  if(min_linked_account_balance == '' || min_linked_account_balance == null || parseInt(min_linked_account_balance) < 0) {
-  	min_linked_account_balance = 0;
-  }
-  
-  if(moratorium_days == '' || moratorium_days == null || parseInt(moratorium_days) < 0) {
-  	moratorium_days = 0;
-  }
-  
-  if(default_tenor_days == '' || default_tenor_days == null || parseInt(default_tenor_days) < 0) {
-  	default_tenor_days = 30;
-  }
-
-  if(interest_repayment_frequency == '' || interest_repayment_frequency == null || parseInt(interest_repayment_frequency) < 0) {
-  	interest_repayment_frequency = 30;
-  }
-
-  if(principal_repayment_frequency == '' || principal_repayment_frequency == null || parseInt(principal_repayment_frequency) < 0) {
-  	principal_repayment_frequency = 30;
-  }
-  
-  if(fees.length <= 0) {
-  	fees = [];
-  }
   
   if(name == '' || name == null) {
     error_message += 'Name of the deposit product cannot be empty <br />';
     error_count++;
   }
   
-  if(product_code == '' || product_code == null) {
-    error_message += 'Product code cannot be empty <br />';
+  if(rate == '' || rate == null) {
+    error_message += 'Rate cannot be empty <br />';
     error_count++;
   }
 
-  if(application_form_id == '' || application_form_id == null) {
-    error_message += 'Application Form ID cannot be empty <br />';
+  if(income_gl == '' || income_gl == null) {
+    error_message += 'Please select one Income GL <br />';
     error_count++;
   }
 
-  if(min_amount == '' || min_amount == null) {
-    error_message += 'Minimum Amount cannot be empty <br />';
+  if(suspense_gl == '' || suspense_gl == null) {
+    error_message += 'Please select one Suspense GL <br />';
     error_count++;
   }
 
-  if(max_amount == '' || max_amount == null) {
-    error_message += 'Minimum Amount cannot be empty <br />';
+  if(past_due_gl == '' || past_due_gl == null) {
+    error_message += 'Please select one Past Due GL <br />';
     error_count++;
   }
 
-  if(loan_interests == '' || loan_interests == null) {
-    error_message += 'Please select one Loan Interest <br />';
-    error_count++;
-  }
-  
-  if(interest_type == '' || interest_type == null) {
-    error_message += 'Please select one Interest Type <br />';
+  if(accrual_gl == '' || accrual_gl == null) {
+    error_message += 'Please select one Accrual GL <br />';
     error_count++;
   }
 
-  if(principal_assets_gl == '' || principal_assets_gl == null) {
-    error_message += 'Please select one Principal Assets GL <br />';
+  if(loss_asset_liability_gl == '' || loss_asset_liability_gl == null) {
+    error_message += 'Please select one Loss Reserve Asset or Liability GL <br />';
     error_count++;
   }
 
-  if(overdue_principal_assets_gl == '' || overdue_principal_assets_gl == null) {
-    error_message += 'Please select one Overdue Principal Assets GL <br />';
+  if(loss_reserve_expense_gl == '' || loss_reserve_expense_gl == null) {
+    error_message += 'Please select one Loss Reserve Expense GL <br />';
     error_count++;
   }
 
-  if(principal_loss_reserve_assets_liability_gl == '' || principal_loss_reserve_assets_liability_gl == null) {
-    error_message += 'Please select one Principal Loss Reserve Assets and Liability GL <br />';
-    error_count++;
-  }
-
-  if(principal_loss_reserve_expense_gl == '' || principal_loss_reserve_expense_gl == null) {
-    error_message += 'Please select one Principal Loss Reserve Expense GL <br />';
+  if(income_recognition_gl == '' || income_recognition_gl == null) {
+    error_message += 'Please select one Income Recognition Type<br />';
     error_count++;
   }
 
@@ -180,36 +122,25 @@ function createNewLoanInterest(e) {
       document.getElementById("failed-message").innerHTML = error_message;
       return;
   }
-  
-  strict = (strict === 'true');
+
+  apply_wht = apply_wht === 'true';
 
   let data = {
-  	"strict" : strict,
     "name" : name,
-    "productCode" : product_code,
-    "minKYCLevel" : 0,
-    "applicationFormId" : application_form_id,
-    "minAmount" : parseInt(min_amount),
-    "maxAmount" : parseInt(max_amount),
-    "minLinkedAccountBalance" : parseInt(min_linked_account_balance),
-    "moratoriumDays" : parseInt(moratorium_days),
-    "defaultTenorDays" : parseInt(default_tenor_days),
-    "minTermDays" : parseInt(min_term_days),
-    "maxTermDays" : parseInt(max_term_days),
-    "principalRepaymentFreq" : parseInt(principal_repayment_frequency),
-    "loanInterest" : loan_interests,
-    "interestRepaymentFreq": parseInt(interest_repayment_frequency),
-    "interestType" : interest_type,
-    "fees" : fees,
-    "principalAssetGL" : principal_assets_gl,
-    "overduePrincipalAssetGL" : overdue_principal_assets_gl,
-    "principalLossReserveAssetOrLiabilityGL" : principal_loss_reserve_assets_liability_gl,
-    "principalLossReserveExpenseGL" : principal_loss_reserve_expense_gl,
+    "rate" : parseInt(rate),
+    "incomeGL" : income_gl,
+    "suspenseGL" : suspense_gl,
+    "pastDueGL" : past_due_gl,
+    "accrualGL" : accrual_gl,
+    "lossReserveAssetOrLiabilityGL" :loss_asset_liability_gl,
+    "lossReserveExpenseGL" : loss_reserve_expense_gl,
+    "incomeRecognitionType" : income_recognition_gl,
+    "applyWHT": apply_wht,
   }
 
   let _this = this;
   
-  let request = cbrRequest(`/loanProduct`, 'POST', true)
+  let request = cbrRequest(`/loanInterest`, 'POST', true)
   
   request.onload = function() {
     let data = JSON.parse(this.response);
