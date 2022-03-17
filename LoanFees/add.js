@@ -204,7 +204,6 @@ window.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.amount-if-fixed-container').setAttribute('style', 'display:none;');
       document.querySelector('.percentage-if-pegged-container').setAttribute('style', 'display:none;');
       const value = event.target.value;
-      console.log(value);
 
       if(value === 'on-fixed') {
         document.querySelector('.amount-if-fixed-container').setAttribute('style', 'display:block;');
