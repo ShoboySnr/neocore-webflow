@@ -204,8 +204,9 @@ window.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.amount-if-fixed-container').setAttribute('style', 'display:none;');
       document.querySelector('.percentage-if-pegged-container').setAttribute('style', 'display:none;');
       const value = this.value;
+      console.log(value);
 
-      if(value === 'on-fixed') {
+      if(value == 'on-fixed') {
         document.querySelector('.amount-if-fixed-container').setAttribute('style', 'display:block;');
       } else {
         document.querySelector('.percentage-if-pegged-container').setAttribute('style', 'display:block;');
