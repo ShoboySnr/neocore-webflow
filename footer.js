@@ -26,12 +26,14 @@ firebase.auth().onAuthStateChanged((user) => {
         console.log('Email: ' + user.email)
         console.log('Name: ' + user.displayName)
 
+        
+
         // if logged in user tries to access a public page, redirect to dashboard
         if (publicPages.includes(currentPath)) {
-            window.location.replace('/dashboards/analytics')
+            window.location.replace('/')
         } else {
             // show the logout button
-            logoutLink.stynole.display = 'block'
+            logoutLink.style.display = 'block'
             logoutLink.addEventListener('click', logOut)
             userDisplayName.innerHTML = user.displayName
             loadingScreen.style.display = 'none'
@@ -39,12 +41,11 @@ firebase.auth().onAuthStateChanged((user) => {
     } else {
         // User is signed out
         console.log('No user is logged in')
-        /** if (!publicPages.includes(currentPath)) {
+        if (!publicPages.includes(currentPath)) {
             window.location.replace('/login')
         } else {
-            // logoutLink.style.display = 'none'
             loadingScreen.style.display = 'none'
-        } **/
+        }
     }
 });
 
@@ -64,12 +65,20 @@ function cbrRequest(endpoint, method, async, payload) {
     let baseUrl = new URL('https://api.vault.ng/cbr');
     let request = new XMLHttpRequest();
     let url = baseUrl.toString() + endpoint;
-    request.open(method, url, async)
-    // request.setRequestHeader('nc-user-token', '<firebase User ID TOken>')
-    request.setRequestHeader('Content-type', 'application/json');
-  request.setRequestHeader('Accept', 'application/json');
-    request.setRequestHeader('magicword', 'Obaatokpere')
-    return request;
+    
+    await firebase.auth().currentUser.getIdToken(true).then((idToken) => {
+      request.open(method, url, async)
+      request.setRequestHeader('nc-user-token', idToken)
+      request.setRequestHeader('Content-type', 'application/json');
+      request.setRequestHeader('Accept', 'application/json');
+      request.setRequestHeader('magicword', 'Obaatokpere')
+      
+      return request;
+    }).catch((error) => {
+      console.error(`Error: ${error}`);
+      alert('Please login to continue');
+      window.location.replace('/login')
+    })
 }
 
   function readableDate(date, split_date = false) {
