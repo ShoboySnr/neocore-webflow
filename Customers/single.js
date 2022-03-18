@@ -264,11 +264,11 @@
         profile_pictue.style.display = "flex";
     });
 
-    document.getElementById("close_profile_modal").addEventListener("click", function(e) {
-      e.preventDefault();
-      const profile_pictue = document.getElementById("profile_picture_id");
-      profile_pictue.style.display = "none";
-    })
+    // document.getElementById("close_profile_modal").addEventListener("click", function(e) {
+    //   e.preventDefault();
+    //   const profile_pictue = document.getElementById("profile_picture_id");
+    //   profile_pictue.style.display = "none";
+    // })
 
     //Address modal
     document.getElementById("button-customer-update-home-address").addEventListener("click", function(e) { 
@@ -277,11 +277,11 @@
         user_address_container.style.display = "flex";
     });
 
-    document.getElementById("close_address_modal").addEventListener("click", function(e) {
-      e.preventDefault();
-      const user_address_container = document.getElementById("user_address_container_id");
-      user_address_container.style.display = "none";
-    })
+    // document.getElementById("close_address_modal").addEventListener("click", function(e) {
+    //   e.preventDefault();
+    //   const user_address_container = document.getElementById("user_address_container_id");
+    //   user_address_container.style.display = "none";
+    // })
 
     document.getElementById("edit-customer-address-form").addEventListener("submit", (e)=>{
       e.preventDefault();
