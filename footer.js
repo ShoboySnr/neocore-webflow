@@ -65,20 +65,30 @@ async function cbrRequest(endpoint, method, async, payload) {
     let baseUrl = new URL('https://6447-105-112-185-220.ngrok.io/cbr');
     let request = new XMLHttpRequest();
     let url = baseUrl.toString() + endpoint;
-    
-    await firebase.auth().currentUser.getIdToken(true).then((idToken) => {
-      request.open(method, url, async)
-      request.setRequestHeader('nc-user-token', idToken)
-      request.setRequestHeader('Content-type', 'application/json');
-      request.setRequestHeader('Accept', 'application/json');
-      request.setRequestHeader('magicword', 'Obaatokpere')
-      
-      return request;
-    }).catch((error) => {
-      console.error(`Error: ${error}`);
-      alert('Please login to continue');
-      window.location.replace('/login')
-    })
+
+    if (!publicPages.includes(currentPath)) { 
+      await firebase.auth().currentUser.getIdToken(true).then((idToken) => {
+        request.open(method, url, async)
+        request.setRequestHeader('nc-user-token', idToken)
+        request.setRequestHeader('Content-type', 'application/json');
+        request.setRequestHeader('Accept', 'application/json');
+        request.setRequestHeader('magicword', 'Obaatokpere')
+        
+        return request;
+      }).catch((error) => {
+        console.error(`Error: ${error}`);
+        alert('Please login to continue');
+        window.location.replace('/login')
+      })
+    } else {
+        request.open(method, url, async)
+        // request.setRequestHeader('nc-user-token', idToken)
+        request.setRequestHeader('Content-type', 'application/json');
+        request.setRequestHeader('Accept', 'application/json');
+        request.setRequestHeader('magicword', 'Obaatokpere')
+        
+        return request;
+    }
 }
 
   function readableDate(date, split_date = false) {
