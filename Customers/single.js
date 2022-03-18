@@ -260,7 +260,7 @@
   //profile picture modal
   document.getElementById("button-customer-update-picture").addEventListener("click", function(e) { 
         e.preventDefault();
-        const profile_pictue = document.getElementById("profile_picture_id");
+        const profile_pictue = document.getElementById("profile-picture-section");
         profile_pictue.style.display = "flex";
     });
 
