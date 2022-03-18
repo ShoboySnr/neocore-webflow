@@ -61,7 +61,7 @@ function logOut() {
     })
 }
 
-function cbrRequest(endpoint, method, async, payload) {
+async function cbrRequest(endpoint, method, async, payload) {
     let baseUrl = new URL('https://6447-105-112-185-220.ngrok.io/cbr');
     let request = new XMLHttpRequest();
     let url = baseUrl.toString() + endpoint;
