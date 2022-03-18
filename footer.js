@@ -28,10 +28,10 @@ firebase.auth().onAuthStateChanged((user) => {
 
         // if logged in user tries to access a public page, redirect to dashboard
         if (publicPages.includes(currentPath)) {
-            window.location.replace('/dashboards/analytics')
+            window.location.replace('/')
         } else {
             // show the logout button
-            logoutLink.stynole.display = 'block'
+            logoutLink.style.display = 'block'
             logoutLink.addEventListener('click', logOut)
             userDisplayName.innerHTML = user.displayName
             loadingScreen.style.display = 'none'
@@ -39,12 +39,12 @@ firebase.auth().onAuthStateChanged((user) => {
     } else {
         // User is signed out
         console.log('No user is logged in')
-        /** if (!publicPages.includes(currentPath)) {
+        if (!publicPages.includes(currentPath)) {
             window.location.replace('/login')
         } else {
             // logoutLink.style.display = 'none'
             loadingScreen.style.display = 'none'
-        } **/
+        }
     }
 });
 
