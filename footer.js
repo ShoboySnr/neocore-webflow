@@ -1,5 +1,5 @@
 var firebaseConfig = {
-    apiKey: "AIzaSyAt7UFqJrw_s82G-1Xka8YeoYP-WAbG2Zs",
+    apiKey: "AIzaSyBa3KvM7J5DJXlEZcRik79YJCyPm66BaV8",
     authDomain: "neocore-auth.firebaseapp.com",
     projectId: "neocore-auth",
     storageBucket: "neocore-auth.appspot.com",
