@@ -9,7 +9,7 @@ const firebaseConfig = {
 };
 
 import { initializeApp, getApp } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js'
-import { getAuth, verifyPasswordResetCode, confirmPasswordReset, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js'
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js'
 
 const fbapp = initializeApp(firebaseConfig);
 export const fbauth = getAuth(fbapp)
@@ -35,13 +35,13 @@ fbauth.onAuthStateChanged((user) => {
         console.log('Email: ' + user.email)
         console.log('Name: ' + user.displayName)
 
-        
 
         // if logged in user tries to access a public page, redirect to dashboard
         if (publicPages.includes(currentPath)) {
             window.location.replace('/')
         } else {
             // show the logout button
+            console.log("private")
             logoutLink.style.display = 'block'
             logoutLink.addEventListener('click', logOut)
             userDisplayName.innerHTML = user.displayName
