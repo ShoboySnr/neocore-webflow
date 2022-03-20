@@ -9,7 +9,7 @@ var firebaseConfig = {
 };
 
 const fbapp = firebase.initializeApp(firebaseConfig);
-const fbauth = getAuth(fbapp)
+const fbauth = firebase.getAuth(fbapp)
 //firebase.analytics();
 
 var publicPages = [
