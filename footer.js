@@ -9,7 +9,7 @@ const firebaseConfig = {
 };
 
 import { initializeApp, getApp } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js'
-import { getAuth, verifyPasswordResetCode, confirmPasswordReset } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js'
+import { getAuth, verifyPasswordResetCode, confirmPasswordReset, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js'
 
 const fbapp = initializeApp(firebaseConfig);
 const fbauth = getAuth(fbapp)
@@ -24,7 +24,7 @@ var publicPages = [
 var currentPath = window.location.pathname;
 
 // firebase.auth().onAuthStateChanged((user) => {
-fbauth.onAuthStateChanged((user) => {
+onAuthStateChanged((user) => {
     if (user) {
         // log details
         console.log('User is logged in')
