@@ -40,10 +40,10 @@ fbauth.onAuthStateChanged((user) => {
         } else {
             // show the logout button
             console.log("private")
+            document.getElementById("loadingScreen").style.display = 'none'
             // logoutLink.style.display = 'block'
             // logoutLink.addEventListener('click', logOut)
             document.getElementById("userDisplayName").innerHTML = user.displayName
-            document.getElementById("loadingScreen").style.display = 'none'
         }
     } else {
         // User is signed out
