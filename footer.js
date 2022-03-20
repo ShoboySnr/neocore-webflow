@@ -12,7 +12,7 @@ import { initializeApp, getApp } from 'https://www.gstatic.com/firebasejs/9.6.9/
 import { getAuth, verifyPasswordResetCode, confirmPasswordReset, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js'
 
 const fbapp = initializeApp(firebaseConfig);
-const fbauth = getAuth(fbapp)
+export const fbauth = getAuth(fbapp)
 //firebase.analytics();
 
 var publicPages = [
