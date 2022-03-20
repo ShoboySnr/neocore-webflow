@@ -4,8 +4,8 @@
         return false;
     });
 });
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js'
-    import { getAuth, verifyPasswordResetCode, confirmPasswordReset } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js'
+   // import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js'
+   // import { getAuth, verifyPasswordResetCode, confirmPasswordReset } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js'
 
     function addEmailEntryInCaseOfFreshRequestListener() {
     document.getElementById("fresh-request-email").addEventListener("input", function() {
@@ -19,7 +19,7 @@
 }
     function changePassword(auth, actionCode, np) {
 
-    confirmPasswordReset(auth, actionCode, np).then((resp) => {
+    fbauth.confirmPasswordReset(auth, actionCode, np).then((resp) => {
         document.getElementById("loadingScreen").style.display = "none";
         document.getElementById("password-reset-form").style.display = "none";
         document.getElementById("password-change-succesful-container").style.display = "block";
@@ -31,7 +31,7 @@
     });
 }
     function handleResetPassword(auth, actionCode) {
-    verifyPasswordResetCode(auth, actionCode).then((email) => {
+    fbauth.verifyPasswordResetCode(auth, actionCode).then((email) => {
         console.log("returned email: ", email)
         document.getElementById("password-1").addEventListener("input", function () {listenForPasswordEntry(auth,actionCode)});
         document.getElementById("password-2").addEventListener("input", function () {listenForPasswordEntry(auth,actionCode)});
