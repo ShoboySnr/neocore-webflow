@@ -1,11 +1,11 @@
-var firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyBa3KvM7J5DJXlEZcRik79YJCyPm66BaV8",
-    authDomain: "neocore-auth.firebaseapp.com",
-    projectId: "neocore-auth",
-    storageBucket: "neocore-auth.appspot.com",
-    messagingSenderId: "412913586690",
-    appId: "1:412913586690:web:e91235a28df7dda1ae4d1b",
-    measurementId: "G-TSDCKX8WQR"
+    authDomain: "pocketbanc.firebaseapp.com",
+    projectId: "pocketbanc",
+    storageBucket: "pocketbanc.appspot.com",
+    messagingSenderId: "351723537194",
+    appId: "1:351723537194:web:e3fd34b8a12586212bd453",
+    measurementId: "G-YGDPQ47XQD"
 };
 
 const fbapp = firebase.initializeApp(firebaseConfig);
