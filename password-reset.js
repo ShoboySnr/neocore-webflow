@@ -4,7 +4,6 @@
         return false;
     });
 });
-    import { axios } from 'https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js'
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js'
     import { getAuth, verifyPasswordResetCode, confirmPasswordReset } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js'
 
