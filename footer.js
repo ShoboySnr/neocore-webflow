@@ -8,8 +8,11 @@ const firebaseConfig = {
     measurementId: "G-YGDPQ47XQD"
 };
 
-const fbapp = firebase.initializeApp(firebaseConfig);
-const fbauth = firebase.auth()
+import { initializeApp, getApp } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js'
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js'
+
+const fbapp = initializeApp(firebaseConfig);
+const fbauth = getAuth(fbapp)
 //firebase.analytics();
 
 var publicPages = [
