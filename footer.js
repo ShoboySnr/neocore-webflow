@@ -23,6 +23,10 @@ var publicPages = [
 
 var currentPath = window.location.pathname;
 
+// on screen elements
+const loader = document.getElementById("loadingScreen")
+
+
 // firebase.auth().onAuthStateChanged((user) => {
 fbauth.onAuthStateChanged((user) => {
     if (user) {
@@ -41,7 +45,7 @@ fbauth.onAuthStateChanged((user) => {
             logoutLink.style.display = 'block'
             logoutLink.addEventListener('click', logOut)
             userDisplayName.innerHTML = user.displayName
-            loadingScreen.style.display = 'none'
+            loader.style.display = 'none'
         }
     } else {
         // User is signed out
@@ -49,7 +53,7 @@ fbauth.onAuthStateChanged((user) => {
         if (!publicPages.includes(currentPath)) {
             window.location.replace('/login')
         } else {
-            loadingScreen.style.display = 'none'
+            loader.style.display = 'none'
         }
     }
 });
