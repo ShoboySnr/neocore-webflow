@@ -4,7 +4,7 @@
         return false;
     });
 });
-import { fbauth } from 'https://shoboysnr.github.io/neocore-webflow/password-reset.js'
+import { fbauth } from 'https://shoboysnr.github.io/neocore-webflow/footer.js'
    // import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js'
    // import { getAuth, verifyPasswordResetCode, confirmPasswordReset } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js'
 
