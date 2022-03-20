@@ -9,7 +9,7 @@ const firebaseConfig = {
 };
 
 import { initializeApp, getApp } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js'
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js'
+import { getAuth, verifyPasswordResetCode, confirmPasswordReset } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js'
 
 const fbapp = initializeApp(firebaseConfig);
 const fbauth = getAuth(fbapp)

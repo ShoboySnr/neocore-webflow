@@ -19,7 +19,7 @@
 }
     function changePassword(auth, actionCode, np) {
 
-    fbauth.confirmPasswordReset(auth, actionCode, np).then((resp) => {
+    confirmPasswordReset(auth, actionCode, np).then((resp) => {
         document.getElementById("loadingScreen").style.display = "none";
         document.getElementById("password-reset-form").style.display = "none";
         document.getElementById("password-change-succesful-container").style.display = "block";
@@ -31,7 +31,7 @@
     });
 }
     function handleResetPassword(auth, actionCode) {
-    fbauth.verifyPasswordResetCode(auth, actionCode).then((email) => {
+    verifyPasswordResetCode(auth, actionCode).then((email) => {
         console.log("returned email: ", email)
         document.getElementById("password-1").addEventListener("input", function () {listenForPasswordEntry(auth,actionCode)});
         document.getElementById("password-2").addEventListener("input", function () {listenForPasswordEntry(auth,actionCode)});
