@@ -8,8 +8,9 @@ var firebaseConfig = {
     measurementId: "G-TSDCKX8WQR"
 };
 
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+const fbapp = firebase.initializeApp(firebaseConfig);
+const fbauth = getAuth(fbapp)
+//firebase.analytics();
 
 var publicPages = [
     '/signup',
@@ -19,7 +20,8 @@ var publicPages = [
 
 var currentPath = window.location.pathname;
 
-firebase.auth().onAuthStateChanged((user) => {
+// firebase.auth().onAuthStateChanged((user) => {
+fbauth.onAuthStateChanged((user) => {
     if (user) {
         // log details
         console.log('User is logged in')
@@ -50,7 +52,8 @@ firebase.auth().onAuthStateChanged((user) => {
 });
 
 function logOut() {
-    firebase.auth().signOut().then(() => {
+    // firebase.auth().signOut().then(() => {
+    fbauth.signOut().then(() => {
         loadingScreen.style.display = 'flex'
         //redirect to login.
         console.log('user logged out')
@@ -67,7 +70,8 @@ async function cbrRequest(endpoint, method, async, payload) {
     let url = baseUrl.toString() + endpoint;
 
     if (!publicPages.includes(currentPath)) { 
-      await firebase.auth().currentUser.getIdToken(true).then((idToken) => {
+      // await firebase.auth().currentUser.getIdToken(true).then((idToken) => {
+      await fbauth.currentUser.getIdToken(true).then((idToken) => {
         request.open(method, url, async)
         request.setRequestHeader('nc-user-token', idToken)
         request.setRequestHeader('Content-type', 'application/json');

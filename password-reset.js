@@ -180,16 +180,17 @@
     const mode = urlParams.get('mode');
     const actionCode = urlParams.get('oobCode');
     const continueUrl = urlParams.get('continueUrl');
-    const apiKey = urlParams.get('apiKey');
-    const config = {'apiKey': "AIzaSyBa3KvM7J5DJXlEZcRik79YJCyPm66BaV8"};
-    const app = initializeApp(config);
-    const auth = getAuth(app);
+    //const apiKey = urlParams.get('apiKey');
+    //const config = {'apiKey': "AIzaSyBa3KvM7J5DJXlEZcRik79YJCyPm66BaV8"};
+    //const app = initializeApp(config);
+    //const auth = getAuth(app);
     const invalidLinkError = document.getElementById("invalid-link-error")
     const freshRequest = document.getElementById("fresh-request")
     const loader = document.getElementById("loadingScreen")
     switch (mode) {
     case 'resetPassword':
-    handleResetPassword(auth, actionCode, continueUrl);
+    // handleResetPassword(auth, actionCode, continueUrl);
+    handleResetPassword(fbauth, actionCode, continueUrl);
     break;
     case 'recoverEmail':
     addEmailEntryInCaseOfInvalidLinkListener()
