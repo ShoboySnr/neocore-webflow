@@ -8,11 +8,9 @@ const firebaseConfig = {
     measurementId: "G-YGDPQ47XQD"
 };
 
-import { initializeApp, getApp } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js'
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js'
 
-const fbapp = initializeApp(firebaseConfig);
-export const fbauth = getAuth(fbapp)
+const fbapp = firebase.initializeApp(firebaseConfig);
+const fbauth = firebase.auth()
 //firebase.analytics();
 
 var publicPages = [
@@ -52,7 +50,7 @@ fbauth.onAuthStateChanged((user) => {
         if (!publicPages.includes(currentPath)) {
             window.location.replace('/login')
         } else {
-            loaderdocument.getElementById("loadingScreen").display = 'none'
+            document.getElementById("loadingScreen").style.display = 'none'
         }
     }
 });
@@ -71,7 +69,7 @@ function logOut() {
 }
 
 async function cbrRequest(endpoint, method, async, payload) {
-    let baseUrl = new URL('https://6447-105-112-185-220.ngrok.io/cbr');
+    let baseUrl = new URL('https://api.vault.ng/cbr');
     let request = new XMLHttpRequest();
     let url = baseUrl.toString() + endpoint;
 
