@@ -24,7 +24,7 @@ var publicPages = [
 var currentPath = window.location.pathname;
 
 // firebase.auth().onAuthStateChanged((user) => {
-onAuthStateChanged((user) => {
+fbauth.onAuthStateChanged((user) => {
     if (user) {
         // log details
         console.log('User is logged in')
