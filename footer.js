@@ -26,6 +26,7 @@ var currentPath = window.location.pathname;
 
 // firebase.auth().onAuthStateChanged((user) => {
 fbauth.onAuthStateChanged((user) => {
+    console.log("checking state")
     if (user) {
         // log details
         console.log('User is logged in')
