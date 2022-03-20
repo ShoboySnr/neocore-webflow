@@ -1,5 +1,3 @@
-import { fbauth } from 'https://shoboysnr.github.io/neocore-webflow/footer.js'
-import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js'
 
 
     var signInButton = document.getElementById("signInButton")
@@ -9,7 +7,7 @@ function signIn() {
     var email = signInEmail.value
     var password = signInPassword.value
 
-    signInWithEmailAndPassword(fbauth, email, password)
+    fbauth.signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
             // Signed in
             console.log("Logged In, Creds:", userCredential);
