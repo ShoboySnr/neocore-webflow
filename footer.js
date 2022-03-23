@@ -32,6 +32,7 @@ fbauth.onAuthStateChanged((user) => {
         console.log('User is logged in')
         console.log('Email: ' + user.email)
         console.log('Name: ' + user.displayName)
+        console.log('Token:' + user.getIdToken(true))
 
 
         // if logged in user tries to access a public page, redirect to dashboard
@@ -76,7 +77,7 @@ async function cbrRequest(endpoint, method, async, payload) {
 
     if (!publicPages.includes(currentPath)) { 
       // await firebase.auth().currentUser.getIdToken(true).then((idToken) => {
-      await firebase.auth().currentUser.getIdTokenResult().then((result) => {
+      await fbauth.currentUser.getIdTokenResult().then((result) => {
         request.open(method, url, async)
         request.setRequestHeader('nc-user-token', result.token)
         request.setRequestHeader('Content-type', 'application/json');
