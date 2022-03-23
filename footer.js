@@ -76,9 +76,9 @@ async function cbrRequest(endpoint, method, async, payload) {
 
     if (!publicPages.includes(currentPath)) { 
       // await firebase.auth().currentUser.getIdToken(true).then((idToken) => {
-      await firebase.auth().currentUser.getIdToken(true).then((idToken) => {
+      await firebase.auth().currentUser.getIdTokenResult().then((result) => {
         request.open(method, url, async)
-        request.setRequestHeader('nc-user-token', idToken)
+        request.setRequestHeader('nc-user-token', result.token)
         request.setRequestHeader('Content-type', 'application/json');
         request.setRequestHeader('Accept', 'application/json');
         request.setRequestHeader('magicword', 'Obaatokpere')
