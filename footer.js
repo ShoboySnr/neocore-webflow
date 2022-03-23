@@ -82,7 +82,7 @@ async function cbrRequest(endpoint, method, async, payload) {
         request.open(method, url, async)
         request.setRequestHeader('nc-user-token', result.token)
         request.setRequestHeader('Content-type', 'application/json');
-        request.setRequestHeader('Accept', 'application/json');
+        request.setRequestHeader('Accept', 'application/json'); 
         request.setRequestHeader('magicword', 'Obaatokpere')
         
         return request;
