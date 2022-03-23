@@ -76,6 +76,7 @@ async function cbrRequest(endpoint, method, async, payload) {
     let url = baseUrl.toString() + endpoint;
 
     if (!publicPages.includes(currentPath)) { 
+      console.log(fbauth.currentUser);
       // await firebase.auth().currentUser.getIdToken(true).then((idToken) => {
       await fbauth.currentUser.getIdTokenResult().then((result) => {
         request.open(method, url, async)
