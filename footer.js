@@ -78,18 +78,26 @@ async function cbrRequest(endpoint, method, async, payload) {
     if (!publicPages.includes(currentPath)) { 
       console.log(fbauth.currentUser);
       // await firebase.auth().currentUser.getIdToken(true).then((idToken) => {
-      await fbauth.currentUser.getIdTokenResult().then((result) => {
-        request.open(method, url, async)
-        request.setRequestHeader('nc-user-token', result.token)
-        request.setRequestHeader('Content-type', 'application/json');
-        request.setRequestHeader('Accept', 'application/json'); 
-        request.setRequestHeader('magicword', 'Obaatokpere')
-        
-        return request;
-      }).catch((error) => {
-        console.error(`Error: ${error}`);
-        alert('Please login to continue');
-        window.location.replace('/login')
+        fbauth.onAuthStateChanged((user) => {
+          console.log("checking state1")
+          if (user) {
+            fbauth.currentUser.getIdToken(true).then((idToken) => {
+              request.open(method, url, async)
+              request.setRequestHeader('nc-user-token', idToken)
+              request.setRequestHeader('Content-type', 'application/json');
+              request.setRequestHeader('Accept', 'application/json'); 
+              request.setRequestHeader('magicword', 'Obaatokpere')
+              
+              return request;
+            }).catch((error) => {
+              console.error(`Error: ${error}`);
+              alert('Please login to continue');
+              window.location.replace('/login')
+            })
+          } else {
+            alert('You are currently signed out');
+            window.location.href = '/login';
+          }
       })
     } else {
         request.open(method, url, async)
