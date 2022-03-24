@@ -80,9 +80,9 @@ async function cbrRequest(endpoint, method, async, payload) {
 
       // await firebase.auth().currentUser.getIdToken(true).then((idToken) => {
         fbauth.onAuthStateChanged((user) => {
+          console.log(fbauth.currentUser);
           console.log("checking state1")
           if (user) {
-            console.log(fbauth.currentUser);
             fbauth.currentUser.getIdToken(true).then((idToken) => {
               request.open(method, url, async)
               request.setRequestHeader('nc-user-token', idToken)
