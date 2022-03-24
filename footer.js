@@ -76,11 +76,11 @@ async function cbrRequest(endpoint, method, async, payload) {
     let url = baseUrl.toString() + endpoint;
 
     if (!publicPages.includes(currentPath)) { 
-      console.log(fbauth.currentUser);
+      console.log(fbauth);
 
       // await firebase.auth().currentUser.getIdToken(true).then((idToken) => {
         fbauth.onAuthStateChanged((user) => {
-          console.log(fbauth.currentUser);
+          
           console.log("checking state1")
           if (user) {
             fbauth.currentUser.getIdToken(true).then((idToken) => {
