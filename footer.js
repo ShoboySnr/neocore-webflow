@@ -12,6 +12,7 @@ const firebaseConfig = {
 const fbapp = firebase.initializeApp(firebaseConfig);
 const fbauth = firebase.auth()
 //firebase.analytics();
+const userToken = '';
 
 var publicPages = [
     '/signup',
@@ -34,7 +35,7 @@ fbauth.onAuthStateChanged((user) => {
         console.log('Name: ' + user.displayName)
 
         fbauth.currentUser.getIdToken(true).then((idToken) => {
-          console.log('Token:' + idToken)
+          userToken = idToken
         });
 
 
@@ -80,29 +81,13 @@ async function cbrRequest(endpoint, method, async, payload) {
 
     if (!publicPages.includes(currentPath)) { 
 
-      // await firebase.auth().currentUser.getIdToken(true).then((idToken) => {
-        fbauth.onAuthStateChanged((user) => {
-          
-          console.log("checking state1")
-          if (user) {
-            fbauth.currentUser.getIdToken(true).then((idToken) => {
-              request.open(method, url, async)
-              request.setRequestHeader('nc-user-token', idToken)
-              request.setRequestHeader('Content-type', 'application/json');
-              request.setRequestHeader('Accept', 'application/json'); 
-              request.setRequestHeader('magicword', 'Obaatokpere')
-              
-              return request;
-            }).catch((error) => {
-              console.error(`Error: ${error}`);
-              alert('Please login to continue');
-              window.location.replace('/login')
-            })
-          } else {
-            alert('You are currently signed out');
-            window.location.href = '/login';
-          }
-      })
+      request.open(method, url, async)
+      request.setRequestHeader('nc-user-token', userToken)
+      request.setRequestHeader('Content-type', 'application/json');
+      request.setRequestHeader('Accept', 'application/json'); 
+      request.setRequestHeader('magicword', 'Obaatokpere')
+      
+      return request;
     } else {
         request.open(method, url, async)
         // request.setRequestHeader('nc-user-token', idToken)
