@@ -84,11 +84,7 @@ function cbrRequest(endpoint, method, async, payload) {
     request.setRequestHeader('Accept', 'application/json'); 
     request.setRequestHeader('magicword', 'Obaatokpere')
 
-    if (!publicPages.includes(currentPath)) { 
-      request.setRequestHeader('nc-user-token', userToken);
-    }
-
-    console.log(request);
+    if (!publicPages.includes(currentPath)) request.setRequestHeader('nc-user-token', userToken);
 
     return request;
 }
