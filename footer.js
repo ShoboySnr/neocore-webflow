@@ -82,11 +82,10 @@ async function getIdToken() {
   });
 }
 
-function cbrRequest(endpoint, method, async, payload) {
+async function cbrRequest(endpoint, method, async, payload) {
     let baseUrl = new URL('https://api.vault.ng/cbr');
     let request = new XMLHttpRequest();
     let url = baseUrl.toString() + endpoint;
-    let idtoken = await getIdToken();
 
     request.open(method, url, async);
     request.setRequestHeader('Content-type', 'application/json');
@@ -94,6 +93,7 @@ function cbrRequest(endpoint, method, async, payload) {
     request.setRequestHeader('magicword', 'Obaatokpere');
 
     if (!publicPages.includes(currentPath)) {
+      let idtoken = await getIdToken();
       // fbauth.onAuthStateChanged((user) => {
       //   if(user) {
       //     fbauth.currentUser.getIdToken(true).then((idToken) => {
