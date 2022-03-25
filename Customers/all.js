@@ -1,5 +1,5 @@
-function getCustomers() {
-    let request = cbrRequest('/users', 'GET', true)
+async function getCustomers() {
+    let request = await cbrRequest('/users', 'GET', true)
 
     request.onload = function () {
         let data = JSON.parse(this.response)
