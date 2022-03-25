@@ -74,29 +74,23 @@ function logOut() {
     })
 }
 
-async function cbrRequest(endpoint, method, async, payload) {
+function cbrRequest(endpoint, method, async, payload) {
     let baseUrl = new URL('https://api.vault.ng/cbr');
     let request = new XMLHttpRequest();
     let url = baseUrl.toString() + endpoint;
 
-    if (!publicPages.includes(currentPath)) { 
+    request.open(method, url, async)
+    request.setRequestHeader('Content-type', 'application/json');
+    request.setRequestHeader('Accept', 'application/json'); 
+    request.setRequestHeader('magicword', 'Obaatokpere')
 
-      request.open(method, url, async)
-      request.setRequestHeader('nc-user-token', userToken)
-      request.setRequestHeader('Content-type', 'application/json');
-      request.setRequestHeader('Accept', 'application/json'); 
-      request.setRequestHeader('magicword', 'Obaatokpere')
-      
-      return request;
-    } else {
-        request.open(method, url, async)
-        // request.setRequestHeader('nc-user-token', idToken)
-        request.setRequestHeader('Content-type', 'application/json');
-        request.setRequestHeader('Accept', 'application/json');
-        request.setRequestHeader('magicword', 'Obaatokpere')
-        
-        return request;
+    if (!publicPages.includes(currentPath)) { 
+      request.setRequestHeader('nc-user-token', userToken);
     }
+
+    console.log(request);
+
+    return request;
 }
 
   function readableDate(date, split_date = false) {
