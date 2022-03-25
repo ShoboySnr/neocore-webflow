@@ -69,18 +69,18 @@ function logOut() {
     })
 }
 
-// async function getIdToken() {
-//   fbauth.onAuthStateChanged((user) => {
-//     if(user) {
-//       fbauth.currentUser.getIdToken(true).then((idToken) => {
-//         console.log(idToken);
-//         return idToken;
-//       });
-//     } else {
-//       return '';
-//     }
-//   });
-// }
+async function getIdToken() {
+  fbauth.onAuthStateChanged((user) => {
+    if(user) {
+      fbauth.currentUser.getIdToken(true).then((idToken) => {
+        console.log(idToken);
+        return idToken;
+      });
+    } else {
+      return '';
+    }
+  });
+}
 
 async function cbrRequest(endpoint, method, async, payload) {
     let baseUrl = new URL('https://api.vault.ng/cbr');
@@ -89,23 +89,22 @@ async function cbrRequest(endpoint, method, async, payload) {
 
     request.open(method, url, async);
     request.setRequestHeader('Content-type', 'application/json');
-    request.setRequestHeader('Accept', 'application/json');
+    request.setRequestHeader('Accept', 'application/json'); 
+    request.setRequestHeader('magicword', 'Obaatokpere');
 
     if (!publicPages.includes(currentPath)) {
-
-      fbauth.currentUser.getIdToken(true).then((tk) => {
-          request.setRequestHeader('nc-user-token', tk);
-          return request;
-      }).
-      catch((err)=>{
-          console.log("request failed because: ", err)
-          return null
-      });
-
-    } else {
-        return request;
+      let idtoken = await getIdToken();
+      // fbauth.onAuthStateChanged((user) => {
+      //   if(user) {
+      //     fbauth.currentUser.getIdToken(true).then((idToken) => {
+      //       console.log(idToken);
+      //     });
+      //   }
+      // });
+      request.setRequestHeader('nc-user-token', idtoken);
     }
 
+    return request;
 }
 
   function readableDate(date, split_date = false) {
