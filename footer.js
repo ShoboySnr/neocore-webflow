@@ -12,7 +12,7 @@ const firebaseConfig = {
 const fbapp = firebase.initializeApp(firebaseConfig);
 const fbauth = firebase.auth()
 //firebase.analytics();
-const userToken = '';
+let userToken = '';
 
 var publicPages = [
     '/signup',
