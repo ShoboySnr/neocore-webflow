@@ -73,7 +73,7 @@ async function getIdToken() {
   fbauth.onAuthStateChanged((user) => {
     if(user) {
       fbauth.currentUser.getIdToken(true).then((idToken) => {
-        console.log(idToken);
+        console.log("tk:",idToken);
         return idToken;
       });
     } else {
