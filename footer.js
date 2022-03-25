@@ -74,20 +74,20 @@ function cbrRequest(endpoint, method, async, payload) {
     let request = new XMLHttpRequest();
     let url = baseUrl.toString() + endpoint;
 
-    fbauth.onAuthStateChanged((user) => {
-      if(user) {
-        fbauth.currentUser.getIdToken(true).then((idToken) => {
-          console.log(idToken);
-        });
-      }
-    })
-
     request.open(method, url, async);
     request.setRequestHeader('Content-type', 'application/json');
     request.setRequestHeader('Accept', 'application/json'); 
     request.setRequestHeader('magicword', 'Obaatokpere');
 
-    if (!publicPages.includes(currentPath)) request.setRequestHeader('nc-user-token', userToken);
+    if (!publicPages.includes(currentPath)) {
+      await fbauth.onAuthStateChanged((user) => {
+        if(user) {
+          fbauth.currentUser.getIdToken(true).then((idToken) => {
+            request.setRequestHeader('nc-user-token', idToken);
+          });
+        }
+      })
+    }
 
     return request;
 }
