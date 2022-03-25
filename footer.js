@@ -80,7 +80,7 @@ function cbrRequest(endpoint, method, async, payload) {
     request.setRequestHeader('magicword', 'Obaatokpere');
 
     if (!publicPages.includes(currentPath)) {
-      await fbauth.onAuthStateChanged((user) => {
+      fbauth.onAuthStateChanged((user) => {
         if(user) {
           fbauth.currentUser.getIdToken(true).then((idToken) => {
             request.setRequestHeader('nc-user-token', idToken);
