@@ -93,8 +93,8 @@ async function cbrRequest(endpoint, method, async, payload) {
 
     if (!publicPages.includes(currentPath)) {
 
-      fbauth.currentUser.getIdTokenResult().then((tk) => {
-          request.setRequestHeader('nc-user-token', tk.token);
+      fbauth.currentUser.getIdToken(true).then((tk) => {
+          request.setRequestHeader('nc-user-token', tk);
           return request;
       }).
       catch((err)=>{
