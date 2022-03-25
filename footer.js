@@ -27,7 +27,6 @@ var currentPath = window.location.pathname;
 
 // firebase.auth().onAuthStateChanged((user) => {
 fbauth.onAuthStateChanged((user) => {
-    console.log("checking state1")
     if (user) {
         // log details
         console.log('User is logged in')
@@ -75,11 +74,15 @@ function cbrRequest(endpoint, method, async, payload) {
     let request = new XMLHttpRequest();
     let url = baseUrl.toString() + endpoint;
 
-    fbauth.currentUser.getIdToken(true).then((idToken) => {
-      console.log(idToken);
-    });
+    fbauth.onAuthStateChanged((user) => {
+      if(user) {
+        fbauth.currentUser.getIdToken(true).then((idToken) => {
+          console.log(idToken);
+        });
+      }
+    })
 
-    request.open(method, url, async)
+    request.open(method, url, async);
     request.setRequestHeader('Content-type', 'application/json');
     request.setRequestHeader('Accept', 'application/json'); 
     request.setRequestHeader('magicword', 'Obaatokpere');
