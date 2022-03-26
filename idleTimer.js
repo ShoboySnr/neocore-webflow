@@ -17,8 +17,8 @@ function idleTimer() {
 
    function resetTimer() {
         clearTimeout(t);
-        t = setTimeout(timerLogout, 1800000);
-        t = setTimeout(timerReload, 300000);
+        t = setTimeout(timerLogout, 1000);
+        t = setTimeout(timerReload, 1000);
     }
 }
 
