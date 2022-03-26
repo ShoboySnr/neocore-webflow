@@ -4,7 +4,20 @@ function getLoanProducts() {
         if(user) {
             await fbauth.currentUser.getIdToken(true).then((idToken) => {
                 let request = cbrRequest('/loanAppProducts', 'GET', true, idToken);
-
+                
+                request.onload = function() {
+        
+                    if (request.status >= 200 && request.status < 400) {
+                          let data = JSON.parse(this.response);
+                        
+                          let loan_application_products = data.data;
+                          console.log(loan_application_products);
+                          
+                          let parent_el = document.getElementById("field-loan-application-products");
+                          appendToSelect(loan_application_products, parent_el);
+                    }
+                  }
+                  request.send();
 
 
             });
