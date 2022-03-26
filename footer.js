@@ -56,7 +56,7 @@ fbauth.onAuthStateChanged((user) => {
 function logOut() {
     // firebase.auth().signOut().then(() => {
     fbauth.signOut().then(() => {
-        loadingScreen.style.display = 'flex'
+        // loadingScreen.style.display = 'flex'
         //redirect to login.
         console.log('user logged out')
         window.location.replace('/login')
@@ -660,4 +660,9 @@ document.addEventListener("DOMContentLoaded", () => {
           event.preventDefault();
       });
     });
+
+    //logout
+    document.querySelector('#logout-user').addEventListener('click', () => {
+      logOut()
+    })
 });
