@@ -640,7 +640,7 @@ function stopClosePopUp(event) {
 
 function idleTimer() {
   let t;
-  window.onload = resetTimer;
+  // window.onload = resetTimer;
   window.onmousemove = resetTimer;
   window.onmousedown = resetTimer;
   window.onclick = resetTimer; 
