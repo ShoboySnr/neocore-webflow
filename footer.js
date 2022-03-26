@@ -81,7 +81,7 @@ function logOut() {
 
 async function cbrRequest(endpoint, method, async, idtoken = '', payload) {
     // let baseUrl = new URL('https://api.vault.ng/cbr');
-    let baseUrl = new URL('https://30da84ba-061c-478c-8310-27f620a7b8bf.mock.pstmn.io/cbr');
+    let baseUrl = new URL('https://30da84ba-061c-478c-8310-27f620a7b8bf.mock.pstmn.io');
     let request = new XMLHttpRequest();
     let url = baseUrl.toString() + endpoint;
 
