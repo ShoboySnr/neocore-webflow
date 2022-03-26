@@ -22,8 +22,6 @@ var publicPages = [
 var currentPath = window.location.pathname;
 
 
-
-
 // firebase.auth().onAuthStateChanged((user) => {
 fbauth.onAuthStateChanged((user) => {
     if (user) {

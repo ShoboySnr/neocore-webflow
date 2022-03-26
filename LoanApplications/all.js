@@ -2,8 +2,8 @@ function getLoanProducts() {
     fbauth.onAuthStateChanged((user) => {
         
         if(user) {
-            await fbauth.currentUser.getIdToken(true).then((idToken) => {
-                let request = cbrRequest('/loanAppProducts', 'GET', true, idToken);
+            fbauth.currentUser.getIdToken(true).then(async (idToken) => {
+                let request = await cbrRequest('/loanAppProducts', 'GET', true, idToken);
                 
                 request.onload = function() {
         
