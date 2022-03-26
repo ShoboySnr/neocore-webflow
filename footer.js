@@ -12,7 +12,7 @@ const firebaseConfig = {
 const fbapp = firebase.initializeApp(firebaseConfig);
 const fbauth = firebase.auth()
 //firebase.analytics();
-let userToken = '';
+let userIdToken = '';
 
 var publicPages = [
     '/signup',
@@ -32,6 +32,11 @@ fbauth.onAuthStateChanged((user) => {
         console.log('User is logged in')
         console.log('Email: ' + user.email)
         console.log('Name: ' + user.displayName)
+
+        fbauth.currentUser.getIdToken(true).then((idToken) => {
+          console.log(idToken);
+          userIdToken = idToken;
+        });
 
 
         // if logged in user tries to access a public page, redirect to dashboard
@@ -69,18 +74,18 @@ function logOut() {
     })
 }
 
-async function getIdToken() {
-  fbauth.onAuthStateChanged((user) => {
-    if(user) {
-      fbauth.currentUser.getIdToken(true).then((idToken) => {
-        console.log(idToken);
-        return idToken;
-      });
-    } else {
-      return '';
-    }
-  });
-}
+// async function getIdToken() {
+//   fbauth.onAuthStateChanged((user) => {
+//     if(user) {
+//       fbauth.currentUser.getIdToken(true).then((idToken) => {
+//         console.log(idToken);
+//         return idToken;
+//       });
+//     } else {
+//       return '';
+//     }
+//   });
+// }
 
 async function cbrRequest(endpoint, method, async, payload) {
     let baseUrl = new URL('https://api.vault.ng/cbr');
@@ -93,7 +98,7 @@ async function cbrRequest(endpoint, method, async, payload) {
     request.setRequestHeader('magicword', 'Obaatokpere');
 
     if (!publicPages.includes(currentPath)) {
-      let idtoken = await getIdToken();
+      let idtoken = userIdToken
       // fbauth.onAuthStateChanged((user) => {
       //   if(user) {
       //     fbauth.currentUser.getIdToken(true).then((idToken) => {
@@ -101,7 +106,7 @@ async function cbrRequest(endpoint, method, async, payload) {
       //     });
       //   }
       // });
-      request.setRequestHeader('nc-user-token', idtoken);
+      request.setRequestHeader('nc-user-token', userIdToken);
     }
 
     return request;
