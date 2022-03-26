@@ -87,15 +87,12 @@ async function cbrRequest(endpoint, method, async, idtoken = '', payload) {
     let url = baseUrl.toString() + endpoint;
 
     request.open(method, url, async);
+    if (!publicPages.includes(currentPath)) {
+      request.setRequestHeader('nc-user-token', idtoken);
+    }
     request.setRequestHeader('Content-type', 'application/json');
     request.setRequestHeader('Accept', 'application/json'); 
     request.setRequestHeader('magicword', 'Obaatokpere');
-
-    if (!publicPages.includes(currentPath)) {
-      console.log(idtoken);
-      request.setRequestHeader('nc-user-token', idtoken);
-    }
-    console.log(request);
 
     return request;
 }

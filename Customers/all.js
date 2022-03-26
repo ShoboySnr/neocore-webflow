@@ -1,10 +1,10 @@
-async function getCustomers() {
-    await fbauth.onAuthStateChanged((user) => {
+function getCustomers() {
+    fbauth.onAuthStateChanged((user) => {
         
         if(user) {
-            fbauth.currentUser.getIdToken(true).then((idToken) => {
+            fbauth.currentUser.getIdToken(true).then(async (idToken) => {
 
-                let request = cbrRequest('/users', 'GET', true, idToken)
+            let request = await cbrRequest('/users', 'GET', true, idToken)
 
             request.onload = function () {
                 let data = JSON.parse(this.response)
