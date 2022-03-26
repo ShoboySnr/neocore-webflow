@@ -666,6 +666,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setMenuActive();
     if (!publicPages.includes(currentPath)) {
         idleTimer();
+            //logout
+        document.querySelector('#logout-user').addEventListener('click', (event) => {
+          event.preventDefault();
+          if(confirm('Are you sure you want to logout?')) logOut();
+        })
     }
     document.querySelectorAll('.modalpopup').forEach((element, index) => {
       element.addEventListener('click', stopClosePopUp);
@@ -688,10 +693,4 @@ document.addEventListener("DOMContentLoaded", () => {
           event.preventDefault();
       });
     });
-
-    //logout
-    document.querySelector('#logout-user').addEventListener('click', (event) => {
-      event.preventDefault();
-      if(confirm('Are you sure you want to logout?')) logOut();
-    })
 });
