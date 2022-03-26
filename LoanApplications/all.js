@@ -13,7 +13,7 @@ function getLoanProducts() {
                           let loan_application_products = data.data;
                           console.log(loan_application_products);
                           
-                          let parent_el = document.getElementById("field-loan-application-products");
+                          let parent_el = document.getElementById("field-loan-applications-products");
                           appendToSelect(loan_application_products, parent_el);
                     }
                   }
