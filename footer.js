@@ -12,7 +12,6 @@ const firebaseConfig = {
 const fbapp = firebase.initializeApp(firebaseConfig);
 const fbauth = firebase.auth()
 //firebase.analytics();
-let userIdToken = '';
 
 var publicPages = [
     '/signup',
@@ -32,11 +31,6 @@ fbauth.onAuthStateChanged((user) => {
         console.log('User is logged in')
         console.log('Email: ' + user.email)
         console.log('Name: ' + user.displayName)
-
-        fbauth.currentUser.getIdToken(true).then((idToken) => {
-          console.log(idToken);
-          userIdToken = idToken;
-        });
 
 
         // if logged in user tries to access a public page, redirect to dashboard
@@ -98,6 +92,7 @@ async function cbrRequest(endpoint, method, async, idtoken = '', payload) {
     request.setRequestHeader('magicword', 'Obaatokpere');
 
     if (!publicPages.includes(currentPath)) {
+      console.log(idtoken);
       request.setRequestHeader('nc-user-token', idtoken);
     }
 
