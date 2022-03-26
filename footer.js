@@ -638,8 +638,35 @@ function stopClosePopUp(event) {
   event.stopPropagation();
 }
 
+function idleTimer() {
+  let t;
+  window.onload = resetTimer;
+  window.onmousemove = resetTimer;
+  window.onmousedown = resetTimer;
+  window.onclick = resetTimer; 
+  window.onscroll = resetTimer;
+  window.onkeypress = resetTimer;
+
+  const timerLogout = () => {
+      logOut();
+  }
+
+ const timerReload = () => {
+        window.location = self.location.href;
+ }
+
+ const resetTimer = () => {
+      clearTimeout(t);
+      t = setTimeout(timerLogout, 1000);
+      t = setTimeout(timerReload, 1000);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     setMenuActive();
+    if (!publicPages.includes(currentPath)) {
+        idleTimer();
+    }
     document.querySelectorAll('.modalpopup').forEach((element, index) => {
       element.addEventListener('click', stopClosePopUp);
     });
