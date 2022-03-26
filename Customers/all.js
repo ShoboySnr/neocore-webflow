@@ -4,7 +4,7 @@ async function getCustomers() {
         if(user) {
             fbauth.currentUser.getIdToken(true).then((idToken) => {
 
-                let request = await cbrRequest('/users', 'GET', true, idToken)
+                let request = cbrRequest('/users', 'GET', true, idToken)
 
             request.onload = function () {
                 let data = JSON.parse(this.response)
