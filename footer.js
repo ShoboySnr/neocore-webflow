@@ -664,6 +664,6 @@ document.addEventListener("DOMContentLoaded", () => {
     //logout
     document.querySelector('#logout-user').addEventListener('click', (event) => {
       event.preventDefault();
-      logOut()
+      if(confirm('Are you sure you want to logout?')) logOut();
     })
 });
