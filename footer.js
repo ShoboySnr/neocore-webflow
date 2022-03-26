@@ -95,6 +95,7 @@ async function cbrRequest(endpoint, method, async, idtoken = '', payload) {
       console.log(idtoken);
       request.setRequestHeader('nc-user-token', idtoken);
     }
+    console.log(request);
 
     return request;
 }
