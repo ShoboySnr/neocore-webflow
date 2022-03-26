@@ -1,43 +1,51 @@
 async function getCustomers() {
-    let request = await cbrRequest('/users', 'GET', true)
+    fbauth.onAuthStateChanged((user) => {
+        
+        if(user) {
+            fbauth.currentUser.getIdToken(true).then((idToken) => {
 
-    request.onload = function () {
-        let data = JSON.parse(this.response)
-        if (request.status >= 200 && request.status < 400) {
-            const cardContainer = document.getElementById("customers-container")
-            let counter = 0;
-            data.data.forEach(customer => {
-                const style = document.getElementById('sample-customer')
-                const card = style.cloneNode(true)
+                let request = await cbrRequest('/users', 'GET', true, idToken)
 
-                card.setAttribute('id', '');
-                card.style.display = 'block';
+            request.onload = function () {
+                let data = JSON.parse(this.response)
+                if (request.status >= 200 && request.status < 400) {
+                    const cardContainer = document.getElementById("customers-container")
+                    let counter = 0;
+                    data.data.forEach(customer => {
+                        const style = document.getElementById('sample-customer')
+                        const card = style.cloneNode(true)
 
-                card.addEventListener('click', function () {
-                    document.location.href = "/users/view?id=" + customer.ID;
-                });
+                        card.setAttribute('id', '');
+                        card.style.display = 'block';
 
-                const name = card.getElementsByTagName('p')[0]
-                name.textContent = `${customer.FirstName} ${customer.LastName}`
+                        card.addEventListener('click', function () {
+                            document.location.href = "/users/view?id=" + customer.ID;
+                        });
 
-                const email = card.getElementsByTagName('p')[1]
-                email.textContent = customer.EmailAddress;
+                        const name = card.getElementsByTagName('p')[0]
+                        name.textContent = `${customer.FirstName} ${customer.LastName}`
 
-                const phone = card.getElementsByTagName('p')[2]
-                phone.textContent = customer.PhoneNumber;
+                        const email = card.getElementsByTagName('p')[1]
+                        email.textContent = customer.EmailAddress;
 
-                const bvn = card.getElementsByTagName('p')[3]
-                bvn.textContent = customer.Bvn;
+                        const phone = card.getElementsByTagName('p')[2]
+                        phone.textContent = customer.PhoneNumber;
 
-                const status = card.getElementsByTagName('p')[4]
-                status.innerHTML = readStatus(customer.Active);
+                        const bvn = card.getElementsByTagName('p')[3]
+                        bvn.textContent = customer.Bvn;
 
-                cardContainer.appendChild(card);
-            })
+                        const status = card.getElementsByTagName('p')[4]
+                        status.innerHTML = readStatus(customer.Active);
+
+                        cardContainer.appendChild(card);
+                    })
+                }
+            }
+
+            request.send();
+            });
         }
-    }
-
-    request.send();
+    });
 }
 
 window.addEventListener('DOMContentLoaded', () => {

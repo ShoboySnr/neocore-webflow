@@ -87,7 +87,7 @@ function logOut() {
 //   });
 // }
 
-async function cbrRequest(endpoint, method, async, payload) {
+async function cbrRequest(endpoint, method, async, idtoken = '', payload) {
     let baseUrl = new URL('https://api.vault.ng/cbr');
     let request = new XMLHttpRequest();
     let url = baseUrl.toString() + endpoint;
@@ -98,15 +98,7 @@ async function cbrRequest(endpoint, method, async, payload) {
     request.setRequestHeader('magicword', 'Obaatokpere');
 
     if (!publicPages.includes(currentPath)) {
-      let idtoken = userIdToken
-      // fbauth.onAuthStateChanged((user) => {
-      //   if(user) {
-      //     fbauth.currentUser.getIdToken(true).then((idToken) => {
-      //       console.log(idToken);
-      //     });
-      //   }
-      // });
-      request.setRequestHeader('nc-user-token', userIdToken);
+      request.setRequestHeader('nc-user-token', idtoken);
     }
 
     return request;
