@@ -662,7 +662,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     //logout
-    document.querySelector('#logout-user').addEventListener('click', () => {
+    document.querySelector('#logout-user').addEventListener('click', (event) => {
+      event.preventDefault();
       logOut()
     })
 });
