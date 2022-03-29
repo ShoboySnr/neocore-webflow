@@ -655,7 +655,7 @@ function idleTimer() {
 document.addEventListener("DOMContentLoaded", () => {
     setMenuActive();
     if (!publicPages.includes(currentPath)) {
-        idleTimer();
+        // idleTimer();
             //logout
         document.querySelector('#logout-user').addEventListener('click', (event) => {
           event.preventDefault();
