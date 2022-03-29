@@ -79,6 +79,24 @@ function logOut() {
 //   });
 // }
 
+const cbrRequest2 = (endpoint, method, async, payload) => {
+  // let baseUrl = new URL('https://api.vault.ng/cbr');
+  let baseUrl = new URL('https://30da84ba-061c-478c-8310-27f620a7b8bf.mock.pstmn.io/cbr');
+  let request = new XMLHttpRequest();
+  let url = baseUrl.toString() + endpoint;
+
+  request.open(method, url, async);
+  if (!publicPages.includes(currentPath)) {
+    fbauth.currentUser.getIdToken(true).then(async (idToken) => {
+      await request.setRequestHeader('nc-user-token', idToken);
+    });
+  }
+  request.setRequestHeader('Content-type', 'application/json');
+  request.setRequestHeader('Accept', 'application/json');
+
+  return request;
+}
+
 async function cbrRequest(endpoint, method, async, idtoken = '', payload) {
     // let baseUrl = new URL('https://api.vault.ng/cbr');
     let baseUrl = new URL('https://30da84ba-061c-478c-8310-27f620a7b8bf.mock.pstmn.io/cbr');
