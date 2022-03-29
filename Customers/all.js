@@ -91,6 +91,6 @@ function getCustomers() {
     request.send();
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('firebaseIsReady', () => {
     getCustomers();
 })
