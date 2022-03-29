@@ -87,8 +87,10 @@ const cbrRequest2 = (endpoint, method, async, payload) => {
 
   request.open(method, url, async);
   if (!publicPages.includes(currentPath)) {
-    fbauth.currentUser.getIdToken(true).then(async (idToken) => {
-      await request.setRequestHeader('nc-user-token', idToken);
+    fbauth.onAuthStateChanged((user) => {
+      fbauth.currentUser.getIdToken(true).then(async (idToken) => {
+        await request.setRequestHeader('nc-user-token', idToken);
+      });
     });
   }
   request.setRequestHeader('Content-type', 'application/json');
