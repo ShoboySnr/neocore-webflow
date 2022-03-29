@@ -50,7 +50,7 @@ function getCustomers2() {
 
 
 function getCustomers() {
-    let request = cbrRequest2('/users', 'GET', true)
+    let request = cbrRequest('/users', 'GET', true)
 
     request.onload = function () {
         let data = JSON.parse(this.response)

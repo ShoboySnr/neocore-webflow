@@ -11,6 +11,7 @@ const firebaseConfig = {
 
 const fbapp = firebase.initializeApp(firebaseConfig);
 const fbauth = firebase.auth()
+fbauth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 //firebase.analytics();
 
 var publicPages = [
@@ -66,47 +67,16 @@ function logOut() {
     })
 }
 
-// async function getIdToken() {
-//   fbauth.onAuthStateChanged((user) => {
-//     if(user) {
-//       fbauth.currentUser.getIdToken(true).then((idToken) => {
-//         console.log("tk:",idToken);
-//         return idToken;
-//       });
-//     } else {
-//       return '';
-//     }
-//   });
-// }
-
-const cbrRequest2 = (endpoint, method, async, payload) => {
-  // let baseUrl = new URL('https://api.vault.ng/cbr');
-  let baseUrl = new URL('https://30da84ba-061c-478c-8310-27f620a7b8bf.mock.pstmn.io/cbr');
-  let request = new XMLHttpRequest();
-  let url = baseUrl.toString() + endpoint;
-
-  request.open(method, url, async);
-  if (!publicPages.includes(currentPath)) {
-    fbauth.onAuthStateChanged((user) => {
-      fbauth.currentUser.getIdToken(true).then(async (idToken) => {
-        await request.setRequestHeader('nc-user-token', idToken);
-      });
-    });
-  }
-  request.setRequestHeader('Content-type', 'application/json');
-  request.setRequestHeader('Accept', 'application/json');
-
-  return request;
-}
 
 async function cbrRequest(endpoint, method, async, idtoken = '', payload) {
-    // let baseUrl = new URL('https://api.vault.ng/cbr');
-    let baseUrl = new URL('https://30da84ba-061c-478c-8310-27f620a7b8bf.mock.pstmn.io/cbr');
+    let baseUrl = new URL('https://api.vault.ng/cbr');
+    // let baseUrl = new URL('https://30da84ba-061c-478c-8310-27f620a7b8bf.mock.pstmn.io/cbr');
     let request = new XMLHttpRequest();
     let url = baseUrl.toString() + endpoint;
 
     request.open(method, url, async);
     if (!publicPages.includes(currentPath)) {
+      console.log(fbauth.currentUser);
       request.setRequestHeader('nc-user-token', idtoken);
     }
     request.setRequestHeader('Content-type', 'application/json');
