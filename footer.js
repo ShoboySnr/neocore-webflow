@@ -52,8 +52,8 @@ fbauth.onAuthStateChanged((user) => {
             document.getElementById("loadingScreen").style.display = 'none'
         }
     }
-
-    window.emit('firebaseIsReady');
+    const event = new Event('firebaseIsReady');
+    window.dispatchEvent(event);
 });
 
 function logOut() {
