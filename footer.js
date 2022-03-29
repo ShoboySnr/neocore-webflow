@@ -78,9 +78,9 @@ async function cbrRequest(endpoint, method, async, idtoken = '', payload) {
 
     request.open(method, url, async);
     if (!publicPages.includes(currentPath)) {
-      console.log(fbauth.currentUser.getIdToken(true).then((idtoken) => {
+      fbauth.currentUser.getIdToken(true).then((idtoken) => {
         request.setRequestHeader('nc-user-token', idtoken);
-      }));
+      })
     }
     request.setRequestHeader('Content-type', 'application/json');
     request.setRequestHeader('Accept', 'application/json');
