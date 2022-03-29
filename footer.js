@@ -207,11 +207,11 @@ return gl_usage;
 }
 
 
-function readCustomerName(userID) {
+async function readCustomerName(userID) {
 let customer_name = '';
 
 if(userID.length > 1) {
- let request = cbrRequest(`/users/${userID}`, 'GET', true);
+ let request = await cbrRequest(`/users/${userID}`, 'GET', true);
  
  request.onload = function () {
    let data = JSON.parse(this.response)  
@@ -581,9 +581,9 @@ if(ChannelFee) {
 }
 }
 
-function updateChannelStatus(channelID, status) {
+async function updateChannelStatus(channelID, status) {
 status = !status;
-let request = cbrRequest('/channels/'+ channelID +'/toggleactive?active='+status, 'PUT', true);
+let request = await cbrRequest('/channels/'+ channelID +'/toggleactive?active='+status, 'PUT', true);
 
 request.onload = function () {
     if (request.status >= 200 && request.status < 400) {

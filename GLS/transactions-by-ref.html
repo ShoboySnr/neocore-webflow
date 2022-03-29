@@ -3,10 +3,10 @@
     let txn_ref = myUrl.searchParams.get("id")
     document.getElementById('field-ref').value = txn_ref;
     
-        const addNewGL = document.getElementById("wf-form-Get-GL-Form")
-        addNewGL.addEventListener('submit', findTransactionById);
+      const addNewGL = document.getElementById("wf-form-Get-GL-Form")
+      addNewGL.addEventListener('submit', findTransactionById);
       
-      function findTransactionById(event) {
+      async function findTransactionById(event) {
           event.preventDefault();
         let search_params = myUrl.searchParams;
         myUrl.search = search_params.toString();
@@ -39,7 +39,7 @@
         history.replaceState(null, null, "?"+search_params.toString());
         
         
-         let request = cbrRequest('/transaction/'+ txn_ref, 'GET', true);
+         let request = await cbrRequest('/transaction/'+ txn_ref, 'GET', true);
          
           request.onload = function () {
               let data = JSON.parse(this.response)
@@ -98,8 +98,8 @@
           request.send();
       }
     
-        function getGLTransaction() {
-           let request = cbrRequest('/transaction/'+ txn_ref, 'GET', true);
+        async function getGLTransaction() {
+           let request = await cbrRequest('/transaction/'+ txn_ref, 'GET', true);
          
           request.onload = function () {
               let data = JSON.parse(this.response)

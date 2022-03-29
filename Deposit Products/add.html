@@ -3,8 +3,8 @@ let parent_gls = [];
 let deposit_interests = [];
 let deposit_fees = [];
 
-function getDepositInterests() {
-    let request = cbrRequest('/deposit-interests', 'GET', true)
+async function getDepositInterests() {
+    let request = await cbrRequest('/deposit-interests', 'GET', true)
     
     
     request.onload = function() {
@@ -21,8 +21,8 @@ function getDepositInterests() {
     request.send();
 }
 
-function getDepositFees() {
-    let request = cbrRequest('/fees', 'GET', true)
+async function getDepositFees() {
+    let request = await cbrRequest('/fees', 'GET', true)
     
     request.onload = function() {
         
@@ -38,8 +38,8 @@ function getDepositFees() {
     request.send();
 }
 
-function getGLLiabilityAccounts() {
-    let request = cbrRequest('/gl-flat', 'GET', true)
+async function getGLLiabilityAccounts() {
+    let request = await cbrRequest('/gl-flat', 'GET', true)
     
     
     request.onload = function() {
@@ -90,7 +90,7 @@ function filterGL(type = 0, parent_gl_select_el = '') {
 const addNewProduct = document.getElementById("wf-form-new-gl")
 addNewProduct.addEventListener('submit', createNewDepositProduct);
 
-function createNewDepositProduct(e) {
+async function createNewDepositProduct(e) {
     //get all the submitted information
     e.preventDefault();
     document.getElementById("failed-message").style.display = 'none';
@@ -223,7 +223,7 @@ function createNewDepositProduct(e) {
     "liabilityGLId" : liability_glid,
     }
     
-    let request = cbrRequest(`/deposit-product`, 'POST', true)
+    let request = await cbrRequest(`/deposit-product`, 'POST', true)
     
     request.onload = function() {
     let data = JSON.parse(this.response);
@@ -248,7 +248,7 @@ function createNewDepositProduct(e) {
     request.send(JSON.stringify(data));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('firebaseIsReady', () => {
     getGLLiabilityAccounts();
     getDepositInterests();
     getDepositFees();

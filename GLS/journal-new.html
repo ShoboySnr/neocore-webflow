@@ -49,7 +49,7 @@ function addExtraLegFunction(event) {
 const createJournal = document.getElementById("wf-form-new-journal")
 createJournal.addEventListener('submit', addNewJournalEntry);
 
-function addNewJournalEntry(e) {
+async function addNewJournalEntry(e) {
     e.preventDefault();
     let legs = [];
     
@@ -164,7 +164,7 @@ function addNewJournalEntry(e) {
 
     const _this = this;
 
-    let request = cbrRequest('/transaction', 'POST', true);
+    let request = await cbrRequest('/transaction', 'POST', true);
     
     request.onload = function () {
         let data = JSON.parse(this.response)
@@ -188,8 +188,8 @@ function addNewJournalEntry(e) {
 }
 
 let gls_array = [];
-function getGLCode(){
-    let request = cbrRequest('/gl-flat', 'GET', true)
+async function getGLCode(){
+    let request = await cbrRequest('/gl-flat', 'GET', true)
 
         request.onload = function () {
         let data = JSON.parse(this.response)
@@ -219,7 +219,7 @@ function checkGLCode(){
 }
 
 
-window.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("firebaseIsReady", function() {
     getGLCode();
     const addExtraLeg = document.getElementById("button-add-extra-legs");
     addExtraLeg.addEventListener('click', addExtraLegFunction); 

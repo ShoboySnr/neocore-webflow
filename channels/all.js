@@ -1,6 +1,6 @@
-function getAllChannels() {
+async function getAllChannels() {
 
-    let request = cbrRequest('/channels', 'GET', true)
+    let request = await cbrRequest('/channels', 'GET', true)
 
     // When the 'request' or API request loads, do the following...
     request.onload = function () {
@@ -162,9 +162,9 @@ function channelDetailsModalpopup(id) {
     document.querySelector('#channel-view-' + id).setAttribute('style', 'display:block');
 }
 
-function updateChannelStatus(channelID, status) {
+async function updateChannelStatus(channelID, status) {
     status = !status;
-    let request = cbrRequest('/channels/'+ channelID +'/toggleactive?active='+status, 'PUT', true);
+    let request = await cbrRequest('/channels/'+ channelID +'/toggleactive?active='+status, 'PUT', true);
 
     request.onload = function () {
         if (request.status >= 200 && request.status < 400) {
@@ -181,9 +181,9 @@ function updateChannelStatus(channelID, status) {
     request.send();
 }
 
-function getAllChannelTypes(channelID, status) {
+async function getAllChannelTypes(channelID, status) {
     status = !status;
-    let request = cbrRequest('/channel-types', 'GET', true);
+    let request = await cbrRequest('/channel-types', 'GET', true);
 
     request.onload = function () {
         if (request.status >= 200 && request.status < 400) {
@@ -197,7 +197,7 @@ function getAllChannelTypes(channelID, status) {
     request.send();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('firebaseIsReady', () => {
     getAllChannels();
     console.log('hello')
 })

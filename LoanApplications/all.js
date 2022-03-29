@@ -1,4 +1,4 @@
-function getLoanProducts() {
+async function getLoanProducts() {
     fbauth.onAuthStateChanged((user) => {
         
         if(user) {
@@ -38,6 +38,6 @@ function appendToSelect(data, parent_gl_select_el = '') {
      }
   }
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('firebaseIsReady', () => {
     getLoanProducts();
 });

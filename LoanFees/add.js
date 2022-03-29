@@ -1,5 +1,5 @@
-function getGLLiabilityAccounts() {
-    let request = cbrRequest('/gl-flat', 'GET', true)
+async function getGLLiabilityAccounts() {
+    let request = await cbrRequest('/gl-flat', 'GET', true)
     
     
     request.onload = function() {
@@ -37,7 +37,7 @@ function filterGL(type = 0, parent_gl_select_el = '') {
     }
 }
 
-function createNewLoanFee(e) {
+async function createNewLoanFee(e) {
 	//get all the submitted information
   e.preventDefault();
   document.getElementById("failed-message").style.display = 'none';
@@ -169,7 +169,7 @@ function createNewLoanFee(e) {
 
   let _this = this;
   
-  let request = cbrRequest(`/loanFee`, 'POST', true)
+  let request = await cbrRequest(`/loanFee`, 'POST', true)
   
   request.onload = function() {
     let data = JSON.parse(this.response);
@@ -194,7 +194,7 @@ function createNewLoanFee(e) {
   request.send(JSON.stringify(data));
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('firebaseIsReady', () => {
     getGLLiabilityAccounts();
     const addLoanFee = document.getElementById("wf-form-Create-New-Loan-Fee")
     addLoanFee.addEventListener('submit', createNewLoanFee);

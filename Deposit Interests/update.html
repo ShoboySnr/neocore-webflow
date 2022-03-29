@@ -2,8 +2,8 @@
     let myUrl = new URL(document.location.href)
     let id = myUrl.searchParams.get("id")
     
-    function getGLLiabilityAccounts(selected_value_expense = '', selected_value_accrual = '') {
-        let request = cbrRequest('/gl-flat', 'GET', true)
+    async function getGLLiabilityAccounts(selected_value_expense = '', selected_value_accrual = '') {
+        let request = await cbrRequest('/gl-flat', 'GET', true)
       
       
       request.onload = function() {
@@ -23,7 +23,7 @@
       request.send();
     }
     
-    function filterGL(type = 0, parent_gl_select_el = '', selected_value = '') {
+    async function filterGL(type = 0, parent_gl_select_el = '', selected_value = '') {
       if(type != 0) {
         parent_gls.forEach((gl, index) => {
           if(gl.usage === 1 && parseInt(type) == gl.type) {
@@ -42,7 +42,7 @@
        }
     }
     
-    let request = cbrRequest(`/deposit-interests/${id}`, 'GET', true)
+    let request = await cbrRequest(`/deposit-interests/${id}`, 'GET', true)
     
     request.onload = function() {
     
@@ -75,7 +75,7 @@
     const addNewGL = document.getElementById("wf-form-new-gl")
     addNewGL.addEventListener('submit', updateDepositInterest);
     
-    function updateDepositInterest(e) {
+    async function updateDepositInterest(e) {
         //get all the submitted information
       e.preventDefault();
       document.getElementById("failed-message").style.display = 'none';
@@ -127,7 +127,7 @@
         "active": active
       }
       
-      let request = cbrRequest(`/deposit-interests/`+ id, 'POST', true)
+      let request = await cbrRequest(`/deposit-interests/`+ id, 'POST', true)
       
       request.onload = function() {
         let data = JSON.parse(this.response);

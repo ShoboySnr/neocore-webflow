@@ -48,7 +48,7 @@
       user_address_container.style.display = "none";
     })
 
-    document.getElementById("update_address_button").addEventListener("click",function(e){
+    document.getElementById("update_address_button").addEventListener("click", async function(e){
       e.preventDefault();
       const input_street1 = document.getElementById("street1").value
 
@@ -60,7 +60,7 @@
 
       const input_lga = document.getElementById("lga").value
 
-      let request = cbrRequest(`/users/${userID}/homeAddress`,'POST',true);
+      let request = await cbrRequest(`/users/${userID}/homeAddress`,'POST',true);
 
       let data ={
           "addressType": 1,
@@ -96,8 +96,8 @@
     })
 
     
-    function updateCustomerStatus(activeStatus) {
-        let request = cbrRequest(`/users/${userID}/activate/${activeStatus}`, 'PATCH', true)
+    async function updateCustomerStatus(activeStatus) {
+        let request = await cbrRequest(`/users/${userID}/activate/${activeStatus}`, 'PATCH', true)
       
       request.onload = function() {
       

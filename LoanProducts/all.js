@@ -1,10 +1,10 @@
-const getLoanProducts = () => {
+async function getLoanProducts() {
 
     fbauth.onAuthStateChanged((user) => {
         
         if(user) {
             fbauth.currentUser.getIdToken(true).then(async (idToken) => {
-                let request = cbrRequest('/loanProduct', 'GET', true, idToken)
+                let request = await cbrRequest('/loanProduct', 'GET', true, idToken)
                 let gls_array = [];
             
                 // When the 'request' or API request loads, do the following...
@@ -173,7 +173,7 @@ const getLoanProducts = () => {
     
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('firebaseIsReady', () => {
     getLoanProducts();
 });
 

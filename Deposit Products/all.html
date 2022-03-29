@@ -1,7 +1,7 @@
 <script>
-    function getDepositProducts() {
+    async function getDepositProducts() {
 
-        let request = cbrRequest('/deposit-product', 'GET', true)
+        let request = await cbrRequest('/deposit-product', 'GET', true)
         let gls_array = [];
 
         // When the 'request' or API request loads, do the following...

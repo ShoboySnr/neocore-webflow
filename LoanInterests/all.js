@@ -1,6 +1,6 @@
-const getLoanProducts = () => {
+async function getLoanProducts() {
 
-    let request = cbrRequest('/loanInterest', 'GET', true)
+    let request = await cbrRequest('/loanInterest', 'GET', true)
     let gls_array = [];
 
     // When the 'request' or API request loads, do the following...
@@ -70,7 +70,7 @@ const getLoanProducts = () => {
     
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('firebaseIsReady', () => {
     getLoanProducts();
 });
 

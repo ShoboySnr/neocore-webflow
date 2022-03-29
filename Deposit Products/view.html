@@ -1,8 +1,9 @@
 <script>
-var myUrl = new URL(document.location.href)
+async function getSingleDepositProductDetail() {
+    var myUrl = new URL(document.location.href)
 var id = myUrl.searchParams.get("id")
 
-let request = cbrRequest(`/deposit-product/${id}`, 'GET', true)
+let request = await cbrRequest(`/deposit-product/${id}`, 'GET', true)
 
 request.onload = function() {
 
@@ -96,5 +97,8 @@ request.onload = function() {
     }
     
     request.send();
+}
+
+window.addEventListener('DOMContentLoaded', getSingleDepositProductDetail)
     
 </script>

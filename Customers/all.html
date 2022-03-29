@@ -1,7 +1,7 @@
 <script>
-    function getCustomers() {
+    async function getCustomers() {
 
-        let request = cbrRequest('/users', 'GET', true)
+        let request = await cbrRequest('/users', 'GET', true)
 
         // When the 'request' or API request loads, do the following...
         request.onload = function () {
@@ -48,9 +48,9 @@
         request.send();
     }
 
-    function deleteAll() {
+    async function deleteAll() {
         console.log("deleting all...")
-        let req = cbrRequest('/users', 'DELETE', true)
+        let req = await cbrRequest('/users', 'DELETE', true)
 
         req.onload = ()=>{
             console.log("users deleted response:"+ this.response)

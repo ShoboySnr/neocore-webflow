@@ -66,7 +66,7 @@ function appendChannelTypesOptions(data, parent_gl_select_el = '', selected_valu
   }
 
 
-function createNewChannel(e) {
+async function createNewChannel(e) {
     //get all the submitted information
     e.preventDefault();
     e.stopPropagation();
@@ -359,7 +359,7 @@ function createNewChannel(e) {
 
     const _this = this;
     
-    let request = cbrRequest('/channels', 'POST', true)
+    let request = await cbrRequest('/channels', 'POST', true)
     
     request.onload = function() {
     let data = JSON.parse(this.response);
@@ -384,8 +384,8 @@ function createNewChannel(e) {
     request.send(JSON.stringify(data));
 }
 
-function getGLAccounts() {
-    let request = cbrRequest('/gl-flat', 'GET', true)
+async function getGLAccounts() {
+    let request = await cbrRequest('/gl-flat', 'GET', true)
     
     
     request.onload = function() {
@@ -540,7 +540,7 @@ function effectFieldTypeChange(slug, event) {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('firebaseIsReady', () => {
     getGLAccounts();
     getAllChannelTypes();
     document.getElementById("button-add-extra-fee-legs").addEventListener('click', () => {

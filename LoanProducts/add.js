@@ -1,8 +1,8 @@
 let loans_forms = [];
 let principal_assets_glid = [];
 
-function getLoanForms() {
-    let request = cbrRequest('/loanForms', 'GET', true)
+async function getLoanForms() {
+    let request = await cbrRequest('/loanForms', 'GET', true)
   
   
     request.onload = function() {
@@ -20,8 +20,8 @@ function getLoanForms() {
     request.send();
 }
 
-function getLoanFees() {
-  let request = cbrRequest('/loanFee', 'GET', true)
+async function getLoanFees() {
+  let request = await cbrRequest('/loanFee', 'GET', true)
   
   
     request.onload = function() {
@@ -39,8 +39,8 @@ function getLoanFees() {
     request.send();
 }
 
-function getLoanInterests() {
-  let request = cbrRequest('/loanInterest', 'GET', true)
+async function getLoanInterests() {
+  let request = await cbrRequest('/loanInterest', 'GET', true)
   
   
     request.onload = function() {
@@ -58,8 +58,8 @@ function getLoanInterests() {
     request.send();
 }
 
-function getGLLiabilityAccounts() {
-    let request = cbrRequest('/gl-flat', 'GET', true)
+async function getGLLiabilityAccounts() {
+    let request = await cbrRequest('/gl-flat', 'GET', true)
     
     
     request.onload = function() {
@@ -116,7 +116,7 @@ function filterGL(type = 0, parent_gl_select_el = '') {
     }
 }
 
-function createNewLoanProduct(e) {
+async function createNewLoanProduct(e) {
 	//get all the submitted information
   e.preventDefault();
   document.getElementById("failed-message").style.display = 'none';
@@ -273,7 +273,7 @@ function createNewLoanProduct(e) {
 
   let _this = this;
   
-  let request = cbrRequest(`/loanProduct`, 'POST', true)
+  let request = await cbrRequest(`/loanProduct`, 'POST', true)
   
   request.onload = function() {
     let data = JSON.parse(this.response);
@@ -298,7 +298,7 @@ function createNewLoanProduct(e) {
   request.send(JSON.stringify(data));
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('firebaseIsReady', () => {
     getLoanForms();
     getLoanFees();
     getLoanInterests();

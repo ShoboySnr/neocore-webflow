@@ -5,8 +5,8 @@ let parent_gls = [];
 let deposit_interests = [];
 let deposit_fees = [];
 
-function getDepositInterests(selected_interests_value = null) {
-    let request = cbrRequest('/deposit-interests', 'GET', true)
+async function getDepositInterests(selected_interests_value = null) {
+    let request = await cbrRequest('/deposit-interests', 'GET', true)
 
     request.onload = function() {
         
@@ -22,8 +22,8 @@ function getDepositInterests(selected_interests_value = null) {
     request.send();
 }
 
-function getDepositFees(selected_fees_value = null) {
-    let request = cbrRequest('/fees', 'GET', true)
+async function getDepositFees(selected_fees_value = null) {
+    let request = await cbrRequest('/fees', 'GET', true)
     
     request.onload = function() {
         
@@ -39,8 +39,8 @@ function getDepositFees(selected_fees_value = null) {
     request.send();
 }
 
-    function getGLLiabilityAccounts(selected_value_overdraft = '', selected_value_liability = '') {
-    let request = cbrRequest('/gl-flat', 'GET', true)
+async function getGLLiabilityAccounts(selected_value_overdraft = '', selected_value_liability = '') {
+    let request = await cbrRequest('/gl-flat', 'GET', true)
     
     
     request.onload = function() {
@@ -63,9 +63,11 @@ function getDepositFees(selected_fees_value = null) {
 const addNewProduct = document.getElementById("wf-form-new-gl")
 addNewProduct.addEventListener('submit', updateDepositProduct);
 
-let request = cbrRequest(`/deposit-product/${id}`, 'GET', true)
 
-request.onload = function() {
+async function getSingleDepositDetails() {
+    let request = await cbrRequest(`/deposit-product/${id}`, 'GET', true)
+
+    request.onload = function() {
 
     let data = JSON.parse(this.response)
 
@@ -105,8 +107,9 @@ request.onload = function() {
     }
     
     request.send();
+}
 
-function updateDepositProduct(e) {
+async function updateDepositProduct(e) {
     //get all the submitted information
     e.preventDefault();
     document.getElementById("failed-message").style.display = 'none';
@@ -238,7 +241,7 @@ function updateDepositProduct(e) {
         "liabilityGLId" : liability_glid,
     }
     
-    let request = cbrRequest(`/deposit-product/${id}`, 'POST', true)
+    let request = await cbrRequest(`/deposit-product/${id}`, 'POST', true)
     
     request.onload = function() {
     let data = JSON.parse(this.response);
@@ -261,4 +264,7 @@ function updateDepositProduct(e) {
     
     request.send(JSON.stringify(data));
 }
+
+
+window.addEventListener('firebaseIsReady', getSingleDepositDetails);
 </script>

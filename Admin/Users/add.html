@@ -5,7 +5,7 @@ let parent_gls = [];
 const addNewuser = document.getElementById("wf-form-create-user")
 addNewuser.addEventListener('submit', createNewUser, true);
 
-function createNewUser(e) {
+async function createNewUser(e) {
     //get all the submitted information
     e.preventDefault();
     document.getElementById("failed-message").style.display = 'none';
@@ -61,7 +61,7 @@ function createNewUser(e) {
 
     const _this = this;
     
-    let request = cbrRequest(`/admin/user`, 'POST', true)
+    let request = await cbrRequest(`/admin/user`, 'POST', true)
     
     request.onload = function() {
     let data = JSON.parse(this.response);

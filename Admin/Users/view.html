@@ -1,8 +1,9 @@
 <script>
-var myUrl = new URL(document.location.href)
+async function getSingleUser() {
+  var myUrl = new URL(document.location.href)
 var id = myUrl.searchParams.get("id")
 
-let request = cbrRequest(`/users/${id}`, 'GET', true)
+let request = await cbrRequest(`/users/${id}`, 'GET', true)
 
 request.onload = function() {
 
@@ -135,5 +136,8 @@ request.onload = function() {
   }
   
   request.send();
+}
+
+window.addEventListener('firebaseIsReady', getSingleUser);
   
 </script>

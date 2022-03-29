@@ -1,6 +1,6 @@
-function getAllUsers() {
+async function getAllUsers() {
 
-    let request = cbrRequest('/admin/user', 'GET', true)
+    let request = await cbrRequest('/admin/user', 'GET', true)
     let gls_array = [];
 
     // When the 'request' or API request loads, do the following...
@@ -84,8 +84,8 @@ function userPermissionsDetailsModalpopup(id) {
 }
 
 
-function sendPasswordReset(email) {
-    let request = cbrRequest('/admin/user/password?email='+email, 'GET', true)
+async function sendPasswordReset(email) {
+    let request = await cbrRequest('/admin/user/password?email='+email, 'GET', true)
 
     request.onload = function () {
         let data = JSON.parse(this.response)
@@ -104,8 +104,8 @@ function sendPasswordReset(email) {
 }
 
 
-function setPermission(user_permission, roles) {
-    let request = cbrRequest('/admin/permissions', 'GET', true)
+async function setPermission(user_permission, roles) {
+    let request = await cbrRequest('/admin/permissions', 'GET', true)
 
     request.onload = function () {
         let data = JSON.parse(this.response)
@@ -147,7 +147,7 @@ function setPermission(user_permission, roles) {
     request.send();
 }
 
-function updatePermission(email, parent_el, event) {
+async function updatePermission(email, parent_el, event) {
     event.preventDefault();
 
     let userPermissions = []
@@ -161,7 +161,7 @@ function updatePermission(email, parent_el, event) {
         'userPermissions': userPermissions
     };
 
-    let request = cbrRequest('/admin/user/permissions', 'PUT', true);
+    let request = await cbrRequest('/admin/user/permissions', 'PUT', true);
     
     request.onload = function () {
         let data = JSON.parse(this.response)
@@ -186,6 +186,6 @@ function updatePermission(email, parent_el, event) {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('firebaseIsReady', () => {
     getAllUsers();
 });

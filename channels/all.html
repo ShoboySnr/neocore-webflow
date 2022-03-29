@@ -1,7 +1,7 @@
 <script>
-    function getAllChannels() {
+    async function getAllChannels() {
 
-        let request = cbrRequest('/channels', 'GET', true)
+        let request = await cbrRequest('/channels', 'GET', true)
 
         // When the 'request' or API request loads, do the following...
         request.onload = function () {
@@ -153,9 +153,9 @@
        
     }
 
-    function updateChannelStatus(channelID, status) {
+    async function updateChannelStatus(channelID, status) {
         status = !status;
-        let request = cbrRequest('/channels/'+ channelID +'/toggleactive?active='+status, 'PUT', true);
+        let request = await cbrRequest('/channels/'+ channelID +'/toggleactive?active='+status, 'PUT', true);
 
         request.onload = function () {
             if (request.status >= 200 && request.status < 400) {
@@ -189,7 +189,7 @@
     }
 
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('firebaseIsReady', () => {
         getAllChannels();
     })
 </script>

@@ -1,7 +1,7 @@
 <script>
-    function getAllChannelTypes() {
+    async function getAllChannelTypes() {
 
-        let request = cbrRequest('/channel-types', 'GET', true)
+        let request = await cbrRequest('/channel-types', 'GET', true)
         let channel_types_array = [];
 
         // When the 'request' or API request loads, do the following...
@@ -64,7 +64,7 @@
         }
     }
 
-    function findTransactions(event) {
+    async function findTransactions(event) {
         event.preventDefault();
         event.stopPropagation();
         document.getElementById("failed-message").style.display = 'none';
@@ -93,7 +93,7 @@
             return;
         }
     
-        let request = cbrRequest(`/channels/${types_categories}/transactions?from=${date_from}&to=${date_to}&status=${status}`, 'GET', true)
+        let request = await cbrRequest(`/channels/${types_categories}/transactions?from=${date_from}&to=${date_to}&status=${status}`, 'GET', true)
 
         request.onload = function() {
             let data = JSON.parse(this.response);
@@ -181,7 +181,7 @@
             request.send();
         }
 
-    window.addEventListener("DOMContentLoaded", function() {
+    window.addEventListener("firebaseIsReady", function() {
         getAllChannelTypes();
         document.getElementById('wf-form-Get-Channel-Transaction-Form').addEventListener('submit', findTransactions, true)
     });

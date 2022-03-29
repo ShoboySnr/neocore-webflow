@@ -2,8 +2,8 @@
 var myUrl = new URL(document.location.href)
 var id = myUrl.searchParams.get("id")
 
- function getUser() {
-    let request = cbrRequest(`/admin/user/${id}`, 'GET', true);
+ async function getUser() {
+    let request = await cbrRequest(`/admin/user/${id}`, 'GET', true);
     
      // When the 'request' or API request loads, do the following...
      request.onload = function () {
@@ -28,8 +28,8 @@ var id = myUrl.searchParams.get("id")
 
  }
 
-function setPermission() {
-    let request = cbrRequest('/admin/permissions', 'GET', true)
+async function setPermission() {
+    let request = await cbrRequest('/admin/permissions', 'GET', true)
     let permission_arrays = [];
 
     // When the 'request' or API request loads, do the following...
@@ -73,7 +73,7 @@ function setPermission() {
     request.send();
 }
 
-function updatePermission(event) {
+async function updatePermission(event) {
     event.preventDefault();
 
     const email = document.getElementById('user-email').value;
@@ -89,7 +89,7 @@ function updatePermission(event) {
         'userPermissions': userPermissions
     };
 
-    let request = cbrRequest('/admin/user/permissions', 'PUT', true);
+    let request = await cbrRequest('/admin/user/permissions', 'PUT', true);
     
     request.onload = function () {
         let data = JSON.parse(this.response)
@@ -116,7 +116,7 @@ function updatePermission(event) {
 }
 
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('firebaseIsReady', function () {
     getUser();
     setPermission();
 
