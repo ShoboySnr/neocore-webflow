@@ -1,4 +1,4 @@
-function getGLAccount() {
+async function getGLAccount() {
     var myUrl = new URL(document.location.href)
     var glcode = myUrl.searchParams.get("id")
 

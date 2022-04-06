@@ -199,5 +199,4 @@ async function getAllChannelTypes(channelID, status) {
 
 document.addEventListener('firebaseIsReady', () => {
     getAllChannels();
-    console.log('hello')
 })
