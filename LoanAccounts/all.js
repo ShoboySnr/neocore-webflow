@@ -14,7 +14,7 @@ async function getLoanAccounts() {
                 card.style.display = 'block';
 
                 card.addEventListener('click', function () {
-                    document.location.href = "/users/view?id=" + customer.ID;
+                    document.location.href = "/loan-accounts/ingle-loan-account?id=" + customer.ID;
                 });
 
                 const customer_name_el = card.getElementsByTagName('p')[0]
