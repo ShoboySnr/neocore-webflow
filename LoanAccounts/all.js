@@ -44,6 +44,10 @@ async function getLoanAccounts() {
     request.send();
 }
 
+
+const addNewProduct = document.getElementById("wf-form-Get-GL-Form")
+addNewProduct.addEventListener('submit', filterLoanAccounts);
+
 async function filterLoanAccounts(e)
 {
     e.preventDefault();
@@ -97,11 +101,6 @@ async function filterLoanAccounts(e)
     request.send();
 }
 
-
-//wf-form-Get-GL-Form
-
-const addNewProduct = document.getElementById("wf-form-Get-GL-Form")
-addNewProduct.addEventListener('submit', filterLoanAccounts);
 
 window.addEventListener('firebaseIsReady', () => {
    getLoanAccounts();
