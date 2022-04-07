@@ -1,5 +1,5 @@
 async function getLoanAccounts() {
-    let request = await cbrRequest('/loanAccounts', 'GET', true)
+    let request = await cbrRequest('/loanAccounts?name=&amtFrom=&amtTp=&product=&status&disbFrom=&disbTo=', 'GET', true)
 
     request.onload = function () {
         let data = JSON.parse(this.response)
