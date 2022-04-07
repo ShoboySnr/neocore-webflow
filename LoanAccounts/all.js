@@ -53,6 +53,7 @@ async function filterLoanAccounts(e)
     e.preventDefault();
     let formData = new FormData(this);
     let name = document.getElementById("field-product-name").value;
+    console.log(name);
     let nuban = document.getElementById("field-nuban").value;
     let product_name =  returnSelected(document.getElementById('field-product-name'))
     let status = returnSelected(document.getElementById('field-status'));
