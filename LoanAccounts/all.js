@@ -52,6 +52,7 @@ async function filterLoanAccounts(e)
     let nuban = formData.get("field-nuban");
     let product_name =  returnSelected(document.getElementById('field-product-name'))
     let status = returnSelected(document.getElementById('field-status'));
+    console.log("form data", name);
     let request = await cbrRequest('/loanAccounts?name='+ name +'&amtFrom=&amtTp=&product='+ product_name + '&status=' + status + '&disbFrom=&disbTo=', 'GET', true)
 
     request.onload = function () {
