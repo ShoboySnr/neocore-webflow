@@ -1,3 +1,5 @@
+let loanAppProducts;
+
 async function getLoanProducts() {
     fbauth.onAuthStateChanged((user) => {
         
@@ -12,11 +14,18 @@ async function getLoanProducts() {
 
                           console.log(data);
                         
-                          let loan_application_products = data.data;
-                          console.log(loan_application_products);
+                          loanAppProducts = data.data;
                           
                           let parent_el = document.getElementById("field-loan-applications-products");
-                          appendToSelect(loan_application_products, parent_el);
+                          appendToSelect(loanAppProducts, parent_el);
+
+                          document.getElementById('field-loan-applications-products').addEventListener('change', (event) => {
+                            let target = event.target;
+                            
+                            //add to the stages
+                            document.getElementById('field-loan-applications-stage').innerHTML = '';
+
+                          });
                     }
                   }
                   request.send();
@@ -27,13 +36,17 @@ async function getLoanProducts() {
     });
 }
 
+function populateStage(product_stages) {
+    document.getElementById('field-loan-applications-stage').innerHTML = '';
+}
+
 function appendToSelect(data, parent_gl_select_el = '') {
     if(data != '' || data.length > 0) {
       data.forEach((di, index) => {
          let option = document.createElement("option");
   
-            option.value= di.ID;
-            option.innerHTML = di.Name;
+            option.value= di.product_id;
+            option.innerHTML = di.product_name;
   
             parent_gl_select_el.appendChild(option);
         });
