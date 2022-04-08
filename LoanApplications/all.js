@@ -46,6 +46,7 @@ searchForm.addEventListener("submit", getLoanApplications);
 async function getLoanApplications(e)
 {
     e.preventDefault();
+    alert(3231);
     // e.stopPropagation();
     let product_id = returnSelected(document.getElementById("field-loan-applications-products"));
     let product_stage = returnSelected(document.getElementById("field-loan-applications-stage"));
