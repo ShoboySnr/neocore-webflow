@@ -41,14 +41,15 @@ async function getLoanProducts() {
 let searchForm = document.getElementById("email-form");
 searchForm.addEventListener("submit", getLoanApplications);
 let searchBtn = searchForm.lastChild;
-searchBtn.addEventListener("click", getLoanApplications(event, "one"));
-document.getElementsByTagName("a", getLoanApplications(event, "two"));
-searchForm.children[0].addEventListener("click", getLoanApplications(event, "three"));
+searchBtn.addEventListener("click", getLoanApplications( "one"));
+document.getElementsByTagName("a", getLoanApplications( "two"));
+searchForm.children[0].addEventListener("click", getLoanApplications( "three"));
 
-async function getLoanApplications(e, which)
+async function getLoanApplications(which)
 {
-    e.preventDefault();
+    // e.preventDefault();
     console.log("application started by", which);
+    return;
     let product_id = returnSelected(document.getElementById("field-loan-applications-products"));
     let product_stage = returnSelected(document.getElementById("field-loan-applications-stage"));
     let status = returnSelected(document.getElementById("field-loan-applications-status"));
