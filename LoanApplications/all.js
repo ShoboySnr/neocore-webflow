@@ -42,6 +42,7 @@ let searchForm = document.getElementById("email-form");
 searchForm.addEventListener("submit", getLoanApplications);
 let searchBtn = searchForm.lastChild;
 searchBtn.addEventListener("click", alert("one"));
+document.getElementsByTagName("a", alert("tag"));
 searchForm.children[0].addEventListener("click", alert("two"));
 
 async function getLoanApplications(e)
