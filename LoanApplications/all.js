@@ -80,7 +80,7 @@ async function getLoanApplications(e)
 function arrayToQueryString(data){
     let queryString = new Array();
     for(let key in data){
-        queryString.push(key + '=' + encodeURIComponent(array_in[key]));
+        queryString.push(key + '=' + encodeURIComponent(data[key]));
     }
     return queryString.join('&');
 }
