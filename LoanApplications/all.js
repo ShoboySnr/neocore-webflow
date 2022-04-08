@@ -65,11 +65,17 @@ function populateStatus(statuses)
             let option = document.createElement("option");
 
             option.value= di;
-            option.innerHTML = di.toUpperCase();
+            option.innerHTML = kebabToString(di); //  di.toUpperCase();
 
             parent_el.appendChild(option);
         });
     }
+}
+
+function kebabToString(kebab)
+{
+    let string = kebab.charAt(0).toUpperCase() + kebab.slice(1);
+    return string.replace(/-/g, " ");
 }
 
 function appendToSelect(data, parent_gl_select_el = '') {
