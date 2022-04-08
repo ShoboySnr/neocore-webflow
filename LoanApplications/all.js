@@ -41,9 +41,9 @@ async function getLoanProducts() {
 let searchForm = document.getElementById("email-form");
 searchForm.addEventListener("submit", getLoanApplications);
 let searchBtn = searchForm.lastChild;
-searchBtn.addEventListener("click", alert("one"));
-document.getElementsByTagName("a", alert("tag"));
-searchForm.children[0].addEventListener("click", alert("two"));
+searchBtn.addEventListener("click", getLoanApplications);
+document.getElementsByTagName("a", getLoanApplications());
+searchForm.children[0].addEventListener("click", getLoanApplications);
 
 async function getLoanApplications(e)
 {
