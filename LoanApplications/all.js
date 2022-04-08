@@ -38,7 +38,7 @@ async function getLoanProducts() {
       request.send();
 }
 
-let searchForm = document.querySelector("#email-form");
+let searchForm = document.getElementById("email-form");
 let searchBtn = searchForm.querySelector(".w-button");
 searchBtn.addEventListener("click", function () { searchForm.submit() });
 searchForm.addEventListener("submit", getLoanApplications);
