@@ -41,12 +41,12 @@ async function getLoanProducts() {
 let searchForm = document.getElementById("email-form");
 let searchBtn = searchForm.querySelector(".w-button");
 searchBtn.addEventListener("click", function () { searchForm.submit() });
-searchForm.addEventListener("submit", getLoanApplications);
+searchForm.addEventListener("submit", getLoanApplications, true);
 
 async function getLoanApplications(e)
 {
-    alert(3424234);
     e.preventDefault();
+    e.stopPropagation();
     let product_id = returnSelected(document.getElementById("field-loan-applications-products"));
     let product_stage = returnSelected(document.getElementById("field-loan-applications-stage"));
     let status = returnSelected(document.getElementById("field-loan-applications-status"));
