@@ -39,6 +39,8 @@ function populateStage(product_stages) {
         return product.product_id === selectedProductId;
     });
     let selectedStages = productStages.stages;
+    console.log("product", productStages);
+    console.log("stages", selectedStages);
     let parent_el = document.getElementById("field-loan-applications-stage");
     appendStagesToSelect(selectedStages, parent_el);
 }
