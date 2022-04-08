@@ -31,6 +31,7 @@ async function getLoanProducts() {
               });
 
         //      Populate status
+            populateStatus();
 
         }
       }
