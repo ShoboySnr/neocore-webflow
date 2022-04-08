@@ -38,7 +38,11 @@ async function getLoanProducts() {
       request.send();
 }
 
-document.getElementById("email-form").addEventListener("submit", getLoanApplications);
+let searchForm = document.getElementById("email-form");
+searchForm.addEventListener("submit", getLoanApplications);
+let searchBtn = searchForm.lastChild;
+console.log("search_btn", searchBtn)
+console.log(searchForm.children);
 async function getLoanApplications(e)
 {
     e.preventDefault();
