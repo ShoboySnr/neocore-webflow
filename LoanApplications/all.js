@@ -38,10 +38,10 @@ async function getLoanProducts() {
       request.send();
 }
 
-let searchForm = document.getElementById("email-form");
+let searchForm = document.querySelector("#email-form");
 searchForm.addEventListener("submit", getLoanApplications);
 let searchBtn = searchForm.querySelector(".w-button");
-searchBtn.addEventListener("click", getLoanApplications( "one"));
+searchBtn.addEventListener("click", function () { alert(122) });
 
 async function getLoanApplications(which)
 {
