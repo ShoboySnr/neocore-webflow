@@ -40,7 +40,7 @@ async function getLoanProducts() {
 
 let searchForm = document.getElementById("email-form");
 let searchBtn = searchForm.querySelector(".w-button");
-searchBtn.addEventListener("click", function () { searchForm.submit() });
+searchBtn.addEventListener("click", function (event) { event.preventDefault(); searchForm.submit() });
 searchForm.addEventListener("submit", getLoanApplications, true);
 
 async function getLoanApplications(e)
