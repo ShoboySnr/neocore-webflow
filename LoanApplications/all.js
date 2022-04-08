@@ -42,6 +42,7 @@ document.getElementById("email-form").addEventListener("submit", getLoanApplicat
 async function getLoanApplications(e)
 {
     e.preventDefault();
+    console.log("application start");
     let product_id = returnSelected(document.getElementById("field-loan-applications-products"));
     let product_stage = returnSelected(document.getElementById("field-loan-applications-stage"));
     let status = returnSelected(document.getElementById("field-loan-applications-status"));
