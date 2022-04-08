@@ -6,6 +6,8 @@ async function getLoanProducts() {
     request.onload = function() {
 
         if (request.status >= 200 && request.status < 400) {
+            console.log("main this", this);
+            console.log("response", this.response);
               let data = JSON.parse(this.response);
 
               console.log(data);
