@@ -49,7 +49,6 @@ async function getLoanApplications(e)
     let status = returnSelected(document.getElementById("field-loan-applications-status"));
     let from = document.getElementById("name").value;
     let to = document.getElementById("name-2").value;
-    console.log("id", product_id);
     let valueArray = {
         "productid": product_id,
         "stage": product_stage,
@@ -59,9 +58,7 @@ async function getLoanApplications(e)
     };
     let queryString = arrayToQueryString(valueArray);
     let endpoint = "/loanApplications?" + queryString;
-    console.log(endpoint);
-    return;
-    let request = await cbrRequest('/loanApplications?productid=&stage=&from=&to=&status=', 'GET', true); //, idToken);
+    let request = await cbrRequest(endpoint, 'GET', true); //, idToken);
 
     request.onload = function() {
 
