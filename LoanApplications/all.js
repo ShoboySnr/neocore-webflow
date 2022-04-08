@@ -44,7 +44,7 @@ function populateStage(product_stages) {
             option.value= di.stage_id;
             option.innerHTML = di.stage_name;
 
-            parent_gl_select_el.appendChild(option);
+            parent_el.appendChild(option);
         });
     }
 }
