@@ -58,15 +58,14 @@ function populateStage(product_stages) {
 function populateStatus(statuses)
 {
     let parent_el = document.getElementById("field-loan-applications-status");
-    console.log(loanAppProducts);
-    return;
+    console.log(statuses);
     let data = statuses; // loanAppProducts.status;
     if(data != '' || data.length > 0) {
         data.forEach((di, index) => {
             let option = document.createElement("option");
 
-            option.value= di.product_id;
-            option.innerHTML = di.product_name;
+            option.value= di;
+            option.innerHTML = di.toUpperCase();
 
             parent_el.appendChild(option);
         });
