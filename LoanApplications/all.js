@@ -8,7 +8,7 @@ async function getLoanProducts() {
         if (request.status >= 200 && request.status < 400) {
               let data = JSON.parse(this.response);
 
-              console.log(data);
+              // console.log(data);
             
               loanAppProducts = data.data;
               
@@ -17,6 +17,7 @@ async function getLoanProducts() {
 
               document.getElementById('field-loan-applications-products').addEventListener('change', (event) => {
                 let target = event.target;
+                alert("something");
                 
                 //add to the stages
                 document.getElementById('field-loan-applications-stage').innerHTML = '';
@@ -42,7 +43,7 @@ function populateStage(product_stages) {
     console.log("product", productStages);
     console.log("stages", selectedStages);
     let parent_el = document.getElementById("field-loan-applications-stage");
-    appendStagesToSelect(selectedStages, parent_el);
+    // appendStagesToSelect(selectedStages, parent_el);
 }
 
 function appendToSelect(data, parent_gl_select_el = '') {
