@@ -28,33 +28,46 @@ async function getLoanProducts() {
 }
 
 // populate stages
-//field-loan-applications-products
+
 let productFieldList = document.getElementById("field-loan-applications-products");
 productFieldList.addEventListener("change", populateStage);
 
 function populateStage(product_stages) {
     document.getElementById('field-loan-applications-stage').innerHTML = '';
-    console.log("stages", product_stages);
-    console.log("product", loanAppProducts);
     let selectedProductId = product_stages.target.value;
     let productStages = loanAppProducts.filter(function(product) {
         return product.product_id === selectedProductId;
     });
-    console.log(productStages);
+    let selectedStages = productStages.stages;
+    let parent_el = document.getElementById("field-loan-applications-stage");
+    appendStagesToSelect(selectedStages, parent_el);
 }
 
 function appendToSelect(data, parent_gl_select_el = '') {
     if(data != '' || data.length > 0) {
-      data.forEach((di, index) => {
-         let option = document.createElement("option");
-  
+        data.forEach((di, index) => {
+            let option = document.createElement("option");
+
             option.value= di.product_id;
             option.innerHTML = di.product_name;
-  
+
             parent_gl_select_el.appendChild(option);
         });
-     }
-  }
+    }
+}
+
+function appendStagesToSelect(data, parent_gl_select_el = '') {
+    if(data != '' || data.length > 0) {
+        data.forEach((di, index) => {
+            let option = document.createElement("option");
+
+            option.value= di.stage_id;
+            option.innerHTML = di.stage_name;
+
+            parent_gl_select_el.appendChild(option);
+        });
+    }
+}
 
 window.addEventListener('firebaseIsReady', () => {
     getLoanProducts();
