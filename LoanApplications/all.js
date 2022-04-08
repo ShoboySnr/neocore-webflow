@@ -34,8 +34,13 @@ productFieldList.addEventListener("change", populateStage);
 
 function populateStage(product_stages) {
     document.getElementById('field-loan-applications-stage').innerHTML = '';
-    console.log("stages", product_stages.target[0]);
-    console.log("this", this[0]);
+    console.log("stages", product_stages);
+    console.log("product", loanAppProducts);
+    let selectedProductId = product_stages.target.value;
+    let productStages = loanAppProducts.filter(function(product) {
+        return product.product_id === selectedProductId;
+    });
+    console.log(productStages);
 }
 
 function appendToSelect(data, parent_gl_select_el = '') {
