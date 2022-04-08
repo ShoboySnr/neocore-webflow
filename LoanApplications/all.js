@@ -38,6 +38,52 @@ async function getLoanProducts() {
       request.send();
 }
 
+document.getElementById("email-form").addEventListener("submit", getLoanApplications);
+async function getLoanApplications(e)
+{
+    e.preventDefault();
+    let product_id = returnSelected(document.getElementById("field-loan-applications-products"));
+    let product_stage = returnSelected(document.getElementById("field-loan-applications-stage"));
+    let status = returnSelected(document.getElementById("field-loan-applications-status"));
+    let from = document.getElementById("name").value;
+    let to = document.getElementById("name-2").value;
+    let valueArray = {
+        "productid": product_id,
+        "stage": product_stage,
+        "from": from,
+        "to": to,
+        "status": status
+    };
+    let queryString = arrayToQueryString(valueArray);
+    let endpoint = "/loanApplications?" + queryString;
+    console.log(endpoint);
+    return;
+    let request = await cbrRequest('/loanApplications?productid=&stage=&from=&to=&status=', 'GET', true); //, idToken);
+
+    request.onload = function() {
+
+        if (request.status >= 200 && request.status < 400) {
+            let result = JSON.parse(this.response);
+
+            console.log(result);
+
+            let parent_el = document.getElementById("field-loan-applications-products");
+
+        }
+    }
+    request.send();
+}
+
+function arrayToQueryString(data){
+    var queryString = new Array();
+
+    for(var key in data){
+        queryString.push(key + '=' + encodeURIComponent(array_in[key]));
+    }
+
+    return queryString.join('&');
+}
+
 // populate stages
 
 function populateStage(product_stages) {
