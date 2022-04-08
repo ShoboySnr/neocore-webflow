@@ -43,11 +43,9 @@ searchForm.addEventListener("submit", getLoanApplications);
 let searchBtn = searchForm.querySelector(".w-button");
 searchBtn.addEventListener("click", function () { searchForm.submit() });
 
-async function getLoanApplications(which)
+async function getLoanApplications(e)
 {
-    // e.preventDefault();
-    console.log("application started by", which);
-    return;
+    e.preventDefault();
     let product_id = returnSelected(document.getElementById("field-loan-applications-products"));
     let product_stage = returnSelected(document.getElementById("field-loan-applications-stage"));
     let status = returnSelected(document.getElementById("field-loan-applications-status"));
