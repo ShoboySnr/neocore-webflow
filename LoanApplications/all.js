@@ -8,7 +8,7 @@ async function getLoanProducts() {
         if (request.status >= 200 && request.status < 400) {
               let data = JSON.parse(this.response);
 
-              console.log(data.data.statuses);
+              console.log(data);
             
               loanAppProducts = data.data.products;
               
@@ -31,7 +31,7 @@ async function getLoanProducts() {
               });
 
         //      Populate status
-            populateStatus(data.statuses);
+            populateStatus(data.data.statuses);
 
         }
       }
