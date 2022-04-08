@@ -39,14 +39,14 @@ async function getLoanProducts() {
 }
 
 let searchForm = document.getElementById("email-form");
-let searchBtn = searchForm.querySelector(".w-button");
-searchBtn.addEventListener("click", function (event) { event.preventDefault(); searchForm.submit() });
-searchForm.addEventListener("submit", getLoanApplications, true);
+// let searchBtn = searchForm.querySelector(".w-button");
+// searchBtn.addEventListener("click", function (event) { event.preventDefault(); searchForm.submit() });
+searchForm.addEventListener("submit", getLoanApplications);
 
 async function getLoanApplications(e)
 {
     e.preventDefault();
-    e.stopPropagation();
+    // e.stopPropagation();
     let product_id = returnSelected(document.getElementById("field-loan-applications-products"));
     let product_stage = returnSelected(document.getElementById("field-loan-applications-stage"));
     let status = returnSelected(document.getElementById("field-loan-applications-status"));
