@@ -27,8 +27,15 @@ async function getLoanProducts() {
       request.send();
 }
 
+// populate stages
+//field-loan-applications-products
+let productFieldList = document.getElementById("field-loan-applications-products");
+productFieldList.addEventListener("change", populateStage);
+
 function populateStage(product_stages) {
     document.getElementById('field-loan-applications-stage').innerHTML = '';
+    console.log("stages", product_stages);
+    console.log("this", this);
 }
 
 function appendToSelect(data, parent_gl_select_el = '') {
