@@ -8,7 +8,7 @@ async function getLoanProducts() {
         if (request.status >= 200 && request.status < 400) {
               let data = JSON.parse(this.response);
 
-              console.log(data);
+              console.log(data.data.statuses);
             
               loanAppProducts = data.data.products;
               
