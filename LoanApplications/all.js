@@ -57,6 +57,8 @@ function appendToSelect(data, parent_gl_select_el = '') {
 }
 
 function appendStagesToSelect(data, parent_gl_select_el = '') {
+    console.log(data);
+    return;
     if(data != '' || data.length > 0) {
         data.forEach((di, index) => {
             let option = document.createElement("option");
