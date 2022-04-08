@@ -24,8 +24,9 @@ async function getLoanProducts() {
                     let productStages = loanAppProducts.filter(function(product) {
                         return product.product_id === selectedProductId;
                     });
-                    let selectedStages = productStages[0].stages;
-                    populateStage(selectedStages);
+                    if(productStages.length > 0)
+                        populateStage(productStages[0].stages);
+                    else;
               });
         }
       }
