@@ -8,13 +8,14 @@ async function getLoanProducts() {
         if (request.status >= 200 && request.status < 400) {
               let data = JSON.parse(this.response);
 
-              // console.log(data);
+              console.log(data);
             
               loanAppProducts = data.data;
               
               let parent_el = document.getElementById("field-loan-applications-products");
               appendToSelect(loanAppProducts, parent_el);
 
+              //populate stages
               document.getElementById('field-loan-applications-products')
                   .addEventListener('change', (event) => {
                     //add to the stages
@@ -28,6 +29,9 @@ async function getLoanProducts() {
                         populateStage(productStages[0].stages);
                     else;
               });
+
+        //      Populate status
+
         }
       }
       request.send();
@@ -44,6 +48,24 @@ function populateStage(product_stages) {
 
             option.value= di.stage_id;
             option.innerHTML = di.stage_name;
+
+            parent_el.appendChild(option);
+        });
+    }
+}
+
+function populateStatus()
+{
+    let parent_el = document.getElementById("field-loan-applications-status");
+    console.log(loanAppProducts);
+    return;
+    let data = loanAppProducts.status;
+    if(data != '' || data.length > 0) {
+        data.forEach((di, index) => {
+            let option = document.createElement("option");
+
+            option.value= di.product_id;
+            option.innerHTML = di.product_name;
 
             parent_el.appendChild(option);
         });
