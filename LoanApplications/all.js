@@ -1,6 +1,15 @@
 let loanAppProducts;
 
 async function getLoanProducts() {
+
+
+    let searchForm = document.getElementById("email-form");
+    searchForm.addEventListener("submit", getLoanApplications);
+    let searchBtn = searchForm.lastChild;
+    console.log("search_btn", searchBtn)
+    console.log(searchForm.children);
+
+
     let request = await cbrRequest('/loanAppProducts', 'GET', true); //, idToken);
                 
     request.onload = function() {
@@ -38,11 +47,6 @@ async function getLoanProducts() {
       request.send();
 }
 
-let searchForm = document.getElementById("email-form");
-searchForm.addEventListener("submit", getLoanApplications);
-let searchBtn = searchForm.lastChild;
-console.log("search_btn", searchBtn)
-console.log(searchForm.children);
 async function getLoanApplications(e)
 {
     e.preventDefault();
