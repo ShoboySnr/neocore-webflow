@@ -15,13 +15,17 @@ async function getLoanProducts() {
               let parent_el = document.getElementById("field-loan-applications-products");
               appendToSelect(loanAppProducts, parent_el);
 
-              document.getElementById('field-loan-applications-products').addEventListener('change', (event) => {
-                let target = event.target;
-                alert("something");
-                
-                //add to the stages
-                document.getElementById('field-loan-applications-stage').innerHTML = '';
-
+              document.getElementById('field-loan-applications-products')
+                  .addEventListener('change', (event) => {
+                    //add to the stages
+                    document.getElementById('field-loan-applications-stage').innerHTML = '';
+                    let target = event.target;
+                    let selectedProductId = target.value;
+                    let productStages = loanAppProducts.filter(function(product) {
+                        return product.product_id === selectedProductId;
+                    });
+                    let selectedStages = productStages[0].stages;
+                    populateStage(selectedStages);
               });
         }
       }
@@ -30,20 +34,19 @@ async function getLoanProducts() {
 
 // populate stages
 
-let productFieldList = document.getElementById("field-loan-applications-products");
-productFieldList.addEventListener("change", populateStage);
-
 function populateStage(product_stages) {
-    document.getElementById('field-loan-applications-stage').innerHTML = '';
-    let selectedProductId = product_stages.target.value;
-    let productStages = loanAppProducts.filter(function(product) {
-        return product.product_id === selectedProductId;
-    });
-    let selectedStages = productStages.stages;
-    console.log("product", productStages);
-    console.log("stages", selectedStages);
-    let parent_el = document.getElementById("field-loan-applications-stage");
-    // appendStagesToSelect(selectedStages, parent_el);
+    let parent_el = document.getElementById('field-loan-applications-stage');
+    parent_el.innerHTML = '';
+    if(product_stages != '' || product_stages.length > 0) {
+        product_stages.forEach((di, index) => {
+            let option = document.createElement("option");
+
+            option.value= di.stage_id;
+            option.innerHTML = di.stage_name;
+
+            parent_gl_select_el.appendChild(option);
+        });
+    }
 }
 
 function appendToSelect(data, parent_gl_select_el = '') {
@@ -59,20 +62,6 @@ function appendToSelect(data, parent_gl_select_el = '') {
     }
 }
 
-function appendStagesToSelect(data, parent_gl_select_el = '') {
-    console.log(data);
-    return;
-    if(data != '' || data.length > 0) {
-        data.forEach((di, index) => {
-            let option = document.createElement("option");
-
-            option.value= di.stage_id;
-            option.innerHTML = di.stage_name;
-
-            parent_gl_select_el.appendChild(option);
-        });
-    }
-}
 
 window.addEventListener('firebaseIsReady', () => {
     getLoanProducts();
