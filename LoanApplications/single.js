@@ -1,7 +1,9 @@
 let json = require("sample-application.json");
 
 async function getSingleCustomer() {
-    console.log(json);
+    fetch("./sample-application.json")
+        .then(response => response.json())
+        .then(json => console.log(json));
     return;
     let myUrl = new URL(document.location.href)
     let applicationID = myUrl.searchParams.get("id")
