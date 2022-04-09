@@ -1,8 +1,11 @@
+let json = require("sample-application.json");
 
 async function getSingleCustomer() {
+    console.log(json);
+    return;
     let myUrl = new URL(document.location.href)
     let applicationID = myUrl.searchParams.get("id")
-    console.log(applicationID);
+    console.log();
 
     if(applicationID === '') {
         alert('No loan is specified, please specify a user and try again.');

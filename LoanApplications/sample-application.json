@@ -1,0 +1,139 @@
+{
+  "customer_info": {
+    "name": "Bob Marley",
+    "avi": "avifilename",
+    "dob": "02-Jan-2022",
+    "phone": "08103236508",
+    "bvn_validated": true,
+    "id_validated": false
+  },
+  "form_info": [
+    {
+      "field_label": "Amount Requested",
+      "type": "number",
+      "value": 900000
+    },
+    {
+      "field_label": "Guarantor Name",
+      "type": "name",
+      "value": {
+        "firstName": "Johnson",
+        "lastName": "Jane"
+      }
+    }
+  ],
+  "external_accounts": [
+    {
+      "id": "dvrvew-4575sdr-45424fsf-frjds",
+      "bank": "Zenith",
+      "account_number": "1105547515",
+      "from": "04-NOV-2021-01-05-02",
+      "to": "04-NOV-2021-01-05-02",
+      "active": true,
+      "last_update": "04-NOV-2021-01-05-02"
+    },
+    {
+      "id": "dvrvew-4575sdr-45424fsf-frjds",
+      "bank": "Zenith",
+      "account_number": "1105547515",
+      "from": "04-NOV-2021-01-05-02",
+      "to": "04-NOV-2021-01-05-02",
+      "active": true,
+      "last_update": "04-NOV-2021-01-05-02"
+    }
+  ],
+  "credit_history": [
+    {
+      "institution": "Carbon",
+      "amount": 58444,
+      "status": "Open",
+      "balance": 8444,
+      "amount_overdue": 400,
+      "classification": "Non Performing",
+      "disbursal_date": "02-NOV-2022",
+      "maturity_date": "02-NOV-2024",
+      "source": "CRCFULL",
+      "report_date": "22-MAR-2022",
+      "refreshed_on": "22-MAR-2022"
+    },
+    {
+      "institution": "Carbon",
+      "amount": 58444,
+      "status": "Open",
+      "balance": 8444,
+      "amount_overdue": 400,
+      "classification": "Non Performing",
+      "disbursal_date": "02-NOV-2022",
+      "maturity_date": "02-NOV-2024",
+      "source": "CRCNANO",
+      "report_date": "22-MAR-2022",
+      "refreshed_on": "22-MAR-2022"
+    },
+    {
+      "institution": "Carbon",
+      "amount": 58444,
+      "status": "Open",
+      "balance": 8444,
+      "amount_overdue": 400,
+      "classification": "Non Performing",
+      "disbursal_date": "02-NOV-2022",
+      "maturity_date": "02-NOV-2024",
+      "source": "FIRSTCENTRAL",
+      "report_date": "22-MAR-2022",
+      "refreshed_on": "22-MAR-2022"
+    }
+  ],
+  "uploaded_files": [
+    {
+      "name": "",
+      "ids": [
+        "",
+        ""
+      ]
+    },
+    {
+      "name": "",
+      "ids": [
+        "",
+        ""
+      ]
+    }
+  ],
+  "pending_actions": [
+    {
+      "item": "designated-item-tag",
+      "note": "Link bank Accounts",
+      "status": "waiting",
+      "id": "fdaefcdewcxwecw"
+    },
+    {
+      "item": "upload-registration-docs",
+      "note": "Company Registration Docs",
+      "status": "under-review",
+      "id": "ectvercwercecwwe"
+    }
+  ],
+  "comments": [
+    {
+      "commenter": "John Kennedey",
+      "date": "22-Mar-2022",
+      "body": "Nigerian Jollof is best Jollof"
+    },
+    {
+      "commenter": "John Kennedey",
+      "date": "22-Mar-2022",
+      "body": "Nigerian Jollof is best Jollof"
+    }
+  ],
+  "recommendations": [
+    {
+      "amount": "",
+      "product": "",
+      "interest": "",
+      "duration_days": "",
+      "fees": "",
+      "notes": "",
+      "reccomender": ""
+    }
+  ]
+}
