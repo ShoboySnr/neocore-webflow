@@ -58,8 +58,6 @@ async function getLoanApplications(e)
     };
     let queryString = arrayToQueryString(valueArray);
     let endpoint = "/loanApplications?" + queryString;
-    console.log(endpoint);
-    return;
     let request = await cbrRequest(endpoint, 'GET', true); //, idToken);
 
     request.onload = function() {
@@ -67,7 +65,8 @@ async function getLoanApplications(e)
         if (request.status >= 200 && request.status < 400) {
             let result = JSON.parse(this.response);
 
-            console.log(result);
+            console.log("result", result);
+            return;
 
             let parent_el = document.getElementById("field-loan-applications-products");
 
