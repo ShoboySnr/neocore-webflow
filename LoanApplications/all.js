@@ -181,12 +181,7 @@ Webflow.push(function() {
     });
 });
 
-// $( function() {
-//     $( "#datepicker" ).datepicker();
-// } );
-
 
 window.addEventListener('firebaseIsReady', () => {
     getLoanProducts();
-    document.querySelector(".datepicker").datepicker();
 });
