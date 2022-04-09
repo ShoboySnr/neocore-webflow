@@ -35,6 +35,10 @@ async function getSingleCustomer() {
 
         } else {
             console.log(request);
+            let message = request.response.message;
+            alert(message);
+            window.location.href = '/loan-applications/loan-applications';
+            return;
         }
     }
 
