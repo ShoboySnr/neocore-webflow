@@ -2,13 +2,14 @@
 async function getSingleCustomer() {
     let myUrl = new URL(document.location.href)
     let applicationID = myUrl.searchParams.get("id")
+    console.log(applicationID);
 
     if(applicationID === '') {
-        alert('No loan is specified, please spicify a user and try again.');
+        alert('No loan is specified, please specify a user and try again.');
         window.location.href = '/loan-applications/loan-applications';
     }
 
-    let request = await cbrRequest(`//loan-applications/loan-application/${applicationID}`, 'GET', true)
+    let request = await cbrRequest(`/loanApplications/${applicationID}`, 'GET', true)
 
     request.onload = function() {
 

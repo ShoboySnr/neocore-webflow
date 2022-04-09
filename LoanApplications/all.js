@@ -73,7 +73,6 @@ async function getLoanApplications(e)
             if (data.length > 0)
             {
                 const cardContainer = document.getElementById("application-receipt-table");
-                let counter = 0;
                 const sampleRow  = document.getElementById("sample-application-tr");
                 const receiptRow = sampleRow.cloneNode(true);
                 receiptRow.setAttribute('id', '');
@@ -83,7 +82,7 @@ async function getLoanApplications(e)
                 data.forEach(application => {
                     const newRowElement = receiptRow;
                     receiptRow.addEventListener("click", function () {
-                        document.location.href = "/loan-applications/loan-applications?id=" + application.id;
+                        document.location.href = "/loan-applications/loan-application?id=" + application.id;
                     });
 
                     const customerName = newRowElement.getElementsByTagName("div")[0];
