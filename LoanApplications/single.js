@@ -15,7 +15,7 @@ async function getSingleCustomer() {
         window.location.href = '/loan-applications/loan-applications';
     }
 
-    const endpoint = `/loanApplications?id=${applicationID}`;
+    const endpoint = `/loanApplications/${applicationID}`;
     console.log(endpoint);
     let request = await cbrRequest(endpoint, 'GET', true)
 
