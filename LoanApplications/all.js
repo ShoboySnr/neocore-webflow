@@ -66,10 +66,41 @@ async function getLoanApplications(e)
         if (request.status >= 200 && request.status < 400) {
             let result = JSON.parse(this.response);
 
+            console.log("result", result);
             let data = result.data;
             let message = result.message;
 
-            console.log("result", result);
+            if (data.length > 0)
+            {
+                const cardContainer = document.getElementById("application-receipt-table");
+                let counter = 0;
+                const sampleRow  = document.getElementById("sample-application-tr");
+                const receiptRow = sampleRow.cloneNode(true);
+                receiptRow.setAttribute('id', '');
+                receiptRow.style.display = "block";
+
+                data.forEach(application => {
+                    const newRowElement = receiptRow;
+                    receiptRow.addEventListener("click", function () {
+                        document.location.href = "/loan-applications/loan-applications?id=" + application.id;
+                    });
+
+                    const customerName = newRowElement.getElementsByTagName("div")[0];
+                    customerName.textContent = application.customer;
+
+                    const applicationDate = newRowElement.getElementsByTagName("div")[1];
+                    applicationDate.textContent = application.submission_date;
+
+                    const applicationStage = newRowElement.getElementsByTagName("div")[2];
+                    applicationStage.textContent = application.stage; // stage_id
+
+                    const applicationStatus = newRowElement.getElementsByTagName("div")[3];
+                    applicationStatus.textContent = kebabToString(application.status);
+
+                    cardContainer.appendChild(newRowElement);
+                });
+            }
+
             return;
 
             let parent_el = document.getElementById("field-loan-applications-products");
@@ -143,9 +174,6 @@ function appendToSelect(data, parent_gl_select_el = '') {
     }
 }
 
-window.onload(function () {
-    document.getElementById("sample-application-tr").classList.add("hide");
-});
 
 window.addEventListener('firebaseIsReady', () => {
     getLoanProducts();
