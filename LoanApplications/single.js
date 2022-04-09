@@ -35,7 +35,8 @@ async function getSingleCustomer() {
 
         } else {
             console.log(request);
-            let message = request.response.message;
+            const res = JSON.parse(request.response);
+            let message = res.message;
             alert(message);
             window.location.href = '/loan-applications/loan-applications';
             return;
