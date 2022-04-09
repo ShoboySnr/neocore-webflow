@@ -44,7 +44,7 @@ searchForm.addEventListener("submit", getLoanApplications);
 async function getLoanApplications(e)
 {
     e.preventDefault();
-    let product_id =  returnSelected(document.getElementById("field-loan-applications-products"));
+    let product_id = "a59eedc3-2433-4d89-9a92-59f2718974e2"; // returnSelected(document.getElementById("field-loan-applications-products"));
     // "a59eedc3-2433-4d89-9a92-59f2718974e2"; //
     let product_stage = ""; // returnSelected(document.getElementById("field-loan-applications-stage"));
     let status = ""; // returnSelected(document.getElementById("field-loan-applications-status"));
