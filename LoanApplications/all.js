@@ -78,7 +78,7 @@ async function getLoanApplications(e)
                 const receiptRow = sampleRow.cloneNode(true);
                 receiptRow.setAttribute('id', '');
                 receiptRow.setAttribute("class", "receipt-row");
-                // receiptRow.style.display = "block";
+                receiptRow.style.cursor = "pointer";
 
                 data.forEach(application => {
                     const newRowElement = receiptRow;
