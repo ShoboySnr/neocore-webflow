@@ -8,7 +8,7 @@ async function getSingleCustomer() {
     // return;
     let myUrl = new URL(document.location.href)
     let applicationID = myUrl.searchParams.get("id")
-    console.log();
+    console.log(applicationID);
 
     if(applicationID === '') {
         alert('No loan is specified, please specify a user and try again.');
