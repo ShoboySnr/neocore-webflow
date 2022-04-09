@@ -1,7 +1,7 @@
 let loanAppProducts;
 
 async function getLoanProducts() {
-    let request = await cbrRequest('/loanAppProducts', 'GET', true);
+    let request = await cbrRequest('/loanForms/stages', 'GET', true);
                 
     request.onload = function() {
 
@@ -9,6 +9,7 @@ async function getLoanProducts() {
               let data = JSON.parse(this.response);
 
               console.log(data);
+              return;
             
               loanAppProducts = data.data.products;
               
