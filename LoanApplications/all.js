@@ -50,7 +50,7 @@ async function getLoanApplications(e)
     let from = document.getElementById("name").value;
     let to = document.getElementById("name-2").value;
     let valueArray = {
-        "productid": product_id,
+        "productid": "a59eedc3-2433-4d89-9a92-59f2718974e2",
         "stage": product_stage,
         "from": from,
         "to": to,
