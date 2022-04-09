@@ -1,11 +1,11 @@
-let json = import("./sample-application.json");
+// let json = import("./sample-application.json");
 
 async function getSingleCustomer() {
     // fetch("./sample-application.json")
     //     .then(response => response.json())
     //     .then(json => console.log(json));
-    console.log(json);
-    return;
+    // console.log(json);
+    // return;
     let myUrl = new URL(document.location.href)
     let applicationID = myUrl.searchParams.get("id")
     console.log();
