@@ -143,8 +143,10 @@ function appendToSelect(data, parent_gl_select_el = '') {
     }
 }
 
+window.onload(function () {
+    document.getElementById("sample-application-tr").classList.add("hide");
+});
 
 window.addEventListener('firebaseIsReady', () => {
-    document.getElementById("sample-application-tr").classList.add("hide");
     getLoanProducts();
 });
