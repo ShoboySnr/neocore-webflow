@@ -3,8 +3,10 @@
 async function getSingleCustomer() {
     fetch("https://shoboysnr.github.io/neocore-webflow/LoanApplications/sample-application.json")
         .then(response => response.json())
-        .then(json => console.log(json));
-    console.log(json);
+        .then(function (json, response) {
+            console.log("json", json);
+            console.log("res", response)
+        });
     return;
     let myUrl = new URL(document.location.href)
     let applicationID = myUrl.searchParams.get("id")
