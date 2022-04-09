@@ -66,6 +66,9 @@ async function getLoanApplications(e)
         if (request.status >= 200 && request.status < 400) {
             let result = JSON.parse(this.response);
 
+            let data = result.data;
+            let message = result.message;
+
             console.log("result", result);
             return;
 
@@ -142,5 +145,6 @@ function appendToSelect(data, parent_gl_select_el = '') {
 
 
 window.addEventListener('firebaseIsReady', () => {
+    document.getElementById("sample-application-tr").classList.add("hide");
     getLoanProducts();
 });
