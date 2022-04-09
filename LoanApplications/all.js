@@ -73,11 +73,14 @@ async function getLoanApplications(e)
 
             if (data !== "" && data.length > 0)
             {
+                let elements = document.getElementsByClassName("search-results");
+                while (elements.length > 0) elements[0].remove();
+
                 const cardContainer = document.getElementById("application-receipt-table");
                 const sampleRow  = document.getElementById("sample-application-tr");
                 const receiptRow = sampleRow.cloneNode(true);
                 receiptRow.setAttribute('id', '');
-                receiptRow.setAttribute("class", "receipt-row");
+                receiptRow.setAttribute("class", "receipt-row search-results");
                 receiptRow.style.cursor = "pointer";
 
                 data.forEach(application => {
