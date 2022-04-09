@@ -58,6 +58,8 @@ async function getLoanApplications(e)
     };
     let queryString = arrayToQueryString(valueArray);
     let endpoint = "/loanApplications?" + queryString;
+    console.log(endpoint);
+    return;
     let request = await cbrRequest(endpoint, 'GET', true); //, idToken);
 
     request.onload = function() {
