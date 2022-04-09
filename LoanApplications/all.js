@@ -1,4 +1,5 @@
 let loanAppProducts;
+let selectedProductObj;
 
 async function getLoanProducts() {
     let request = await cbrRequest('/loanAppProducts', 'GET', true);
@@ -25,6 +26,7 @@ async function getLoanProducts() {
                     let productStages = loanAppProducts.filter(function(product) {
                         return product.product_id === selectedProductId;
                     });
+                    selectedProductObj = productStages[0];
                     if(productStages.length > 0)
                         populateStage(productStages[0].stages);
                     else;
@@ -91,7 +93,7 @@ async function getLoanApplications(e)
                     applicationDate.textContent = application.submission_date;
 
                     const applicationStage = newRowElement.getElementsByTagName("div")[2];
-                    applicationStage.textContent = application.stage; // stage_id
+                    applicationStage.textContent = setApplicationStageOnTable(application.stage); // stage_id
 
                     const applicationStatus = newRowElement.getElementsByTagName("div")[3];
                     applicationStatus.textContent = kebabToString(application.status);
@@ -118,6 +120,14 @@ function arrayToQueryString(data){
         }
     }
     return queryString.join('&');
+}
+
+function setApplicationStageOnTable(stage_id)
+{
+    let selectedStage = selectedProductObj.stages.filter(function(stage) {
+        return stage.stage_id === stage_id;
+    });
+    return selectedStage.stage_name;
 }
 
 // populate stages
