@@ -51,12 +51,14 @@ async function getLoanApplications(e)
     let to = document.getElementById("name-2").value;
     let valueArray = {
         "productid": "a59eedc3-2433-4d89-9a92-59f2718974e2",
-        "stage": "",
-        "from": "",
-        "to": "",
-        "status": ""
+        "stage": product_stage,
+        "from": from,
+        "to": to,
+        "status": status
     };
     let queryString = arrayToQueryString(valueArray);
+    console.log(queryString);
+    return;
     let endpoint = "/loanApplications?" + queryString;
     let request = await cbrRequest(endpoint, 'GET', true); //, idToken);
 
@@ -78,7 +80,10 @@ async function getLoanApplications(e)
 function arrayToQueryString(data){
     let queryString = new Array();
     for(let key in data){
-        queryString.push(key + '=' + encodeURIComponent(data[key]));
+        if (data[key] !== "")
+        {
+            queryString.push(key + '=' + encodeURIComponent(data[key]));
+        }
     }
     return queryString.join('&');
 }
