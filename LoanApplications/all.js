@@ -1,7 +1,7 @@
 let loanAppProducts;
 
 async function getLoanProducts() {
-    let request = await cbrRequest('/loanAppProducts', 'GET', true); //, idToken);
+    let request = await cbrRequest('/loanAppProducts', 'GET', true);
                 
     request.onload = function() {
 
@@ -59,7 +59,7 @@ async function getLoanApplications(e)
     };
     let queryString = arrayToQueryString(valueArray);
     let endpoint = "/loanApplications?" + queryString;
-    let request = await cbrRequest(endpoint, 'GET', true); //, idToken);
+    let request = await cbrRequest(endpoint, 'GET', true);
 
     request.onload = function() {
 
