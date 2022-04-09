@@ -51,10 +51,10 @@ async function getLoanApplications(e)
     let to = document.getElementById("name-2").value;
     let valueArray = {
         "productid": "a59eedc3-2433-4d89-9a92-59f2718974e2",
-        "stage": product_stage,
-        "from": from,
-        "to": to,
-        "status": status
+        "stage": "",
+        "from": "",
+        "to": "",
+        "status": ""
     };
     let queryString = arrayToQueryString(valueArray);
     let endpoint = "/loanApplications?" + queryString;
