@@ -1,7 +1,7 @@
 // let json = import("./sample-application.json");
 
 async function getSingleCustomer() {
-    fetch("./sample-application.json")
+    fetch("sample-application.json")
         .then(response => response.json())
         .then(json => console.log(json));
     // console.log(json);
