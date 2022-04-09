@@ -32,7 +32,7 @@ async function getSingleCustomer() {
             return;
 
         } else {
-            console.log('error');
+            console.log(request);
         }
     }
 
