@@ -1,4 +1,4 @@
-let json = import("sample-application.json");
+let json = import("./sample-application.json");
 
 async function getSingleCustomer() {
     // fetch("./sample-application.json")
