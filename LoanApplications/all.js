@@ -127,8 +127,7 @@ function setApplicationStageOnTable(stage_id)
     let selectedStage = selectedProductObj.stages.filter(function(stage) {
         return stage.stage_id === stage_id;
     });
-    console.log(selectedStage);
-    return selectedStage.stage_name;
+    return selectedStage[0].stage_name;
 }
 
 // populate stages
