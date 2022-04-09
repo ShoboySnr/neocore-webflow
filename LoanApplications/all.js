@@ -69,7 +69,7 @@ async function getLoanApplications(e)
             let data = result.data;
             let message = result.message;
 
-            if (data.length > 0)
+            if (data !== "" && data.length > 0)
             {
                 const cardContainer = document.getElementById("application-receipt-table");
                 const sampleRow  = document.getElementById("sample-application-tr");
@@ -174,14 +174,19 @@ function appendToSelect(data, parent_gl_select_el = '') {
 }
 
 
-   Webflow.push(function() {
+Webflow.push(function() {
     // Disable submitting form fields during development
     $('form').submit(function() {
         return false;
     });
 });
 
+// $( function() {
+//     $( "#datepicker" ).datepicker();
+// } );
+
 
 window.addEventListener('firebaseIsReady', () => {
     getLoanProducts();
+    document.querySelector(".datepicker").datepicker();
 });
