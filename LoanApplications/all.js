@@ -44,10 +44,9 @@ searchForm.addEventListener("submit", getLoanApplications);
 async function getLoanApplications(e)
 {
     e.preventDefault();
-    let product_id = "a59eedc3-2433-4d89-9a92-59f2718974e2"; // returnSelected(document.getElementById("field-loan-applications-products"));
-    // "a59eedc3-2433-4d89-9a92-59f2718974e2"; //
-    let product_stage = ""; // returnSelected(document.getElementById("field-loan-applications-stage"));
-    let status = ""; // returnSelected(document.getElementById("field-loan-applications-status"));
+    let product_id = returnSelected(document.getElementById("field-loan-applications-products"));
+    let product_stage = returnSelected(document.getElementById("field-loan-applications-stage"));
+    let status = returnSelected(document.getElementById("field-loan-applications-status"));
     let from = document.getElementById("name").value;
     let to = document.getElementById("name-2").value;
     let valueArray = {
@@ -173,6 +172,14 @@ function appendToSelect(data, parent_gl_select_el = '') {
         });
     }
 }
+
+
+   Webflow.push(function() {
+    // Disable submitting form fields during development
+    $('form').submit(function() {
+        return false;
+    });
+});
 
 
 window.addEventListener('firebaseIsReady', () => {

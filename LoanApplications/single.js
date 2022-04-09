@@ -24,13 +24,17 @@ async function getSingleCustomer() {
 
     request.onload = function() {
 
-        let data = JSON.parse(this.response)
+        let result = JSON.parse(this.response)
 
         // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
         if (request.status >= 200 && request.status < 400) {
-            console.log("new data", data);
-            return;
-            const customer = data.data;
+            let data = result.data;
+
+            const customer_info = data.customer_info;
+
+            document.getElementById("customer-name").textContent = customer_info.name;
+
+            let application_data = document.getElementById("w-tabs-1-data-w-pane-0");
 
             document.getElementById('title-field-full-name').innerHTML += `${customer.FirstName} ${customer.LastName} ${customer.OtherNames || ''}`;
 
