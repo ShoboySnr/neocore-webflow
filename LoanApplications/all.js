@@ -62,6 +62,11 @@ async function getLoanApplications(e)
     let endpoint = "/loanApplications?" + queryString;
     let request = await cbrRequest(endpoint, 'GET', true);
 
+
+    //clear table
+    let elements = document.getElementsByClassName("search-results");
+    while (elements.length > 0) elements[0].remove();
+
     request.onload = function() {
 
         if (request.status >= 200 && request.status < 400) {
@@ -73,9 +78,6 @@ async function getLoanApplications(e)
 
             if (data !== "" && data.length > 0)
             {
-                let elements = document.getElementsByClassName("search-results");
-                while (elements.length > 0) elements[0].remove();
-
                 const cardContainer = document.getElementById("application-receipt-table");
                 const sampleRow  = document.getElementById("sample-application-tr");
                 const receiptRow = sampleRow.cloneNode(true);
