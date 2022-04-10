@@ -73,7 +73,7 @@ async function getSingleCustomer() {
             document.getElementById("customer-name").textContent = customer_info.name;
             document.getElementById("customer-name-inner").textContent = customer_info.name;
             document.getElementById("customer-bvn").textContent = readValidity(customer_info.bvn_validated);
-            document.getElementById("customer-dob").textContent = customer_info.dob;
+            document.getElementById("customer-dob").textContent = readableDate(customer_info.dob);
             document.getElementById("customer-phone").textContent = customer_info.phone;
             document.getElementById("customer-id-validated").textContent = readValidity(customer_info.id_validated);
 
