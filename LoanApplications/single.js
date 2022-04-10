@@ -341,7 +341,7 @@ async function getSingleCustomer() {
                     data = json;
                 });
 
-            console.log(data);
+            console.log("some data", data);
 
             const customer_info = data.customer_info;
             applicationFormField(data.form_info);
