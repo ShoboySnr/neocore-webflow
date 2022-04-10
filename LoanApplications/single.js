@@ -425,7 +425,8 @@ function applicationFormField(form_info)
     let applicationDataContainer = document.getElementById("w-tabs-1-data-w-pane-0");
     applicationDataContainer.innerHTML = '';
     form_info.forEach((form) => {
-        let fieldElement = '<div><div className="profile-info-heading"><strong>`${form.field_label}`</strong></div>';
+        let formContainer = document.createElement("div");
+        let fieldElement = '<div className="profile-info-heading"><strong>`${form.field_label}`</strong></div>';
         const formValue = form.value;
         const valueType = form.type;
         fieldElement += '<p>';
@@ -438,8 +439,9 @@ function applicationFormField(form_info)
         else {
             fieldElement += '<p> `${formValue}`';
         }
-        fieldElement += '</p></div>';
-        applicationDataContainer.appendChild(fieldElement);
+        fieldElement += '</p>';
+        formContainer.innerHTML = fieldElement;
+        applicationDataContainer.appendChild(formContainer);
     });
 }
 
