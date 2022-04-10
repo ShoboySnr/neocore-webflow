@@ -167,39 +167,29 @@ async function getSingleCustomer() {
                 });
             });
 
-            //add event listener to escalate buttons
-            // document.getElementById('customer-escalate-action').addEventListener('click', (event) => {
-            //     event.preventDefault();
-            //     document.getElementById('modal-escalate').setAttribute('style', 'display:flex;');
-            // });
             //add action to the escalate form
             document.getElementById('escalate-submit-form').addEventListener('click', (event) => {
                 event.preventDefault();
                 escalateFormAction()
             });
 
-            //add event listener to deescalate buttons
-            // document.getElementById('customer-deescalate-action').addEventListener('click', (event) => {
-            //     event.preventDefault();
-            //     document.getElementById('modal-deescalate').setAttribute('style', 'display:flex;');
-            // });
+
             //add action to the escalate form
             document.getElementById('deescalate-submit-form').addEventListener('click', (event) => {
                 event.preventDefault();
                 deescalateFormAction()
             });
 
-
-            //add event listener 
-
             //add event listener to comments
             document.getElementById('wf-form-comments-form').addEventListener('submit', submitComment)
 
 
-            document.querySelectorAll('.closemodal').forEach(() => {
-                document.querySelectorAll('.CardModalContainer').forEach((element) => {
-                    element.setAttribute('style', 'display:none;');
-                });
+            document.querySelectorAll('.closemodal').forEach((el) => {
+                el.addEventListener('click', () => {
+                    document.querySelectorAll('.CardModalContainer').forEach((element) => {
+                        element.setAttribute('style', 'display:none;');
+                    });
+                })
             });
 
             let application_data = document.getElementById("w-tabs-1-data-w-pane-0");
