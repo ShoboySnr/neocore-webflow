@@ -426,18 +426,18 @@ function applicationFormField(form_info)
     applicationDataContainer.innerHTML = '';
     form_info.forEach((form) => {
         let formContainer = document.createElement("div");
-        let fieldElement = '<div className="profile-info-heading"><strong>`${form.field_label}`</strong></div>';
+        let fieldElement = '<div className="profile-info-heading"><strong>' + form.field_label + '</strong></div>';
         const formValue = form.value;
         const valueType = form.type;
         fieldElement += '<p>';
         if (Array.isArray(formValue))
         {
             formValue.forEach((value) => {
-                fieldElement += '- `${formValue} <br>'
+                fieldElement += '- ' + formValue + '<br>'
             })
         }
         else {
-            fieldElement += '<p> `${formValue}`';
+            fieldElement += '<p>' + formValue;
         }
         fieldElement += '</p>';
         formContainer.innerHTML = fieldElement;
