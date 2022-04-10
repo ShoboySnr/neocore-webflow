@@ -347,7 +347,13 @@ async function getSingleCustomer() {
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
             alert(3213);
-            data = getApplicationData();
+            fetch("https://shoboysnr.github.io/neocore-webflow/LoanApplications/sample-application.json")
+                .then(response => response.json())
+                .then(json => {
+                    console.log(json);
+                    data = json;
+                });
+            // data = getApplicationData();
 
             console.log("some data", data);
 
