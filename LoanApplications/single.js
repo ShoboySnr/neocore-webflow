@@ -87,6 +87,8 @@ async function getSingleCustomer() {
             document.getElementById('wf-form-EscalateForm').addEventListener('submit', escalateFormAction);
             document.getElementById('escalate-submit-form').addEventListener('click', (event) => {
                 event.preventDefault();
+                console.log('hello');
+                return;
                 document.getElementById('wf-form-EscalateForm').submit();
             });
 
