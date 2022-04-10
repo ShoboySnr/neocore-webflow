@@ -118,11 +118,11 @@ async function getLoanApplications(e)
 }
 
 function arrayToQueryString(data){
-    console.log(data);
     let queryString = new Array();
     for(let key in data){
         if (data[key] !== "")
         {
+            console.log("log", data[key]);
             if (data[key] != undefined && data[key].length > 1)
             {
                 data = data[key];
