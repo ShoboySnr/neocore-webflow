@@ -411,7 +411,11 @@ return status ? '<span class="text-success">Active</span>': '<span class="text-d
 }
 
 function readStates(status = false) {
-return status ? 'Yes' : 'No'
+  return status ? 'Yes' : 'No'
+}
+
+function readValidity(status = false) {
+  return status ? 'Valid' : 'Invalid'
 }
 
 function ValidateEmail(email) 
