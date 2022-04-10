@@ -123,7 +123,7 @@ function arrayToQueryString(data){
         console.log("arr", data[key]);
         if (data[key] !== "")
         {
-            if (Array.isArray(data[key]))
+            if (data[key].length > 1)
             {
                 data = data[key];
                 data.forEach((item) => {
