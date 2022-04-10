@@ -76,6 +76,8 @@ async function getLoanApplications(e)
             let data = result.data;
             let message = result.message;
 
+            console.log(data);
+
             if (data !== "" && data.length > 0)
             {
                 const cardContainer = document.getElementById("application-receipt-table");
