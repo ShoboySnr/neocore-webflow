@@ -327,10 +327,9 @@ const declineUnDeclineApplication = async (target, path = 'decline') => {
 }
 
 async function getSingleCustomer() {
-    console.log(applicationID);
 
     if(applicationID === '') {
-        alert('No loan is specified, please specify a user and try again.');
+        alert('No loan application is specified, please specify an application and try again.');
         window.location.href = '/loan-applications/loan-applications';
     }
 
@@ -423,6 +422,12 @@ async function getSingleCustomer() {
     //send request
     request.send();
 }
+
+document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
+    element.addEventListener('click', (event) => {
+        this.style.display = "none";
+    });
+});
 
 
 window.addEventListener('firebaseIsReady', getSingleCustomer);
