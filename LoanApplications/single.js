@@ -13,7 +13,7 @@ let applicationID = myUrl.searchParams.get("id")
 async function escalateFormAction (event) {
     event.preventDefault();
 
-    let target = event.target;
+    let target = document.getElementById('wf-form-EscalateForm');
 
     let formData = new FormData(target);
     let comments = formData.get('escalate-comment');
@@ -87,9 +87,9 @@ async function getSingleCustomer() {
             document.getElementById('wf-form-EscalateForm').addEventListener('submit', escalateFormAction);
             document.getElementById('escalate-submit-form').addEventListener('click', (event) => {
                 event.preventDefault();
-                console.log('hello');
+                escalateFormAction()
+                // document.getElementById('wf-form-EscalateForm').submit();
                 return;
-                document.getElementById('wf-form-EscalateForm').submit();
             });
 
             document.querySelectorAll('.closeModal').forEach(() => {
