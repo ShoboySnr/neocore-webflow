@@ -122,10 +122,12 @@ function arrayToQueryString(data){
     for(let key in data){
         if (data[key] !== "")
         {
+            console.log("arr", data[key]);
             if (Array.isArray(data[key]))
             {
                 data = data[key];
                 data.forEach((item) => {
+                    console.log("item", item);
                     queryString.push(key + '=' + encodeURIComponent(item));
                 })
             } else {
