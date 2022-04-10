@@ -59,7 +59,7 @@ async function getLoanApplications(e)
         "status": status
     };
     let queryString = arrayToQueryString(valueArray);
-    console.log(queryString);
+    console.log("queryString", queryString);
     let endpoint = "/loanApplications?" + queryString;
     let request = await cbrRequest(endpoint, 'GET', true);
 
@@ -118,7 +118,6 @@ async function getLoanApplications(e)
 }
 
 function arrayToQueryString(data){
-    console.log(data);
     let queryString = new Array();
     for(let key in data){
         if (data[key] !== "")
@@ -127,7 +126,6 @@ function arrayToQueryString(data){
             {
                 data = data[key];
                 data.forEach((item) => {
-                    console.log(key + ' - ' + item);
                     queryString.push(key + '=' + encodeURIComponent(item));
                 })
             } else {
