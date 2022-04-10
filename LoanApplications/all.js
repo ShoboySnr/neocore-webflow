@@ -122,7 +122,7 @@ function arrayToQueryString(data){
     for(let key in data){
         if (data[key] !== "")
         {
-            console.log("log", data[key]);
+            console.log("log", key);
             if (data[key] != undefined && data[key].length > 1)
             {
                 data = data[key];
