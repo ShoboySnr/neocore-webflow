@@ -196,7 +196,7 @@ async function getSingleCustomer() {
             document.getElementById('wf-form-comments-form').addEventListener('submit', submitComment)
 
 
-            document.querySelectorAll('.closeModal').forEach(() => {
+            document.querySelectorAll('.closemodal').forEach(() => {
                 document.querySelectorAll('.CardModalContainer').forEach((element) => {
                     element.setAttribute('style', 'display:none;');
                 });
