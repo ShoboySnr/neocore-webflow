@@ -271,6 +271,18 @@ async function getSingleCustomer() {
                 deescalateFormAction()
             });
 
+            //add action to the decline request
+            document.getElementById('decline-request-submit-form').addEventListener('click', (event) => {
+                event.preventDefault();
+                declineUnDeclineApplication(document.getElementById('wf-form-DeclineRequestsForm'));
+            });
+
+            //add action to the decline request
+            document.getElementById('undecline-request-submit-form').addEventListener('click', (event) => {
+                event.preventDefault();
+                declineUnDeclineApplication(document.getElementById('wf-form-DeclineRequestsForm'), 'undecline');
+            });
+
             //add event listener to comments
             document.getElementById('wf-form-comments-form').addEventListener('submit', submitComment)
 
@@ -282,6 +294,9 @@ async function getSingleCustomer() {
                     });
                 })
             });
+
+            //populate reasons
+            getLoanDeclineReasons();
 
             let application_data = document.getElementById("w-tabs-1-data-w-pane-0");
 
