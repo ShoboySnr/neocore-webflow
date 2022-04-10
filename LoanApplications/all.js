@@ -50,6 +50,7 @@ async function getLoanApplications(e)
     let product_stage = returnSelected(document.getElementById("field-loan-applications-stage"));
     let status = returnSelected(document.getElementById("field-loan-applications-status"));
     let from = document.getElementById("name").value;
+    console.log(from);
     let to = document.getElementById("name-2").value;
     let valueArray = {
         "productid": product_id,
