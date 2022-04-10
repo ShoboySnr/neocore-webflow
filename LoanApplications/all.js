@@ -48,8 +48,6 @@ async function getLoanApplications(e)
     e.preventDefault();
     let product_id = returnSelected(document.getElementById("field-loan-applications-products"));
     let product_stage = returnSelected(document.getElementById("field-loan-applications-stage"));
-    product_stage = encodeURIComponent(product_stage);
-    console.log(decodeURIComponent(product_stage));
     let status = returnSelected(document.getElementById("field-loan-applications-status"));
     let from = document.getElementById("name").value;
     let to = document.getElementById("name-2").value;
@@ -60,9 +58,7 @@ async function getLoanApplications(e)
         "to": to,
         "status": status
     };
-    let searchParams = new URLSearchParams(valueArray);
     let queryString = arrayToQueryString(valueArray);
-    queryString = searchParams.toString();
     console.log(queryString);
     let endpoint = "/loanApplications?" + queryString;
     let request = await cbrRequest(endpoint, 'GET', true);
@@ -126,7 +122,15 @@ function arrayToQueryString(data){
     for(let key in data){
         if (data[key] !== "")
         {
-            queryString.push(key + '=' + encodeURIComponent(data[key]));
+            if (Array.isArray(data[key]))
+            {
+                data = data[key];
+                data.forEach((item) => {
+                    queryString.push(key + '=' + encodeURIComponent(item));
+                })
+            } else {
+                queryString.push(key + '=' + encodeURIComponent(data[key]));
+            }
         }
     }
     return queryString.join('&');
