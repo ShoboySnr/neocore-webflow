@@ -339,6 +339,7 @@ async function getSingleCustomer() {
             console.log(data);
 
             const customer_info = data.customer_info;
+            applicationFormField(data.form_info);
 
             document.getElementById("customer-name").textContent = customer_info.name;
             document.getElementById("customer-name-inner").textContent = customer_info.name;
