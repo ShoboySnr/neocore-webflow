@@ -425,6 +425,10 @@ async function getSingleCustomer() {
 
 document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
     element.addEventListener('click', (event) => {
+        console.log("event", event);
+        console.log("this", this);
+        console.log("disp", this.style.display);
+        console.log("elem", element)
         this.style.display = "none";
     });
 });
