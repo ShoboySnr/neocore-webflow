@@ -48,7 +48,8 @@ async function getLoanApplications(e)
     e.preventDefault();
     let product_id = returnSelected(document.getElementById("field-loan-applications-products"));
     let product_stage = returnSelected(document.getElementById("field-loan-applications-stage"));
-    console.log("component", encodeURIComponent(product_stage));
+    product_stage = encodeURIComponent(product_stage);
+    console.log(decodeURIComponent(product_stage));
     let status = returnSelected(document.getElementById("field-loan-applications-status"));
     let from = document.getElementById("name").value;
     let to = document.getElementById("name-2").value;
