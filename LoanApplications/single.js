@@ -49,6 +49,86 @@ const escalateFormAction = async () => {
      request.send(JSON.stringify(data));
 }
 
+const deescalateFormAction = async () => {
+    let target = document.getElementById('wf-form-DeescalateForm');
+
+    let formData = new FormData(target);
+    let comments = formData.get('deescalate-comment');
+
+    if(comments.length < 3) {
+        alert('De-Escalate Comment is required');
+        return;
+    }
+
+    const data = {
+        comments
+    }
+
+    let endpoint = `/loanApplications/${applicationID}/deescalate`
+    let request = await cbrRequest(endpoint, 'PUT', true);
+
+
+    request.onload = function() {
+        let result = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {
+            let data = result.data;
+
+            console.log(data);
+
+        } else {
+            const res = JSON.parse(request.response);
+            let message = res.message;
+            alert(message);
+            return;
+        }
+    }
+
+     //send request
+     request.send(JSON.stringify(data));
+}
+
+const submitComment = async (event) => {
+    event.preventDefault();
+
+    let target = event.target;
+
+    let formData = new FormData(target);
+    let comments = formData.get('comments');
+
+    if(comments.length < 3) {
+        alert('Comment is required');
+        return;
+    }
+
+    const data = {
+        comments
+    }
+
+    let endpoint = `/loanApplications/${applicationID}/comment`
+    let request = await cbrRequest(endpoint, 'POST', true);
+
+
+    request.onload = function() {
+        let result = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {
+            let data = result.data;
+
+            console.log(data);
+
+        } else {
+            const res = JSON.parse(request.response);
+            let message = res.message;
+            alert(message);
+            return;
+        }
+    }
+
+     //send request
+     request.send(JSON.stringify(data));
+}
+
 async function getSingleCustomer() {
     console.log(applicationID);
 
@@ -78,20 +158,43 @@ async function getSingleCustomer() {
             document.getElementById("customer-phone").textContent = customer_info.phone;
             document.getElementById("customer-id-validated").textContent = readValidity(customer_info.id_validated);
 
-            //add event listener to escalate buttons
-            document.getElementById('customer-escalate-action').addEventListener('click', (event) => {
-                event.preventDefault();
-                document.getElementById('modal-escalate').setAttribute('style', 'display:flex;');
+            //add event listener to open modals on click of the action buttons
+            document.querySelectorAll('.modal-action-button').forEach((element) => {
+                let el_id = element.getAttribute('id');
+                element.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    if(document.getElementById('modal-'+ el_id)) document.getElementById('modal-'+ el_id).setAttribute('style', 'display: flex;')
+                });
             });
 
+            //add event listener to escalate buttons
+            // document.getElementById('customer-escalate-action').addEventListener('click', (event) => {
+            //     event.preventDefault();
+            //     document.getElementById('modal-escalate').setAttribute('style', 'display:flex;');
+            // });
             //add action to the escalate form
-            document.getElementById('wf-form-EscalateForm').addEventListener('submit', escalateFormAction);
             document.getElementById('escalate-submit-form').addEventListener('click', (event) => {
                 event.preventDefault();
                 escalateFormAction()
-                // document.getElementById('wf-form-EscalateForm').submit();
-                return;
             });
+
+            //add event listener to deescalate buttons
+            // document.getElementById('customer-deescalate-action').addEventListener('click', (event) => {
+            //     event.preventDefault();
+            //     document.getElementById('modal-deescalate').setAttribute('style', 'display:flex;');
+            // });
+            //add action to the escalate form
+            document.getElementById('deescalate-submit-form').addEventListener('click', (event) => {
+                event.preventDefault();
+                deescalateFormAction()
+            });
+
+
+            //add event listener 
+
+            //add event listener to comments
+            document.getElementById('wf-form-comments-form').addEventListener('submit', submitComment)
+
 
             document.querySelectorAll('.closeModal').forEach(() => {
                 document.querySelectorAll('.CardModalContainer').forEach((element) => {
