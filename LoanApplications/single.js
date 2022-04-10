@@ -335,9 +335,11 @@ async function getSingleCustomer() {
         // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
+            alert(3213);
             fetch("https://shoboysnr.github.io/neocore-webflow/LoanApplications/sample-application.json")
                 .then(response => response.json())
                 .then((json) => {
+                    console.log(json);
                     data = json;
                 });
 
