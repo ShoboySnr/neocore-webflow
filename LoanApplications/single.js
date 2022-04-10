@@ -1,12 +1,3 @@
-// let json = import("./sample-application.json");
-
-// fetch("https://shoboysnr.github.io/neocore-webflow/LoanApplications/sample-application.json")
-//     .then(response => response.json())
-//     .then(function (json, response) {
-//         console.log("json", json);
-//         console.log("res", response)
-//     });
-// return;
 let myUrl = new URL(document.location.href)
 let applicationID = myUrl.searchParams.get("id")
 
@@ -345,6 +336,8 @@ async function getSingleCustomer() {
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
 
+            console.log(data);
+
             const customer_info = data.customer_info;
 
             document.getElementById("customer-name").textContent = customer_info.name;
@@ -406,7 +399,7 @@ async function getSingleCustomer() {
 
             let application_data = document.getElementById("w-tabs-1-data-w-pane-0");
 
-            document.getElementById('title-field-full-name').innerHTML += `${customer.FirstName} ${customer.LastName} ${customer.OtherNames || ''}`;
+            // document.getElementById('title-field-full-name').innerHTML += `${customer.FirstName} ${customer.LastName} ${customer.OtherNames || ''}`;
 
             return;
 
@@ -423,15 +416,20 @@ async function getSingleCustomer() {
     request.send();
 }
 
+// dismiss modal
 document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
     element.addEventListener('click', (event) => {
         event.target.style.display = "none";
-        // console.log("event", event);
-        // console.log("this", this);
-        // console.log("disp", this.style.display);
-        // console.log("elem", element)
-        // this.style.display = "none";
     });
+});
+
+document.addEventListener("keyup", (event) => {
+    if (event.key == "escape")
+    {
+        document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
+            element.target.style.display = "none";
+        })
+    }
 });
 
 
