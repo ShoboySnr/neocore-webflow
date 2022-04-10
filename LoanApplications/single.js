@@ -21,6 +21,10 @@ async function escalateFormAction () {
         return;
     }
 
+    const data = {
+        comments
+    }
+
     let endpoint = `/loanApplications/${applicationID}/escalate`
     let request = await cbrRequest(endpoint, 'PUT', true);
 
@@ -43,7 +47,7 @@ async function escalateFormAction () {
     }
 
      //send request
-     request.send();
+     request.send(JSON.stringify(data));
 }
 
 async function getSingleCustomer() {
