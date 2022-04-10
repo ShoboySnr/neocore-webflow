@@ -453,6 +453,9 @@ function applicationFormField(form_info)
             })
         }
         else {
+            if (typeof formValue == "object")
+                if (valueType == "name")
+                    fieldElement += '<p>' + formValue.firstName + ' ' + formValue.lastName;
             fieldElement += '<p>' + formValue;
         }
         fieldElement += '</p>';
