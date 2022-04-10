@@ -78,7 +78,8 @@ async function getSingleCustomer() {
             document.getElementById("customer-id-validated").textContent = readValidity(customer_info.id_validated);
 
             //add event listener to escalate buttons
-            document.getElementById('customer-escalate-action').addEventListener('click', () => {
+            document.getElementById('customer-escalate-action').addEventListener('click', (event) => {
+                event.preventDefault();
                 document.getElementById('modal-escalate').setAttribute('style', 'display:flex;');
             });
 
