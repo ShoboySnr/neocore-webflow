@@ -10,7 +10,7 @@
 let myUrl = new URL(document.location.href)
 let applicationID = myUrl.searchParams.get("id")
 
-async function escalateFormAction () {
+const escalateFormAction = async () => {
     let target = document.getElementById('wf-form-EscalateForm');
 
     let formData = new FormData(target);
