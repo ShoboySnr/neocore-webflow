@@ -59,7 +59,9 @@ async function getLoanApplications(e)
         "to": to,
         "status": status
     };
+    let searchParams = new URLSearchParams(valueArray);
     let queryString = arrayToQueryString(valueArray);
+    queryString = searchParams.toString();
     console.log(queryString);
     let endpoint = "/loanApplications?" + queryString;
     let request = await cbrRequest(endpoint, 'GET', true);
