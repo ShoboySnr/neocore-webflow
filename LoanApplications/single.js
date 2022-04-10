@@ -321,7 +321,7 @@ const getApplicationData = async () => {
     let data;
     fetch("https://shoboysnr.github.io/neocore-webflow/LoanApplications/sample-application.json")
         .then(response => response.json())
-        .then((json) => {
+        .then(json => {
             console.log(json);
             data = json;
         });
