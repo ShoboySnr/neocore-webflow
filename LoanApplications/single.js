@@ -337,7 +337,11 @@ async function getSingleCustomer() {
 
     const endpoint = `/loanApplications/${applicationID}`;
     console.log(endpoint);
-    let request = await cbrRequest(endpoint, 'GET', true)
+    let request = await cbrRequest(endpoint, 'GET', true);
+
+    const url = "https://shoboysnr.github.io/neocore-webflow/LoanApplications/sample-application.json";
+    const jsonRequest = await fetch(url);
+    let jsonData = await jsonRequest.json();
 
     request.onload = function() {
 
@@ -346,14 +350,7 @@ async function getSingleCustomer() {
         // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
-            alert(3213);
-            fetch("https://shoboysnr.github.io/neocore-webflow/LoanApplications/sample-application.json")
-                .then(response => response.json())
-                .then(json => {
-                    console.log(json);
-                    data = json;
-                });
-            // data = getApplicationData();
+            data = jsonData;
 
             console.log("some data", data);
 
