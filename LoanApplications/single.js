@@ -35,7 +35,8 @@ const escalateFormAction = async () => {
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
 
-            console.log(data);
+            alert('Successfully escalated this loan');
+            window.location.reload();
 
         } else {
             const res = JSON.parse(request.response);
@@ -74,7 +75,8 @@ const deescalateFormAction = async () => {
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
 
-            console.log(data);
+            alert('Successfully De-escalated this loan');
+            window.location.reload();
 
         } else {
             const res = JSON.parse(request.response);
@@ -115,7 +117,8 @@ const submitComment = async (event) => {
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
 
-            console.log(data);
+            alert('Successfully submitted comments');
+            window.location.reload();
 
         } else {
             const res = JSON.parse(request.response);
