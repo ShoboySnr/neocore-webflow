@@ -14,15 +14,15 @@ const escalateFormAction = async () => {
     let target = document.getElementById('wf-form-EscalateForm');
 
     let formData = new FormData(target);
-    let comments = formData.get('escalate-comment');
+    let comment = formData.get('escalate-comment');
 
-    if(comments.length < 3) {
+    if(comment.length < 3) {
         alert('Escalate Comment is required');
         return;
     }
 
     const data = {
-        comments
+        comment
     }
 
     let endpoint = `/loanApplications/${applicationID}/escalate`
@@ -53,15 +53,15 @@ const deescalateFormAction = async () => {
     let target = document.getElementById('wf-form-DeescalateForm');
 
     let formData = new FormData(target);
-    let comments = formData.get('deescalate-comment');
+    let comment = formData.get('deescalate-comment');
 
-    if(comments.length < 3) {
+    if(comment.length < 3) {
         alert('De-Escalate Comment is required');
         return;
     }
 
     const data = {
-        comments
+        comment
     }
 
     let endpoint = `/loanApplications/${applicationID}/deescalate`
@@ -94,15 +94,15 @@ const submitComment = async (event) => {
     let target = event.target;
 
     let formData = new FormData(target);
-    let comments = formData.get('comments');
+    let comment = formData.get('comments');
 
-    if(comments.length < 3) {
+    if(comment.length < 3) {
         alert('Comment is required');
         return;
     }
 
     const data = {
-        comments
+        comment
     }
 
     let endpoint = `/loanApplications/${applicationID}/comment`
@@ -166,6 +166,8 @@ function populateDeclineUnDeclineSelect(reasons, parent_el) {
         })
     }
 }
+
+const getLoanApplicationRecommendationOptions = asyn
 
 
 const declineUnDeclineApplication = async (target, path = 'decline') => {

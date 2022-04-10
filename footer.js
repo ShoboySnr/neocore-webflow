@@ -70,7 +70,7 @@ function logOut() {
 }
 
 
-async function cbrRequest(endpoint, method, async, idtoken = '', payload) {
+async function cbrRequest(endpoint, method, async, payload) {
     let baseUrl = new URL('https://api.vault.ng/cbr');
     let request = new XMLHttpRequest();
     let url = baseUrl.toString() + endpoint;
