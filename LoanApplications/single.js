@@ -416,6 +416,31 @@ async function getSingleCustomer() {
     request.send();
 }
 
+function applicationFormField(form_info)
+{
+    // <div>
+    //     <div className="profile-info-heading"><strong>Field_label</strong></div>
+    //     <p>Contents</p></div>
+    let applicationDataContainer = document.getElementById("w-tabs-1-data-w-pane-0");
+    form_info.forEach((form) => {
+        let fieldElement = '<div><div className="profile-info-heading"><strong>`${form.field_label}`</strong></div>';
+        const formValue = form.value;
+        const valueType = form.type;
+        fieldElement += '<p>';
+        if (Array.isArray(formValue))
+        {
+            formValue.forEach((value) => {
+                fieldElement += '- `${formValue} <br>'
+            })
+        }
+        else {
+            fieldElement += '<p> `${formValue}`';
+        }
+        fieldElement += '</p></div>';
+        applicationDataContainer.appendChild(fieldElement);
+    });
+}
+
 // dismiss modal
 document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
     element.addEventListener('click', (event) => {
