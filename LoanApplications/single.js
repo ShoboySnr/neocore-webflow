@@ -190,6 +190,90 @@ const getLoanApplicationRecommendationOptions = async () => {
 }
 
 
+const addRecommendations = async () => {
+    let target = document.getElementById('wf-form-Recommendation-Form');
+
+    let formData = new FormData(target);
+    let amount = parseInt(formData.get('amount'));
+    let product_id = formData.get('product_id');
+    let interest_id = formData.get('interest_id');
+    let days = parseInt(formData.get('days'));
+    let fees_id = formData.get('fees_id');
+    let notes = formData.get('notes');
+
+    let msg = '';
+    let count = 0;
+
+    if(amount == '' || amount.length < 2) {
+        msg += 'Amount is required \n';
+        count += 1;
+    }
+
+    if(product_id == '' || amount.length < 2) {
+        msg += 'Select a specific product \n';
+        count += 1;
+    }
+
+    if(days == '' || days.length < 1) {
+        msg += 'Enter the number of days \n';
+        count += 1;
+    }
+
+    if(interest_id == '' || interest_id.length < 1) {
+        msg += 'Select a specific interest \n';
+        count += 1;
+    }
+
+    if(fees_id == '' || fees_id.length < 1) {
+        msg += 'Select at least one fee \n';
+        count += 1;
+    }
+
+    if(notes == '' || notes.length < 1) {
+        msg += 'Enter Notes \n';
+        count += 1;
+    }
+
+    if(count > 0) {
+        alert(msg);
+        return;
+    }
+
+    const data = {
+        amount,
+        product_id,
+        interest_id,
+        days,
+        fees_id,
+        notes
+    }
+
+    let endpoint = `/loanApplications/${applicationID}/recommend`
+    let request = await cbrRequest(endpoint, 'POST', true);
+
+
+    request.onload = function() {
+        let result = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {
+            let data = result.data;
+
+            alert('Successfully added a recommendation');
+            window.location.reload();
+
+        } else {
+            const res = JSON.parse(request.response);
+            let message = res.message;
+            alert(message);
+            return;
+        }
+    }
+
+     //send request
+     request.send(JSON.stringify(data));
+
+}
+
 const declineUnDeclineApplication = async (target, path = 'decline') => {
     let formData = new FormData(target);
     let reason = formData.get('reason');
