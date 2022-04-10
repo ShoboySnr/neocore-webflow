@@ -129,6 +129,97 @@ const submitComment = async (event) => {
      request.send(JSON.stringify(data));
 }
 
+const getLoanDeclineReasons = async () => {
+    let request = await cbrRequest('/loanDeclineReasons', 'GET', true);
+
+    request.onload = () => {
+
+        let result = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {
+            let data = data.data;
+
+            let reasons_for_declining = data.reasons_for_declining;
+            let reasons_for_undeclining = data.reasons_for_undeclining;
+
+            populateDeclineUnDeclineSelect(reasons_for_declining, document.getElementById('decline-requests-options'));
+            populateDeclineUnDeclineSelect(reasons_for_undeclining, document.getElementById('undecline-requests-options'));
+        }
+
+    }
+
+    //send request
+    request.send();
+}
+
+function populateDeclineUnDeclineSelect(reasons, parent_el) {
+    parent_el.innerHTML = '';
+
+    if(reasons && reasons.length > 0) {
+        reasons.forEach((element) => {
+            let option = document.createElement("option");
+
+            option.value= di.stage_id;
+            option.innerHTML = di.stage_name;
+
+            parent_el.appendChild(option);
+        })
+    }
+}
+
+
+const declineUnDeclineApplication = async (target, path = 'decline') => {
+    let formData = new FormData(target);
+    let reason = formData.get('reason');
+    let message_customer = formData.get('message_customer');
+
+    let msg = '';
+    let count = 0;
+
+    if(reason.length < 2) {
+        msg += 'Select a Decline request \n';
+        count += 1;
+    }
+
+    if(message_customer.length < 2) {
+        msg += 'Enter Decline Comments \n';
+        count += 1;
+    }
+
+    if(count > 0) {
+        alert(msg);
+        return;
+    }
+
+    const data = {
+        reason,
+        message_customer
+    }
+
+    let endpoint = `/loanApplications/${applicationID}/${path}`
+    let request = await cbrRequest(endpoint, 'PUT', true);
+
+
+    request.onload = function() {
+        let result = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {
+            let data = result.data;
+
+            console.log(data);
+
+        } else {
+            const res = JSON.parse(request.response);
+            let message = res.message;
+            alert(message);
+            return;
+        }
+    }
+
+     //send request
+     request.send(JSON.stringify(data));
+}
+
 async function getSingleCustomer() {
     console.log(applicationID);
 
