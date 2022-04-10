@@ -167,7 +167,24 @@ function populateDeclineUnDeclineSelect(reasons, parent_el) {
     }
 }
 
-const getLoanApplicationRecommendationOptions = asyn
+const getLoanApplicationRecommendationOptions = async () => {
+    let request = await cbrRequest(`/loanApplications/${applicationID}/recommend`, 'GET', true);
+
+    request.onload = () => {
+
+        let result = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {
+            let data = data.data;
+
+            console.log(data);
+        }
+
+    }
+
+    //send request
+    request.send();
+}
 
 
 const declineUnDeclineApplication = async (target, path = 'decline') => {
@@ -299,6 +316,7 @@ async function getSingleCustomer() {
 
             //populate reasons
             getLoanDeclineReasons();
+            getLoanApplicationRecommendationOptions();
 
             let application_data = document.getElementById("w-tabs-1-data-w-pane-0");
 
