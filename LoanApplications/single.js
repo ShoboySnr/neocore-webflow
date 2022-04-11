@@ -471,7 +471,7 @@ function creditHistory(credit_history)
         //    table update
             let receiptTable = sourceTab.getElementsByClassName("receipt-table");
             let sampleRow = sourceTab.querySelectorAll(".receipt-row")[1];//[0];
-            const sampleRowClone = sampleRow.cloneNode();
+            const sampleRowClone = sampleRow.cloneNode(true);
             sampleRow.remove();
 
             sampleRowClone.getElementsByClassName("card-setting-text")[0].innerText = counter;
