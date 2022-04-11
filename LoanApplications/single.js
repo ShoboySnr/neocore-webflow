@@ -467,18 +467,26 @@ function creditHistory(credit_history)
         let sourceTabColOne = sourceTabCols[0];
         let sourceTabColTwo = sourceTabCols[1];
         let sourceTabColOneItems = sourceTabColOne.querySelectorAll("h6");
+        let sourceTabColTwoItems = sourceTabColTwo.querySelectorAll("h6");
         setContent(sourceTabColOneItems[0]);
         if (history.status == "closed") setContent(sourceTabColOneItems[1]);
         if (history.status == "open") setContent(sourceTabColOneItems[2]);
         if (history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
+        let outstanding = parseFloat(history.amount) - parseFloat(history.balance);
+        setContent(sourceTabColTwoItems[0], history.amount);
+        setContent(sourceTabColTwoItems[1], outstanding);
+        setContent(sourceTabColTwoItems[2], history.amount_overdue);
     });
 }
 
-function setContent(item)
+function setContent(item, value)
 {
     let content = item.innerText.split(":");
     content[1] = content[1] == ''  ? 0 : content[1];
-    content[1]++;
+    if (value)
+        content[1] += parseFloat(value);
+    else
+        content[1]++;
     content = content.join(": ");
     item.innerText = content;
 }
