@@ -49,7 +49,7 @@
       "status": "Open",
       "balance": 8444,
       "amount_overdue": 400,
-      "classification": "Non Performing",
+      "classification": "Performing",
       "disbursal_date": "02-NOV-2022",
       "maturity_date": "02-NOV-2024",
       "source": "CRCFULL",
