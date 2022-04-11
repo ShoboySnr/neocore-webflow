@@ -450,13 +450,14 @@ function creditHistory(credit_history)
     const sourceList = [crcFullSource, crcNanoSource, firstCentralSource];
 
     sourceList.forEach(mySource => {
+        let sourceTabColTwoItems;
         mySource.forEach((history) => {
             const source = history.source.toLowerCase();
             const sourceTabId = source + "-tab";
             let sourceTab = document.getElementById(sourceTabId);
             let sourceTabCols = sourceTab.querySelectorAll(".w-col-6");
             let sourceTabColOneItems = sourceTabCols[0].querySelectorAll("h6");
-            let sourceTabColTwoItems = sourceTabCols[1].querySelectorAll("h6");
+            sourceTabColTwoItems = sourceTabCols[1].querySelectorAll("h6");
             setContent(sourceTabColOneItems[0]);
             if (history.status.toLowerCase() == "closed") setContent(sourceTabColOneItems[1]);
             if (history.status.toLowerCase() == "open") setContent(sourceTabColOneItems[2]);
@@ -466,6 +467,9 @@ function creditHistory(credit_history)
             setContent(sourceTabColTwoItems[1], outstanding);
             setContent(sourceTabColTwoItems[2], history.amount_overdue, "over");
         });
+        let balance = sourceTabColTwoItems[0].innerText.split(": ");
+        format_currency(balance[1]);
+        balance.join(": ");
     });
 }
 
