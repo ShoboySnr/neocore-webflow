@@ -458,10 +458,7 @@ function creditHistory(credit_history)
     let firstCentralSource = credit_history.filter(function(ch) {
         return ch.source.toLowerCase() === "firstcentral";
     });
-    console.log(crcFullSource);
 
-
-    return;
     crcFullSource.forEach((history) => {
         const source = history.source.toLowerCase();
         const sourceTabId = source + "-tab";

@@ -65,6 +65,19 @@
       "classification": "Non Performing",
       "disbursal_date": "02-NOV-2022",
       "maturity_date": "02-NOV-2024",
+      "source": "CRCFULL",
+      "report_date": "22-MAR-2022",
+      "refreshed_on": "22-MAR-2022"
+    },
+    {
+      "institution": "Carbon",
+      "amount": 58444,
+      "status": "Open",
+      "balance": 8444,
+      "amount_overdue": 400,
+      "classification": "Non Performing",
+      "disbursal_date": "02-NOV-2022",
+      "maturity_date": "02-NOV-2024",
       "source": "CRCNANO",
       "report_date": "22-MAR-2022",
       "refreshed_on": "22-MAR-2022"
