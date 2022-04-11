@@ -46,17 +46,17 @@ searchForm.addEventListener("submit", getLoanApplications);
 async function getLoanApplications(e)
 {
     e.preventDefault();
-    let product_id = returnSelected(document.getElementById("field-loan-applications-products"));
-    let product_stage = returnSelected(document.getElementById("field-loan-applications-stage"));
+    let productid = returnSelected(document.getElementById("field-loan-applications-products"));
+    let stage = returnSelected(document.getElementById("field-loan-applications-stage"));
     let status = returnSelected(document.getElementById("field-loan-applications-status"));
     let from = document.getElementById("name").value;
     let to = document.getElementById("name-2").value;
     let valueArray = {
-        "productid": product_id,
-        "stage": product_stage,
-        "from": from,
-        "to": to,
-        "status": status
+        productid,
+        stage,
+        from,
+        to,
+        status
     };
     let queryString = arrayToQueryString(valueArray);
     let endpoint = "/loanApplications?" + queryString;
