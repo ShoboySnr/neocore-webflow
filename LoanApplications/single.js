@@ -471,6 +471,8 @@ function creditHistory(credit_history)
         setContent(sourceTabColOneItems[0]);
         if (history.status == "closed") setContent(sourceTabColOneItems[1]);
         if (history.status == "open") setContent(sourceTabColOneItems[2]);
+        console.log("status", history.status);
+        console.log(history.status == 'closed');
         if (history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
         let outstanding = parseFloat(history.amount) - parseFloat(history.balance);
         setContent(sourceTabColTwoItems[0], history.amount);
@@ -482,7 +484,7 @@ function creditHistory(credit_history)
 function setContent(item, value)
 {
     let content = item.innerText.split(":");
-    content[1] = content[1] == ''  ? 0 : content[1];
+    content[1] = content[1] == ''  ? 0 : parseFloat(content[1]);
     if (value)
         content[1] += parseFloat(value);
     else
