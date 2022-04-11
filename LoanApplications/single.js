@@ -457,8 +457,8 @@ function creditHistory(credit_history)
         let sourceTabColTwo = sourceTabCols[1];
         let sourceTabColOneItems = sourceTabColOne.querySelectorAll("h6");
         sourceTabColOneItems.forEach(item => {
-            console.log(item);
-            console.log(item[0]);
+            let content = item.innerText.split(":");
+            console.log(content);
         });
     });
 }
