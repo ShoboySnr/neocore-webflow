@@ -453,12 +453,14 @@ function creditHistory(credit_history)
         const sourceTabId = source + "-tab";
         let sourceTab = document.getElementById(sourceTabId);
         let sourceTabCols = sourceTab.querySelectorAll(".w-col-6");
-        console.log("cols", sourceTabCols);
         let sourceTabColOne = sourceTabCols[0];
         let sourceTabColTwo = sourceTabCols[1];
-        sourceTabColOne.querySelectorAll("h6");
-        console.log("col", sourceTabColOne);
-    })
+        let sourceTabColOneItems = sourceTabColOne.querySelectorAll("h6");
+        sourceTabColOneItems.forEach(item => {
+            console.log(item);
+            console.log(item[0]);
+        });
+    });
 }
 
 function applicationFormField(form_info)
