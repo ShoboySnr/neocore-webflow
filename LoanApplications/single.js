@@ -452,20 +452,23 @@ function creditHistory(credit_history)
         const sourceTabId = source + "-tab";
         let sourceTab = document.getElementById(sourceTabId);
         let sourceTabCols = sourceTab.querySelectorAll(".w-col-6");
-        setContent(sourceTabCols[0][0]);
-        if (history.status.toLowerCase() == "closed") setContent(sourceTabCols[0][1]);
-        if (history.status.toLowerCase() == "open") setContent(sourceTabCols[0][2]);
-        if (history.classification == "Non Performing") setContent(sourceTabCols[0][3]);
+        let sourceTabColOneItems = sourceTabCols[0].querySelectorAll("h6");
+        let sourceTabColTwoItems = sourceTabCols[1].querySelectorAll("h6");
+        setContent(sourceTabColOneItems[0]);
+        if (history.status.toLowerCase() == "closed") setContent(sourceTabColOneItems[1]);
+        if (history.status.toLowerCase() == "open") setContent(sourceTabColOneItems[2]);
+        if (history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
         let outstanding = parseFloat(history.amount) - parseFloat(history.balance);
-        let sectionTwo = [history.amount, outstanding, history.amount_overdue];
-        for (let i in sectionTwo) setContent(sourceTabCols[1][i], sectionTwo[i]);
+        setContent(sourceTabColTwoItems[0], history.amount);
+        setContent(sourceTabColTwoItems[1], outstanding);
+        setContent(sourceTabColTwoItems[2], history.amount_overdue, "over");
     });
 }
 
 function setContent(item, value, type)
 {
     let content = item.innerText.split(":");
-    if (type) console.log("Con", content);
+    if (type) console.log("Content", content);
     content[1] = (content[1] == '' || content[1] == NaN)  ? 0 : parseFloat(content[1]);
     if (type) console.log(value);
     if (value)
