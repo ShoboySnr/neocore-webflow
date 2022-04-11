@@ -447,22 +447,76 @@ function creditHistory(credit_history)
         return ch.source.toLowerCase() === "firstcentral";
     });
 
-    crcFullSource.forEach((history) => {
-        const source = history.source.toLowerCase();
-        const sourceTabId = source + "-tab";
-        let sourceTab = document.getElementById(sourceTabId);
-        let sourceTabCols = sourceTab.querySelectorAll(".w-col-6");
-        let sourceTabColOneItems = sourceTabCols[0].querySelectorAll("h6");
-        let sourceTabColTwoItems = sourceTabCols[1].querySelectorAll("h6");
-        setContent(sourceTabColOneItems[0]);
-        if (history.status.toLowerCase() == "closed") setContent(sourceTabColOneItems[1]);
-        if (history.status.toLowerCase() == "open") setContent(sourceTabColOneItems[2]);
-        if (history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
-        let outstanding = parseFloat(history.amount) - parseFloat(history.balance);
-        setContent(sourceTabColTwoItems[0], history.amount);
-        setContent(sourceTabColTwoItems[1], outstanding);
-        setContent(sourceTabColTwoItems[2], history.amount_overdue, "over");
-    });
+    const sourceList = [crcFullSource, crcNanoSource, firstCentralSource];
+
+    sourceList.forEach(mySource => {
+        mySource.forEach((history) => {
+            const source = history.source.toLowerCase();
+            const sourceTabId = source + "-tab";
+            let sourceTab = document.getElementById(sourceTabId);
+            let sourceTabCols = sourceTab.querySelectorAll(".w-col-6");
+            let sourceTabColOneItems = sourceTabCols[0].querySelectorAll("h6");
+            let sourceTabColTwoItems = sourceTabCols[1].querySelectorAll("h6");
+            setContent(sourceTabColOneItems[0]);
+            if (history.status.toLowerCase() == "closed") setContent(sourceTabColOneItems[1]);
+            if (history.status.toLowerCase() == "open") setContent(sourceTabColOneItems[2]);
+            if (history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
+            let outstanding = parseFloat(history.amount) - parseFloat(history.balance);
+            setContent(sourceTabColTwoItems[0], history.amount);
+            setContent(sourceTabColTwoItems[1], outstanding);
+            setContent(sourceTabColTwoItems[2], history.amount_overdue, "over");
+        });
+    })
+    // crcFullSource.forEach((history) => {
+    //     const source = history.source.toLowerCase();
+    //     const sourceTabId = source + "-tab";
+    //     let sourceTab = document.getElementById(sourceTabId);
+    //     let sourceTabCols = sourceTab.querySelectorAll(".w-col-6");
+    //     let sourceTabColOneItems = sourceTabCols[0].querySelectorAll("h6");
+    //     let sourceTabColTwoItems = sourceTabCols[1].querySelectorAll("h6");
+    //     setContent(sourceTabColOneItems[0]);
+    //     if (history.status.toLowerCase() == "closed") setContent(sourceTabColOneItems[1]);
+    //     if (history.status.toLowerCase() == "open") setContent(sourceTabColOneItems[2]);
+    //     if (history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
+    //     let outstanding = parseFloat(history.amount) - parseFloat(history.balance);
+    //     setContent(sourceTabColTwoItems[0], history.amount);
+    //     setContent(sourceTabColTwoItems[1], outstanding);
+    //     setContent(sourceTabColTwoItems[2], history.amount_overdue, "over");
+    // });
+    //
+    // crcNanoSource.forEach((history) => {
+    //     const source = history.source.toLowerCase();
+    //     const sourceTabId = source + "-tab";
+    //     let sourceTab = document.getElementById(sourceTabId);
+    //     let sourceTabCols = sourceTab.querySelectorAll(".w-col-6");
+    //     let sourceTabColOneItems = sourceTabCols[0].querySelectorAll("h6");
+    //     let sourceTabColTwoItems = sourceTabCols[1].querySelectorAll("h6");
+    //     setContent(sourceTabColOneItems[0]);
+    //     if (history.status.toLowerCase() == "closed") setContent(sourceTabColOneItems[1]);
+    //     if (history.status.toLowerCase() == "open") setContent(sourceTabColOneItems[2]);
+    //     if (history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
+    //     let outstanding = parseFloat(history.amount) - parseFloat(history.balance);
+    //     setContent(sourceTabColTwoItems[0], history.amount);
+    //     setContent(sourceTabColTwoItems[1], outstanding);
+    //     setContent(sourceTabColTwoItems[2], history.amount_overdue, "over");
+    // });
+    //
+    // firstCentralSource.forEach((history) => {
+    //     const source = history.source.toLowerCase();
+    //     const sourceTabId = source + "-tab";
+    //     let sourceTab = document.getElementById(sourceTabId);
+    //     let sourceTabCols = sourceTab.querySelectorAll(".w-col-6");
+    //     let sourceTabColOneItems = sourceTabCols[0].querySelectorAll("h6");
+    //     let sourceTabColTwoItems = sourceTabCols[1].querySelectorAll("h6");
+    //     setContent(sourceTabColOneItems[0]);
+    //     if (history.status.toLowerCase() == "closed") setContent(sourceTabColOneItems[1]);
+    //     if (history.status.toLowerCase() == "open") setContent(sourceTabColOneItems[2]);
+    //     if (history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
+    //     let outstanding = parseFloat(history.amount) - parseFloat(history.balance);
+    //     setContent(sourceTabColTwoItems[0], history.amount);
+    //     setContent(sourceTabColTwoItems[1], outstanding);
+    //     setContent(sourceTabColTwoItems[2], history.amount_overdue, "over");
+    // });
 }
 
 function setContent(item, value, type)
