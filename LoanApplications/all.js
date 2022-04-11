@@ -143,10 +143,10 @@ function arrayToQueryString(data){
             {
                 queryString.push(key + '=' + encodeURIComponent(data[key]));
             } else {
-                dataItem = JSON.parse(dataItem);
-                dataItem.forEach(item => {
+                for (let item in dataItem)
+                {
                     queryString.push(key + '=' + encodeURIComponent(item));
-                });
+                }
             }
         }
     }
