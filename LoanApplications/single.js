@@ -450,14 +450,15 @@ function creditHistory(credit_history)
     const sourceList = [crcFullSource, crcNanoSource, firstCentralSource];
 
     sourceList.forEach(mySource => {
-        let sourceTabColTwoItems;
+        let counter = 0;
         mySource.forEach((history) => {
+            counter++;
             const source = history.source.toLowerCase();
             const sourceTabId = source + "-tab";
             let sourceTab = document.getElementById(sourceTabId);
             let sourceTabCols = sourceTab.querySelectorAll(".w-col-6");
             let sourceTabColOneItems = sourceTabCols[0].querySelectorAll("h6");
-            sourceTabColTwoItems = sourceTabCols[1].querySelectorAll("h6");
+            let sourceTabColTwoItems = sourceTabCols[1].querySelectorAll("h6");
             setContent(sourceTabColOneItems[0]);
             if (history.status.toLowerCase() == "closed") setContent(sourceTabColOneItems[1]);
             if (history.status.toLowerCase() == "open") setContent(sourceTabColOneItems[2]);
@@ -466,10 +467,21 @@ function creditHistory(credit_history)
             setContent(sourceTabColTwoItems[0], history.amount);
             setContent(sourceTabColTwoItems[1], outstanding);
             setContent(sourceTabColTwoItems[2], history.amount_overdue, "over");
+
+        //    table update
+            let receiptTable = sourceTab.document.getElementsByClassName("receipt-table");
+            let sampleRow = receiptTable.document.getElementsByClassName("receipt-row")[0];
+            const sampleRowClone = sampleRow.cloneNode();
+            sampleRow.remove();
+
+            sampleRowClone.document.getElementsByClassName("card-setting-text")[0].innerText = counter;
+            sampleRowClone.document.getElementsByClassName("card-setting-text")[1].innerText = history.institution;
+            sampleRowClone.document.getElementsByClassName("card-setting-text")[2].innerText = format_currency(history.amount);
+            sampleRowClone.document.getElementsByClassName("card-setting-text")[3].innerText = history.disbursal_date;
+            sampleRowClone.document.getElementsByClassName("card-setting-text")[4].innerText = history.maturity_date;
+            sampleRowClone.document.getElementsByClassName("card-setting-text")[5].innerText = history.amount_overdue;
+            sampleRowClone.document.getElementsByClassName("card-setting-text")[6].innerText = history.balance;
         });
-        let balance = sourceTabColTwoItems[0].innerText.split(": ");
-        format_currency(balance[1]);
-        balance.join(": ");
     });
 }
 
