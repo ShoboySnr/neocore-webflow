@@ -464,34 +464,28 @@ function creditHistory(credit_history)
         const sourceTabId = source + "-tab";
         let sourceTab = document.getElementById(sourceTabId);
         let sourceTabCols = sourceTab.querySelectorAll(".w-col-6");
-        let sourceTabColOne = sourceTabCols[0];
-        let sourceTabColTwo = sourceTabCols[1];
-        let sourceTabColOneItems = sourceTabColOne.querySelectorAll("h6");
-        let sourceTabColTwoItems = sourceTabColTwo.querySelectorAll("h6");
+        // let sourceTabColOne = sourceTabCols[0];
+        // let sourceTabColTwo = sourceTabCols[1];
+        let sourceTabColOneItems = sourceTabCols[0].querySelectorAll("h6");
+        let sourceTabColTwoItems = sourceTabCols[1].querySelectorAll("h6");
         setContent(sourceTabColOneItems[0]);
-        if (history.status.toLowerCase() == "closed")
-        {
-            setContent(sourceTabColOneItems[1], 1);
-            setContent(sourceTabColOneItems[2], 0);
-        } else {
-            setContent(sourceTabColOneItems[2], 1);
-            setContent(sourceTabColOneItems[1], 0);
-        }
+        if (history.status.toLowerCase() == "closed") setContent(sourceTabColOneItems[1]);
+        if (history.status.toLowerCase() == "open") setContent(sourceTabColOneItems[2]);
         console.log("status", history.status);
         console.log(history.status == 'closed');
         if (history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
         let outstanding = parseFloat(history.amount) - parseFloat(history.balance);
         setContent(sourceTabColTwoItems[0], history.amount);
         setContent(sourceTabColTwoItems[1], outstanding);
-        setContent(sourceTabColTwoItems[2], history.amount_overdue);
-        console.log("over", history.amount_overdue);
+        setContent(sourceTabColTwoItems[2], history.amount_overdue, "over");
     });
 }
 
-function setContent(item, value)
+function setContent(item, value, type)
 {
     let content = item.innerText.split(":");
     content[1] = content[1] == ''  ? 0 : parseFloat(content[1]);
+    if (type) console.log(content);
     if (value)
         content[1] += parseFloat(value);
     else
