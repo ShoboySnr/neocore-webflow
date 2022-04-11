@@ -458,7 +458,10 @@ function creditHistory(credit_history)
         let sourceTabColOneItems = sourceTabColOne.querySelectorAll("h6");
         sourceTabColOneItems.forEach(item => {
             let content = item.innerText.split(":");
-            console.log(content);
+            content[1] = content[1] == ''  ? 0 : content[1];
+            content[1]++;
+            content = content.join(": ");
+            item.innerText = content;
         });
     });
 }
