@@ -469,8 +469,8 @@ function creditHistory(credit_history)
         let sourceTabColOneItems = sourceTabColOne.querySelectorAll("h6");
         let sourceTabColTwoItems = sourceTabColTwo.querySelectorAll("h6");
         setContent(sourceTabColOneItems[0]);
-        if (history.status == "closed") setContent(sourceTabColOneItems[1]);
-        if (history.status == "open") setContent(sourceTabColOneItems[2]);
+        if (history.status.toLowerCase() == "closed") setContent(sourceTabColOneItems[1]);
+        if (history.status.toLowerCase() == "open") setContent(sourceTabColOneItems[2]);
         console.log("status", history.status);
         console.log(history.status == 'closed');
         if (history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
