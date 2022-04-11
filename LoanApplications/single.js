@@ -448,7 +448,21 @@ function creditHistory(credit_history)
     let crcFullTabContainer = document.getElementById("crcfull-tab");
     let crcNanoTabContainer = document.getElementById("crcnano-tab");
     let firstCentralTabContainer = document.getElementById("firstcentral-tab");
-    credit_history.forEach((history) => {
+    //group each into diff source arrays using map
+    let crcFullSource = credit_history.filter(function(ch) {
+        return ch.source.toLowerCase() === "crcfull";
+    });
+    let crcNanoSource = credit_history.filter(function(ch) {
+        return ch.source.toLowerCase() === "crcnano";
+    });
+    let firstCentralSource = credit_history.filter(function(ch) {
+        return ch.source.toLowerCase() === "firstcentral";
+    });
+    console.log(crcFullSource);
+
+
+    return;
+    crcFullSource.forEach((history) => {
         const source = history.source.toLowerCase();
         const sourceTabId = source + "-tab";
         let sourceTab = document.getElementById(sourceTabId);
@@ -456,14 +470,20 @@ function creditHistory(credit_history)
         let sourceTabColOne = sourceTabCols[0];
         let sourceTabColTwo = sourceTabCols[1];
         let sourceTabColOneItems = sourceTabColOne.querySelectorAll("h6");
-        sourceTabColOneItems.forEach(item => {
-            let content = item.innerText.split(":");
-            content[1] = content[1] == ''  ? 0 : content[1];
-            content[1]++;
-            content = content.join(": ");
-            item.innerText = content;
-        });
+        setContent(sourceTabColOneItems[0]);
+        if (credit_history.status == "closed") setContent(sourceTabColOneItems[1]);
+        if (credit_history.status == "open") setContent(sourceTabColOneItems[2]);
+        if (credit_history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
     });
+}
+
+function setContent(item)
+{
+    let content = item.innerText.split(":");
+    content[1] = content[1] == ''  ? 0 : content[1];
+    content[1]++;
+    content = content.join(": ");
+    item.innerText = content;
 }
 
 function applicationFormField(form_info)
