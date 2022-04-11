@@ -472,7 +472,6 @@ function creditHistory(credit_history)
             sampleRow.style.display = "none";
 
             let sn = sampleRowClone.getElementsByTagName("div")[0];
-            console.log(sn);
             sn.textContent = counter;
             let institution = sampleRowClone.getElementsByTagName("div")[1];
             institution.textContent = history.institution;
@@ -481,6 +480,8 @@ function creditHistory(credit_history)
             sampleRowClone.getElementsByTagName("div")[4].innerText = history.maturity_date;
             sampleRowClone.getElementsByTagName("div")[5].innerText = history.amount_overdue;
             sampleRowClone.getElementsByTagName("div")[6].innerText = history.balance;
+            console.log(sampleRowClone);
+            receiptTable.appendChild(sampleRowClone);
         });
     });
 }
