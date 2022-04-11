@@ -472,6 +472,7 @@ function creditHistory(credit_history)
             // sampleRow.remove();
 
             let sn = sampleRowClone.getElementsByTagName("div")[0];
+            console.log(sn);
             sn.textContent = counter;
             let institution = sampleRowClone.getElementsByTagName("div")[1];
             institution.textContent = history.institution;
