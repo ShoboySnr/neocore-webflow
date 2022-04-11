@@ -456,7 +456,7 @@ function creditHistory(credit_history)
         console.log("cols", sourceTabCols);
         let sourceTabColOne = sourceTabCols[0];
         let sourceTabColTwo = sourceTabCols[1];
-        sourceTabColOne.getElementsByTagName("h6");
+        sourceTabColOne.querySelectorAll("h6");
         console.log("col", sourceTabColOne);
     })
 }
