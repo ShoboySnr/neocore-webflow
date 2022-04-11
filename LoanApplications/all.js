@@ -140,10 +140,14 @@ function arrayToQueryString(data){
             // }
             let dataItem = data[key];
             if (typeof dataItem === 'string')
+            {
                 queryString.push(key + '=' + encodeURIComponent(data[key]));
-            dataItem.forEach(item => {
-                queryString.push(key + '=' + encodeURIComponent(item));
-            });
+            } else {
+                dataItem = JSON.parse(dataItem);
+                dataItem.forEach(item => {
+                    queryString.push(key + '=' + encodeURIComponent(item));
+                });
+            }
         }
     }
     return queryString.join('&');
