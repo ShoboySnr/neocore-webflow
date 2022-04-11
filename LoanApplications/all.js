@@ -126,15 +126,16 @@ function arrayToQueryString(data){
         // console.log("log", data[key]);
         if (data[key] !== "")
         {
-            if (data[key] != undefined && data[key].length > 1)
-            {
-                data = data[key];
-                data.forEach((item) => {
-                    queryString.push(key + '=' + encodeURIComponent(item));
-                })
-            } else {
-                queryString.push(key + '=' + encodeURIComponent(data[key]));
-            }
+            // if (data[key] != undefined && data[key].length > 1)
+            // {
+            //     data = data[key];
+            //     data.forEach((item) => {
+            //         queryString.push(key + '=' + encodeURIComponent(item));
+            //     })
+            // } else {
+            //     queryString.push(key + '=' + encodeURIComponent(data[key]));
+            // }
+            queryString.push(key + '=' + encodeURIComponent(data[key]));
         }
     }
     return queryString.join('&');
