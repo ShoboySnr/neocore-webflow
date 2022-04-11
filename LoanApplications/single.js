@@ -469,8 +469,14 @@ function creditHistory(credit_history)
         let sourceTabColOneItems = sourceTabColOne.querySelectorAll("h6");
         let sourceTabColTwoItems = sourceTabColTwo.querySelectorAll("h6");
         setContent(sourceTabColOneItems[0]);
-        if (history.status.toLowerCase() == "closed") setContent(sourceTabColOneItems[1]);
-        if (history.status.toLowerCase() == "open") setContent(sourceTabColOneItems[2]);
+        if (history.status.toLowerCase() == "closed")
+        {
+            setContent(sourceTabColOneItems[1], 1);
+            setContent(sourceTabColOneItems[2], 0);
+        } else {
+            setContent(sourceTabColOneItems[2], 1);
+            setContent(sourceTabColOneItems[1], 0);
+        }
         console.log("status", history.status);
         console.log(history.status == 'closed');
         if (history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
@@ -478,7 +484,7 @@ function creditHistory(credit_history)
         setContent(sourceTabColTwoItems[0], history.amount);
         setContent(sourceTabColTwoItems[1], outstanding);
         setContent(sourceTabColTwoItems[2], history.amount_overdue);
-        console.log("over", sourceTabColTwoItems[2].innerText);
+        console.log("over", history.amount_overdue);
     });
 }
 
