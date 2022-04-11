@@ -436,18 +436,6 @@ async function getSingleCustomer() {
 
 function creditHistory(credit_history)
 {
-    let crcFullBorrowed = 0;
-    let crcFullOutstanding = 0;
-    let crcFullArrears = 0;
-    let crcNanoBorrowed = 0;
-    let crcNanoOutstanding = 0;
-    let crcNanoArrears = 0;
-    let firstCentralBorrowed = 0;
-    let firstCentralOutstanding = 0;
-    let firstCentralArrears = 0;
-    let crcFullTabContainer = document.getElementById("crcfull-tab");
-    let crcNanoTabContainer = document.getElementById("crcnano-tab");
-    let firstCentralTabContainer = document.getElementById("firstcentral-tab");
     //group each into diff source arrays using map
     let crcFullSource = credit_history.filter(function(ch) {
         return ch.source.toLowerCase() === "crcfull";
@@ -464,27 +452,20 @@ function creditHistory(credit_history)
         const sourceTabId = source + "-tab";
         let sourceTab = document.getElementById(sourceTabId);
         let sourceTabCols = sourceTab.querySelectorAll(".w-col-6");
-        // let sourceTabColOne = sourceTabCols[0];
-        // let sourceTabColTwo = sourceTabCols[1];
-        let sourceTabColOneItems = sourceTabCols[0].querySelectorAll("h6");
-        let sourceTabColTwoItems = sourceTabCols[1].querySelectorAll("h6");
-        setContent(sourceTabColOneItems[0]);
-        if (history.status.toLowerCase() == "closed") setContent(sourceTabColOneItems[1]);
-        if (history.status.toLowerCase() == "open") setContent(sourceTabColOneItems[2]);
-        console.log("status", history.status);
-        console.log(history.status == 'closed');
-        if (history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
+        setContent(sourceTabCols[0][0]);
+        if (history.status.toLowerCase() == "closed") setContent(sourceTabCols[0][1]);
+        if (history.status.toLowerCase() == "open") setContent(sourceTabCols[0][2]);
+        if (history.classification == "Non Performing") setContent(sourceTabCols[0][3]);
         let outstanding = parseFloat(history.amount) - parseFloat(history.balance);
-        setContent(sourceTabColTwoItems[0], history.amount);
-        setContent(sourceTabColTwoItems[1], outstanding);
-        setContent(sourceTabColTwoItems[2], history.amount_overdue, "over");
+        let sectionTwo = [history.amount, outstanding, history.amount_overdue];
+        for (let i in sectionTwo) setContent(sourceTabCols[1][i], sectionTwo[i]);
     });
 }
 
 function setContent(item, value, type)
 {
     let content = item.innerText.split(":");
-    if (type) console.log("Content", content);
+    if (type) console.log("Con", content);
     content[1] = (content[1] == '' || content[1] == NaN)  ? 0 : parseFloat(content[1]);
     if (type) console.log(value);
     if (value)
