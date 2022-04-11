@@ -126,6 +126,9 @@ function arrayToQueryString(data){
         // console.log("log", data[key]);
         if (data[key] !== "")
         {
+            let something = data[key];
+            console.log(typeof something);
+            console.log(Array.isArray(something));
             // if (data[key] != undefined && data[key].length > 1)
             // {
             //     data = data[key];
