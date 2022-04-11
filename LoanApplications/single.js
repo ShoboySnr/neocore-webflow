@@ -484,8 +484,9 @@ function creditHistory(credit_history)
 function setContent(item, value, type)
 {
     let content = item.innerText.split(":");
+    if (type) console.log("Content", content);
     content[1] = content[1] == ''  ? 0 : parseFloat(content[1]);
-    if (type) console.log(content);
+    if (type) console.log(value);
     if (value)
         content[1] += parseFloat(value);
     else
