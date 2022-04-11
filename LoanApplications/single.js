@@ -466,19 +466,20 @@ function creditHistory(credit_history)
 
         //    table update
             let receiptTable = sourceTab.getElementsByClassName("receipt-table");
-            let sampleRow = sourceTab.querySelectorAll(".receipt-row")[1];//[0];
-            console.log(sampleRow);
-            const sampleRowClone = sampleRow.cloneNode(true);
-            console.log(sampleRowClone)
-            sampleRow.remove();
+            let sampleRow = document.getElementById("crcfull-table-row");// sourceTab.querySelectorAll(".receipt-row")[1];//[0];
+            let sampleRowClone = sampleRow.cloneNode(true);
+            sampleRowClone.setAttribute("id", "");
+            // sampleRow.remove();
 
-            sampleRowClone.getElementsByClassName("card-setting-text")[0].innerText = counter;
-            sampleRowClone.getElementsByClassName("card-setting-text")[1].innerText = history.institution;
-            sampleRowClone.getElementsByClassName("card-setting-text")[2].innerText = format_currency(history.amount);
-            sampleRowClone.getElementsByClassName("card-setting-text")[3].innerText = history.disbursal_date;
-            sampleRowClone.getElementsByClassName("card-setting-text")[4].innerText = history.maturity_date;
-            sampleRowClone.getElementsByClassName("card-setting-text")[5].innerText = history.amount_overdue;
-            sampleRowClone.getElementsByClassName("card-setting-text")[6].innerText = history.balance;
+            let counter = sampleRowClone.getElementsByTagName("div")[0];
+            counter.textContent = counter;
+            let institution = sampleRowClone.getElementsByTagName("div")[1];
+            institution.textContent = history.institution;
+            sampleRowClone.getElementsByTagName("div")[2].innerText = format_currency(history.amount);
+            sampleRowClone.getElementsByTagName("div")[3].innerText = history.disbursal_date;
+            sampleRowClone.getElementsByTagName("div")[4].innerText = history.maturity_date;
+            sampleRowClone.getElementsByTagName("div")[5].innerText = history.amount_overdue;
+            sampleRowClone.getElementsByTagName("div")[6].innerText = history.balance;
         });
     });
 }
