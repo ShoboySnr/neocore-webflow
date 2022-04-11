@@ -468,9 +468,9 @@ function creditHistory(credit_history)
         let sourceTabColTwo = sourceTabCols[1];
         let sourceTabColOneItems = sourceTabColOne.querySelectorAll("h6");
         setContent(sourceTabColOneItems[0]);
-        if (credit_history.status == "closed") setContent(sourceTabColOneItems[1]);
-        if (credit_history.status == "open") setContent(sourceTabColOneItems[2]);
-        if (credit_history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
+        if (history.status == "closed") setContent(sourceTabColOneItems[1]);
+        if (history.status == "open") setContent(sourceTabColOneItems[2]);
+        if (history.classification == "Non Performing") setContent(sourceTabColOneItems[3]);
     });
 }
 
