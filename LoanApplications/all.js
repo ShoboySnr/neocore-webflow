@@ -145,7 +145,7 @@ function arrayToQueryString(data){
             } else {
                 for (let item in dataItem)
                 {
-                    queryString.push(key + '=' + encodeURIComponent(item));
+                    queryString.push(key + '=' + encodeURIComponent(dataItem[item]));
                 }
             }
         }
