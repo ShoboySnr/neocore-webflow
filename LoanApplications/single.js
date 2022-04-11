@@ -356,6 +356,7 @@ async function getSingleCustomer() {
 
             const customer_info = data.customer_info;
             applicationFormField(data.form_info);
+            creditHistory(data.credit_history);
 
             document.getElementById("customer-name").textContent = customer_info.name;
             document.getElementById("customer-name-inner").textContent = customer_info.name;
@@ -431,6 +432,33 @@ async function getSingleCustomer() {
 
     //send request
     request.send();
+}
+
+function creditHistory(credit_history)
+{
+    let crcFullBorrowed = 0;
+    let crcFullOutstanding = 0;
+    let crcFullArrears = 0;
+    let crcNanoBorrowed = 0;
+    let crcNanoOutstanding = 0;
+    let crcNanoArrears = 0;
+    let firstCentralBorrowed = 0;
+    let firstCentralOutstanding = 0;
+    let firstCentralArrears = 0;
+    let crcFullTabContainer = document.getElementById("crcfull-tab");
+    let crcNanoTabContainer = document.getElementById("crcnano-tab");
+    let firstCentralTabContainer = document.getElementById("firstcentral-tab");
+    credit_history.forEach((history) => {
+        const source = history.source.toLowerCase();
+        const sourceTabId = source + "-tab";
+        let sourceTab = document.getElementById(sourceTabId);
+        let sourceTabCols = sourceTab.querySelectorAll(".w-col-6");
+        console.log("cols", sourceTabCols);
+        let sourceTabColOne = sourceTabCols[0];
+        let sourceTabColTwo = sourceTabCols[1];
+        sourceTabColOne.getElementsByTagName("h6");
+        console.log("col", sourceTabColOne);
+    })
 }
 
 function applicationFormField(form_info)
