@@ -469,7 +469,7 @@ function creditHistory(credit_history)
             let sampleRow = document.getElementById("crcfull-table-row");// sourceTab.querySelectorAll(".receipt-row")[1];//[0];
             let sampleRowClone = sampleRow.cloneNode(true);
             sampleRowClone.setAttribute("id", "");
-            // sampleRow.remove();
+            sampleRow.style.display = "none";
 
             let sn = sampleRowClone.getElementsByTagName("div")[0];
             console.log(sn);
