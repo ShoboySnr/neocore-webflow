@@ -478,6 +478,7 @@ function creditHistory(credit_history)
         setContent(sourceTabColTwoItems[0], history.amount);
         setContent(sourceTabColTwoItems[1], outstanding);
         setContent(sourceTabColTwoItems[2], history.amount_overdue);
+        console.log("over", sourceTabColTwoItems[2].innerText);
     });
 }
 
