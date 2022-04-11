@@ -469,18 +469,18 @@ function creditHistory(credit_history)
             setContent(sourceTabColTwoItems[2], history.amount_overdue, "over");
 
         //    table update
-            let receiptTable = sourceTab.document.getElementsByClassName("receipt-table");
-            let sampleRow = receiptTable.document.getElementsByClassName("receipt-row")[0];
+            let receiptTable = sourceTab.getElementsByClassName("receipt-table");
+            let sampleRow = receiptTable.getElementsByClassName("receipt-row")[0];
             const sampleRowClone = sampleRow.cloneNode();
             sampleRow.remove();
 
-            sampleRowClone.document.getElementsByClassName("card-setting-text")[0].innerText = counter;
-            sampleRowClone.document.getElementsByClassName("card-setting-text")[1].innerText = history.institution;
-            sampleRowClone.document.getElementsByClassName("card-setting-text")[2].innerText = format_currency(history.amount);
-            sampleRowClone.document.getElementsByClassName("card-setting-text")[3].innerText = history.disbursal_date;
-            sampleRowClone.document.getElementsByClassName("card-setting-text")[4].innerText = history.maturity_date;
-            sampleRowClone.document.getElementsByClassName("card-setting-text")[5].innerText = history.amount_overdue;
-            sampleRowClone.document.getElementsByClassName("card-setting-text")[6].innerText = history.balance;
+            sampleRowClone.getElementsByClassName("card-setting-text")[0].innerText = counter;
+            sampleRowClone.getElementsByClassName("card-setting-text")[1].innerText = history.institution;
+            sampleRowClone.getElementsByClassName("card-setting-text")[2].innerText = format_currency(history.amount);
+            sampleRowClone.getElementsByClassName("card-setting-text")[3].innerText = history.disbursal_date;
+            sampleRowClone.getElementsByClassName("card-setting-text")[4].innerText = history.maturity_date;
+            sampleRowClone.getElementsByClassName("card-setting-text")[5].innerText = history.amount_overdue;
+            sampleRowClone.getElementsByClassName("card-setting-text")[6].innerText = history.balance;
         });
     });
 }
