@@ -465,7 +465,7 @@ function creditHistory(credit_history)
             setContent(sourceTabColTwoItems[2], history.amount_overdue, "over");
 
         //    table update
-            let receiptTable = sourceTab.getElementsByClassName("receipt-table");
+            let receiptTable = sourceTab.getElementById("crcfull-table");
             let sampleRow = document.getElementById("crcfull-table-row");// sourceTab.querySelectorAll(".receipt-row")[1];//[0];
             let sampleRowClone = sampleRow.cloneNode(true);
             sampleRowClone.setAttribute("id", "");
