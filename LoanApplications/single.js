@@ -470,9 +470,7 @@ function creditHistory(credit_history)
 
         //    table update
             let receiptTable = sourceTab.getElementsByClassName("receipt-table");
-            let sampleRow = sourceTab.querySelectorAll(".receipt-row");//[0];
-            console.log(sampleRow);
-            return;
+            let sampleRow = sourceTab.querySelectorAll(".receipt-row")[1];//[0];
             const sampleRowClone = sampleRow.cloneNode();
             sampleRow.remove();
 
