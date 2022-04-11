@@ -322,7 +322,6 @@ const getApplicationData = async () => {
     fetch("https://shoboysnr.github.io/neocore-webflow/LoanApplications/sample-application.json")
         .then(response => response.json())
         .then(json => {
-            console.log(json);
             data = json;
         });
     return data;
@@ -336,7 +335,6 @@ async function getSingleCustomer() {
     }
 
     const endpoint = `/loanApplications/${applicationID}`;
-    console.log(endpoint);
     let request = await cbrRequest(endpoint, 'GET', true);
 
     const url = "https://shoboysnr.github.io/neocore-webflow/LoanApplications/sample-application.json";
@@ -350,9 +348,7 @@ async function getSingleCustomer() {
         // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
-            data = jsonData;
-
-            console.log("some data", data);
+            data = jsonData; // clear this
 
             const customer_info = data.customer_info;
             applicationFormField(data.form_info);
@@ -471,7 +467,9 @@ function creditHistory(credit_history)
         //    table update
             let receiptTable = sourceTab.getElementsByClassName("receipt-table");
             let sampleRow = sourceTab.querySelectorAll(".receipt-row")[1];//[0];
+            console.log(sampleRow);
             const sampleRowClone = sampleRow.cloneNode(true);
+            console.log(sampleRowClone)
             sampleRow.remove();
 
             sampleRowClone.getElementsByClassName("card-setting-text")[0].innerText = counter;
