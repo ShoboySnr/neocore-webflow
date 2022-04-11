@@ -51,16 +51,18 @@ async function getLoanApplications(e)
     let status = returnSelected(document.getElementById("field-loan-applications-status"));
     let from = document.getElementById("name").value;
     let to = document.getElementById("name-2").value;
+    let name = document.getElementById("field").value;
     let valueArray = {
         productid,
         stage,
         from,
         to,
-        status
+        status,
+        name
     };
     let queryString = arrayToQueryString(valueArray);
     let endpoint = "/loanApplications?" + queryString;
-    console.log(endpoint);
+    console.log("endpoint", endpoint);
     let request = await cbrRequest(endpoint, 'GET', true);
 
 
@@ -121,23 +123,8 @@ function arrayToQueryString(data){
     let queryString = new Array();
     console.log(data['from']);
     for(let key in data){
-        // console.log("data", data);
-        // console.log("key", key);
-        // console.log("log", data[key]);
         if (data[key] !== "")
         {
-            // let something = data[key];
-            // console.log(typeof something);
-            // console.log(Array.isArray(something));
-            // if (data[key] != undefined && data[key].length > 1)
-            // {
-            //     data = data[key];
-            //     data.forEach((item) => {
-            //         queryString.push(key + '=' + encodeURIComponent(item));
-            //     })
-            // } else {
-            //     queryString.push(key + '=' + encodeURIComponent(data[key]));
-            // }
             let dataItem = data[key];
             if (typeof dataItem === 'string')
             {
