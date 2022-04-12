@@ -354,7 +354,6 @@ async function getSingleCustomer() {
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
             data = jsonData; // clear this
-            console.log(data);
 
             const customer_info = data.customer_info;
             applicationFormField(data.form_info);
@@ -459,7 +458,6 @@ function creditHistory(credit_history)
     sourceList.forEach(mySource => {
         let counter = 0;
         mySource.forEach((history) => {
-            console.log(history);
             counter++;
             const source = history.source.toLowerCase();
             const sourceTabId = source + "-tab";
@@ -514,7 +512,7 @@ function populateUploadedFiles(uploaded_files)
     cloneElement.setAttribute("id", "");
     cloneElement.setAttribute("class", "receipt-row");
 
-    console.log(uploaded_files);
+    console.log("files", uploaded_files);
 
     uploaded_files.forEach((file) => {
         let name = cloneElement.getElementsByTagName("div")[0];
@@ -546,9 +544,6 @@ function setContent(item, value, type)
 
 function applicationFormField(form_info)
 {
-    // <div>
-    //     <div className="profile-info-heading"><strong>Field_label</strong></div>
-    //     <p>Contents</p></div>
     let applicationDataContainer = document.getElementById("w-tabs-1-data-w-pane-0");
     applicationDataContainer.innerHTML = '';
     form_info.forEach((form) => {
