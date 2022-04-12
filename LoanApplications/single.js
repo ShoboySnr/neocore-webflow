@@ -476,7 +476,7 @@ function creditHistory(credit_history)
             sampleRow.style.display = "none";
 
             sampleRowClone.getElementsByTagName("div")[0] = counter;
-            sampleRowClone.getElementsByTagName("div")[1] = history.classification;
+            sampleRowClone.getElementsByTagName("div")[1] = source;
             sampleRowClone.getElementsByTagName("div")[2].innerText = format_currency(history.amount);
             sampleRowClone.getElementsByTagName("div")[3].innerText = history.disbursal_date;
             sampleRowClone.getElementsByTagName("div")[4].innerText = history.maturity_date;
