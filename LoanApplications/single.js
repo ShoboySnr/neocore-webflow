@@ -514,6 +514,8 @@ function populateUploadedFiles(uploaded_files)
     cloneElement.setAttribute("id", "");
     cloneElement.setAttribute("class", "receipt-row");
 
+    console.log(uploaded_files);
+
     uploaded_files.forEach((file) => {
         let name = cloneElement.getElementsByTagName("div")[0];
         name.textContent = file.name;
