@@ -431,6 +431,10 @@ async function getSingleCustomer() {
     request.send();
 }
 
+const reloadPage = () => {
+    window.location.reload();
+}
+
 function creditHistory(credit_history)
 {
     //group each into diff source arrays using map
