@@ -519,7 +519,7 @@ function populateUploadedFiles(uploaded_files)
         let fileIdContent = "";
         for (let i in fileIds)
         {
-            let count = i + 1;
+            let count = parseInt(i) + 1;
             fileIdContent += `${count} of ${fileIds.length} <br />`;
         }
         cloneElement.getElementsByTagName("div")[1].innerHTML = fileIdContent;
