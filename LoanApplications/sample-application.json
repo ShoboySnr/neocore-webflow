@@ -98,17 +98,17 @@
   ],
   "uploaded_files": [
     {
-      "name": "",
+      "name": "Utility Bill",
       "ids": [
-        "",
-        ""
+        "utility-bill-id-1",
+        "utility-bill-id-2"
       ]
     },
     {
-      "name": "",
+      "name": "Employment Contract",
       "ids": [
-        "",
-        ""
+        "employment-contract-1",
+        "employment-contract-2"
       ]
     }
   ],

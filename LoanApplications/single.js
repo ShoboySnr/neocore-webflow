@@ -498,6 +498,30 @@ function creditHistory(credit_history)
     });
 }
 
+function populateUploadedFiles(uploaded_files)
+{
+    // uploaded-file-row
+    // uploaded-file-table
+    let tableContainer = document.getElementById("uploaded-file-table");
+    let sampleRowElement = document.getElementById("uploaded-file-row");
+    let cloneElement = sampleRowElement.cloneNode(true);
+
+    uploaded_files.forEach((file) => {
+        let name = cloneElement.getElementsByTagName("div")[0];
+        name.textContent = file.name;
+        const fileIds = file.ids;
+        let fileIdContent = "";
+        for (let i in fileIds)
+        {
+            let count = i + 1;
+            fileIdContent += `${count} of ${fileIds.length} <br />`;
+        }
+        cloneElement.getElementsByTagName("div")[1].innerHTML = fileIdContent;
+        cloneElement.style.display = "flex";
+        tableContainer.appendChild(cloneElement);
+    })
+}
+
 function setContent(item, value, type)
 {
     let content = item.innerText.split(":");
