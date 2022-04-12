@@ -465,23 +465,22 @@ function creditHistory(credit_history)
             setContent(sourceTabColTwoItems[2], history.amount_overdue, "over");
 
         //    table update
-            let receiptTable = document.getElementById("crcfull-table");
-            let sampleRow = document.getElementById("crcfull-table-row");// sourceTab.querySelectorAll(".receipt-row")[1];//[0];
+            let receiptTable = document.getElementById(source + "-table");
+            //check webflow for id correlation
+            let sampleRow = document.getElementById(source + "-table-row");// sourceTab.querySelectorAll(".receipt-row")[1];//[0];
             let sampleRowClone = sampleRow.cloneNode(true);
             sampleRowClone.setAttribute("id", "");
             sampleRow.style.display = "none";
 
-            let sn = sampleRowClone.getElementsByTagName("div")[0];
-            sn.textContent = counter;
-            let institution = sampleRowClone.getElementsByTagName("div")[1];
-            institution.textContent = history.institution;
+            sampleRowClone.getElementsByTagName("div")[0] = counter;
+            sampleRowClone.getElementsByTagName("div")[1] = history.institution;
             sampleRowClone.getElementsByTagName("div")[2].innerText = format_currency(history.amount);
             sampleRowClone.getElementsByTagName("div")[3].innerText = history.disbursal_date;
             sampleRowClone.getElementsByTagName("div")[4].innerText = history.maturity_date;
             sampleRowClone.getElementsByTagName("div")[5].innerText = history.amount_overdue;
             sampleRowClone.getElementsByTagName("div")[6].innerText = history.balance;
-            console.log(sampleRowClone);
             receiptTable.appendChild(sampleRowClone);
+            console.log(source, receiptTable);
         });
     });
 }
