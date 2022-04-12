@@ -475,8 +475,8 @@ function creditHistory(credit_history)
             // if (sampleRow.style.display != "none")
             sampleRow.style.display = "none";
 
-            sampleRowClone.getElementsByTagName("div")[0] = counter;
-            sampleRowClone.getElementsByTagName("div")[1] = source;
+            sampleRowClone.getElementsByTagName("div")[0].innerText = counter;
+            sampleRowClone.getElementsByTagName("div")[1].innerText = history.institution;
             sampleRowClone.getElementsByTagName("div")[2].innerText = format_currency(history.amount);
             sampleRowClone.getElementsByTagName("div")[3].innerText = history.disbursal_date;
             sampleRowClone.getElementsByTagName("div")[4].innerText = history.maturity_date;
