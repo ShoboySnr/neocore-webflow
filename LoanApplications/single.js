@@ -503,7 +503,7 @@ function populateUploadedFiles(uploaded_files)
 {
     // uploaded-file-row
     // uploaded-file-table
-    let tableContainer = document.getElementById("uploaded-file-table");
+    let tableContainer = document.getElementById("uploaded-files-table");
     let sampleRowElement = document.getElementById("uploaded-file-row");
     let cloneElement = sampleRowElement.cloneNode(true);
 
