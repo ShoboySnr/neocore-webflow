@@ -465,13 +465,13 @@ function creditHistory(credit_history)
             setContent(sourceTabColTwoItems[0], history.amount);
             setContent(sourceTabColTwoItems[1], outstanding);
             setContent(sourceTabColTwoItems[2], history.amount_overdue);
-            for (let i in sourceTabColTwoItems)
-            {
-                let item = sourceTabColTwoItems[i].innerText.split(": ");
-                item[1] = format_currency(item[1]);
-                item = item.join(": ");
-                sourceTabColTwoItems[i].innerText = item;
-            }
+            // for (let i in sourceTabColTwoItems)
+            // {
+            //     let item = sourceTabColTwoItems[i].innerText.split(": ");
+            //     item[1] = format_currency(item[1]);
+            //     item = item.join(": ");
+            //     sourceTabColTwoItems[i].innerText = item;
+            // }
 
         //    table update
             let receiptTable = document.getElementById(source + "-table");
