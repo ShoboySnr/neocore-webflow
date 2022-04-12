@@ -512,8 +512,6 @@ function populateUploadedFiles(uploaded_files)
     cloneElement.setAttribute("id", "");
     cloneElement.setAttribute("class", "receipt-row");
 
-    console.log("files", uploaded_files);
-
     uploaded_files.forEach((file) => {
         let name = cloneElement.getElementsByTagName("div")[0];
         name.textContent = file.name;
@@ -526,8 +524,8 @@ function populateUploadedFiles(uploaded_files)
         }
         cloneElement.getElementsByTagName("div")[1].innerHTML = fileIdContent;
         cloneElement.style.display = "flex";
-        console.log(cloneElement);
-        tableContainer.appendChild(file, cloneElement);
+        console.log(file, cloneElement);
+        tableContainer.appendChild(cloneElement);
     })
 }
 
