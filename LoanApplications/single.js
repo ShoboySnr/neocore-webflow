@@ -526,6 +526,7 @@ function populateUploadedFiles(uploaded_files)
         }
         cloneElement.getElementsByTagName("div")[1].innerHTML = fileIdContent;
         cloneElement.style.display = "flex";
+        console.log(cloneElement);
         tableContainer.appendChild(cloneElement);
     })
 }
