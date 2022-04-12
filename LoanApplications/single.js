@@ -511,6 +511,8 @@ function populateUploadedFiles(uploaded_files)
     let tableContainer = document.getElementById("uploaded-files-table");
     let sampleRowElement = document.getElementById("uploaded-file-row");
     let cloneElement = sampleRowElement.cloneNode(true);
+    cloneElement.setAttribute("id", "");
+    cloneElement.setAttribute("class", "receipt-row");
 
     uploaded_files.forEach((file) => {
         let name = cloneElement.getElementsByTagName("div")[0];
