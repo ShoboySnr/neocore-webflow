@@ -477,7 +477,7 @@ function creditHistory(credit_history)
             sampleRowClone.getElementsByTagName("div")[0] = counter;
             sampleRowClone.getElementsByTagName("div")[1] = history.institution;
             sampleRowClone.getElementsByTagName("div")[2].innerText = format_currency(history.amount);
-            sampleRowClone.getElementsByTagName("div")[3].innerText = format_currency(history.disbursal_date);
+            sampleRowClone.getElementsByTagName("div")[3].innerText = history.disbursal_date;
             sampleRowClone.getElementsByTagName("div")[4].innerText = history.maturity_date;
             sampleRowClone.getElementsByTagName("div")[5].innerText = format_currency(history.amount_overdue);
             sampleRowClone.getElementsByTagName("div")[6].innerText = format_currency(parseFloat(history.amount) - parseFloat(history.balance));
