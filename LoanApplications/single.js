@@ -127,6 +127,8 @@ const getLoanDeclineReasons = async () => {
     let request = await cbrRequest('/loanDeclineReasons', 'GET', true);
 
     request.onload = () => {
+        console.log("loan decline reasons", this.response);
+        return;
 
         let result = JSON.parse(this.response)
 
@@ -165,6 +167,9 @@ const getLoanApplicationRecommendationOptions = async () => {
     let request = await cbrRequest(`/loanApplications/${applicationID}/recommend`, 'GET', true);
 
     request.onload = () => {
+
+        console.log("loan application recommendation", this.response);
+        return;
 
         let result = JSON.parse(this.response)
 
