@@ -506,15 +506,16 @@ function populateUploadedFiles(uploaded_files)
 {
     // uploaded-file-row
     // uploaded-file-table
-    let tableContainer = document.getElementById("uploaded-files-table");
-    let sampleRowElement = document.getElementById("uploaded-file-row");
-    let cloneElement = sampleRowElement.cloneNode(true);
-    cloneElement.setAttribute("id", "");
-    cloneElement.setAttribute("class", "receipt-row");
 
     uploaded_files.forEach((file) => {
+        let tableContainer = document.getElementById("uploaded-files-table");
+        let sampleRowElement = document.getElementById("uploaded-file-row");
+        let cloneElement = sampleRowElement.cloneNode(true);
+        cloneElement.setAttribute("id", "");
+        cloneElement.setAttribute("class", "receipt-row");
         let name = cloneElement.getElementsByTagName("div")[0];
         name.textContent = file.name;
+        console.log(file.name);
         const fileIds = file.ids;
         let fileIdContent = "";
         for (let i in fileIds)
