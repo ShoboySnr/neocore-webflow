@@ -354,6 +354,7 @@ async function getSingleCustomer() {
             const customer_info = data.customer_info;
             applicationFormField(data.form_info);
             creditHistory(data.credit_history);
+            populateUploadedFiles(data.uploaded_files);
 
             document.getElementById("customer-name").textContent = customer_info.name;
             document.getElementById("customer-name-inner").textContent = customer_info.name;
