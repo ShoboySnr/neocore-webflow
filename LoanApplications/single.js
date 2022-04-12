@@ -482,6 +482,9 @@ function creditHistory(credit_history)
             sampleRowClone.getElementsByTagName("div")[4].innerText = history.maturity_date;
             sampleRowClone.getElementsByTagName("div")[5].innerText = format_currency(history.amount_overdue);
             sampleRowClone.getElementsByTagName("div")[6].innerText = format_currency(parseFloat(history.amount) - parseFloat(history.balance));
+            let extra = sampleRowClone.getElementsByTagName("div")[7];
+            console.log(extra.textContent);
+            extra.remove();
             sampleRowClone.style.display = "flex";
             receiptTable.appendChild(sampleRowClone);
             console.log(source, receiptTable);
