@@ -464,15 +464,20 @@ function creditHistory(credit_history)
             let outstanding = parseFloat(history.amount) - parseFloat(history.balance);
             setContent(sourceTabColTwoItems[0], history.amount);
             setContent(sourceTabColTwoItems[1], outstanding);
-            setContent(sourceTabColTwoItems[2], history.amount_overdue, "over");
+            setContent(sourceTabColTwoItems[2], history.amount_overdue);
+            for (let i in sourceTabColTwoItems)
+            {
+                let item = sourceTabColTwoItems[i].innerText.split(": ");
+                item[1] = format_currency(item[1]);
+                item = item.join(": ");
+                sourceTabColTwoItems[i].innerText = item;
+            }
 
         //    table update
             let receiptTable = document.getElementById(source + "-table");
-            //check webflow for id correlation
             let sampleRow = document.getElementById(source + "-table-row");// sourceTab.querySelectorAll(".receipt-row")[1];//[0];
             let sampleRowClone = sampleRow.cloneNode(true);
             sampleRowClone.setAttribute("id", "");
-            // if (sampleRow.style.display != "none")
             sampleRow.style.display = "none";
 
             sampleRowClone.getElementsByTagName("div")[0].innerText = counter;
@@ -482,12 +487,9 @@ function creditHistory(credit_history)
             sampleRowClone.getElementsByTagName("div")[4].innerText = history.maturity_date;
             sampleRowClone.getElementsByTagName("div")[5].innerText = format_currency(history.amount_overdue);
             sampleRowClone.getElementsByTagName("div")[6].innerText = format_currency(parseFloat(history.amount) - parseFloat(history.balance));
-            let extra = sampleRowClone.getElementsByTagName("div")[7];
-            console.log(extra.textContent);
-            extra.remove();
+            sampleRowClone.getElementsByTagName("div")[7].remove();
             sampleRowClone.style.display = "flex";
             receiptTable.appendChild(sampleRowClone);
-            console.log(source, receiptTable);
         });
     });
 }
