@@ -449,6 +449,7 @@ function creditHistory(credit_history)
     sourceList.forEach(mySource => {
         let counter = 0;
         mySource.forEach((history) => {
+            console.log(history);
             counter++;
             const source = history.source.toLowerCase();
             const sourceTabId = source + "-tab";
