@@ -472,6 +472,7 @@ function creditHistory(credit_history)
             let sampleRow = document.getElementById(source + "-table-row");// sourceTab.querySelectorAll(".receipt-row")[1];//[0];
             let sampleRowClone = sampleRow.cloneNode(true);
             sampleRowClone.setAttribute("id", "");
+            // if (sampleRow.style.display != "none")
             sampleRow.style.display = "none";
 
             sampleRowClone.getElementsByTagName("div")[0] = counter;
@@ -481,6 +482,7 @@ function creditHistory(credit_history)
             sampleRowClone.getElementsByTagName("div")[4].innerText = history.maturity_date;
             sampleRowClone.getElementsByTagName("div")[5].innerText = format_currency(history.amount_overdue);
             sampleRowClone.getElementsByTagName("div")[6].innerText = format_currency(parseFloat(history.amount) - parseFloat(history.balance));
+            sampleRowClone.style.display = "flex";
             receiptTable.appendChild(sampleRowClone);
             console.log(source, receiptTable);
         });
