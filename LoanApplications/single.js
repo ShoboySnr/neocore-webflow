@@ -658,7 +658,7 @@ document.addEventListener("keyup", (event) => {
     if (event.key == "Escape")
     {
         document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
-            console.log(element.target);
+            console.log(element.classList);
             // element.target.style.display = "none";
         })
     }
