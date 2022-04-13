@@ -534,7 +534,11 @@ function populateUploadedFiles(uploaded_files)
 
 function toggleUploadedFiles(e)
 {
-    let element = e.target.parentElement.children[1];
+    let element = e.target.parentElement;
+    console.log(element)
+        element = element.children[1];
+    console.log(element);
+    return;
     let collapsedList = element.children[0];
     let expandedList = element.children[1];
     console.log(e.target.classList);
