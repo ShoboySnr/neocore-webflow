@@ -538,10 +538,12 @@ function toggleUploadedFiles(e)
 {
     let element = e.target.parentElement;
     let display = element.style.display == "flex" ? "none":"flex";
-    console.log(element);
-    console.log(element.classList);
-    console.log(element.classList.value);
+    let otherDisplay = element.style.display == "flex" ? "flex":"none";
+    let otherElement = element.classList.value == "collapsed-list" ? "expanded-list":"collapsed-list";
+    let otherNode = element.parentElement.getElementsByClassName(otherElement);
+    console.log(otherNode);
     element.style.display = display;
+    otherNode[0].style.display = otherDisplay;
     return;
 
 
