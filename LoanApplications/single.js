@@ -659,7 +659,7 @@ document.addEventListener("keyup", (event) => {
     {
         document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
             console.log(element);
-            element.target.style.display = "none";
+            // element.target.style.display = "none";
         })
     }
 });
