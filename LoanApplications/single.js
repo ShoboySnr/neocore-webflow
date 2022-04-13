@@ -537,6 +537,9 @@ function populateUploadedFiles(uploaded_files)
 
 function getFileUrl(id)
 {
+    const storage = getStorage(fbapp);
+    console.log(storage);
+    return;
     fbapp.storage().ref().child(`uploads/${id}`).getDownloadUrl().then((url) => {
         console.log(id, url);
     }).catch((error) => {
