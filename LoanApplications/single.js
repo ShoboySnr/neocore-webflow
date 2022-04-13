@@ -415,7 +415,9 @@ async function getSingleCustomer() {
             });
 
             //add toggel action to table
-            document.addEventListener("click", toggleUploadedFiles);
+            document.querySelectorAll(".toggle-list").forEach(element => {
+                element.addEventListener("click", toggleUploadedFiles);
+            })
 
             //populate reasons
             getLoanDeclineReasons();
@@ -519,13 +521,13 @@ function populateUploadedFiles(uploaded_files)
         name.textContent = file.name;
         console.log(file.name);
         const fileIds = file.ids;
-        let fileIdContent = `<div class='collapsed-list' style="display: flex; justify-content: space-between;"><div>📁 (${fileIds.length})</div><div class="expand-list">&plus;</div></div><div class='expanded-list' style="display: flex; justify-content: space-between;"><div>`;
+        let fileIdContent = `<div class='collapsed-list' style="display: flex; justify-content: space-between;"><div>📁 (${fileIds.length})</div><div class="expand-list toggle-list">&plus;</div></div><div class='expanded-list' style="display: none; justify-content: space-between;"><div>`;
         for (let i in fileIds)
         {
             let count = parseInt(i) + 1;
             fileIdContent += `📁 ${count} of ${fileIds.length} <br />`;
         }
-        fileIdContent += "</div><div class='collapse-list'>&minus;</div></div>"
+        fileIdContent += "</div><div class='collapse-list toggle-list'>&minus;</div></div>"
         cloneElement.getElementsByTagName("div")[1].innerHTML = fileIdContent;
         cloneElement.style.display = "flex";
         tableContainer.appendChild(cloneElement);
@@ -535,6 +537,11 @@ function populateUploadedFiles(uploaded_files)
 function toggleUploadedFiles(e)
 {
     let element = e.target.parentElement;
+    let display = element.style.display == "flex" ? "none":"flex";
+    element.style.display = display;
+    return;
+
+
     console.log(element)
         element = element.children[1];
     console.log(element);
