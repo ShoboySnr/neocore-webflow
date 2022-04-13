@@ -361,6 +361,7 @@ async function getSingleCustomer() {
             creditHistory(data.credit_history);
             populateUploadedFiles(data.uploaded_files);
             populatePendingActions(data.pending_actions);
+            populateLinkedAccounts(data.external_accounts);
 
             document.getElementById("customer-name").textContent = customer_info.name;
             document.getElementById("customer-name-inner").textContent = customer_info.name;
