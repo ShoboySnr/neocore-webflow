@@ -85,6 +85,7 @@ const deescalateFormAction = async () => {
 
 const submitComment = async (event) => {
     event.preventDefault();
+    console.log("submit");
 
     let target = event.target;
 
@@ -106,6 +107,7 @@ const submitComment = async (event) => {
 
     request.onload = function() {
         let result = JSON.parse(this.response)
+        console.log("submit comment", result);
 
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
