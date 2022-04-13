@@ -518,17 +518,24 @@ function populateUploadedFiles(uploaded_files)
         name.textContent = file.name;
         console.log(file.name);
         const fileIds = file.ids;
-        let fileIdContent = "";
+        let fileIdContent = `<div class='collapsed-list'>📁 ${fileIds.length}</div><div class='expanded-list hide'>`;
         for (let i in fileIds)
         {
             let count = parseInt(i) + 1;
             fileIdContent += `📁 ${count} of ${fileIds.length} <br />`;
         }
+        fileIdContent += "</div>"
         cloneElement.getElementsByTagName("div")[1].innerHTML = fileIdContent;
         cloneElement.style.display = "flex";
-        console.log(file, cloneElement);
         tableContainer.appendChild(cloneElement);
     })
+}
+
+function toggleUploadedFiles(e)
+{
+    let element = e.target.parentElement.children[1];
+    console.log("event", e);
+    console.log("elem", element);
 }
 
 function setContent(item, value, type)
@@ -574,16 +581,6 @@ function applicationFormField(form_info)
         applicationDataContainer.appendChild(formContainer);
     });
 }
-
-
-function toggleUploadedFiles(e)
-{
-    let element = e.target;
-    console.log("event", e);
-    console.log("elem", element);
-}
-
-
 
 
 // dismiss modal
