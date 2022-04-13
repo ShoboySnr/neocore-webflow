@@ -650,7 +650,7 @@ function applicationFormField(form_info)
 // dismiss modal
 document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
     element.addEventListener('click', (event) => {
-        console.log(event.target.style.display);
+        console.log(event.target.classList.value);
         // event.target.style.display = "none";
     });
 });
