@@ -354,6 +354,7 @@ async function getSingleCustomer() {
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
             // data = jsonData; // clear this
+            console.log(data);
 
             const customer_info = data.customer_info;
             applicationFormField(data.form_info);
