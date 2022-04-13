@@ -658,8 +658,8 @@ document.addEventListener("keyup", (event) => {
     if (event.key == "Escape")
     {
         document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
-            console.log(element.style);
-            // element.target.style.display = "none";
+            // console.log(element.style);
+            element.style.display = "none";
         })
     }
 });
