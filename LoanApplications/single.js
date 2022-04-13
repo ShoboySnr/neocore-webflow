@@ -653,10 +653,11 @@ document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
 });
 
 document.addEventListener("keyup", (event) => {
+    console.log(event.key);
     if (event.key == "escape")
     {
+        console.log("escaped");
         document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
-            console.log(element.target.style.display);
             element.target.style.display = "none";
         })
     }
