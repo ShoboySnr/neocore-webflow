@@ -109,8 +109,10 @@ const submitComment = async (event) => {
 
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
+            console.log("submit comment", data);
 
             alert('Successfully submitted comments');
+            return;
             window.location.reload();
 
         } else {
