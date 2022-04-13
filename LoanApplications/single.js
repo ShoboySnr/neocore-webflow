@@ -568,6 +568,26 @@ function populatePendingActions(pending_actions)
     })
 }
 
+function populateLinkedAccounts(linked_accounts)
+{
+    linked_accounts.forEach((account) => {
+        let tableContainer = document.getElementById("linked-account-table");
+        let sampleRowElement = document.getElementById("linked-account-row");
+        let cloneElement = sampleRowElement.cloneNode(true);
+        cloneElement.setAttribute("id", "");
+        cloneElement.setAttribute("class", "receipt-row");
+        // cloneElement.style.cursor = "pointer";
+        cloneElement.getElementsByTagName("div")[0].textContent = account.bank;
+        cloneElement.getElementsByTagName("div")[1].textContent = account.account_number;
+        cloneElement.getElementsByTagName("div")[2].textContent = account.source || "Mono";
+        cloneElement.getElementsByTagName("div")[3].textContent = account.status == true ? "Available": "Not Available";
+        cloneElement.getElementsByTagName("div")[4].textContent = account.last_update;
+        cloneElement.getElementsByTagName("div")[5].textContent = account.options || "S, LB,";
+        cloneElement.style.display = "flex";
+        tableContainer.appendChild(cloneElement);
+    })
+}
+
 function toggleUploadedFiles(e)
 {
     let element = e.target.parentElement;
