@@ -539,7 +539,7 @@ function toggleUploadedFiles(e)
     let expandedList = element.children[1];
     console.log(e.target.classList);
     console.log(collapsedList.classList);
-    console.log(expandedList.classList.value);
+    console.log(expandedList.classList);
     console.log(expandedList.classList.values());
     console.log([collapsedList, expandedList]);
     return;
