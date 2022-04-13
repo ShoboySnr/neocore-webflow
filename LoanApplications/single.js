@@ -534,10 +534,15 @@ function populateUploadedFiles(uploaded_files)
 
 function toggleUploadedFiles(e)
 {
-    if (e.target.classList.includes("expanded-list")) return;
     let element = e.target.parentElement.children[1];
     let collapsedList = element.children[0];
     let expandedList = element.children[1];
+    console.log(e.target.classList);
+    console.log(collapsedList.classList);
+    console.log(expandedList.classList);
+    console.log([collapsedList, expandedList]);
+    return;
+    if (e.target.classList.includes("expanded-list")) return;
     if (collapsedList.classList.includes("hide"))
     {
         collapsedList.setAttribute("class", "collapsed-list");
