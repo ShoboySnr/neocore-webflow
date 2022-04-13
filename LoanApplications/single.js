@@ -25,8 +25,10 @@ const escalateFormAction = async () => {
 
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
-
+            console.log("escalator", data);
             alert('Successfully escalated this loan');
+
+            return;
             window.location.reload();
 
         } else {
@@ -658,7 +660,6 @@ document.addEventListener("keyup", (event) => {
     if (event.key == "Escape")
     {
         document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
-            // console.log(element.style);
             element.style.display = "none";
         })
     }
