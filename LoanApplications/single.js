@@ -413,6 +413,9 @@ async function getSingleCustomer() {
                 })
             });
 
+            //add toggel action to table
+            document.addEventListener("click", toggleUploadedFiles);
+
             //populate reasons
             getLoanDeclineReasons();
             getLoanApplicationRecommendationOptions();
@@ -504,9 +507,6 @@ function creditHistory(credit_history)
 
 function populateUploadedFiles(uploaded_files)
 {
-    // uploaded-file-row
-    // uploaded-file-table
-
     uploaded_files.forEach((file) => {
         let tableContainer = document.getElementById("uploaded-files-table");
         let sampleRowElement = document.getElementById("uploaded-file-row");
@@ -574,6 +574,17 @@ function applicationFormField(form_info)
     });
 }
 
+
+function toggleUploadedFiles(e)
+{
+    let element = e.target;
+    console.log("event", e);
+    console.log("elem", element);
+}
+
+
+
+
 // dismiss modal
 document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
     element.addEventListener('click', (event) => {
@@ -582,6 +593,7 @@ document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
 });
 
 document.addEventListener("keyup", (event) => {
+    console.log(event);
     if (event.key == "escape")
     {
         document.querySelectorAll(".cardmodalcontainer").forEach((element) => {
