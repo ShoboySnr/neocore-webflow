@@ -537,42 +537,12 @@ function populateUploadedFiles(uploaded_files)
 function toggleUploadedFiles(e)
 {
     let element = e.target.parentElement;
-    let display = element.style.display == "flex" ? "none":"flex";
-    let otherDisplay = element.style.display == "flex" ? "flex":"none";
-    let otherElement = element.classList.value == "collapsed-list" ? "expanded-list":"collapsed-list";
+    let display = element.style.display.toLowerCase() === "flex" ? "none":"flex";
+    let otherDisplay = element.style.display.toLowerCase() === "flex" ? "flex":"none";
+    let otherElement = element.classList.value.toLowerCase() === "collapsed-list" ? "expanded-list":"collapsed-list";
     let otherNode = element.parentElement.getElementsByClassName(otherElement);
-    console.log(otherNode);
     element.style.display = display;
     otherNode[0].style.display = otherDisplay;
-    return;
-
-
-    console.log(element)
-        element = element.children[1];
-    console.log(element);
-    return;
-    let collapsedList = element.children[0];
-    let expandedList = element.children[1];
-    console.log(e.target.classList);
-    console.log(collapsedList.classList);
-    console.log(expandedList.classList);
-    console.log(expandedList.classList.values());
-    console.log([collapsedList, expandedList]);
-    return;
-    if (e.target.classList.includes("expanded-list")) return;
-    if (collapsedList.classList.includes("hide"))
-    {
-        collapsedList.setAttribute("class", "collapsed-list");
-    } else {
-        collapsedList.setAttribute("class", "collapsed-list hide");
-    }
-
-    if (expandedList.classList.includes("hide"))
-    {
-        expandedList.setAttribute("class", "collapsed-list");
-    } else {
-        expandedList.setAttribute("class", "collapsed-list hide");
-    }
 }
 
 function setContent(item, value, type)
