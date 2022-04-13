@@ -519,13 +519,13 @@ function populateUploadedFiles(uploaded_files)
         name.textContent = file.name;
         console.log(file.name);
         const fileIds = file.ids;
-        let fileIdContent = `<div class='collapsed-list' style="display: flex; justify-content: space-between;"><div>📁 (${fileIds.length})</div><div>&plus;</div></div><div class='expanded-list hide' style="display: flex; justify-content: space-between;">`;
+        let fileIdContent = `<div class='collapsed-list' style="display: flex; justify-content: space-between;"><div>📁 (${fileIds.length})</div><div class="expand-list">&plus;</div></div><div class='expanded-list' style="display: flex; justify-content: space-between;"><div>`;
         for (let i in fileIds)
         {
             let count = parseInt(i) + 1;
             fileIdContent += `📁 ${count} of ${fileIds.length} <br />`;
         }
-        fileIdContent += "</div>"
+        fileIdContent += "</div><div class='collapse-list'>&minus;</div></div>"
         cloneElement.getElementsByTagName("div")[1].innerHTML = fileIdContent;
         cloneElement.style.display = "flex";
         tableContainer.appendChild(cloneElement);
