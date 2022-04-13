@@ -353,7 +353,7 @@ async function getSingleCustomer() {
         // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
-            data = jsonData; // clear this
+            // data = jsonData; // clear this
 
             const customer_info = data.customer_info;
             applicationFormField(data.form_info);
