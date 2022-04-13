@@ -360,6 +360,7 @@ async function getSingleCustomer() {
             applicationFormField(data.form_info);
             creditHistory(data.credit_history);
             populateUploadedFiles(data.uploaded_files);
+            populatePendingActions(data.pending_actions);
 
             document.getElementById("customer-name").textContent = customer_info.name;
             document.getElementById("customer-name-inner").textContent = customer_info.name;
@@ -535,10 +536,39 @@ function populateUploadedFiles(uploaded_files)
     })
 }
 
+function populatePendingActions(pending_actions)
+{
+
+    const checkbox = `<div className="w-form">
+            <form id="email-form" name="email-form" data-name="Email Form" method="get" aria-label="Email Form"><label
+                className="w-checkbox"><input type="checkbox" name="checkbox-2" id="checkbox-2" data-name="Checkbox 2"
+                                              className="w-checkbox-input checkbox-2"><span
+                className="checkbox-label-2 w-form-label" htmlFor="checkbox-2">Checkbox</span></label></form>
+            <div className="w-form-done" tabIndex="-1" role="region" aria-label="Email Form success">
+                <div>Thank you! Your submission has been received!</div>
+            </div>
+            <div className="w-form-fail" tabIndex="-1" role="region" aria-label="Email Form failure">
+                <div>Oops! Something went wrong while submitting the form.</div>
+            </div>
+        </div>`;
+    pending_actions.forEach((action) => {
+        let tableContainer = document.getElementById("pending-action-table");
+        let sampleRowElement = document.getElementById("pending-action-row");
+        let cloneElement = sampleRowElement.cloneNode(true);
+        cloneElement.setAttribute("id", "");
+        cloneElement.setAttribute("class", "receipt-row");
+        // cloneElement.style.cursor = "pointer";
+        cloneElement.getElementsByTagName("div")[0].textContent = action.item;
+        cloneElement.getElementsByTagName("div")[1].textContent = action.note;
+        cloneElement.getElementsByTagName("div")[2].textContent = action.status;
+        cloneElement.getElementsByTagName("div")[3].textContent = checkbox;
+        cloneElement.style.display = "flex";
+        tableContainer.appendChild(cloneElement);
+    })
+}
+
 function getFileUrl(id)
 {
-    console.log(fbapp);
-    return;
     fbapp.storage().ref().child(`uploads/${id}`).getDownloadUrl().then((url) => {
         console.log(id, url);
     }).catch((error) => {
