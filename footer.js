@@ -56,6 +56,28 @@ fbauth.onAuthStateChanged((user) => {
     window.dispatchEvent(event);
 });
 
+function getFileUrl(id)
+{
+    //create a storage reference
+    var storage = firebase.storage().ref(id);
+
+    //get file url
+    storage
+        .getDownloadURL()
+        .then(function(url) {
+            console.log(url);
+        })
+        .catch(function(error) {
+            console.log("error encountered");
+        });
+    return;
+    fbapp.storage().ref().child(`uploads/${id}`).getDownloadUrl().then((url) => {
+        console.log(id, url);
+    }).catch((error) => {
+        console.log("error", error);
+    });
+}
+
 function logOut() {
     // firebase.auth().signOut().then(() => {
     fbauth.signOut().then(() => {
