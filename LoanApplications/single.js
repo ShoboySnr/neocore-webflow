@@ -538,6 +538,7 @@ function toggleUploadedFiles(e)
 {
     let element = e.target.parentElement;
     let display = element.style.display == "flex" ? "none":"flex";
+    console.log(element);
     element.style.display = display;
     return;
 
