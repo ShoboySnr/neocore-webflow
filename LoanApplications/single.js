@@ -524,6 +524,7 @@ function populateUploadedFiles(uploaded_files)
         let fileIdContent = `<div class='collapsed-list' style="display: flex; justify-content: space-between;"><div>📁 (${fileIds.length})</div><div class="expand-list toggle-list">&plus;</div></div><div class='expanded-list' style="display: none; justify-content: space-between;"><div>`;
         for (let i in fileIds)
         {
+            getFileUrl(i, fileIds[i]);
             let count = parseInt(i) + 1;
             fileIdContent += `📁 ${count} of ${fileIds.length} <br />`;
         }
@@ -532,6 +533,15 @@ function populateUploadedFiles(uploaded_files)
         cloneElement.style.display = "flex";
         tableContainer.appendChild(cloneElement);
     })
+}
+
+function getFileUrl(id)
+{
+    fbapp.storage().ref().child(`uploads/${id}`).getDownloadUrl().then((url) => {
+        console.log(url);
+    }).catch((error) => {
+        console.log("error", error);
+    });
 }
 
 function toggleUploadedFiles(e)
