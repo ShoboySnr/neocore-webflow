@@ -572,7 +572,7 @@ function populatePendingActions(pending_actions)
 function populateLinkedAccounts(linked_accounts)
 {
     linked_accounts.forEach((account) => {
-        let tableContainer = document.getElementById("linked-account-table");
+        let tableContainer = document.getElementById("linked-accounts-table");
         let sampleRowElement = document.getElementById("linked-account-row");
         let cloneElement = sampleRowElement.cloneNode(true);
         cloneElement.setAttribute("id", "");
