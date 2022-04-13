@@ -561,7 +561,7 @@ function populatePendingActions(pending_actions)
         cloneElement.getElementsByTagName("div")[0].textContent = action.item;
         cloneElement.getElementsByTagName("div")[1].textContent = action.note;
         cloneElement.getElementsByTagName("div")[2].textContent = action.status;
-        cloneElement.getElementsByTagName("div")[3].textContent = checkbox;
+        cloneElement.getElementsByTagName("div")[3].innerHTML = checkbox;
         cloneElement.style.display = "flex";
         tableContainer.appendChild(cloneElement);
     })
