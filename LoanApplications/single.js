@@ -519,7 +519,7 @@ function populateUploadedFiles(uploaded_files)
         name.textContent = file.name;
         console.log(file.name);
         const fileIds = file.ids;
-        let fileIdContent = `<div class='collapsed-list' style="display: flex; justify-content: space-between;">📁 (${fileIds.length})</div><div class='expanded-list hide' style="display: flex; justify-content: space-between;">`;
+        let fileIdContent = `<div class='collapsed-list' style="display: flex; justify-content: space-between;"><div>📁 (${fileIds.length})</div><div>&plus;</div></div><div class='expanded-list hide' style="display: flex; justify-content: space-between;">`;
         for (let i in fileIds)
         {
             let count = parseInt(i) + 1;
