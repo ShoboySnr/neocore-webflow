@@ -514,6 +514,7 @@ function populateUploadedFiles(uploaded_files)
         let cloneElement = sampleRowElement.cloneNode(true);
         cloneElement.setAttribute("id", "");
         cloneElement.setAttribute("class", "receipt-row");
+        cloneElement.style.cursor = "pointer";
         let name = cloneElement.getElementsByTagName("div")[0];
         name.textContent = file.name;
         console.log(file.name);
@@ -533,9 +534,23 @@ function populateUploadedFiles(uploaded_files)
 
 function toggleUploadedFiles(e)
 {
+    if (e.target.classList.includes("expanded-list")) return;
     let element = e.target.parentElement.children[1];
-    console.log("event", e);
-    console.log("elem", element);
+    let collapsedList = element.children[0];
+    let expandedList = element.children[1];
+    if (collapsedList.classList.includes("hide"))
+    {
+        collapsedList.setAttribute("class", "collapsed-list");
+    } else {
+        collapsedList.setAttribute("class", "collapsed-list hide");
+    }
+
+    if (expandedList.classList.includes("hide"))
+    {
+        expandedList.setAttribute("class", "collapsed-list");
+    } else {
+        expandedList.setAttribute("class", "collapsed-list hide");
+    }
 }
 
 function setContent(item, value, type)
