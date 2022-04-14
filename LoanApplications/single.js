@@ -665,8 +665,9 @@ function applicationFormField(form_info)
         else {
             if (typeof formValue == "object")
             {
-                if (valueType === "name")
-                    fieldElement += '<p>' + formValue.firstName || ' ' + ' ' + formValue.lastName || ' ';
+                // console.log(formValue);
+                if (valueType === "name" && formValue.firstName)
+                    fieldElement += '<p>' + formValue.firstName + ' ' + formValue.lastName;
             }
             else {
                 fieldElement += '<p>' + formValue;
