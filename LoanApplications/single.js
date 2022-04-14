@@ -615,12 +615,15 @@ function populateComments(comments)
         let sampleComment = document.getElementById("comment-item");
         let sampleCommentClone = sampleComment.cloneNode(true);
         sampleCommentClone.setAttribute("id", "");
-        // let commentBody = sampleCommentClone.getElementsByClassName("notification-item-body")
+        let commentBody = sampleCommentClone.getElementsByClassName("notification-item-body");
         sampleCommentClone.getElementsByTagName("div")[0].innerText = "";
-        let commentBody = sampleCommentClone.getElementsByTagName("div")[1];
-        commentBody.children[0].textContent = comment.commenter;
-        commentBody.children[1].textContent = comment.body;
-        sampleCommentClone.getElementsByTagName("div")[2].textContent = comment.date;
+        // let commentBody = sampleCommentClone.getElementsByTagName("div")[1];
+        // commentBody.children[0].textContent = comment.commenter;
+        commentBody.getElementsByClassName("notification-item-title")[0].textContent = comment.commenter;
+        commentBody.getElementsByClassName("notification-item-text")[0].textContent = comment.body;
+        sampleCommentClone.getElementsByClassName("notification-item-date")[0].textContent = comment.date;
+        // commentBody.children[1].textContent = comment.body;
+        // sampleCommentClone.getElementsByTagName("div")[2].textContent = comment.date;
         sampleCommentClone.style.display = "flex";
         commentsContainer.appendChild(sampleCommentClone);
     })
