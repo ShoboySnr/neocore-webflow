@@ -533,7 +533,7 @@ function populateUploadedFiles(uploaded_files)
         for (let i in fileIds)
         {
             console.log("file", fileIds[i]);
-            // getFileUrl(fileIds[i]);
+            getFileUrl(fileIds[i]);
             let count = parseInt(i) + 1;
             fileIdContent += `📁 ${count} of ${fileIds.length} <br />`;
         }
