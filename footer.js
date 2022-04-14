@@ -58,6 +58,28 @@ fbauth.onAuthStateChanged((user) => {
 
 function getFileUrl(id)
 {
+    storageRef.child('images/stars.jpg').getDownloadURL()
+        .then((url) => {
+            console.log(url);
+            return;
+            // `url` is the download URL for 'images/stars.jpg'
+
+            // This can be downloaded directly:
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = (event) => {
+                var blob = xhr.response;
+            };
+            xhr.open('GET', url);
+            xhr.send();
+
+            // Or inserted into an <img> element
+            var img = document.getElementById('myimg');
+            img.setAttribute('src', url);
+        })
+        .catch((error) => {
+            console.log("big errors", error);
+        });
     //create a storage reference
     // var storage = fbapp.storage.ref(id);
     //
@@ -70,7 +92,7 @@ function getFileUrl(id)
     //     .catch(function(error) {
     //         console.log("error encountered");
     //     });
-    // return;
+    return;
     fbapp.storage().ref().child(`uploads/${id}`).getDownloadUrl().then((url) => {
         console.log(id, url);
     }).catch((error) => {
