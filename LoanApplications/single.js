@@ -518,6 +518,7 @@ function creditHistory(credit_history)
 
 function populateUploadedFiles(uploaded_files)
 {
+    if (! uploaded_files) return;
     uploaded_files.forEach((file) => {
         let tableContainer = document.getElementById("uploaded-files-table");
         let sampleRowElement = document.getElementById("uploaded-file-row");
@@ -579,6 +580,7 @@ function populatePendingActions(pending_actions)
 
 function populateLinkedAccounts(linked_accounts)
 {
+    if (! linked_accounts)know
     linked_accounts.forEach((account) => {
         let tableContainer = document.getElementById("linked-accounts-table");
         let sampleRowElement = document.getElementById("linked-account-row");
