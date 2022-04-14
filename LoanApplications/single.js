@@ -92,10 +92,10 @@ const submitComment = async (event) => {
     let formData = new FormData(target);
     let comment = formData.get('comments');
 
-    if(comment.length < 3) {
-        alert('Comment is required');
-        return;
-    }
+    // if(comment.length < 3) {
+    //     alert('Comment is required');
+    //     return;
+    // }
 
     const data = {
         comment
