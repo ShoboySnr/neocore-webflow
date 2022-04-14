@@ -565,6 +565,11 @@ function populatePendingActions(pending_actions)
         let tableContainer = document.getElementById("pending-action-table");
         let sampleRowElement = document.getElementById("pending-action-row");
         let cloneElement = sampleRowElement.cloneNode(true);
+        let checkbox = cloneElement.getElementsByClassName("w-form");
+        console.log("get box", checkbox);
+        checkbox = cloneElement.querySelectorAll(".w-form");
+        console.log("selector", checkbox);
+        return;
         cloneElement.setAttribute("id", "");
         cloneElement.setAttribute("class", "receipt-row");
         // cloneElement.style.cursor = "pointer";

@@ -62,7 +62,7 @@ function getFileUrl(id)
     storage.ref().child('images/million-stars.jpg').getDownloadURL()
         .then((url) => {
             console.log("url is", url);
-            return;
+            return url;
             // `url` is the download URL for 'images/stars.jpg'
 
             // This can be downloaded directly:
