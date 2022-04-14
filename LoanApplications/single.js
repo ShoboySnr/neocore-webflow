@@ -25,10 +25,8 @@ const escalateFormAction = async () => {
 
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
-            console.log("escalator", data);
             alert('Successfully escalated this loan');
 
-            return;
             window.location.reload();
 
         } else {
@@ -109,10 +107,8 @@ const submitComment = async (event) => {
 
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
-            console.log("submit comment", data);
-
             alert('Successfully submitted comments');
-            return;
+
             window.location.reload();
 
         } else {
@@ -173,6 +169,7 @@ const getLoanApplicationRecommendationOptions = async () => {
     request.onload = () => {
 
         console.log("loan application recommendation", this.response);
+        alert("oya");
         return;
 
         let result = JSON.parse(this.response)
@@ -180,7 +177,7 @@ const getLoanApplicationRecommendationOptions = async () => {
         if (request.status >= 200 && request.status < 400) {
             let data = data.data;
 
-            console.log(data);
+            console.log("recommendation option", data);
         }
 
     }
@@ -312,7 +309,7 @@ const declineUnDeclineApplication = async (target, path = 'decline') => {
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
 
-            console.log(data);
+            console.log("decline undeline app", data);
 
         } else {
             const res = JSON.parse(request.response);
@@ -527,12 +524,10 @@ function populateUploadedFiles(uploaded_files)
         cloneElement.style.cursor = "pointer";
         let name = cloneElement.getElementsByTagName("div")[0];
         name.textContent = file.name;
-        console.log(file.name);
         const fileIds = file.ids;
         let fileIdContent = `<div class='collapsed-list' style="display: flex; justify-content: space-between;"><div>📁 (${fileIds.length})</div><div class="expand-list toggle-list">&plus;</div></div><div class='expanded-list' style="display: none; justify-content: space-between;"><div>`;
         for (let i in fileIds)
         {
-            console.log("file", fileIds[i]);
             getFileUrl(fileIds[i]);
             let count = parseInt(i) + 1;
             fileIdContent += `📁 ${count} of ${fileIds.length} <br />`;
@@ -546,32 +541,13 @@ function populateUploadedFiles(uploaded_files)
 
 function populatePendingActions(pending_actions)
 {
-
-    // const checkbox = `<div className="w-form">
-    //         <form id="email-form" name="email-form" data-name="Email Form" method="get" aria-label="Email Form">
-    //             <label className="w-checkbox">
-    //                 <input type="checkbox" name="checkbox-2" id="checkbox-2" data-name="Checkbox 2" className="w-checkbox-input checkbox-2">
-    //                 <span className="checkbox-label-2 w-form-label" htmlFor="checkbox-2">Checkbox</span>
-    //             </label>
-    //         </form>
-    //         <div className="w-form-done" class="hide" tabIndex="-1" role="region" aria-label="Email Form success">
-    //             <div>Thank you! Your submission has been received!</div>
-    //         </div>
-    //         <div className="w-form-fail" tabIndex="-1" class="hide" role="region" aria-label="Email Form failure">
-    //             <div>Oops! Something went wrong while submitting the form.</div>
-    //         </div>
-    //     </div>`;
     pending_actions.forEach((action) => {
         let tableContainer = document.getElementById("pending-action-table");
         let sampleRowElement = document.getElementById("pending-action-row");
         let cloneElement = sampleRowElement.cloneNode(true);
-        // let checkbox = cloneElement.getElementsByClassName("w-form");
-        // console.log("get box", checkbox);
-        let checkbox = cloneElement.querySelectorAll(".w-form")[0];
-        // console.log("selector", checkbox);
+        const checkbox = cloneElement.querySelectorAll(".w-form")[0];
         cloneElement.setAttribute("id", "");
         cloneElement.setAttribute("class", "receipt-row");
-        // cloneElement.style.cursor = "pointer";
         cloneElement.getElementsByTagName("div")[0].textContent = action.item;
         cloneElement.getElementsByTagName("div")[1].textContent = action.note;
         cloneElement.getElementsByTagName("div")[2].textContent = action.status;
@@ -601,15 +577,6 @@ function populateLinkedAccounts(linked_accounts)
         tableContainer.appendChild(cloneElement);
     })
 }
-
-// <a href="#" className="notification-item inbox w-inline-block">
-//     <div className="notification-item-icon _1"></div>
-//     <div className="notification-item-body">
-//         <div className="notification-item-title">Anny Sanders</div>
-//         <div className="notification-item-text">This is some text inside of a div block asdsadasdasd.</div>
-//     </div>
-//     <div className="notification-item-date">1h ago</div>
-// </a>
 
 function populateComments(comments)
 {
@@ -672,7 +639,6 @@ function applicationFormField(form_info)
         else {
             if (typeof formValue == "object")
             {
-                // console.log(formValue);
                 if (valueType === "name" && formValue)
                     fieldElement += '<p>' + formValue.firstName + ' ' + formValue.lastName;
             }
