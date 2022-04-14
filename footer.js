@@ -59,7 +59,7 @@ fbauth.onAuthStateChanged((user) => {
 function getFileUrl(id)
 {
     var storage = firebase.storage();
-    storage.ref.child('images/million-stars.jpg').getDownloadURL()
+    storage.ref().child('images/million-stars.jpg').getDownloadURL()
         .then((url) => {
             console.log("url is", url);
             return;
