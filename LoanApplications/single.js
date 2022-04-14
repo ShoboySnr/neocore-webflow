@@ -357,8 +357,7 @@ async function getSingleCustomer() {
         // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
-            // data = jsonData; // clear this
-            console.log(data);
+            data = jsonData; // clear this
 
             const customer_info = data.customer_info;
             applicationFormField(data.form_info);
@@ -617,19 +616,11 @@ function populateComments(comments)
         let sampleCommentClone = sampleComment.cloneNode(true);
         sampleCommentClone.setAttribute("id", "");
         let commentBody = sampleCommentClone.getElementsByClassName("notification-item-body");
-        console.log(commentBody);
-        console.log(commentBody.target);
-        console.log(commentBody[0]);
-        console.log(commentBody);
         sampleCommentClone.getElementsByTagName("div")[0].innerText = "";
         commentBody = sampleCommentClone.getElementsByTagName("div")[1];
-        console.log(commentBody);
-        // commentBody.children[0].textContent = comment.commenter;
         commentBody.getElementsByClassName("notification-item-title")[0].textContent = comment.commenter;
         commentBody.getElementsByClassName("notification-item-text")[0].textContent = comment.body;
         sampleCommentClone.getElementsByClassName("notification-item-date")[0].textContent = comment.date;
-        // commentBody.children[1].textContent = comment.body;
-        // sampleCommentClone.getElementsByTagName("div")[2].textContent = comment.date;
         sampleCommentClone.style.display = "flex";
         commentsContainer.appendChild(sampleCommentClone);
     })
