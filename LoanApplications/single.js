@@ -580,7 +580,7 @@ function populatePendingActions(pending_actions)
 
 function populateLinkedAccounts(linked_accounts)
 {
-    if (! linked_accounts)know
+    if (! linked_accounts) return;
     linked_accounts.forEach((account) => {
         let tableContainer = document.getElementById("linked-accounts-table");
         let sampleRowElement = document.getElementById("linked-account-row");
