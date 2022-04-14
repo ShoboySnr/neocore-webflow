@@ -610,6 +610,7 @@ function populateLinkedAccounts(linked_accounts)
 
 function populateComments(comments)
 {
+    if (! comments) return;
     comments.forEach(comment => {
         let commentsContainer = document.getElementById("comments-section");
         let sampleComment = document.getElementById("comment-item");
