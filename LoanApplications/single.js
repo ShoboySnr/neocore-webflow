@@ -102,7 +102,7 @@ const submitComment = async (event) => {
     }
 
     let endpoint = `/loanApplications/${applicationID}/comment`
-    let request = await cbrRequest(endpoint, 'POST', true);
+    let request = await cbrRequest(endpoint, 'GET', true);
 
 
     request.onload = function() {
@@ -126,7 +126,7 @@ const submitComment = async (event) => {
     }
 
      //send request
-     request.send(JSON.stringify(data));
+     request.send();
 }
 
 const getLoanDeclineReasons = async () => {
