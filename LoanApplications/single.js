@@ -615,8 +615,8 @@ function populateComments(comments)
         // let commentBody = sampleCommentClone.getElementsByClassName("notification-item-body")
         sampleCommentClone.getElementsByTagName("div")[0].innerText = "";
         let commentBody = sampleCommentClone.getElementsByTagName("div")[1];
-        commentBody.target.children[0].textContent = comment.commenter;
-        commentBody.target.children[1].textContent = comment.body;
+        commentBody.children[0].textContent = comment.commenter;
+        commentBody.children[1].textContent = comment.body;
         sampleCommentClone.getElementsByTagName("div")[2].textContent = comment.date;
         sampleCommentClone.style.display = "flex";
         commentsContainer.appendChild(sampleCommentClone);
