@@ -366,6 +366,7 @@ async function getSingleCustomer() {
             populateUploadedFiles(data.uploaded_files);
             populatePendingActions(data.pending_actions);
             populateLinkedAccounts(data.external_accounts);
+            populateComments(data.comments);
 
             document.getElementById("customer-name").textContent = customer_info.name;
             document.getElementById("customer-name-inner").textContent = customer_info.name;
