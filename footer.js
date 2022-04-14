@@ -58,7 +58,11 @@ fbauth.onAuthStateChanged((user) => {
 
 function getFileUrl(id)
 {
-    storageRef.child('images/stars.jpg').getDownloadURL()
+    var storage = firebase.storage();
+    var pathReference = storage.ref('images/stars.jpg');
+    console.log(pathReference);
+    return;
+    fbapp.storage.ref.child('images/stars.jpg').getDownloadURL()
         .then((url) => {
             console.log(url);
             return;
