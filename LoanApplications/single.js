@@ -85,29 +85,27 @@ const deescalateFormAction = async () => {
 
 const submitComment = async (event) => {
     event.preventDefault();
-    console.log("submit");
 
     let target = event.target;
 
     let formData = new FormData(target);
     let comment = formData.get('comments');
 
-    // if(comment.length < 3) {
-    //     alert('Comment is required');
-    //     return;
-    // }
+    if(comment.length < 3) {
+        alert('Comment is required');
+        return;
+    }
 
     const data = {
         comment
     }
 
     let endpoint = `/loanApplications/${applicationID}/comment`
-    let request = await cbrRequest(endpoint, 'GET', true);
+    let request = await cbrRequest(endpoint, 'POST', true);
 
 
     request.onload = function() {
         let result = JSON.parse(this.response)
-        console.log("submit comment", result);
 
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
@@ -126,7 +124,7 @@ const submitComment = async (event) => {
     }
 
      //send request
-     request.send();
+     request.send(JSON.stringify(data));
 }
 
 const getLoanDeclineReasons = async () => {
@@ -594,6 +592,33 @@ function populateLinkedAccounts(linked_accounts)
         cloneElement.getElementsByTagName("div")[5].textContent = account.options || "S, LB,";
         cloneElement.style.display = "flex";
         tableContainer.appendChild(cloneElement);
+    })
+}
+
+// <a href="#" className="notification-item inbox w-inline-block">
+//     <div className="notification-item-icon _1"></div>
+//     <div className="notification-item-body">
+//         <div className="notification-item-title">Anny Sanders</div>
+//         <div className="notification-item-text">This is some text inside of a div block asdsadasdasd.</div>
+//     </div>
+//     <div className="notification-item-date">1h ago</div>
+// </a>
+
+function populateComments(comments)
+{
+    comments.forEach(comment => {
+        let commentsContainer = document.getElementById("comments-section");
+        let sampleComment = document.getElementById("comment-item");
+        let sampleCommentClone = sampleComment.cloneNode(true);
+        sampleCommentClone.setAttribute("id", "");
+        // let commentBody = sampleCommentClone.getElementsByClassName("notification-item-body")
+        sampleCommentClone.getElementsByTagName("div")[0].innerText = "";
+        let commentBody = sampleCommentClone.getElementsByTagName("div")[1];
+        commentBody.target.children[0].textContent = comment.commenter;
+        commentBody.target.children[1].textContent = comment.body;
+        sampleCommentClone.getElementsByTagName("div")[2].textContent = comment.date;
+        sampleCommentClone.style.display = "flex";
+        commentsContainer.appendChild(sampleCommentClone);
     })
 }
 
