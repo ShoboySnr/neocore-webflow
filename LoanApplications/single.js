@@ -617,8 +617,13 @@ function populateComments(comments)
         let sampleCommentClone = sampleComment.cloneNode(true);
         sampleCommentClone.setAttribute("id", "");
         let commentBody = sampleCommentClone.getElementsByClassName("notification-item-body");
+        console.log(commentBody);
+        console.log(commentBody.target);
+        console.log(commentBody[0]);
+        console.log(commentBody);
         sampleCommentClone.getElementsByTagName("div")[0].innerText = "";
-        // let commentBody = sampleCommentClone.getElementsByTagName("div")[1];
+        commentBody = sampleCommentClone.getElementsByTagName("div")[1];
+        console.log(commentBody);
         // commentBody.children[0].textContent = comment.commenter;
         commentBody.getElementsByClassName("notification-item-title")[0].textContent = comment.commenter;
         commentBody.getElementsByClassName("notification-item-text")[0].textContent = comment.body;
