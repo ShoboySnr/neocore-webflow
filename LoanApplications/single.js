@@ -456,7 +456,7 @@ const reloadPage = () => {
 function creditHistory(credit_history)
 {
     //group each into diff source arrays using map
-    if (credit_history.length < 1) return;
+    if (! credit_history) return;
     let crcFullSource = credit_history.filter(function(ch) {
         return ch.source.toLowerCase() === "crcfull";
     });
