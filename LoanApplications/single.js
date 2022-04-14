@@ -547,29 +547,28 @@ function populateUploadedFiles(uploaded_files)
 function populatePendingActions(pending_actions)
 {
 
-    const checkbox = `<div className="w-form">
-            <form id="email-form" name="email-form" data-name="Email Form" method="get" aria-label="Email Form">
-                <label className="w-checkbox">
-                    <input type="checkbox" name="checkbox-2" id="checkbox-2" data-name="Checkbox 2" className="w-checkbox-input checkbox-2">
-                    <span className="checkbox-label-2 w-form-label" htmlFor="checkbox-2">Checkbox</span>
-                </label>
-            </form>
-            <div className="w-form-done" class="hide" tabIndex="-1" role="region" aria-label="Email Form success">
-                <div>Thank you! Your submission has been received!</div>
-            </div>
-            <div className="w-form-fail" tabIndex="-1" class="hide" role="region" aria-label="Email Form failure">
-                <div>Oops! Something went wrong while submitting the form.</div>
-            </div>
-        </div>`;
+    // const checkbox = `<div className="w-form">
+    //         <form id="email-form" name="email-form" data-name="Email Form" method="get" aria-label="Email Form">
+    //             <label className="w-checkbox">
+    //                 <input type="checkbox" name="checkbox-2" id="checkbox-2" data-name="Checkbox 2" className="w-checkbox-input checkbox-2">
+    //                 <span className="checkbox-label-2 w-form-label" htmlFor="checkbox-2">Checkbox</span>
+    //             </label>
+    //         </form>
+    //         <div className="w-form-done" class="hide" tabIndex="-1" role="region" aria-label="Email Form success">
+    //             <div>Thank you! Your submission has been received!</div>
+    //         </div>
+    //         <div className="w-form-fail" tabIndex="-1" class="hide" role="region" aria-label="Email Form failure">
+    //             <div>Oops! Something went wrong while submitting the form.</div>
+    //         </div>
+    //     </div>`;
     pending_actions.forEach((action) => {
         let tableContainer = document.getElementById("pending-action-table");
         let sampleRowElement = document.getElementById("pending-action-row");
         let cloneElement = sampleRowElement.cloneNode(true);
-        let checkbox = cloneElement.getElementsByClassName("w-form");
-        console.log("get box", checkbox);
-        checkbox = cloneElement.querySelectorAll(".w-form");
-        console.log("selector", checkbox);
-        return;
+        // let checkbox = cloneElement.getElementsByClassName("w-form");
+        // console.log("get box", checkbox);
+        let checkbox = cloneElement.querySelectorAll(".w-form")[0];
+        // console.log("selector", checkbox);
         cloneElement.setAttribute("id", "");
         cloneElement.setAttribute("class", "receipt-row");
         // cloneElement.style.cursor = "pointer";
