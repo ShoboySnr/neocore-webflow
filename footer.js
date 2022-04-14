@@ -59,7 +59,7 @@ fbauth.onAuthStateChanged((user) => {
 function getFileUrl(id)
 {
     //create a storage reference
-    var storage = fbapp.storage().ref(id);
+    var storage = fbapp.storage.ref(id);
 
     //get file url
     storage
