@@ -600,7 +600,7 @@ function populatePendingActions(pending_actions)
         const checkbox = cloneElement.querySelectorAll(".w-form")[0];
         cloneElement.setAttribute("id", "");
         cloneElement.setAttribute("class", "receipt-row");
-        cloneElement.getElementsByTagName("div")[0].textContent = action.item;
+        cloneElement.getElementsByTagName("div")[0].textContent = kebabToString(action.item);
         cloneElement.getElementsByTagName("div")[1].textContent = action.note;
         cloneElement.getElementsByTagName("div")[2].textContent = action.status;
         cloneElement.getElementsByTagName("div")[3].appendChild(checkbox);
@@ -720,6 +720,13 @@ document.addEventListener("keyup", (event) => {
         })
     }
 });
+
+
+function kebabToString(kebab)
+{
+    let string = kebab.charAt(0).toUpperCase() + kebab.slice(1);
+    return string.replace(/-/g, " ");
+}
 
 
 Webflow.push(function() {
