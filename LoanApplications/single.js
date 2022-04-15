@@ -449,7 +449,7 @@ async function getSingleCustomer() {
             });
 
             //add action to the decline request
-            document.getElementById('undecline-request-submit-form').addEventListener('click', (event) => {
+            document.getElementById('undecline-loan-request-form').addEventListener('click', (event) => {
                 event.preventDefault();
                 declineUnDeclineApplication(document.getElementById('wf-form-DeclineRequestsForm'), 'undecline');
             });
