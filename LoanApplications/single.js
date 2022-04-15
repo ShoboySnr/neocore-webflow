@@ -456,7 +456,7 @@ async function getSingleCustomer() {
 
             //add event listener to comments
             document.getElementById('wf-form-comments-form').addEventListener('submit', submitComment)
-            document.getElementById('email-form-2').addEventListener('submit', addPendingItem)
+            document.getElementById('add-pending-item-form').addEventListener('submit', addPendingItem)
 
 
             document.querySelectorAll('.closemodal').forEach((el) => {
