@@ -325,8 +325,6 @@ const declineUnDeclineApplication = async (target, path = 'decline') => {
 const addPendingItem = async (event) => {
 
     event.preventDefault();
-    console.log(event);
-    alert("starting");
     let target = document.getElementById("email-form-2");
 
     let formData = new FormData(target);
@@ -336,7 +334,7 @@ const addPendingItem = async (event) => {
     let msg = '';
     let count = 0;
 
-    if(item.length < 2) {
+    if(item === '') {
         msg += 'Select an item from the list \n';
         count += 1;
     }
