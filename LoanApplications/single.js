@@ -654,6 +654,7 @@ function populateRecommendations(recommendations)
     let sampleRecommendation = document.getElementById("sample-recommendation-item");
     let sampleRecommendationListContainer = document.getElementById("sample-recommendation-item-container");
     let sampleRecommendationClone = sampleRecommendation.cloneNode(true);
+    console.log(sampleRecommendationClone);
     sampleRecommendationClone.setAttribute("id", "");
     recommendations.forEach((recommendation) => {
         sampleRecommendationClone.textContent = `${recommendation.recommender} - ${format_currency(recommendation.amount)} ${recommendation.product}, for ${recommendation.duration_days} days at ${recommendation.interest}%`;
