@@ -245,6 +245,8 @@ const addRecommendations = async () => {
         notes
     }
 
+    console.log("recommendation data", data);
+
     let endpoint = `/loanApplications/${applicationID}/recommend`
     let request = await cbrRequest(endpoint, 'POST', true);
 
@@ -254,6 +256,7 @@ const addRecommendations = async () => {
 
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
+            console.log("added recommendation", data);
 
             alert('Successfully added a recommendation');
             window.location.reload();
@@ -416,6 +419,9 @@ async function getSingleCustomer() {
                     });
                 })
             });
+
+            //add recommendations
+            document.getElementById("wf-form-Recommendation-Form").addEventListener("submit", addRecommendations);
 
             //add toggel action to table
             document.querySelectorAll(".toggle-list").forEach(element => {
