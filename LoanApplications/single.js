@@ -334,20 +334,20 @@ const addPendingItem = async (event) => {
     let msg = '';
     let count = 0;
 
-    if(item === '') {
-        msg += 'Select an item from the list \n';
-        count += 1;
-    }
-
-    if(note.length < 2) {
-        msg += 'Enter brief note \n';
-        count += 1;
-    }
-
-    if(count > 0) {
-        alert(msg);
-        return;
-    }
+    // if(item === '') {
+    //     msg += 'Select an item from the list \n';
+    //     count += 1;
+    // }
+    //
+    // if(note.length < 2) {
+    //     msg += 'Enter brief note \n';
+    //     count += 1;
+    // }
+    //
+    // if(count > 0) {
+    //     alert(msg);
+    //     return;
+    // }
 
     const data = {
         item,
