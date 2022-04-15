@@ -365,6 +365,7 @@ function addPendingItem()
             let data = result.data;
 
             console.log("add pending item", data);
+            return;
 
         } else {
             const res = JSON.parse(request.response);
