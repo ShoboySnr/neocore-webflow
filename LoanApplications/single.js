@@ -325,11 +325,11 @@ const declineUnDeclineApplication = async (target, path = 'decline') => {
 const addPendingItem = async (event) => {
 
     event.preventDefault();
-    let target = document.getElementById("email-form-2");
+    let target = document.getElementById("add-pending-item-form");
 
     let formData = new FormData(target);
     console.log(formData);
-    return;
+    // return;
     let item = formData.get('field-8');
     let note = formData.get('field-2');
 
