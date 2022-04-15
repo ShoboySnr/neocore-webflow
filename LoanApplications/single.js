@@ -430,7 +430,7 @@ async function getSingleCustomer() {
             });
 
             //add action to the escalate form
-            document.getElementById('escalate-submit-form').addEventListener('click', (event) => {
+            document.getElementById('wf-form-EscalateForm').addEventListener('click', (event) => {
                 event.preventDefault();
                 escalateFormAction()
             });
