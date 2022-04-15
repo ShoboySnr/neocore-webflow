@@ -322,8 +322,8 @@ const declineUnDeclineApplication = async (target, path = 'decline') => {
      request.send(JSON.stringify(data));
 }
 
-async function addPendingItem(event)
-{
+const addPendingItem = async (event) => {
+
     event.preventDefault();
     console.log(event);
     alert("starting");
