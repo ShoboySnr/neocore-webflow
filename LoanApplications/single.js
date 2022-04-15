@@ -328,6 +328,8 @@ const addPendingItem = async (event) => {
     let target = document.getElementById("email-form-2");
 
     let formData = new FormData(target);
+    console.log(formData);
+    return;
     let item = formData.get('field-8');
     let note = formData.get('field-2');
 
