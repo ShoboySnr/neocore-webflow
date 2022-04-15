@@ -437,7 +437,7 @@ async function getSingleCustomer() {
 
 
             //add action to the escalate form
-            document.getElementById('deescalate-submit-form').addEventListener('click', (event) => {
+            document.getElementById('wf-form-DeescalateForm').addEventListener('click', (event) => {
                 event.preventDefault();
                 deescalateFormAction()
             });
