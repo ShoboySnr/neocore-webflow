@@ -657,7 +657,7 @@ function populateRecommendations(recommendations)
     console.log(sampleRecommendationClone);
     sampleRecommendationClone.setAttribute("id", "");
     recommendations.forEach((recommendation) => {
-        sampleRecommendationClone.textContent = `${recommendation.recommender} - ${format_currency(recommendation.amount)} ${recommendation.product}, for ${recommendation.duration_days} days at ${recommendation.interest}%`;
+        sampleRecommendationClone.getElementsByTagName("span")[0].textContent = `${recommendation.recommender} - ${format_currency(recommendation.amount)} ${recommendation.product}, for ${recommendation.duration_days} days at ${recommendation.interest}%`;
         sampleRecommendationClone.style.display = "flex";
         sampleRecommendationListContainer.appendChild(sampleRecommendationClone);
     });
