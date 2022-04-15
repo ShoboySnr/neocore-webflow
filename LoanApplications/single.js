@@ -335,12 +335,12 @@ function addPendingItem()
     let count = 0;
 
     if(item.length < 2) {
-        msg += 'Select a Decline request \n';
+        msg += 'Select an item from the list \n';
         count += 1;
     }
 
     if(note.length < 2) {
-        msg += 'Enter Decline Comments \n';
+        msg += 'Enter brief note \n';
         count += 1;
     }
 
