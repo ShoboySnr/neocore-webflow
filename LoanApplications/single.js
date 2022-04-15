@@ -328,40 +328,39 @@ const addPendingItem = async (event) => {
     let target = document.getElementById("add-pending-item-form");
 
     let formData = new FormData(target);
-    console.log(formData);
-    // return;
     let item = formData.get('field-8');
     let note = formData.get('field-2');
 
     let msg = '';
     let count = 0;
 
-    // if(item === '') {
-    //     msg += 'Select an item from the list \n';
-    //     count += 1;
-    // }
-    //
-    // if(note.length < 2) {
-    //     msg += 'Enter brief note \n';
-    //     count += 1;
-    // }
-    //
-    // if(count > 0) {
-    //     alert(msg);
-    //     return;
-    // }
+    if(item === '') {
+        msg += 'Select an item from the list \n';
+        count += 1;
+    }
+
+    if(note.length < 2) {
+        msg += 'Enter brief note \n';
+        count += 1;
+    }
+
+    if(count > 0) {
+        alert(msg);
+        return;
+    }
 
     const data = {
         item,
         note
     }
-    console.log("pending", data)
 
     let request = await cbrRequest(`/loanApplications/${applicationID}/pendingItem`, 'PUT', true);
 
 
     request.onload = function() {
         let result = JSON.parse(this.response)
+        console.log("pending item", result);
+        return;
 
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
