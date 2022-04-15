@@ -322,7 +322,9 @@ const declineUnDeclineApplication = async (target, path = 'decline') => {
      request.send(JSON.stringify(data));
 }
 
-const addPendingItem = async () => {
+function addPendingItem()
+{
+    alert("starting");
     let target = document.getElementById("email-form-2");
 
     let formData = new FormData(target);
@@ -351,6 +353,7 @@ const addPendingItem = async () => {
         item,
         note
     }
+    console.log("pending", data)
 
     let request = await cbrRequest(`/loanApplications/${applicationID}/pendingItem`, 'PUT', true);
 
