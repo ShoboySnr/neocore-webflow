@@ -656,7 +656,7 @@ function populateRecommendations(recommendations)
     let sampleRecommendationClone = sampleRecommendation.cloneNode(true);
     sampleRecommendationClone.setAttribute("id", "");
     recommendations.forEach((recommendation) => {
-        sampleRecommendationClone.textContent = `${recommendation.recommender} - ${recommendation.amount} ${recommendation.product}, for ${recommendation.duration_days} days at ${recommendation.interest}%`;
+        sampleRecommendationClone.textContent = `${recommendation.recommender} - ${format_currency(recommendation.amount)} ${recommendation.product}, for ${recommendation.duration_days} days at ${recommendation.interest}%`;
         sampleRecommendationClone.style.display = "flex";
         sampleRecommendationListContainer.appendChild(sampleRecommendationClone);
     });
