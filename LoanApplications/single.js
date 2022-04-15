@@ -168,10 +168,6 @@ const getLoanApplicationRecommendationOptions = async () => {
 
     request.onload = () => {
 
-        console.log("loan application recommendation", this.response);
-        alert("oya");
-        return;
-
         let result = JSON.parse(this.response)
 
         if (request.status >= 200 && request.status < 400) {
