@@ -359,14 +359,11 @@ const addPendingItem = async (event) => {
 
     request.onload = function() {
         let result = JSON.parse(this.response)
-        console.log("pending item", result);
-        return;
 
         if (request.status >= 200 && request.status < 400) {
             let data = result.data;
 
-            console.log("add pending item", data);
-            return;
+            window.location.reload();
 
         } else {
             const res = JSON.parse(request.response);
@@ -411,6 +408,8 @@ async function getSingleCustomer() {
             populatePendingActions(data.pending_actions);
             populateLinkedAccounts(data.external_accounts);
             populateComments(data.comments);
+            populateRecommendations(data.recommendations);
+
 
             document.getElementById("customer-name").textContent = customer_info.name;
             document.getElementById("customer-name-inner").textContent = customer_info.name;
@@ -647,6 +646,20 @@ function populateComments(comments)
         sampleCommentClone.style.display = "flex";
         commentsContainer.appendChild(sampleCommentClone);
     })
+}
+
+function populateRecommendations(recommendations)
+{
+    // let formTarget = document.getElementById("recommendation-approval-form");
+    let sampleRecommendation = document.getElementById("sample-recommendation-item");
+    let sampleRecommendationListContainer = document.getElementById("sample-recommendation-item-container");
+    let sampleRecommendationClone = sampleRecommendation.cloneNode(true);
+    sampleRecommendationClone.setAttribute("id", "");
+    recommendations.forEach((recommendation) => {
+        sampleRecommendationClone.textContent = `${recommendation.recommender} - ${recommendation.amount} ${recommendation.product}, for ${recommendation.duration_days} days at ${recommendation.interest}%`;
+        sampleRecommendationClone.style.display = "flex";
+        sampleRecommendationListContainer.appendChild(sampleRecommendationClone);
+    });
 }
 
 function toggleUploadedFiles(e)

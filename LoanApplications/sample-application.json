@@ -139,13 +139,13 @@
   ],
   "recommendations": [
     {
-      "amount": "",
-      "product": "",
-      "interest": "",
-      "duration_days": "",
+      "amount": "10000",
+      "product": "Super Loan",
+      "interest": "2",
+      "duration_days": "90",
       "fees": "",
       "notes": "",
-      "reccomender": ""
+      "reccomender": "Olabisi"
     }
   ]
 }
