@@ -322,15 +322,59 @@ const declineUnDeclineApplication = async (target, path = 'decline') => {
      request.send(JSON.stringify(data));
 }
 
-const getApplicationData = async () => {
-    let data;
-    fetch("https://shoboysnr.github.io/neocore-webflow/LoanApplications/sample-application.json")
-        .then(response => response.json())
-        .then(json => {
-            data = json;
-        });
-    return data;
+const addPendingItem = async () => {
+    let target = document.getElementById("email-form-2");
+
+    let formData = new FormData(target);
+    let item = formData.get('field-8');
+    let note = formData.get('field-2');
+
+    let msg = '';
+    let count = 0;
+
+    if(item.length < 2) {
+        msg += 'Select a Decline request \n';
+        count += 1;
+    }
+
+    if(note.length < 2) {
+        msg += 'Enter Decline Comments \n';
+        count += 1;
+    }
+
+    if(count > 0) {
+        alert(msg);
+        return;
+    }
+
+    const data = {
+        item,
+        note
+    }
+
+    let request = await cbrRequest(`/loanApplications/${applicationID}/pendingItem`, 'PUT', true);
+
+
+    request.onload = function() {
+        let result = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {
+            let data = result.data;
+
+            console.log("add pending item", data);
+
+        } else {
+            const res = JSON.parse(request.response);
+            let message = res.message;
+            alert(message);
+            return;
+        }
+    }
+
+    //send request
+    request.send(JSON.stringify(data));
 }
+
 
 async function getSingleCustomer() {
 
@@ -671,5 +715,12 @@ document.addEventListener("keyup", (event) => {
     }
 });
 
+
+Webflow.push(function() {
+    // Disable submitting form fields during development
+    $('form').submit(function() {
+        return false;
+    });
+});
 
 window.addEventListener('firebaseIsReady', getSingleCustomer);
