@@ -322,8 +322,10 @@ const declineUnDeclineApplication = async (target, path = 'decline') => {
      request.send(JSON.stringify(data));
 }
 
-async function addPendingItem()
+async function addPendingItem(event)
 {
+    event.preventDefault();
+    console.log(event);
     alert("starting");
     let target = document.getElementById("email-form-2");
 
