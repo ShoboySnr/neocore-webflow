@@ -127,19 +127,20 @@ const getLoanDeclineReasons = async () => {
     let request = await cbrRequest('/loanDeclineReasons', 'GET', true);
 
     request.onload = () => {
-        console.log("loan decline reasons", this.response);
-        return;
 
-        let result = JSON.parse(this.response)
+        let result = JSON.parse(this.response);
 
         if (request.status >= 200 && request.status < 400) {
             let data = data.data;
+            console.log("loan reasons", data);
 
             let reasons_for_declining = data.reasons_for_declining;
             let reasons_for_undeclining = data.reasons_for_undeclining;
 
             populateDeclineUnDeclineSelect(reasons_for_declining, document.getElementById('decline-requests-options'));
             populateDeclineUnDeclineSelect(reasons_for_undeclining, document.getElementById('undecline-requests-options'));
+        } else {
+            console.log("error", result);
         }
 
     }
