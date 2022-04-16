@@ -183,6 +183,67 @@ const getLoanApplicationRecommendationOptions = async () => {
 }
 
 
+const approveRecommendations = async () => {
+    let target = document.getElementById("recommendation-approval-form");
+
+    let formData = new FormData(target);
+    let recommendations = formData.get("checkbox-3");
+    let note = formData.get("field-2");
+
+    let msg = '';
+    let count = 0;
+
+    if(recommendations == '') {
+        msg += 'Recommendation is required \n';
+        count += 1;
+    }
+
+    if(note == '') {
+        msg += 'Note is required \n';
+        count += 1;
+    }
+
+
+    if(count > 0) {
+        alert(msg);
+        return;
+    }
+
+    const data = {
+        recommendations,
+        note
+    }
+
+    console.log("data", data);
+
+    let endpoint = `/loanApplications/${applicationID}/approve`;
+
+    let request = await cbrRequest(endpoint, 'POST', true);
+
+    request.onload = function() {
+        let result = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {
+            let data = result.data;
+            console.log("added recommendation", data);
+
+            alert('Successfully added a recommendation');
+            window.location.reload();
+
+        } else {
+            const res = JSON.parse(request.response);
+            let message = res.message;
+            alert(message);
+            return;
+        }
+    }
+
+    //send request
+    request.send(JSON.stringify(data));
+
+}
+
+
 const addRecommendations = async () => {
     let target = document.getElementById('wf-form-Recommendation-Form');
 
@@ -467,6 +528,7 @@ async function getSingleCustomer() {
 
             //add recommendations
             document.getElementById("wf-form-Recommendation-Form").addEventListener("submit", addRecommendations);
+            document.getElementById("recommendation-approval-form").addEventListener("submit", approveRecommendations);
 
             //add toggel action to table
             document.querySelectorAll(".toggle-list").forEach(element => {
@@ -650,14 +712,12 @@ function populateComments(comments)
 
 function populateRecommendations(recommendations)
 {
-    // let formTarget = document.getElementById("recommendation-approval-form");
     let sampleRecommendation = document.getElementById("sample-recommendation-item");
     let sampleRecommendationListContainer = document.getElementById("sample-recommendation-item-container");
     let sampleRecommendationClone = sampleRecommendation.cloneNode(true);
-    console.log(sampleRecommendationClone);
     sampleRecommendationClone.setAttribute("id", "");
     recommendations.forEach((recommendation) => {
-        sampleRecommendationClone.getElementsByTagName("span")[0].textContent = `${recommendation.recommender} - ${format_currency(recommendation.amount)} ${recommendation.product}, for ${recommendation.duration_days} days at ${recommendation.interest}%`;
+        sampleRecommendationClone.getElementsByTagName("span")[0].textContent = ` ${recommendation.recommender} - ${format_currency(recommendation.amount)} ${recommendation.product}, for ${recommendation.duration_days} days at ${recommendation.interest}%`;
         sampleRecommendationClone.style.display = "flex";
         sampleRecommendationListContainer.appendChild(sampleRecommendationClone);
     });
